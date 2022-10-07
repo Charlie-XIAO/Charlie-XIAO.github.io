@@ -1,3 +1,7 @@
 # Processing files
 *.md
 !README.md
+
+# LaTeX CV
+yxiao-cv/*
+!yxiao-cv/yxiao-cv.pdf
