@@ -11,9 +11,14 @@
         body {
             font-family: Georgia, Times, "Times New Roman", serif;
             font-size: 20px;
-            padding: 0 26px;
             line-height: 28px;
             word-wrap: break-word;
+            margin: 0;
+            padding: 0;
+            background: url(./images/background.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100%;
         }
 
         body.scrollBeyondLastLine {
@@ -101,7 +106,7 @@
         }
 
         code {
-            font-family: Georgia, Times, "Times New Roman", serif;
+            font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
             font-size: 1em;
             line-height: 1.357em;
         }
@@ -123,8 +128,8 @@
         }
 
         .dropbtn {
-            background-color: #cad6ba;
-            color: black;
+            background-color: transparent;
+            color: white;
             padding: 20px;
             font-size: 30px;
             border: none;
@@ -139,9 +144,9 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f1f1f1;
+            background-color: rgba(255, 255, 255, 0.9);
             min-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
             transition: all 500ms ease;
         }
@@ -165,7 +170,17 @@
             display: block;
         }
         .dropdown:hover .dropbtn {
-            color: #5b5b5b;
+            color: #4b4b4b;
+        }
+
+        .content a {
+            text-decoration: none;
+            color: white;
+            transition: all 250ms ease;
+        }
+
+        .content a:hover {
+            border-bottom: 1.5px solid #b9b9b9;
         }
 
     </style>
@@ -176,7 +191,7 @@
 
 </head>
 
-<body style="margin: 0; padding: 0; background-color: #cad6ba">
+<body style="margin: 0; padding: 0;">
 
     <script>
         mermaid.initialize({
@@ -195,18 +210,21 @@
         </div>
     </div>
 
-    <div style="width: 70vw; padding: 40px; margin: auto; margin-top: 5%;">
+    <div class="content" style="width: 70vw; padding: 40px; margin: auto; margin-top: 5%; color: white; background: rgba(0, 0, 0, 0.4);">
         <h1 id="yao-xiao">Yao Xiao</h1>
         <img style="float: right; width: 200px; border-radius: 50%; margin-left: 25px; margin-right: 15px; margin-top: 10px; margin-bottom: 10px;" src="./images/profile.jpg">
         <p>
             My name is 萧尧 (xiāo yáo).
-            I am an undergraduate (currently in junior year) majoring in Honors Mathematics and Computer Science at NYU Shanghai.
+            I am an undergraduate (currently in junior year) majoring in Honors Mathematics and Computer Science at <a href="https://shanghai.nyu.edu/">NYU Shanghai</a>.
         </p>
         <p>
             I was born in Shanghai and received Chinese compulsory education until college.
-            I graduated from World Foreign Language Middle School (世界外国语中学, 2013-16) and No.2 High School Affiliated to East China Normal University (华东师范大学第二附属中学, 2017-20).
+            I graduated from <a href="https://www.wflms.cn/site/site2/">Shanghai World Foreign Language Academy</a> (上海市世界外国语中学, 2013-16) and <a href="http://www.hsefz.cn">No.2 High School Affiliated to East China Normal University</a> (华东师范大学第二附属中学, 2017-20).
             After that, I entered NYU Shanghai, where I am currently studying.
             During the Fall 2022 and Spring 2023 semesters, I am studying away in New York and learning at NYU CAS and NYU Courant.
+        </p>
+        <p>
+            You can reach me at <a href="mailto: yx2436@nyu.edu"><code>yx2436@nyu.edu</code></a>.
         </p>
     </div>
 

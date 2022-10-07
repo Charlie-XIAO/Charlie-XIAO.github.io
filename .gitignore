@@ -1,6 +1,7 @@
 # Processing files
 *.md
 !README.md
+convert.html
 
 # LaTeX CV
 yxiao-cv/*
