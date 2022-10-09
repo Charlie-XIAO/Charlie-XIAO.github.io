@@ -1,9 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: repeating-linear-gradient(rgba(20, 40, 20, 0.3), rgba(20, 40, 20, 0.6), rgba(20, 40, 20, 0.3));
+    background: url("./images/background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
     height: 100%;
 }
 
