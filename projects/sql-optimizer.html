@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yao Xiao | SQL Optimizer</title>
+    <meta name="generator" content="Org Mode" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+    <style>pre.src{background:#fafafa; color:#383a42;}</style>
+</head>
+
+<body>
+    
+    <div id="content" class="content">
+        <p><a href="../home.html">Home</a> / <a href="../projects.html">Projects</a><span style="color: #808080;"> / Simple SQL Optimizer</span></p>
+        <h1 class="title">Simple SQL Optimizer</h1>
+        <div id="table-of-contents" role="doc-toc">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents" role="doc-toc">
+            <ul>
+                <li><a href="#projectinformation">Project information</a></li>
+                <li><a href="#overview">Overview</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="outline-container-projectinformation" class="outline-2">
+        <h2 id="projectinformation">Project information</h2>
+        <div class="outline-text-2" id="text-projectinformation">
+            <ul class="org-ul">
+                <li><b>Organization: </b><a href="https://youthcamp.bytedance.com/">ByteDance 4th Youth Training Camp</a>.</li>
+                <li><b>Duration: </b>Jul. 2022 - Aug. 2022.</li>
+                <li><b>Place: </b>Online.</li>
+                <li><b>Programming language: </b>Java.</li>
+            </ul>
+            <p>I was enrolled into the advanced course in big data track through ByteDance Youth Training Camp enrollment examination.</p>
+        </div>
+    </div>
+
+    <div id="outline-container-overview" class="outline-2">
+        <h2 id="overview">Overview</h2>
+        <div class="outline-text-2" id="text-overview">
+            <p>
+                This is a simple SQL engine supporting CSV data searching, various SQL operators, rule-based and cost-based optimization, and different modes of shuffling.
+                Basic funtionality include:
+                <ul>
+                    <li>A graphic user interface.</li>
+                    <li>Parsing and analyzing SQL to form an abstract syntax tree.</li>
+                    <li>Supporting various <a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/toc.htm">SQL operators</a> including Scan, Project, Filter, Aggregate, Limit, and different modes of Join.</li>
+                    <li>Supporing various <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96533/rbo.htm">rule-based optimization</a> including predicate pushdown, limit pushdown, constant folding, column pruning, etc.</li>
+                    <li>Supporting various <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96533/optimops.htm">cost-based optimization</a> including join reorder, hash optimization, shuffle optimization, etc.</li>
+                </ul>
+            </p>
+            <p>You may access my GitHub source code <a href="https://github.com/Charlie-XIAO/Simple-SQL-Optimizer.git">here</a>.</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 60px; color: grey;">
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+
+</body>
+
+</html>
