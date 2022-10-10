@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yao Xiao | MATH-SHU.0238</title>
+    <title>Yao Xiao | CSCI-UA.0202</title>
     <meta name="generator" content="Org Mode" />
     <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
     <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -19,8 +19,8 @@
 <body>
     
     <div id="content" class="content">
-        <p><a href="../home.html">Home</a> / <a href="../education.html">Education</a><span style="color: #808080;"> / MATH-SHU.0238</span></p>
-        <h1 class="title">MATH-SHU.0238 Honors Theory of Probability</h1>
+        <p><a href="../home.html">Home</a> / <a href="../education.html">Education</a><span style="color: #808080;"> / CSCI-UA.0202</span></p>
+        <h1 class="title">CSCI-UA.0202 Operating Systems</h1>
         <div id="table-of-contents" role="doc-toc">
             <h2>Table of Contents</h2>
             <div id="text-table-of-contents" role="doc-toc">
@@ -28,10 +28,11 @@
                 <li><a href="#courseinformation">Course information</a></li>
                 <li><a href="#gradebook">Gradebook</a></li>
                 <li>
-                    <a href="#projects">Projects</a>
+                    <a href="#labs">Labs</a>
                     <ul>
-                        <li><a href="#finalpresentation">Final Presentation</a></li>
-                        <li><a href="#finalreport">Final Report</a></li>
+                        <li><a href="#lab2">Lab 2: nyush</a></li>
+                        <li><a href="#lab3">Lab 3: nyuenc</a></li>
+                        <li><a href="#lab4">Lab 4: nyufile</a></li>
                     </ul>
                 </li>
             </ul>
@@ -42,14 +43,18 @@
         <h2 id="courseinformation">Course information</h2>
         <div class="outline-text-2" id="text-courseinformation">
             <ul class="org-ul">
-                <li><b>Instructor: </b><a href="https://shanghai.nyu.edu/academics/faculty/directory/wei-wu">Wei Wu</a>.</li>
-                <li><b>Semester: </b>Spring 2022.</li>
+                <li><b>Instructor: </b><a href="https://ytang.com/">Yang Tang</a>.</li>
+                <li><b>Semester: </b>Fall 2022.</li>
                 <li>
                     <b>Outline: </b>
-                    Axioms of mathematical probability, combinatorial analysis;
-                    Binomial distribution, Poisson distribution, normal approximations, random variables, probability distributions;
-                    Random walks; Generating functions; Branching processes; Markov chains.
+                    High-level design of key operating system concepts using Linux as an example.
+                    Process scheduling, process synchronization;
+                    Deadlocks and their prevention;
+                    I/O, file systems;
+                    Memory management, paging, segmentation;
+                    Security and protection.
                 </li>
+                <li><b>Programming language: </b>C.</li>
             </ul>
         </div>
     </div>
@@ -57,7 +62,7 @@
     <div id="outline-container-gradebook" class="outline-2">
         <h2 id="gradebook">Gradebook</h2>
         <div class="outline-text-2" id="text-gradebook">
-            <p><b>Overall grade: </b>A (4.00/4.00).</p>
+            <p><b>Overall grade: </b>NA (NA/4.00).</p>
             <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
             <colgroup>
                 <col class="org-left" />
@@ -75,21 +80,21 @@
                 <tr>
                     <td class="org-left">Homework</td>
                     <td class="org-left"></td>
-                    <td class="org-left">A</td>
+                    <td class="org-left"></td>
+                </tr>
+                <tr>
+                    <td class="org-left">Labs</td>
+                    <td class="org-left"></td>
+                    <td class="org-left"></td>
                 </tr>
                 <tr>
                     <td class="org-left">Midterm</td>
-                    <td class="org-left">28/40</td>
+                    <td class="org-left"></td>
                     <td class="org-left"></td>
                 </tr>
                 <tr>
-                    <td class="org-left">Final Presentation</td>
-                    <td class="org-left">17/20</td>
+                    <td class="org-left">Final</td>
                     <td class="org-left"></td>
-                </tr>
-                <tr>
-                    <td class="org-left">Final Report</td>
-                    <td class="org-left">19/20</td>
                     <td class="org-left"></td>
                 </tr>
             </tbody>
@@ -97,30 +102,44 @@
         </div>
     </div>
 
-    <div id="outline-container-projects" class="outline-2">
-        <h2 id="projects">Projects</h2>
-        <div class="outline-text-2" id="text-projects">
-            <p>
-                The projects are done in groups of 3, and I am the leader of my group.
-                Our topic is the application of Stochastic Calculus in Economics, specifically the derivation of Black-Scholes-Merton equation.
-            </p>
+    <div id="outline-container-labs" class="outline-2">
+        <h2 id="labs">Labs</h2>
+        <div class="outline-text-2" id="text-labs">
+            <p></p>
         </div>
     </div>
 
-    <div id="outline-container-finalpresentation" class="outline-3">
-        <h3 id="finalpresentation">Final Presentation</h3>
-        <div class="outline-text-3" id="text-finalpresentation">
+    <div id="outline-container-lab2" class="outline-3">
+        <h3 id="lab2">Lab 2: <code>nyush</code></h3>
+        <div class="outline-text-3" id="text-lab2">
             <p>
-                You may access our presentation slides <a href="https://drive.google.com/file/d/1eExumARqI2gnmWAmaOGR-H7rrgqHTWSm/view?usp=sharing">here</a>.
-                It was mainly focused on three parts: Brownian motion, stochastic calculus, and risk-neutral pricing (including the derivation of Black-Scholes-Merton equation).
+                <a href="https://gitfront.io/r/Charlie-XIAO/jwtwvd6UYbWL/Shell-nyush/">Shell-nyush</a>, a.k.a. <b>N</b>ew <b>Y</b>et <b>U</b>sable <b>Sh</b>ell, is an implementation of a simple version of the Linux shell.
+                It is an interactive command-line program, involving process creation, destruction, and management, signal handling, and I/O redirection.
+                Basic functionality include:
+                <ul>
+                    <li>Program locating and execution.</li>
+                    <li>Process termination and suspension.</li>
+                    <li>Signal handling.</li>
+                    <li>I/O redirection (including piping).</li>
+                    <li>Built-in commands (including <code>cd</code>, <code>exit</code>, <code>jobs</code>, and <code>fg</code>).</li>
+                </ul>
             </p>
+            <p><img src="../images/Shell-nyush.png" width="90%"></p>
+            <p>You may access the source code <a href="https://gitfront.io/r/Charlie-XIAO/jwtwvd6UYbWL/Shell-nyush/">here</a>, and note that it should run on a Linux server.</p>
         </div>
     </div>
 
-    <div id="outline-container-finalreport" class="outline-3">
-        <h3 id="finalreport">Final Report</h3>
-        <div class="outline-text-3" id="text-finalreport">
-            <p><iframe src="./HTOP-final-report.pdf" width="100%" height="500px"></iframe></p>
+    <div id="outline-container-lab3" class="outline-3">
+        <h3 id="lab2">Lab 3: <code>nyuenc</code></h3>
+        <div class="outline-text-3" id="text-lab3">
+            <p></p>
+        </div>
+    </div>
+
+    <div id="outline-container-lab4" class="outline-3">
+        <h3 id="lab2">Lab 4: <code>nyufile</code></h3>
+        <div class="outline-text-3" id="text-lab4">
+            <p></p>
         </div>
     </div>
 

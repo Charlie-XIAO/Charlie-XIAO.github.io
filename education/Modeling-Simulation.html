@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Yao Xiao | CSCI-SHU.0101</title>
+    <title>Yao Xiao | MATH-UA.0395</title>
     <meta name="generator" content="Org Mode" />
     <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
     <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -19,8 +19,8 @@
 <body>
     
     <div id="content" class="content">
-        <p><a href="../home.html">Home</a> / <a href="../education.html">Education</a><span style="color: #808080;"> / CSCI-SHU.0101</span></p>
-        <h1 class="title">CSCI-SHU.0101 Introduction to Computer Science</h1>
+        <p><a href="../home.html">Home</a> / <a href="../education.html">Education</a><span style="color: #808080;"> / MATH-UA.0395</span></p>
+        <h1 class="title">MATH-UA.0395 Modeling and Simulation in Science, Engineering, and Economics</h1>
         <div id="table-of-contents" role="doc-toc">
             <h2>Table of Contents</h2>
             <div id="text-table-of-contents" role="doc-toc">
@@ -30,6 +30,7 @@
                 <li>
                     <a href="#projects">Projects</a>
                     <ul>
+                        <li><a href="#midtermproject">Midterm Project</a></li>
                         <li><a href="#finalproject">Final Project</a></li>
                     </ul>
                 </li>
@@ -41,17 +42,17 @@
         <h2 id="courseinformation">Course information</h2>
         <div class="outline-text-2" id="text-courseinformation">
             <ul class="org-ul">
-                <li><b>Instructor: </b><a href="https://shanghai.nyu.edu/academics/faculty/directory/xianbin-gu">Xianbin Gu</a>.</li>
-                <li><b>Semester: </b>Fall 2021.</li>
+                <li><b>Instructor: </b><a href="https://www.math.nyu.edu/~peskin/">Charles Peskin</a>.</li>
+                <li><b>Semester: </b>Fall 2022.</li>
                 <li>
                     <b>Outline: </b>
-                    Boolean algebra, digital circuits, computer architecture;
-                    Algorithm basics, sorting, complexity analysis, searching, algorithm design strategies;
-                    Probability fundamental, machine learning;
-                    Deep learning, Artificial Intelligence, Q-learning;
-                    Network cyber security.
+                    Networks of springs, numerical instability, structural dynamics;
+                    Rigid body dynamics, Runge-Kutla scheme, gyrocompass, structral dynamics with rigid links;
+                    The law of mass action, the principle of detailed balance, Enzyme Kinetics;
+                    Hemeoglobin, genetic switch;
+                    Traffic simulation;
+                    Economic growth, price equilibrium.
                 </li>
-                <li><b>Programming language: </b>Python.</li>
             </ul>
         </div>
     </div>
@@ -75,33 +76,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="org-left">Assignments</td>
+                    <td class="org-left">Midterm Project</td>
                     <td class="org-left"></td>
-                    <td class="org-left">A</td>
-                </tr>
-                <tr>
-                    <td class="org-left">Midterm I</td>
-                    <td class="org-left">47/70</td>
-                    <td class="org-left">A-</td>
-                </tr>
-                <tr>
-                    <td class="org-left">Midterm II</td>
-                    <td class="org-left">96/100</td>
-                    <td class="org-left">A</td>
-                </tr>
-                <tr>
-                    <td class="org-left">Final</td>
-                    <td class="org-left">97/100</td>
-                    <td class="org-left">A</td>
-                </tr>
-                <tr>
-                    <td class="org-left">Unit Projects</td>
-                    <td class="org-left">100/100</td>
                     <td class="org-left"></td>
                 </tr>
                 <tr>
                     <td class="org-left">Final Project</td>
-                    <td class="org-left">90/100</td>
+                    <td class="org-left"></td>
                     <td class="org-left"></td>
                 </tr>
             </tbody>
@@ -109,30 +90,29 @@
         </div>
     </div>
 
-    <div id="outline-container-projects" class="outline-2">
+    <div id="outline-container-courseinformation" class="outline-2">
         <h2 id="projects">Projects</h2>
         <div class="outline-text-2" id="text-projects">
             <p></p>
         </div>
     </div>
 
+    <div id="outline-container-midtermproject" class="outline-3">
+        <h3 id="midtermproject">Midterm Project</h3>
+        <div class="outline-text-3" id="text-midtermproject">
+            <p>
+                My midterm project is <a href="https://github.com/Charlie-XIAO/Gyro-simulation">Gyro Simulation</a>, in cooperation with another classmate.
+                The question we want to explore is whether stacking up gyroscopes will remain a stable structure given each of them can spin stably.
+                The simulation is done by numerical approximations implemented using <a href="https://www.mathworks.com/products/matlab.html">MATLAB</a>, involving the implementation of spring networks and rigid body systems.
+            </p>
+            <p>You may access our GitHub source code <a href="https://github.com/Charlie-XIAO/Gyro-simulation.git">here</a>, and our technical report <a href="#">here</a>.</p>
+        </div>
+    </div>
+
     <div id="outline-container-finalproject" class="outline-3">
         <h3 id="finalproject">Final Project</h3>
         <div class="outline-text-3" id="text-finalproject">
-            <p>
-                My final project is <a href="https://github.com/Charlie-XIAO/Python-chatroom.git">Python Chatroom</a>, in cooperation with another classmate.
-                It is a chat system implemented using Python, with basic functionality such as group chat and private chat, chat history, etc.
-                The chat system acts as a communication substrate, on top of which we implement additional functionality:
-                <ul class="org-ul">
-                    <li>A graphic user interface for the chat system, referring to that of <a href="https://www.wechat.com/">WeChat</a>.</li>
-                    <li>Sending images, emojis, videos, and files apart from pure text messages.</li>
-                    <li>A graphic user interface for viewing, searching, and deleting chat history.</li>
-                    <li>Creating account and signing in, using a simple database.</li>
-                    <li>Two classical games integrated into the chat system, referring to <a href="https://wechatwiki.com/wechat-resources/wechat-mini-program-epic-tutorial-guide/">WeChat mini programs</a>.</li>
-                </ul>
-            </p>
-            <p><img src="../images/Python-chatroom.gif" width="90%"></p>
-            <p>You may access our GitHub source code <a href="https://github.com/Charlie-XIAO/Python-chatroom.git">here</a>, and our presentation and demos <a href="https://drive.google.com/drive/folders/1GT-A4QZa9s6xaqX3npnPrtV_Kf0FdnoC?usp=sharing">here</a>.</p>
+            <p></p>
         </div>
     </div>
 
