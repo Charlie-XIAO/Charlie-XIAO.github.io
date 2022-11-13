@@ -89,8 +89,8 @@
                 </tr>
                 <tr>
                     <td class="org-left">Midterm</td>
-                    <td class="org-left"></td>
-                    <td class="org-left"></td>
+                    <td class="org-left">89.5/101</td>
+                    <td class="org-left">A</td>
                 </tr>
                 <tr>
                     <td class="org-left">Final</td>
@@ -132,7 +132,51 @@
     <div id="outline-container-lab3" class="outline-3">
         <h3 id="lab2">Lab 3: <code>nyuenc</code></h3>
         <div class="outline-text-3" id="text-lab3">
-            <p></p>
+            <p>
+                <a href="https://gitfront.io/r/Charlie-XIAO/ftboF2oUd5yt/Encoder-nyuenc/">Encoder-nyuenc</a>, a.k.a. <b>N</b>ot <b>Y</b>our <b>U</b>sual <b>Enc</b>oder, is an implementation of a parallelized <a href="https://en.wikipedia.org/wiki/Run-length_encoding">run-length encoding</a> (RLE).
+                Multiple threads are created to encode in parallel, leading to better performance.
+                In order to avoid frequent creation and destruction of threads, a <a href="https://en.wikipedia.org/wiki/Thread_pool">thread pool</a> is implemented to maintain a certain number of threads, specified by a flag.
+                <a href="https://en.wikipedia.org/wiki/Pthreads">POSIX threads</a> is used in this lab, and mutual exclusions and conditional variables are used for elimination of race conditions.
+                Basic functionality include:
+                <ul>
+                    <li>Supports a <code>-j</code> flag. If specified, the corresponding number of threads will be initialized in a thread pool. Otherwise, the encoding will be done sequentially.</li>
+                    <li>Supports <a href="https://en.wikipedia.org/wiki/Run-length_encoding">run-length encoding</a> (RLE).</li>
+                    <li>Free of race conditions or busy waiting among threads to achieve high and stable parallelization.</li>
+                </ul>
+                Some data are shown as follows:
+            </p>
+            <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+                <colgroup>
+                    <col class="org-left" />
+                    <col class="org-left" />
+                    <col class="org-left" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" class="org-left">Size</th>
+                        <th scope="col" class="org-left">Threads</th>
+                        <th scope="col" class="org-left">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="org-left">100MB</td>
+                        <td class="org-left">1</td>
+                        <td class="org-left">2.982s</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">100MB</td>
+                        <td class="org-left">3</td>
+                        <td class="org-left">1.026s</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">1000MB</td>
+                        <td class="org-left">3</td>
+                        <td class="org-left">5.206s</td>
+                    </tr>
+                </tbody>
+                </table>
+            <p>You may access the source code <a href="https://gitfront.io/r/Charlie-XIAO/ftboF2oUd5yt/Encoder-nyuenc/">here</a>, and note that it should run on a Linux server.</p>
         </div>
     </div>
 
