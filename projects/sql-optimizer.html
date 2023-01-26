@@ -51,11 +51,16 @@
                 This is a simple SQL engine supporting CSV data searching, various SQL operators, rule-based and cost-based optimization, and different modes of shuffling.
                 Basic funtionality include:
                 <ul>
-                    <li>A graphic user interface.</li>
                     <li>Parsing and analyzing SQL to form an abstract syntax tree.</li>
-                    <li>Supporting various <a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/toc.htm">SQL operators</a> including Scan, Project, Filter, Aggregate, Limit, and different modes of Join.</li>
+                    <li>
+                        Supporting various <a href="https://docs.oracle.com/cd/E12095_01/doc.10303/e12092/toc.htm">SQL operators</a> including Scan, Project, Filter, Aggregate, Limit, and different modes of Join.
+                        <i>This functionality is not fully tested due to limitation of time and may contain bugs.</i>
+                    </li>
                     <li>Supporing various <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96533/rbo.htm">rule-based optimization</a> including predicate pushdown, limit pushdown, constant folding, column pruning, etc.</li>
-                    <li>Supporting various <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96533/optimops.htm">cost-based optimization</a> including join reorder, hash optimization, shuffle optimization, etc.</li>
+                    <li>
+                        Supporting various <a href="https://docs.oracle.com/cd/B10501_01/server.920/a96533/optimops.htm">cost-based optimization</a> including join reorder, hash optimization, shuffle optimization, etc.
+                        <i>This functionality is not fully implemented due to limitation of time.</i>
+                    </li>
                 </ul>
             </p>
             <p>You may access my GitHub source code <a href="https://github.com/Charlie-XIAO/Simple-SQL-Optimizer.git">here</a>.</p>
