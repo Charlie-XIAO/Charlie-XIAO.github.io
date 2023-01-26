@@ -6,3 +6,5 @@ convert.html
 # LaTeX CV
 yxiao-cv/*
 !yxiao-cv/yxiao-cv.pdf
+yxiao-cv-chn/*
+!yxiao-cv-chn/yxiao-cv-chn.pdf
