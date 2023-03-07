@@ -50,3 +50,17 @@ body {
 .box li a:hover {
     color: #b9b9b9;
 }
+
+.links {
+    margin: 0;
+    padding: 0;
+}
+
+.tablist {
+    line-height: 2;
+}
+
+.bio {
+    font-size: 13px;
+    color: #d9d9d9;
+}
