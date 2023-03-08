@@ -163,6 +163,15 @@ pre code {
     color: #4b4b4b;
 }
 
+.content {
+    width: 70vw;
+    padding: 40px;
+    margin: auto;
+    margin-top: 5%;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+}
+
 .content a {
     text-decoration: none;
     color: white;
@@ -183,7 +192,6 @@ pre code {
     padding-left: 5px;
     padding-right: 5px;
     margin-left: 2px;
-    line-height: 150%;
     font-size: 14px;
 }
 
