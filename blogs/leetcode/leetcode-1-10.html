@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Org Mode" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+    <style> .pre-code { white-space: pre; } </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+            tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+            TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+            messageStyle: "none"
+        });
+    </script>    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+    <title>Yao Xiao | NYU Shanghai</title>
+</head>
+
+<body>
+    <div id="content" class="content">
+        <p><a href="../../home.html">Home</a> / <a href="../index.html">Blogs</a><span style="color: #808080;"> / <a href="./index.html">LeetCode</a><span style="color: #808080;"></span> / Problems #1-#10</span></p>
+        <h1 class="title"><a href="https://leetcode.com/">LeetCode</a> Problems #1-#10</h1>
+        <div id="table-of-contents" role="doc-toc">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents" role="doc-toc">
+            <ul>
+                <li><a href="#two-sum">#1 Two Sum</a></li>
+                <li><a href="#add-two-numbers">#2 Add Two Numbers</a></li>
+                <li><a href="#longest-substring-without-repeating-characters">#3 Longest Substring Without Repeating Characters</a></li>
+                <li><a href="#longest-palindromic-substring">#5 Longest Palindromic Substring</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="outline-container-overview" class="outline-2">
+        <div class="outline-text-2" id="text-overview">
+            <p>
+                Hi, welcome to my first LeetCode post, as well as my first personal blog post.
+                As I am preparing for my internships and interviews, I decided to start solving some problems on LeetCode just recently.
+                In this blog post, I am going to share some of my codes and thoughts on Problems #1 through #10.
+                The list of problem that I will discuss is shown as below:
+            </p>
+            <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+                <colgroup>
+                    <col class="org-left" />
+                    <col class="org-left" />
+                    <col class="org-left" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col" class="org-left">#</th>
+                        <th scope="col" class="org-left">Title</th>
+                        <th scope="col" class="org-left">Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="org-left">1</td>
+                        <td class="org-left">Two Sum</td>
+                        <td class="org-left">Easy</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">2</td>
+                        <td class="org-left">Add Two Numbers</td>
+                        <td class="org-left">Medium</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">3</td>
+                        <td class="org-left">Longest Substring Without Repeating Characters</td>
+                        <td class="org-left">Medium</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">4</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">5</td>
+                        <td class="org-left">Longest Palindromic Substring</td>
+                        <td class="org-left">Medium</td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">6</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">7</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">8</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">9</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                    <tr>
+                        <td class="org-left">10</td>
+                        <td class="org-left"></td>
+                        <td class="org-left"></td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div id="outline-container-two-sum" class="outline-2">
+        <h2 id="two-sum">Problem #1: Two Sum</h2>
+        <div class="outline-text-2" id="text-two-sum">
+            <p>
+                <b>Problem Statement:</b>
+                Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.
+                You may assume that each input would have exactly one solution, and you may not use the same element twice.
+                You can return the answer in any order.
+            </p>
+            <p>
+                <b>Example:</b>
+                <pre>
+<code class="pre-code console">Input: nums = [2, 7, 11, 15], target = 9
+Output: [0, 1]</code>
+                </pre>
+            </p>
+            <p>
+                The intuitive solution of this problem is to traverse all possible pairs of numbers, and return their indices on the first match.
+                Suppose there are $n$ numbers in total, then the total number of iterations would be $O(n^2)$, which leads to a quadratic runtime algorithm.
+                The implementation can be as follows:
+                <pre>
+<code class="pre-code python">def twoSum(nums: List[int], target: int) -> List[int]:
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return i, j</code>
+                </pre>
+            </p>
+            <p>
+                However, we can further solve this problem in linear runtime.
+                To do this, we need to make use of the Python dictionaries, which support linear runtime operations.
+                We will keep a dictionary with each key as the desired match of the integer at the index specified by the corresponding value.
+                In other words, <code>key = target - nums[value]</code>.
+                We traverse the given list only once.
+                For each number, if it is not in the dictionary, we create a new key-value pair with value as its index and key as <code>target</code> minus itself.
+                If it is in the dictionary, this means that it is the desired match of some number that we met earlier, and we are done.
+                The implementation can be as follows:
+                <pre>
+<code class="pre-code python">def twoSum(nums: List[int], target: int) -> List[int]:
+    reqs = dict()
+    for i in range(len(nums)):
+        if nums[i] in reqs:
+            return i, reqs[nums[i]]
+        else:
+            reqs[target - nums[i]] = i</code>
+                </pre>
+                Since Python dictionaries are built-in as <a href="https://en.wikipedia.org/wiki/Hash_table">hashmaps</a>, <code>k in d</code> and getting items both take constant time, so this is a linear runtime algorithm, as desired.
+                This simple example introduces the technique of hashmaps, which is widely used in many more scenarios to effectively reduce the runtime.
+            </p>
+        </div>
+    </div>
+
+    <div id="outline-container-add-two-numbers" class="outline-2">
+        <h2 id="add-two-numbers">Problem #2: Add Two Numbers</h2>
+        <div class="outline-text-2" id="text-add-two-numbers">
+            <p>
+                <b>Problem Statement:</b>
+                You are given two non-empty linked lists representing two non-negative integers.
+                The digits are stored in reverse order, and each of their nodes contains a single digit.
+                Add the two numbers and return the sum as a linked list.
+                You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+            </p>
+            <p>
+                <b>Example:</b>
+                <pre>
+<code class="pre-code console">Input: l1 = 9 -> 9 -> 9 -> 9 -> 9 -> 9 -> 9, l2 = 9 -> 9 -> 9 -> 9
+Output: 8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1</code>
+                </pre>
+            </p>
+            <p>
+                This is a simple problem of linked lists.
+                Literally how we do addition in reality, how we do for this problem.
+                We align the digits (if one is shorter, we fill it to the same length as the other with zeros), and then add corresponding digits up.
+                If the sum is greater than or equal to 10, we then keep its remainder and add an additional 1 to the next digit.
+                The implementation can be as follows:
+                <pre>
+<code class="pre-code python"># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    head = ListNode()
+    cur1, cur2, temp, prev = l1, l2, 0, head
+    while cur1 is not None or cur2 is not None:
+        if cur1 is None:
+            val1 = 0
+        else:
+            val1 = cur1.val
+            cur1 = cur1.next
+        if cur2 is None:
+            val2 = 0
+        else:
+            val2 = cur2.val
+            cur2 = cur2.next
+        new = ListNode(val=(val1 + val2 + temp) % 10)
+        prev.next = new
+        prev, temp = new, (val1 + val2 + temp) // 10
+    if temp != 0:
+        prev.next = ListNode(val=temp)
+    return head.next</code>
+                </pre>
+            </p>
+        </div>
+    </div>
+
+    <div id="outline-container-longest-substring-without-repeating-characters" class="outline-2">
+        <h2 id="longest-substring-without-repeating-characters">Problem #3: Longest Substring Without Repeating Characters</h2>
+        <div class="outline-text-2" id="text-longest-substring-without-repeating-characters">
+            <p>
+                <b>Problem Statement:</b>
+                Given a string <code>s</code>, find the length of the longest substring without repeating characters.
+                Note that a substring must be contiguous, in contrast to subsequences which can be non-contiguous.
+            </p>
+            <p>
+                <b>Example:</b>
+                <pre>
+<code class="pre-code console">Input: s = "pwwkew"
+Output: 3</code>
+                </pre>
+            </p>
+            <p>
+                Intuitively, we can solve this problem by iterating through all possible starting and ending indices in the worst case.
+                However, given the experience of solving Problem <a href="#two-sum">#1</a>, we can again make use of Python dictionaries.
+                Imagine how we tell the longest substring without repeating characters ourselves.
+                For instance, if we have the string <code>"helloworld"</code>, we will look through <code>"hel"</code>, and when we see the next <code>"l"</code>, we know that the longest substring without repeated characters before that is of length 3.
+                Then we will look through <code>"low"</code>, and when we see the next <code>"o"</code>, we know that this substring cannot be any longer and thus the maximum length is still 3.
+                However, this time we will not start from the second <code>"o"</code>, but instead from the next character of the first <code>"o"</code>, which is <code>"w"</code>.
+                As a simpler illustration for this, for the string <code>"oabocde"</code>, there is no reason to ignore <code>"ab"</code> when we meet the second <code>"o"</code> since it is the first <code>"o"</code> that causes the repetition.
+                Back to the example of <code>"helloworld"</code>, by repeating the process described above we can obtain the longest substring.
+                The only problem left is: how to we know if a character exists previously or not?
+                To do this, we again use a dictionary to keep track of those characters and their last occurrence.
+                In this way, we traverse the string only once, and the <code>k in d</code> operation for Python dictionaries runs constant time.
+                This gives us a linear runtime algorithm, which can be implemented as follows:
+                <pre>
+<code class="pre-code python">def lengthOfLongestSubstring(s: str) -> int:
+    i, j, storage, maxlen = 0, 0, dict(), 0
+    while j < len(s):
+        # If the character exists previously in the part we are currently considering
+        if s[j] in storage and storage[s[j]] >= i:
+            maxlen = max(maxlen, j - i)
+            i = storage[s[j]] + 1
+        storage[s[j]] = j
+        j += 1
+    return max(maxlen, j - i)</code>
+                </pre>
+            </p>
+        </div>
+    </div>
+
+    <div id="outline-container-longest-palindromic-substring" class="outline-2">
+        <h2 id="longest-palindromic-substring">Problem #5: Longest Palindromic Substring</h2>
+        <div class="outline-text-2" id="text-longest-palindromic-substring">
+            <p>
+                <b>Problem Statement:</b>
+                Given a string <code>s</code>, return the longest palindromic substring in <code>s</code>.
+                Note that a string is <a href="https://en.wikipedia.org/wiki/Palindrome">palindromic</a> if it reads the same forward and backward.
+            </p>
+            <p>
+                <b>Example:</b>
+                <pre>
+<code class="pre-code console">Input: s = "babad"
+Output: "bab"
+Explanation: "aba" is also a valid answer.</code>
+                </pre>
+            </p>
+            <p>
+                This is a very classical dynamic programming problem.
+                Note that a substring is palindromic if and only if its first and last characters are the same, and the rest part is already palindromic.
+                Therefore, we can start with substrings of length 1 or 2, and then to substrings of longer lengths.
+                This dynamic programming problem runs quadratic time, because we will keep a matrix of size $n\times n$, with the $(i,j)$th entry representing whether the substring <code>s[i:j]</code> is palindromic.
+                The naive implementation can be as follows:
+                <pre>
+<code class="pre-code python">def longestPalindrome(self, s: str) -> str:
+    n, l, r = len(s), 0, 1
+    DP = [[0] * n for _ in range(n)]
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            DP[i][i + 1], l, r = 1, i, i + 2
+    for i in range(n - 2):
+        if s[i] == s[i + 2]:
+            DP[i][i + 2], l, r = 1, i, i + 3
+    for k in range(3, n):
+        for i in range(n - k):
+            if s[i] == s[i + k] and DP[i + 1][i + k - 1]:
+                DP[i][i + k], l, r = 1, i, i + k + 1
+    return s[l:r]</code>
+                </pre>
+                However, this implementation is quite slow and memory consuming.
+                It runs 3 seconds for the largest test case on LeetCode, and uses more than 20000 KB of memory space.
+                In order to improve its performance, we make the following modifications.
+                <br><br>
+                <ul>
+                    <li>
+                        Since substrings of length $k$ only depend on substrings of length $k-2$, we can keep just two lists instead of an array.
+                        This reduces the memory space from $O(n^2)$ to $O(2n)$.
+                    </li>
+                    <li>
+                        Whenever the substrings of some odd length $k$ is all non-palindromic, the substrings of odd lengths greater than $k$ must all be non-palindromic.
+                        This also applies to substrings of even lengths.
+                        Therefore, we may cut down a large number of iterations for certain input strings.
+                    </li>
+                </ul>
+                The implementation can be as follows:
+                <pre>
+<code class="pre-code python">def longestPalindrome(self, s: str) -> str:
+    n, l, r = len(s), 0, 1
+    oddbrk, evenbrk = True, True
+    oddlst, evenlst = [0] * n, [0] * n
+    # Palindromes of length 2
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            evenlst[i], l, r, evenbrk = 1, i, i + 2, False
+    # Palindromes of length 3
+    for i in range(n - 2):
+        if s[i] == s[i + 2]:
+            oddlst[i], l, r, oddbrk = 1, i, i + 3, False
+    # Palindromes of length >= 4
+    for k in range(3, n):
+        if k % 2:
+            if evenbrk: continue
+            else:
+                evenbrk = True
+                for i in range(n - k):
+                    if s[i] == s[i + k] and evenlst[i + 1]:
+                        evenlst[i], l, r, evenbrk = 1, i, i + k + 1, False
+                    else:
+                        evenlst[i] = 0
+        else:
+            if oddbrk: continue
+            else:
+                oddbrk = True
+                for i in range(n - k):
+                    if s[i] == s[i + k] and oddlst[i + 1]:
+                        oddlst[i], l, r, oddbrk = 1, i, i + k + 1, False
+                    else:
+                        oddlst[i] = 0
+    return s[l:r]</code>
+                </pre>
+                This implementation reduces the runtime to approximately 1 second and memory consumption to approximately 14000 KB.
+                However, it is quite tedious, and though I made the previous optimizations, it still beats only 40% of Python submissions.
+                I'm not sure what I did wrong, but the implementation above is the best I can do at this moment.
+            </p>
+        </div>
+    </div>
+
+    <div style="margin-top: 60px; color: grey;">
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+</body>
+
+</html>
