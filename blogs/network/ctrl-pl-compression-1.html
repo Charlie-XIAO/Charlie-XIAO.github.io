@@ -79,7 +79,7 @@
 
 <body>
     <div id="content" class="content">
-        <p><a href="../../home.html">Home</a> / <a href="../index.html">Blogs</a> / <a href="#">Computer Networking</a><span style="color: #808080;"> / Control Plane Compression I</span></p>
+        <p><a href="../../home.html">Home</a> / <a href="../index.html">Blogs</a> / <a href="./index.html">Computer Networking</a><span style="color: #808080;"> / Control Plane Compression I</span></p>
         <h1 class="title">Control Plane Compression I</h1>
         <div id="table-of-contents" role="doc-toc">
             <h2>Table of Contents</h2>
@@ -100,6 +100,7 @@
                         <li><a href="#attribute-conditions">Attribute Abstraction Conditions</a></li>
                     </ul>
                 </li>
+                <li><a href="#summary">Summary</a></li>
                 <li><a href="#references">References</a></li>
                 <li>
                     <a href="#appendix">Appendix</a>
@@ -119,7 +120,6 @@
             </p>
         </div>
     </div>
-    <br><br>
 
     <div class="outline-2" id="outline-container-introduction">
         <h2 id="introduction">Introduction</h2>
@@ -187,7 +187,7 @@
                 Before formulating an SRP solution, we introduce some helpful notations:
                 <ul>
                     <li>
-                        $\texttt{choices}_{\mathcal{L}}(u)=\{(e,a);\;e=(u,v),a=\texttt{trans}(u,\mathcal{L}(v)),a\neq\perp\}$.
+                        $\texttt{choices}_{\mathcal{L}}(u)=\{(e,a);\;e=(u,v),a=\texttt{trans}(e,\mathcal{L}(v)),a\neq\perp\}$.
                         <div class="li-comment">
                             For a fixed node $u$, choose an adjacent edge $e$, then determine the new attribute $a$ for $u$ via the transfer function.
                             There can be a choice for each adjacent edge (<i>i.e.</i>, for each neighbor), but $\perp$ is not considered a choice.
@@ -306,7 +306,7 @@
                         $\forall\exists$-abstraction:
                         $$
                             \begin{align*}
-                                & \forall(u,v)\in E:(\widehat{u},\widehat{v})\in\widehat{E}, \\
+                                & \forall(u,v)\in E:(f(u),f(v))\in\widehat{E}, \\
                                 & \forall(\widehat{u},\widehat{v})\in\widehat{E}:\forall u\;\;\text{s.t. }f(u)=\widehat{u}:\exists v\;\;\text{s.t. }f(v)=\widehat{v}\text{ and }(u,v)\in E.
                             \end{align*}
                         $$
@@ -353,6 +353,21 @@
                         </div>
                     </li>
                 </ul>
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="outline-2" id="outline-container-summary">
+        <h2 id="summary">Summary</h2>
+        <div class="outline-text-2" id="text-summary">
+            <p>
+                In this post, I have discussed the first part of the paper.
+                This includes some important notations and the definition of CP-equivalence, which can be used to prove various utility preservation.
+                However, CP-equivalence is hard to evaluate, so the authors have furthermore proposed conditions for effective abstractions, which can sufficiently imply CP-equivalence.
+                If there were to be more posts on this paper, I will discuss some important utility definitions and how CP-equivalence can guarantee them.
+                I may not discuss the proofs of how effective abstractions can guarantee CP-equivalence.
+                At last, thanks for your meticulous reading and hope you enjoy it.
             </p>
         </div>
     </div>
@@ -434,14 +449,15 @@
     </div>
 
     <!-- TO BE REMOVED FROM THIS LINE -->
-    <script>
+    <!-- <script>
         document.getElementById("outline-container-overview").style.display = "none";
+        document.getElementById("outline-container-summary").style.display = "none";
         document.getElementById("content").children[0].style.display = "none";
-    </script>
+    </script> -->
     <!-- TO BE REMOVED UNTIL THIS LINE -->
 
     <div style="margin-top: 60px; color: grey;">
-        Written on <i>TBD</i> by <a href="../../index.html">Yao Xiao</a>.
+        Written on Mar 15, 2023 by <a href="../../index.html">Yao Xiao</a>.
         For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
     </div>
 </body>
