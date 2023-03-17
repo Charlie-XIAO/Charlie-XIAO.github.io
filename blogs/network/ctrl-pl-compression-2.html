@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Org Mode" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+    <style> .pre-code { white-space: pre !important; } </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
+            tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+            TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+            messageStyle: "none",
+            "HTML-CSS": { scale: 80, minScaleAdjust: 50 }
+        });
+    </script>    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+    <style>
+        figure {
+            border: 1px #cccccc solid;
+            padding: 4px;
+            margin: 8px;
+            display: inline-block;
+        }
+        figure > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        figcaption {
+            padding: 10px 5px;
+        }
+        ol.ref-list {
+            counter-reset: num;
+        }
+        ol.ref-list > li {
+            list-style: none !important;
+            display: block !important;
+            margin-bottom: 0.5em !important;
+            margin-left: 2em !important;
+        }
+        ol.ref-list > li::before {
+            content: "[" counter(num) "] ";
+            counter-increment: num;
+            display: inline-block;
+            width: 2em;
+            margin-left: -2em;
+        }
+        .li-comment {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            color: gray;
+            font-size: 14px;
+            line-height: 120%;
+        }
+        .emph-block {
+            margin-left: 15px;
+            margin-right: 15px;
+            padding: 10px;
+            font-style: italic;
+            background-color: #eeeeee;
+            border-radius: 10px;
+        }
+    </style>
+    <title>Yao Xiao | Control Plane Compression II</title>
+</head>
+
+<body>
+    <div id="content" class="content">
+        <p><a href="../../home.html">Home</a> / <a href="../index.html">Blogs</a> / <a href="./index.html">Computer Networking</a><span style="color: #808080;"> / Control Plane Compression II</span></p>
+        <h1 class="title">Control Plane Compression II</h1>
+        <div id="table-of-contents" role="doc-toc">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents" role="doc-toc">
+            <ul>
+                <li><a href="#utility">Utility Definitions</a></li>
+                <li><a href="#proof">Proofs</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="outline-2" id="outline-container-overview">
+        <div class="outline-text-2" id="text-overview">
+            <p>
+                Hi, here I'm going to share my reading and thoughts of the paper <i>Control Plane Compression</i>.<sup><a href="#ref1">[1]</a></sup>
+                I have already introduced basic notations, the definition of CP-equivalence, and the conditions for effective abstractions that are sufficient to guarantee CP-equivalence.
+                You can recall or check those concepts in my previous post <a href="./ctrl-pl-compression-1.html">Control Plane Compression I</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class="outline-2" id="outline-container-disclaimer">
+        <div class="outline-text-2 note" id="text-disclaimer">
+            <p>
+                The theorems, lemmas, and proofs in this post are written in my own version, but the concepts and some ideas in the proofs are attributed to the original paper <i>Control Plane Compression</i><sup><a href="#ref1">[1]</a></sup> and its extended version which can be found in its reference list.
+            </p>
+        </div>
+    </div>
+
+    <div class="outline-2" id="outline-container-utility">
+        <h2 id="utility">Utility Definitions</h2>
+        <div class="outline-text-2" id="text-utility">
+            <p>
+                CP-equivalence is powerful, because it can preserve various properties between the concrete network and the abstract network.
+                These properties form our utility definitions as follows:
+                <ul>
+                    <li>
+                        <i>Reachability</i> is preserved if the following holds for any pair of nodes $u,v\in V$:
+                        $v$ is reachable from $u$ <i>if and only if</i> $f(v)$ is reachable from $f(u)$.
+                    </li>
+                    <li>
+                        <i>Path lengths</i> are preserved if the following holds for any pair of nodes $u,v\in V$:
+                        all paths between $u$ and $v$ have length $n$ <i>if and only if</i> all paths between $f(u)$ and $f(v)$ have length $n$.
+                    </li>
+                    <li>
+                        <i>Black holes</i> are preserved if the following holds for any path $s\subseteq V$:
+                        $s$ ends with $\perp$ <i>if and only if</i> $f(s)$ ends with $\perp$.
+                    </li>
+                    <li>
+                        <i>Multipath consistency</i> is preserved if the following holds for any pair of nodes $u,v\in V$:
+                        traffic sent from $u$ is reachable along some path to $v$ but dropped along another path <i>if and only if</i> traffic sent from $f(u)$ is reachable along some path to $f(v)$ but dropped along another path.
+                    </li>
+                    <li>
+                        <i>Waypointing</i> is preserved if the following holds for any set of nodes $w_1,\cdots,w_n\in V$:
+                        traffic will be waypointed through some $w_i$ <i>if and only if</i> traffic will be waypointed through some $f(w_j)$.
+                    </li>
+                    <li>
+                        <i>Routing loops</i> are preserved if the following holds:
+                        there is a routing loop in the abstract network <i>if and only if</i> there is a routing loop in the concrete network.
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="outline-2" id="outline-container-proof">
+        <h2 id="proof">Proofs</h2>
+        <div class="outline-text-2" id="text-proof">
+            <p>
+                In this section, we will prove that the utilities above are preserved given CP-equivalence.
+            </p>
+            <p class="emph-block">
+                <b id="thm-1">Theorem 1.</b>
+                Let $SRP$ and $\widehat{SRP}$ be CP-equivalent, then each node $w_1$ in the concrete network forwards along a path $p=(w_1,\cdots,w_n)$ to some node $w_n$ with $f(w_i)=\widehat{w_i}$, $i=1,\cdots,n$,
+                if and only if $\widehat{w_1}$ forwards along a path $\widehat{p}=(\widehat{w_1},\cdots,\widehat{w_n})$ to some node $\widehat{w_n}$ in the abstract network.
+            </p>
+            <p>
+                <i>Proof of ($\Rightarrow$).</i>
+                Let $p=(w_1,\cdots,w_n)$ be an arbitrary forwarding path in the concrete network such that $f(w_i)=\widehat{w_i}$, $i=1,\cdots,n$, and let $\mathcal{L}$ be a solution to $SRP$.
+                Then we have that
+                $$
+                    (w_i,w_{i+1})\in\texttt{fwd}_{\mathcal{L}}(w_i),\qquad\forall i\in\{1,\cdots,n-1\}.
+                $$
+                Since $SRP$ and $\widehat{SRP}$ are CP-equivalent, there exists a solution $\widehat{\mathcal{L}}$ to $\widehat{SRP}$, such that $\mathcal{L}$ and $\widehat{\mathcal{L}}$ are forwarding-equivalent, <i>i.e.</i>,
+                $$
+                    \forall u,v\in V:\;(u,v)\in\texttt{fwd}_{\mathcal{L}}(u)\iff(f(u),f(v))\in\texttt{fwd}_{\widehat{\mathcal{L}}}(f(u)).
+                $$
+                Using the $\Rightarrow$ direction of the statement above, we can see that
+                $$
+                    (f(w_i),f(w_{i+1}))=(\widehat{w_i},\widehat{w_{i+1}})\in\texttt{fwd}_{\widehat{\mathcal{L}}}(f(w_i)),\qquad\forall i\in\{1,\cdots,n-1\}.
+                $$
+                Therefore, $\widehat{w_1}$ forwards along the path $\widehat{p}=(\widehat{w_1},\cdots,\widehat{w_n})$ to $\widehat{w_n}$ in the abstract network.
+                The proof is thus complete by arbitrariness of $p$.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p>
+                <i>Proof of ($\Leftarrow$).</i>
+                Let $\widehat{p}=(\widehat{w_1},\cdots,\widehat{w_n})$ be an arbitrary forwarding path in the abstract network, and let $\widehat{\mathcal{L}}$ be a solution to $\widehat{SRP}$.
+                Then we have that
+                $$
+                    (\widehat{w_i},\widehat{w_{i+1}})\in\texttt{fwd}_{\widehat{\mathcal{L}}}(\widehat{w_i}),\qquad\forall i\in\{1,\cdots,n-1\}.
+                $$
+                Since $SRP$ and $\widehat{SRP}$ are CP-equivalent, there exists a solution $\widehat{\mathcal{L}}$ to $\widehat{SRP}$, such that $\mathcal{L}$ and $\widehat{\mathcal{L}}$ are forwarding-equivalent, <i>i.e.</i>,
+                $$
+                    \forall u,v\in V:\;(u,v)\in\texttt{fwd}_{\mathcal{L}}(u)\iff(f(u),f(v))\in\texttt{fwd}_{\widehat{\mathcal{L}}}(f(u)).
+                $$
+                Using the $\Leftarrow$ direction of the statement above, for some $\{w_i\}_{i=1}^n$ such that $f(w_i)=\widehat{w_i}$, $\forall i=1,\cdots,n$, we can see that
+                $$
+                    (w_i,w_{i+1})\in\texttt{fwd}_{\mathcal{L}}(w_i),\qquad\forall i\in\{1,\cdots,n-1\}.
+                $$
+                Therefore, $w_1$ forwards along the path $p=(w_1,\cdots,w_n)$ to $w_n$ in the concrete network.
+                The proof is thus complete by arbitrariness of $\widehat{p}$.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p class="emph-block">
+                <b id="lem-1">Lemma 1.</b>
+                If $SRP$ and $\widehat{SRP}$ are CP-equivalent, then reachability is preserved.
+            </p>
+            <p>
+                <i>Proof.</i>
+                To see that reachability is preserved, we need to show for any pair of nodes $u,v\in V$ that $v$ is reachable from $u$ <u>if and only if</u> $f(v)$ is reachable from $f(u)$.
+                Fix arbitrary $u$ and $v$ and assume that $v$ is reachable from $u$, then there exists a forwarding path $p=(u,w_1,\cdots,w_k,v)$ in the concrete network.
+                By <a href="#thm-1">Theorem 1</a>, we know that there also exists a forwarding path $\widehat{p}=(f(u),f(w_1),\cdots,f(w_k),f(v))$ in the abstract network, thus proving that $f(v)$ is reachable from $f(u)$.
+                By arbitrariness of $u$ and $v$, we can thus conclude the <u>only if</u> direction.
+                The <u>if</u> direction is symmetric since <a href="#thm-1">Theorem 1</a> is an <i>if and only if</i> statement, so the proof is complete.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p class="emph-block">
+                <b id="lem-2">Lemma 2.</b>
+                If $SRP$ and $\widehat{SRP}$ are CP-equivalent, then path lengths are preserved.
+            </p>
+            <p>
+                <i>Proof.</i>
+                To see that path lengths are preserved, we need to show for any pair of nodes $u,v\in V$ that all forwarding paths between $u$ and $v$ are of length $n$ if and only if all forwaring paths between $f(u)$ and $f(v)$ are of length $n$.
+                This is equivalent to showing the contrapositive statements, that is, there exists a forwarding path $\widehat{p}$ between $f(u)$ and $f(v)$ not of length $n$ <u>if and only if</u> there exists a forwarding path $p$ between $u$ and $v$ not of length $n$.
+                Fix an arbitrary path forwarding $p$ of not of length $n$ in the concrete network, say $p=(w_1,\cdots,w_k)$ with $k\neq n$.
+                By <a href="#thm-1">Theorem 1</a>, we know that there also exists a forwarding path $\widehat{p}=(f(w_1),\cdots,f(w_k))$ in the abstract network.
+                Clearly, it is of length $k\neq n$, so the <u>if</u> direction is done by arbitrariness of $p$.
+                The <u>only if</u> direction is symmetric since <a href="#thm-1">Theorem 1</a> is an <i>if and only if</i> statement, so the proof is complete.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p class="emph-block">
+                <b id="thm-2">Theorem 2.</b>
+                Let $SRP$ and $\widehat{SRP}$ be CP-equivalent, and let $\mathcal{L}$ and $\widehat{\mathcal{L}}$ be the solutions to $SRP$ and $\widehat{SRP}$, respectively.
+                Then each node $w_1$ in the concrete network forwards along a label path $s=(\mathcal{L}(w_1),\cdots,\mathcal{L}(w_n))$ to some node $w_n$ with $f(w_i)=\widehat{w_i}$, $i=1,\cdots,n$,
+                if and only if $\widehat{w_1}$ forwards along the label path $\widehat{s}=(\widehat{\mathcal{L}}(\widehat{w_1}),\cdots,\widehat{\mathcal{L}}(\widehat{w_n}))$ to $\widehat{w_n}$ and $h(s)=\widehat{s}$.
+            </p>
+            <p>
+                <i>Proof.</i>
+                By <a href="#thm-1">Theorem 1</a>, if any $w_1$ forwards along the label path $s=(\mathcal{L}(w_1),\cdots,\mathcal{L}(w_n))$ to some $w_n$, and $f(w_i)=\widehat{w_i}$, $i=1,\cdots,n$,
+                $\widehat{w_1}$ must forward along the label path $\widehat{s}=(\widehat{\mathcal{L}}(\widehat{w_1}),\cdots,\widehat{\mathcal{L}}(\widehat{w_n}))$ to $\widehat{w_n}$.
+                Therefore, it suffices to show that $h(s)=\widehat{s}$.
+                Indeed, since $SRP$ and $\widehat{SRP}$ are CP-equivalent, the solutions $\mathcal{L}$ and $\widehat{\mathcal{L}}$ are label-equivalent, <i>i.e.</i>, $h(\mathcal{L}(w_i))=\widehat{\mathcal{L}}(f(w_i))=\widehat{\mathcal{L}}(\widehat{w_i})$ for all $w_i$.
+                Therefore, we can see that
+                $$
+                    \widehat{s}=(\widehat{\mathcal{L}}(\widehat{w_1}),\cdots,\widehat{\mathcal{L}}(\widehat{w_n}))=(h(\mathcal{L}(w_1)),\cdots,h(\mathcal{L}(w_n)))=h(s),
+                $$
+                which concludes the <u>only if</u> direction of the theorem by arbitrariness of the path.
+                The <u>if</u> direction is symmetric since both <a href="#thm-1">Theorem 1</a> and label-equivalence are <i>if and only if</i> statements, so the proof is complete.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p class="emph-block">
+                <b id="lem-3">Lemma 3.</b>
+                If $SRP$ and $\widehat{SRP}$ are CP-equivalent, then black holes are preserved.
+            </p>
+            <p>
+                <i>Proof.</i>
+                To see that black holes are preserved, we need to show for any path $p$, it ends with $\perp$ if and only if $f(p)$ ends with $\perp$.
+                This is immediate by <a href="#thm-2">Theorem 2</a> and by drop-equivalence, which states that for any attribute $a$, $a=\perp$ if and only if $h(a)=\perp$.
+                The proof is thus complete.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p class="emph-block">
+                <b id="lem-4">Lemma 4.</b>
+                If $SRP$ and $\widehat{SRP}$ are CP-equivalent, then multipath consistency is preserved.
+            </p>
+            <p>
+                <i>Proof.</i>
+                To see that multipath consistency is preserved, we need to show that for any node $u\in V$, traffic sent from any node $u$ with $f(u)=\widehat{u}$ is reachable along some path to $v$ with $f(v)=\widehat{v}$ but dropped along some other path <u>if and only if</u> traffic sent from $\widehat{u}$ is reachable along some path to $\widehat{v}$ but dropped along some other path.
+                Assume that there is a forwarding path $p=(u,w_1,\cdots,w_k,v)$ with $f(u)=\widehat{u}$ and $f(v)=\widehat{v}$, yet another path $p'$ starting from $q$ that ends with $\perp$.
+                The assumption above means that traffic sent from $u$ will be forwarded to $v$ successfully along $p$ but dropped at along $p'$.
+                By <a href="thm-1">Theorem 1</a>, there must also be a forwarding path $\hat{p}=(\widehat{u},f(w_1),\cdots,f(w_k),\widehat{v})$, so indeed traffic sent from $\widehat{u}$ is reachable along the forwarding path $\hat{p}$ to $\widehat{v}$.
+                Moreover, by <a href="lem-3">Lemma 3</a>, black holes must be preserved, so $f(p')$ also ends with $\perp$.
+                Note that $f(p')$ starts from $f(u)=\widehat{u}$, so we have also found a path along which traffic sent from $\widehat{u}$ will be dropped.
+                By arbitrariness of $u$, we can conclude the <u>only if</u> direction of the lemma.
+                The <u>if</u> direction is symmetric since both <a href="thm-1">Theorem 1</a> and <a href="lem-3">Lemma 3</a> are <i>if and only if</i> statements, so the proof is complete.
+                &nbsp; <i>Q.E.D.</i>
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="outline-2" id="outline-container-summary">
+        <h2 id="summary">Summary</h2>
+        <div class="outline-text-2" id="text-summary">
+            <p>
+                In this post, I have discussed the first part of the paper.
+                This includes some important notations and the definition of CP-equivalence, which can be used to prove various utility preservation.
+                However, CP-equivalence is hard to evaluate, so the authors have furthermore proposed conditions for effective abstractions, which can sufficiently imply CP-equivalence.
+                If there were to be more posts on this paper, I will discuss some important utility definitions and how CP-equivalence can guarantee them.
+                I may not discuss the proofs of how effective abstractions can guarantee CP-equivalence.
+                At last, thanks for your meticulous reading and hope you enjoy it.
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="outline-2" id="outline-container-references">
+        <h2 id="references">References</h2>
+        <div class="outline-text-2" id="text-references">
+            <ol class="ref-list">
+                <li id="ref1">
+                    Ryan Beckett, Aarti Gupta, Ratul Mahajan, and David Walker. 2018.
+                    Control Plane Compression.
+                    In <i>Proceedings of the 2018 Conference of the ACM Special Interest Group on Data Communication</i>.
+                    ACM, Budapest Hungary, 476-489.
+                    <a href="https://doi.org/10.1145/3230543.3230583">https://doi.org/10.1145/3230543.3230583</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <br><br>
+
+    <div style="margin-top: 60px; color: grey;">
+        Written on Mar 17, 2023 by <a href="../../index.html">Yao Xiao</a>.
+        Want to read more? Feel free to check out my <a href="./index.html">computer networking collection</a>, as well as my <a href="../index.html">blog website</a>.
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+
+    <!-- TO BE REMOVED FROM THIS LINE -->
+    <script>
+        document.getElementById("outline-container-overview").style.display = "none";
+        document.getElementById("outline-container-summary").style.display = "none";
+        document.getElementById("content").children[0].style.display = "none";
+        const divs = document.getElementsByTagName("div");
+        divs[divs.length - 1].style.display = "none";
+        const menuelems = document.getElementById("text-table-of-contents").children[0].children;
+        for (const elem of menuelems) {
+            if (elem.innerHTML.includes("#summary")) elem.style.display = "none";
+        }
+    </script>
+    <!-- TO BE REMOVED UNTIL THIS LINE -->
+</body>
+
+</html>

@@ -369,6 +369,10 @@
                 I may not discuss the proofs of how effective abstractions can guarantee CP-equivalence.
                 At last, thanks for your meticulous reading and hope you enjoy it.
             </p>
+            <p>
+                Quick link(s):
+                <a href="./ctrl-pl-compression-2.html">Control Plane Compression II</a>.
+            </p>
         </div>
     </div>
     <br><br>
@@ -448,18 +452,25 @@
         </div>
     </div>
 
+    <div style="margin-top: 60px; color: grey;">
+        Written on Mar 15, 2023 by <a href="../../index.html">Yao Xiao</a>.
+        Want to read more? Feel free to check out my <a href="./index.html">computer networking collection</a>, as well as my <a href="../index.html">blog website</a>.
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+
     <!-- TO BE REMOVED FROM THIS LINE -->
-    <!-- <script>
+    <script>
         document.getElementById("outline-container-overview").style.display = "none";
         document.getElementById("outline-container-summary").style.display = "none";
         document.getElementById("content").children[0].style.display = "none";
-    </script> -->
+        const divs = document.getElementsByTagName("div");
+        divs[divs.length - 1].style.display = "none";
+        const menuelems = document.getElementById("text-table-of-contents").children[0].children;
+        for (const elem of menuelems) {
+            if (elem.innerHTML.includes("#summary")) elem.style.display = "none";
+        }
+    </script>
     <!-- TO BE REMOVED UNTIL THIS LINE -->
-
-    <div style="margin-top: 60px; color: grey;">
-        Written on Mar 15, 2023 by <a href="../../index.html">Yao Xiao</a>.
-        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
-    </div>
 </body>
 
 </html>
