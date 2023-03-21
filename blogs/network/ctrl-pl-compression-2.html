@@ -264,12 +264,15 @@
                 To see that multipath consistency is preserved, we need to show that for any node $u\in V$, traffic sent from any node $u$ with $f(u)=\widehat{u}$ is reachable along some path to $v$ with $f(v)=\widehat{v}$ but dropped along some other path <u>if and only if</u> traffic sent from $\widehat{u}$ is reachable along some path to $\widehat{v}$ but dropped along some other path.
                 Assume that there is a forwarding path $p=(u,w_1,\cdots,w_k,v)$ with $f(u)=\widehat{u}$ and $f(v)=\widehat{v}$, yet another path $p'$ starting from $q$ that ends with $\perp$.
                 The assumption above means that traffic sent from $u$ will be forwarded to $v$ successfully along $p$ but dropped at along $p'$.
-                By <a href="thm-1">Theorem 1</a>, there must also be a forwarding path $\hat{p}=(\widehat{u},f(w_1),\cdots,f(w_k),\widehat{v})$, so indeed traffic sent from $\widehat{u}$ is reachable along the forwarding path $\hat{p}$ to $\widehat{v}$.
-                Moreover, by <a href="lem-3">Lemma 3</a>, black holes must be preserved, so $f(p')$ also ends with $\perp$.
+                By <a href="#thm-1">Theorem 1</a>, there must also be a forwarding path $\hat{p}=(\widehat{u},f(w_1),\cdots,f(w_k),\widehat{v})$, so indeed traffic sent from $\widehat{u}$ is reachable along the forwarding path $\hat{p}$ to $\widehat{v}$.
+                Moreover, by <a href="#lem-3">Lemma 3</a>, black holes must be preserved, so $f(p')$ also ends with $\perp$.
                 Note that $f(p')$ starts from $f(u)=\widehat{u}$, so we have also found a path along which traffic sent from $\widehat{u}$ will be dropped.
                 By arbitrariness of $u$, we can conclude the <u>only if</u> direction of the lemma.
-                The <u>if</u> direction is symmetric since both <a href="thm-1">Theorem 1</a> and <a href="lem-3">Lemma 3</a> are <i>if and only if</i> statements, so the proof is complete.
+                The <u>if</u> direction is symmetric since both <a href="#thm-1">Theorem 1</a> and <a href="#lem-3">Lemma 3</a> are <i>if and only if</i> statements, so the proof is complete.
                 &nbsp; <i>Q.E.D.</i>
+            </p>
+            <p>
+                The preservation of waypointing and routing loops will not be explicitly shown here, but they will follows from <a href="#thm-1">Theorem 1</a> and <a href="#thm-2">Theorem 2</a> in a similar fashion as the proofs above.
             </p>
         </div>
     </div>
@@ -279,11 +282,8 @@
         <h2 id="summary">Summary</h2>
         <div class="outline-text-2" id="text-summary">
             <p>
-                In this post, I have discussed the first part of the paper.
-                This includes some important notations and the definition of CP-equivalence, which can be used to prove various utility preservation.
-                However, CP-equivalence is hard to evaluate, so the authors have furthermore proposed conditions for effective abstractions, which can sufficiently imply CP-equivalence.
-                If there were to be more posts on this paper, I will discuss some important utility definitions and how CP-equivalence can guarantee them.
-                I may not discuss the proofs of how effective abstractions can guarantee CP-equivalence.
+                In this post, I have discussed how CP-equivalence can lead to several utility properties.
+                Forwarding-equivalence can lead to part of the results regarding only paths, while label-equivalence adds to it to prove more results that involve traffic and data plane behavior.
                 At last, thanks for your meticulous reading and hope you enjoy it.
             </p>
         </div>
@@ -313,7 +313,7 @@
     </div>
 
     <!-- TO BE REMOVED FROM THIS LINE -->
-    <script>
+    <!-- <script>
         document.getElementById("outline-container-overview").style.display = "none";
         document.getElementById("outline-container-summary").style.display = "none";
         document.getElementById("content").children[0].style.display = "none";
@@ -323,7 +323,7 @@
         for (const elem of menuelems) {
             if (elem.innerHTML.includes("#summary")) elem.style.display = "none";
         }
-    </script>
+    </script> -->
     <!-- TO BE REMOVED UNTIL THIS LINE -->
 </body>
 
