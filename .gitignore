@@ -8,3 +8,6 @@ yxiao-cv/*
 !yxiao-cv/yxiao-cv.pdf
 yxiao-cv-chn/*
 !yxiao-cv-chn/yxiao-cv-chn.pdf
+
+# CV merger
+mergecv.py
