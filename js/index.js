@@ -1,5 +1,20 @@
 // ---------- ---------- ---------- ---------- ---------- //
 //                                                        //
+//                   TOGGLE ICON NAVBAR                   //
+//                                                        //
+// ---------- ---------- ---------- ---------- ---------- //
+
+let menuicon = document.querySelector("#menu-icon");
+let navbar = document.querySelector(".navbar");
+
+menuicon.onclick = () => {
+    menuicon.classList.toggle("bx-x");
+    navbar.classList.toggle("active");
+
+};
+
+// ---------- ---------- ---------- ---------- ---------- //
+//                                                        //
 //                  ACTIVE SECTION LINK                   //
 //                                                        //
 // ---------- ---------- ---------- ---------- ---------- //
@@ -21,6 +36,9 @@ window.onscroll = () => {
             })
         }
     });
+
+    menuicon.classList.remove("bx-x");
+    navbar.classList.remove("active");
 };
 
 // https://www.youtube.com/watch?v=Tkp3FDgOueM >> 50 min

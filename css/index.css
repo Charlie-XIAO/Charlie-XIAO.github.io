@@ -84,7 +84,7 @@ a {
 }
 
 #menu-icon {
-    font-size: 3.6rem;
+    font-size: 3.2rem;
     color: var(--text-color);
     display: none;
 }
@@ -142,6 +142,10 @@ a {
     width: 20vw;
 }
 
+.social-media {
+    margin-top: 1.5rem;
+}
+
 .social-media a {
     display: inline-flex;
     justify-content: center;
@@ -153,7 +157,7 @@ a {
     border-radius: 50%;
     font-size: 2rem;
     color: var(--main-color);
-    margin: 3rem 1.5rem 3rem 0;
+    margin: 1.5rem 1.5rem 0 0;
 }
 
 .social-media a:hover {
@@ -223,7 +227,7 @@ a {
     font-size: 1.6rem;
     color: var(--main-color);
     font-weight: 600;
-    margin: 0 0.3rem;
+    margin: 0.3rem 0.3rem;
 }
 
 .about-content .btn:hover {
@@ -517,6 +521,10 @@ a {
     font-size: 1.6rem;
 }
 
+.footer-icontop {
+    padding: 1rem;
+}
+
 .footer-icontop a {
     display: inline-flex;
     justify-content: center;
@@ -534,3 +542,89 @@ a {
     font-size: 2.4rem;
 }
 
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                   BREAKPOINT 1200 PX                   */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                   BREAKPOINT 991 PX                    */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 3%;
+    }
+    section {
+        padding: 10rem 3% 2rem;
+    }
+    .footer {
+        padding: 2rem 3%;
+    }
+    .home-content h1 {
+        font-size: 4.8rem;
+    }
+    
+    .home-content h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+    }
+    
+    .home-content p {
+        margin: 2rem 0;
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+    .home-img {
+        padding-left: 5rem;
+    }
+    .about-img {
+        padding-right: 2.5rem;
+    }
+    .experience-timeline {
+        margin: 0 7.5%;
+    }
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                   BREAKPOINT 768 PX                    */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: 0.1rem solid var(--second-bg-color);
+        border-bottom: 0.3rem solid var(--second-bg-color);
+        display: none;
+    }
+    .navbar.active {
+        display: block;
+    }
+    .navbar a {
+        display: block;
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    /* TODO: https://www.youtube.com/watch?v=Tkp3FDgOueM >> 58 min
+       Make vertical structure for smaller screens and so on ... */
+}
