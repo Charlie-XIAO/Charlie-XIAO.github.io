@@ -1,0 +1,527 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                      GLOBAL STYLE                      */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Lato", sans-serif;
+}
+
+:root {
+    --bg-color: #1f242d;
+    --second-bg-color: #323946;
+    --text-color: #ffffff;
+    --main-color: #00bbff;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+a {
+    transition: all 250ms ease;
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                      HEADER STYLE                      */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: default;
+    font-family: "Poppins", sans-serif;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                   HOME SECTION STYLE                   */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home-content h1 {
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: "Poppins", sans-serif;
+}
+
+.home-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+
+.home-content p {
+    margin: 2.4rem 0;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+.home-content a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--main-color);
+    color: var(--text-color);
+}
+
+.home-content a:hover {
+    color: var(--main-color);
+}
+
+.home-content span {
+    color: var(--main-color);
+}
+
+.home-img img {
+    width: 30vw;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 3rem 1.5rem 3rem 0;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: var(--second-bg-color);
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                  ABOUT SECTION STYLE                   */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--second-bg-color);
+}
+
+.about-img img {
+    width: 30vw;
+}
+
+.about .heading {
+    text-align: center;
+    font-size: 4.2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.about .heading span {
+    color: var(--main-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.about-content p {
+    margin: 2.4rem 0;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+.about-content a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--main-color);
+    color: var(--text-color);
+}
+
+.about-content a:hover {
+    color: var(--main-color);
+}
+
+.about-content span {
+    color: var(--main-color);
+}
+
+.about-content .btn {
+    background: transparent;
+    display: inline-block;
+    padding: 0.6rem 2.8rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.about-content .btn:hover {
+    background: var(--main-color);
+    color: var(--second-bg-color);
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                EDUCATION SECTION STYLE                 */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.education .heading {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 4rem;
+}
+
+.education .heading span {
+    color: var(--main-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.education-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin: 4rem 0;
+}
+
+.education-content a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--main-color);
+    color: var(--text-color);
+}
+
+.education-content a:hover {
+    color: var(--main-color);
+}
+
+.education-content .education-semester {
+    flex-basis: 5%;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: scale(-1);
+}
+
+.education-content .education-semester span {
+    color: var(--main-color);
+}
+
+.education-semester h2 {
+    font-size: 2.4rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.education-container {
+    display: flex;
+    flex-basis: 90%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.education-container .education-box {
+    flex: 1 1 30rem;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 0.2rem solid var(--bg-color);
+}
+
+.education-box h3 {
+    font-size: 1.8rem;
+}
+
+.education-box p {
+    font-size: 1.6rem;
+    margin: 1rem 0 2rem;
+}
+
+.education-box .shortcut {
+    background: transparent;
+    display: inline-block;
+    padding: 0.1rem 0.8rem;
+    margin: 0.2rem 0.2rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.4rem;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.education-box .shortcut:hover {
+    background: var(--main-color);
+    color: var(--second-bg-color);
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                EXPERIENCE SECTION STYLE                */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.experience .heading {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 4rem;
+}
+
+.experience .heading span {
+    color: var(--main-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.experience-timeline {
+    margin: 0 10%;
+    border-left: 2px solid var(--main-color);
+    padding: 0 2rem 0 3rem;
+}
+
+.experience-timeline a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--main-color);
+    color: var(--text-color);
+}
+
+.experience-timeline a:hover {
+    color: var(--main-color);
+}
+
+.experience-timeline .experience-box {
+    padding: 3rem 5rem 4rem;
+    border-radius: 2rem;
+    background: var(--second-bg-color);
+    border: 0.2rem solid var(--bg-color);
+    margin: 2rem 0;
+}
+
+.experience-box h3 {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+.experience-box h4 {
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin: 0.5rem 0;
+}
+
+.experience-box .date {
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.experience-box ul {
+    padding: 1.6rem 3rem;
+}
+
+.experience ul > li {
+    font-size: 1.6rem;
+    margin: 0.8rem 0;
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                 PROJECTS SECTION STYLE                 */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.projects .heading {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 4rem;
+}
+
+.projects .heading span {
+    color: var(--main-color);
+    font-family: "Poppins", sans-serif;
+}
+
+.projects-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin: 4rem 0;
+}
+
+.projects-content a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--main-color);
+    color: var(--text-color);
+}
+
+.projects-content a:hover {
+    color: var(--main-color);
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.projects-container .projects-box {
+    flex: 1 1 30rem;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 0.2rem solid var(--bg-color);
+}
+
+.projects-box h3 {
+    font-size: 1.8rem;
+}
+
+.projects-box i {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.projects-box p {
+    font-size: 1.6rem;
+    margin: 1rem 0 2rem;
+}
+
+.projects-box .shortcut {
+    background: transparent;
+    display: inline-block;
+    padding: 0.1rem 0.8rem;
+    margin: 0.2rem 0.2rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.4rem;
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.projects-box .verbose {
+    background: transparent;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    margin: 2rem 0.2rem 0;
+    border-radius: 4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.projects-box .shortcut:hover,
+.projects-box .verbose:hover {
+    background: var(--main-color);
+    color: var(--second-bg-color);
+}
+
+/* ---------- ---------- ---------- ---------- ---------- */
+/*                                                        */
+/*                      FOOTER STYLE                      */
+/*                                                        */
+/* ---------- ---------- ---------- ---------- ---------- */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--second-bg-color);
+}
+
+.footer a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+}
+
+.footer-icontop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.footer-icontop a:hover {
+    box-shadow: 0 0 1rem var(--text-color);
+}
+
+.footer-icontop a i {
+    color: var(--main-color);
+    font-size: 2.4rem;
+}
+
