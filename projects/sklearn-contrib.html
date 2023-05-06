@@ -5,8 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Org Mode" />
-    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
-    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/hide.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
@@ -15,18 +16,23 @@
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
     <style> .pre-code { white-space: pre !important; } </style>
+    <style>
+        .contrib-item { padding: 10px 0; }
+        .contrib-descrp { padding-left: 5%; padding-top: 10px; line-height: 150%; }
+    </style>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             jax: ["input/TeX", "output/HTML-CSS"],
             extensions: ["tex2jax.js"],
-            "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] },
-            tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
-            TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+            "HTML-CSS": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
+            tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, ignoreClass: "tex2jax_ignore|dno"},
+            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}},
             messageStyle: "none",
-            "HTML-CSS": { scale: 80, minScaleAdjust: 50 }
+            "HTML-CSS": {scale: 80, minScaleAdjust: 50},
         });
-    </script>    
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+    <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
     <title>Yao Xiao | scikit-learn</title>
 </head>
 
@@ -48,7 +54,13 @@
                     </ul>
                 </li>
                 <li><a href="#doc-contrib">Documentation Contributions</a></li>
-                <li><a href="#future-work">Future Work</a></li>
+                <li>
+                    <a href="#future-work">Future Work</a>
+                    <ul>
+                        <li><a href="#future-prs">Pull Requests</a></li>
+                        <li><a href="#future-issues">Issues</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -64,49 +76,94 @@
 
     <div id="outline-container-code-contrib" class="outline-2">
         <h2 id="code-contrib">Code Contributions</h2>
-        <div class="outline-text-2" id="text-code-contrib">
-            <p>
-                Placeholder text.
-            </p>
-        </div>
     </div>
-    <br><br>
 
     <div id="outline-container-ensemble" class="outline-3">
         <h3 id="ensemble"><code>sklearn.ensemble</code></h3>
         <div class="outline-text-3" id="text-ensemble">
             <p>
-                Placeholder text.
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/25931">FIX Remove spurious feature names warning in IsolationForest #25931</a>
+                    <button class="hide" id="hide-25931"></button>
+                    <div class="hidden-content contrib-descrp" id="25931">
+                        When fitting an <code>IsolationForest</code> on a pandas dataframe with <code>contamination != auto</code>,
+                        the feature names were removed and a spurious warning was raised saying that
+                        <pre><code class="pre-code language-plaintext">X does not have valid feature names, but IsolationForest was fitted with feature names</code></pre>
+                        This is because input data was validated when scoring the samples.
+                        To fix this, I created a private version of scoring function without input validation,
+                        and make the original public version validate the input and call this private one.
+                        Then when fitting, I used the private version so that feature names will not be removed and no warnings will be raised.
+                    </div>
+                </div>
             </p>
         </div>
     </div>
-    <br><br>
 
     <div id="outline-container-feature_selection" class="outline-3">
         <h3 id="feature_selection"><code>sklearn.feature_selection</code></h3>
         <div class="outline-text-3" id="text-feature_selection">
             <p>
-                Placeholder text.
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/25973">FIX SequentialFeatureSelector throws IndexError when cv is a generator #25973</a>
+                    <button class="hide" id="hide-25973"></button>
+                    <div class="hidden-content contrib-descrp" id="25973">
+                        When fitting a <code>SequentialFeatureSelector</code>, the optional parameter <code>cv</code> would accept any iterable according to the documentation.
+                        However, a strange error will occur when passing <code>cv</code> as a generator:
+                        <pre><code class="pre-code language-plaintext">IndexError: list index out of range</code></pre>
+                        This is because <code>cv</code> need to be reused during the fitting process, so I called `check_cv` to make sure that we have an iterator.
+                        Yet a conversion from a generator to an iterator is inefficient, so personally I still do not recommend using <code>cv</code> as generators.
+                    </div>
+                </div>
             </p>
         </div>
     </div>
-    <br><br>
 
     <div id="outline-container-metrics" class="outline-3">
         <h3 id="metrics"><code>sklearn.metrics</code></h3>
         <div class="outline-text-3" id="text-metrics">
             <p>
-                Placeholder text.
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/25987">ENH RocCurveDisplay add option to plot chance level #25987</a>
+                    <button class="hide" id="hide-25987"></button>
+                    <div class="hidden-content contrib-descrp" id="25987">
+                        <code>RocCurveDisplay</code> plots the Receiver Operating Characteristic (ROC) curve.
+                        The ROC curve is constructed by plotting the true positive rate against the false positive rate, which measures the diagnostic ability of binary classifiers.
+                        The baseline is called chance level, which is the diagonal, and the farther the ROC curve is from the baseline, the better performance the classifier has.
+                        Therefore, I added a keyword <code>plot_chance_level</code> for plotting the chance level.
+                        I also provided a keyword <code>chance_level_kw</code> that supports a dictionary of matplotlib keywords for customizing the rendering of the chance level line.
+
+                    </div>
+                </div>
             </p>
         </div>
     </div>
-    <br><br>
 
     <div id="outline-container-param-val" class="outline-3">
         <h3 id="param-val">Automatic Parameter Validation</h3>
         <div class="outline-text-3" id="text-param-val">
             <p>
-                Placeholder text.
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26036">MAINT Parameters validation for sklearn.preprocessing.scale #26036</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26047">MAINT Parameters validation for sklearn.metrics.pairwise.haversine_distances #26047</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26048">MAINT Parameters validation for sklearn.metrics.pairwise.laplacian_kernel #26048</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26049">MAINT Parameters validation for sklearn.metrics.pairwise.linear_kernel #26049</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26046">MAINT Parameters validation for sklearn.metrics.pairwise.cosine_distances #26046</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26073">MAINT Parameters validation for sklearn.metrics.pairwise.paired_euclidean_distances #26073</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26074">MAINT Parameters validation for sklearn.metrics.pairwise.paired_manhattan_distances #26074</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26075">MAINT Parameters validation for sklearn.metrics.pairwise.paired_cosine_distances #26075</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26070">MAINT Parameters validation for sklearn.metrics.pairwise.polynomial_kernel #26070</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26071">MAINT Parameters validation for sklearn.metrics.pairwise.rbf_kernel #26071</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26072">MAINT Parameters validation for sklearn.metrics.pairwise.sigmoid_kernel #26072</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26126">MAINT Parameters validation for sklearn.datasets.fetch_rcv1 #26126</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26166">MAINT Parameters validation for sklearn.datasets.load_diabetes #26166</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26165">MAINT Parameters validation for sklearn.datasets.load_breast_cancer #26165</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26161">MAINT Parameters validation for sklearn.datasets.fetch_species_distributions #26161</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26230">MAINT Parameters validation for sklearn.model_selection.permutation_test_score #26230</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26229">MAINT Parameters validation for sklearn.model_selection.validation_curve #26229</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26227">MAINT Parameters validation for sklearn.model_selection.learning_curve #26227</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26122">MAINT Parameters validation for sklearn.metrics.pairwise.manhattan_distances #26122</a></div>
+                <!--
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/"></a></div>
+                -->
             </p>
         </div>
     </div>
@@ -116,7 +173,15 @@
         <h2 id="doc-contrib">Documentation Contributions</h2>
         <div class="outline-text-2" id="text-doc-contrib">
             <p>
-                Placeholder text.
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26018">DOC fix SplineTransformer include_bias docstring #26018</a>
+                    <button class="hide" id="hide-26018"></button>
+                    <div class="hidden-content contrib-descrp" id="26018">
+                        The documentation of <code>SplineTransformer</code> wrote that if <code>include_bias = True</code>,
+                        then the last spline element inside the data range of a feature is dropped.
+                        However, the case is exactly the opposite, so I fixed the docstring.
+                    </div>
+                </div>
             </p>
         </div>
     </div>
@@ -124,17 +189,34 @@
 
     <div id="outline-container-future-work" class="outline-2">
         <h2 id="future-work">Future Work</h2>
-        <div class="outline-text-2" id="text-future-work">
-            <p>
-                Placeholder text.
-            </p>
-        </div>
+    </div>
+
+    <div id="outline-container-future-prs" class="outline-3">
+        <h3 id="future-prs">Pull Requests</h3>
+        <p>
+            Placeholder text.
+        </p>
+    </div>
+
+    <div id="outline-container-future-issues" class="outline-3">
+        <h3 id="future-issues">Issues</h3>
+        <p>
+            Placeholder text.
+        </p>
     </div>
     <br><br>
 
     <div style="margin-top: 60px; color: grey;">
+        <span id="last-updated-date"></span>
         For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+        <script>
+            let lastUpdated = new Date(document.lastModified);
+            let lastUpdatedDate = lastUpdated.toLocaleDateString(undefined, {year: "numeric", month: "numeric", day: "numeric"});
+            document.getElementById("last-updated-date").innerHTML = `This document was last updated on ${lastUpdatedDate}.`
+        </script>
     </div>
+
+    <script src="../js/hide.js"></script>
 </body>
 
 </html>

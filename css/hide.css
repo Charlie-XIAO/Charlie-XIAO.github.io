@@ -1,0 +1,9 @@
+.hidden-content {
+    display: none;
+}
+
+button.hide {
+    all: unset;
+    cursor: pointer;
+    margin-left: 1rem;
+}
