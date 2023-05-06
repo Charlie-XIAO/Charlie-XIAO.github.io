@@ -1,3 +1,9 @@
+/**
+ * 
+ * This style sheet should be used with "hide.js".
+ *
+ **/
+
 .hidden-content {
     display: none;
 }
