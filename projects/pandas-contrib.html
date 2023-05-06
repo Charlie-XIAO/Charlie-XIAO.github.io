@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Org Mode" />
+    <link rel="stylesheet" type="text/css" href="../css/hide.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+    <style> .pre-code { white-space: pre !important; } </style>
+    <style>
+        .contrib-item { padding: 10px 0; }
+        .contrib-descrp { padding-left: 2.5%; padding-top: 10px; line-height: 150%; }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
+            tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, ignoreClass: "tex2jax_ignore|dno"},
+            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}},
+            messageStyle: "none",
+            "HTML-CSS": {scale: 80, minScaleAdjust: 50},
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+    <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
+    <title>Yao Xiao | pandas</title>
+</head>
+
+<body>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                   TABLE OF CONTENTS                    -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="content" class="content">
+        <p><a href="../index.html#projects">Projects</a><span style="color: #808080;"></span> / pandas</span></p>
+        <h1 class="title">Contributions to <a href="https://scikit-learn.org/stable/">pandas</a></h1>
+        <div id="table-of-contents" role="doc-toc">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents" role="doc-toc">
+            <ul>
+                <li>
+                    <a href="#code-contrib">Code Contributions</a>
+                    <ul>
+                        <li><a href="#reshaping">Reshaping</a></li>
+                        <li><a href="#output-formatting">Output Formatting</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#future-work">Future Work</a>
+                    <ul>
+                        <li><a href="#future-prs">Pull Requests</a></li>
+                        <li><a href="#future-issues">Issues</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <a href="#"><i class="fa-solid fa-chevron-up"></i> &nbsp; Back to Top</a>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                        OVERVIEW                        -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-overview" class="outline-2">
+        <div class="outline-text-2" id="text-overview">
+            <img src="https://pandas.pydata.org/static/img/pandas.svg" style="float: right; width: 20%; margin: 0 2.5%;">
+            <p>
+                This is the collection of my open source contributions to pandas,
+                a powerful data analysis toolkit in Python, distributed under the <a href="https://github.com/pandas-dev/pandas/blob/main/LICENSE">3-Clause BSD license</a>.
+                It has its code base maintained on <a href="https://github.com/pandas-dev/pandas">GitHub</a>, with nearly 3000 contributors.
+            </p>
+            <p>
+                I have made <a href="https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO">2 pull requests</a> that have been merged into the code base of pandas.
+                These data are collected on <span class="get-last-updated"></span>.
+            </p>
+            <p>
+                I will be keeping blogs on the topics that I especially want to share.
+                They are to be updated and will be linked below.
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                   CODE CONTRIBUTIONS                   -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-code-contrib" class="outline-2">
+        <h2 id="code-contrib">Code Contributions</h2>
+        <p>Items in each section are sorted in reverse chronological order by the time of merge.</p>
+    </div>
+
+    <div id="outline-container-reshaping" class="outline-3">
+        <h3 id="reshaping">Reshaping</h3>
+        <div class="outline-text-3" id="text-reshaping">
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH: When merging with incompatible keys, include the first incompatible key in the error message #51947</a>
+                    <button class="hide" id="hide-51947"></button>
+                    <div class="hidden-content contrib-descrp" id="51947">
+                        <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
+                        but there was no information provided in the error message that indicate which keys are incompatible.
+                        I improved the error message by displaying the first imcompatible key. For instance,
+                        <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <div id="outline-container-output-formatting" class="outline-3">
+        <h3 id="output-formatting">Output Formatting</h3>
+        <div class="outline-text-3" id="text-output-formatting">
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53044">BUG: MultiIndex displays incorrectly with a long element #53044</a>
+                    <button class="hide" id="hide-53044"></button>
+                    <div class="hidden-content contrib-descrp" id="53044">
+                        I/O formatting was failing to display <code>MultiIndex</code> objects with a long elements, such as
+                        <pre><code class="pre-code language-python">print(pd.MultiIndex.from_tuples([("c" * 62,)]))  # Raises an error</code></pre>
+                        This is because an important variable during I/O formatting was set only when breaking out of a for loop.
+                        It did not consider cases where the for loop terminates naturally, causing further errors.
+                        I fixed this bug so that such objects can be displayed correctly.
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                      FUTURE WORK                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-future-work" class="outline-2">
+        <h2 id="future-work">Future Work</h2>
+        <p>Items in each section are sorted in chronological order by the time of creation.</p>
+    </div>
+
+    <div id="outline-container-future-prs" class="outline-3">
+        <h3 id="future-prs">Pull Requests</h3>
+        <div class="outline-text-3" id="text-future-prs">
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53049">BUG: GroupBy.quantile implicitly sorts index.levels #53049</a>
+                    (under review)
+                </div>
+                <!--
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/"></a>
+                    (pending)
+                </div>
+                -->
+            </p>
+        </div>
+    </div>
+
+    <div id="outline-container-future-issues" class="outline-3">
+        <h3 id="future-issues">Issues</h3>
+        <div class="outline-text-3" id="text-future-issues">
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/52550">ENH: Differing variable name for quantile vs rolling.quantile #52550</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/52955">BUG: NA value doesn't match mask condition, still masked #52955</a>
+                    (pending)
+                </div>
+                <!--
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/"></a>
+                    (pending)
+                </div>
+                -->
+            </p>
+        </div>
+    </div>
+    <br><br>
+
+    <div style="margin-top: 60px; color: grey;">
+        This document was last updated on <span class="get-last-updated"></span>.
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+
+    <script src="../js/hide.js"></script>
+    <script src="../js/last_updated.js"></script>
+</body>
+
+</html>

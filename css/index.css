@@ -469,6 +469,12 @@ a {
     margin: 1rem 0 2rem;
 }
 
+.projects code {
+    font-weight: normal;
+    font-size: 1.4rem;
+    font-family: "courier new", monospace;
+}
+
 .projects-box .shortcut {
     background: transparent;
     display: inline-block;
