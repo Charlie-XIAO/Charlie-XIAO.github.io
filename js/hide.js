@@ -2,7 +2,11 @@
  * 
  * This script selects all buttons with the class "hide", so that all such buttons
  * can control an element to show up on one click and to be hidden on another click.
- * Moreover, one has to use this script together with "hide.css" to make it work.
+ * Moreover, one has to use this script together with "hide.css" as well as include
+ * FontAwesome icons so as to make it work.
+ * 
+ * For instance:
+ * <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
  * 
  * We require the button id to be "hide-<something>", and the id of the element it
  * controls to be "<something>".
