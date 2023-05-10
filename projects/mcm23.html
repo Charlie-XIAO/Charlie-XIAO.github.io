@@ -17,7 +17,21 @@
     <style>
         figure { border: 1px #cccccc solid; padding: 4px; margin: 8px; display: inline-block; }
         figcaption { background-color: #eeeeee; font-style: italic; padding: 2px; text-align: center; }
+        .flex-img-container { display: flex; align-items: center; justify-content: center; }
+        .flex-img-content { display: flex; align-items: center; justify-content: center; }
     </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
+            tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, ignoreClass: "tex2jax_ignore|dno"},
+            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}},
+            messageStyle: "none",
+            "HTML-CSS": {scale: 80, minScaleAdjust: 50},
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
     <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
 </head>
 
@@ -97,9 +111,9 @@
             <h3 id="overview-1">Forecasting the number of reported results</h3>
             <p>
                 We used an <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average">ARIMA</a> model for time series analysis, and a <a href="https://en.wikipedia.org/wiki/Nonlinear_regression">nonlinear regression</a> model for curve fitting.
-                The ARIMA model achieved a mean squared error of 2.91&times;10<sup>-3</sup>, and the nonlinear regression model achieved approximately 2.00&times;10<sup>-3</sup>, which are both within the acceptable range.
+                The ARIMA model achieved a mean squared error of $2.91\times10^{-3}$, and the nonlinear regression model achieved approximately $2.00\times10^{-3}$, which are both within the acceptable range.
                 Furthermore, they led to very similar forecasting results on the number of reported results on the target date Mar 1, 2023.
-                More specifically, one predicted 16756 and the other predicted 16774.
+                More specifically, one predicted $16756$ and the other predicted $16774$.
             </p>
 
             <h3 id="overview-2">Predicting the distribution of number of trials to guess the word</h3>
@@ -107,7 +121,7 @@
                 We proposed several new attributes of the words and performed the <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation</a> analysis to select the influencing factors.
                 The finally selected attributes are the Variety of Letters (VOL), the Expectation of Yellow Hit (EYH), and the Expectation of Green Hit (EGH).
                 Using these three attributes along with the position information of the letters, we trained a <a href="https://en.wikipedia.org/wiki/Decision_tree">Decision Tree</a> Regression model and a <a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a> Regression model to predict the distribution of the number of trials.
-                The two mutually corroborating models both achieved mean absolute errors of at most 3%, and produced almost identical prediction results on the target word EERIE.
+                The two mutually corroborating models both achieved mean absolute errors of at most $3\%$, and produced almost identical prediction results on the target word EERIE.
                 It is a Gaussian-like distribution, with the most players using four trials to succeed.
             </p>
 
@@ -115,7 +129,7 @@
             <p>
                 We developed two classification models of word difficulty.
                 The Expectation of Number of Trials model simply treated the number of trials as a random variable, computed its expectation, and selected the quartiles as boundaries.
-                The other model is based on <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-Means clustering</a>.
+                The other model is based on <a href="https://en.wikipedia.org/wiki/K-means_clustering">$k$-Means clustering</a>.
                 The two models almost agreed on the difficulty level of the target word EERIE, which is a little bit over the third quartile if we sort the words in an ascending order of difficulty and overall considered as hard.
             </p>
 
@@ -144,35 +158,41 @@
                 As follows is a deliberately selected plot library of our results.
             </p>
 
-            <figure style="width: 90%;">
-                <img src="../images/mcm23/time-series-1.png">
-                <figcaption>Time series analysis.</figcaption>
-            </figure>
+            <div class="flex-img-container">
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/time-series-1.png">
+                    <figcaption>Time series analysis</figcaption>
+                </figure>
+            </div>
 
-            <figure style="width: 45%;">
-                <img src="../images/mcm23/time-series-2.png">
-                <figcaption>The ARIMA model.</figcaption>
-            </figure>
+            <div class="flex-img-container">
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/time-series-2.png">
+                    <figcaption>The ARIMA model</figcaption>
+                </figure>
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/nonlinear-1.png">
+                    <figcaption>The nonlinear regression model</figcaption>
+                </figure>
+            </div>
 
-            <figure style="width: 45%;">
-                <img src="../images/mcm23/nonlinear-1.png">
-                <figcaption>The nonlinear regression model.</figcaption>
-            </figure>
+            <div class="flex-img-container">
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/pearson-1.png">
+                    <figcaption>Pearson correlation analysis</figcaption>
+                </figure>
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/distr-pred-1.png">
+                    <figcaption>The nonlinear regression model</figcaption>
+                </figure>
+            </div>
 
-            <figure style="width: 45%;">
-                <img src="../images/mcm23/pearson-1.png">
-                <figcaption>Pearson correlation analysis.</figcaption>
-            </figure>
-
-            <figure style="width: 45%;">
-                <img src="../images/mcm23/distr-pred-1.png">
-                <figcaption>The distribution prediction.</figcaption>
-            </figure>
-
-            <figure style="width: 90%;">
-                <img src="../images/mcm23/kmeans-1.png">
-                <figcaption>The k-Means model.</figcaption>
-            </figure>
+            <div class="flex-img-container">
+                <figure class="flext-img-content" style="flex: 1">
+                    <img src="../images/mcm23/kmeans-1.png">
+                    <figcaption>The $k$-Means model</figcaption>
+                </figure>
+            </div>
 
         </div>
     </div>
