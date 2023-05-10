@@ -13,13 +13,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
-    <style>pre.src{background:#fafafa; color:#383a42;}</style>
+    <style> pre.src{ background:#fafafa; color:#383a42; } </style>
+    <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
+    <style>
+        .flex-img-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .flex-img-content { display: flex; align-items: center; justify-content: center; }
+        .feature-title { margin-bottom: 20px; }
+        .feature-note { color: grey; font-style: italic; margin-top: 5px; }
+        ul.detail-list > li { margin-top: 10px; margin-bottom: 10px; }
+    </style>
 </head>
 
 <body>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                   TABLE OF CONTENTS                    -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
     
     <div id="content" class="content">
-        <h1 class="title">YouTube Interface Customizer<span style="float: right;"><img src="../images/YouTube-Interface-Customizer.png" style="width: 96px; height: 96px;"></span></h1>
+        <h1 class="title">YouTube Interface Customizer<span style="float: right;"><img src="../images/YouTube-Interface-Customizer.png" style="width: 7vw; height: 7vw;"></span></h1>
         <p><a href="https://addons.mozilla.org/firefox/downloads/file/4069744/438bf7e9f2714ba58ac1-1.0.xpi"><img src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white" style="width: 100px; height: 25px;" /></a></p>
         <p>This is an <a href="https://github.com/ossd-s23/YouTube-Customizer">open source</a> Firefox extension that allows you to customize a wide variety of elements of the YouTube interface in your favor.</p>
         <div id="table-of-contents" role="doc-toc">
@@ -41,7 +55,14 @@
                 <li><a href="#license">License</a></li>
             </ul>
         </div>
+        <a href="#"><i class="fa-solid fa-chevron-up"></i> &nbsp; Back to Top</a>
     </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                      INSTALLATION                      -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
 
     <div id="outline-container-installation" class="outline-2">
         <h2 id="installation">Installation</h2>
@@ -59,6 +80,12 @@
         </div>
     </div>
 
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                        FEATURES                        -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
     <div id="outline-container-features" class="outline-2">
         <h2 id="features">Features</h2>
         <div class="outline-text-2" id="text-features">
@@ -72,171 +99,181 @@
                 <li><b>Video player:</b> Customize the scrubber and progress bar; Customize video player layout.</li>
             </ul>
         </div>
-    </div>
 
-    <div id="outline-container-features-general" class="outline-3">
         <h3 id="features-general">General</h3>
         <div class="outline-text-3" id="text-features-general">
             <p>
-                <b>Customize color theme - Bright Sky</b> <br><br>
-                <img src="../images/YIC-screenshots/general-sky.png" width="80%">
+                <div class="feature-title"><b>Customize color theme - Bright Sky</b></div>
+                <div><img src="../images/YIC-screenshots/general-sky.png" width="80%"></div>
             </p>
             <p>
-                <b>Customize color theme - Cute Earth</b> <br><br>
-                <img src="../images/YIC-screenshots/general-earth.png" width="80%">
+                <div class="feature-title"><b>Customize color theme - Cute Earth</b></div>
+                <div><img src="../images/YIC-screenshots/general-earth.png" width="80%"></div>
             </p>
             <p>
-                <b>Customize color theme - Petite Valentine</b> <br><br>
-                <img src="../images/YIC-screenshots/general-valentine.png" width="80%">
+                <div class="feature-title"><b>Customize color theme - Petite Valentine</b></div>
+                <div><img src="../images/YIC-screenshots/general-valentine.png" width="80%"></div>
             </p>
         </div>
-    </div>
 
-    <div id="outline-container-features-homepage" class="outline-3">
         <h3 id="features-homepage">Homepage</h3>
         <div class="outline-text-3" id="text-features-homepage">
             <p>
-                <b>Hide video suggestions - Hide all video suggestions</b> <br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-all.png" width="80%">
+                <div class="feature-title"><b>Hide video suggestions - Hide all video suggestions</b></div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-all.png" width="80%"></div>
             </p>
             <p>
-                <b>Hide video suggestions - Hide all video suggestions</b> <br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-ad.png" width="80%">
+                <div class="feature-title"><b>Hide video suggestions - Hide all video suggestions</b></div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-ad.png" width="80%"></div>
             </p>
             <p>
-                <b>Hide video suggestions - Hide special sections</b> (<i>e.g.</i>, the section in the red box will disappear) <br>
-                <i style="color: grey">
-                    Note: Special sections include but are not limited to news, shorts, and Primetime suggestions.
-                    The listed special sections can be individually hided while other special sections can only be hided globally.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-specialsecs.png" width="80%">
+                <div class="feature-title">
+                    <b>Hide video suggestions - Hide special sections</b> (<i>e.g.</i>, the section in the red box will disappear)
+                    <div class="feature-note">
+                        Note: Special sections include but are not limited to news, shorts, and Primetime suggestions.
+                        The listed special sections can be individually hided while other special sections can only be hided globally.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-specialsecs.png" width="80%"></div>
             </p>
             <p>
-                <b>Hide video suggestions - Show only a specified number of rows of video suggestions</b> <br>
-                <i style="color: grey">
-                    Note: The example is showing only one row of video suggestions, applied together with hide special sections.
-                    Otherwise, the special sections will not be counted in the number of rows and will be displayed.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-rows.png" width="80%">
+                <div class="feature-title">
+                    <b>Hide video suggestions - Show only a specified number of rows of video suggestions</b>
+                    <div class="feature-note">
+                        Note: The example is showing only one row of video suggestions, applied together with hide special sections.
+                        Otherwise, the special sections will not be counted in the number of rows and will be displayed.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-rows.png" width="80%"></div>
             </p>
             <p>
-                <b>Customize homepage layout - Hide the header</b> <br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-header.png" width="80%">
+                <div class="feature-title"><b>Customize homepage layout - Hide the header</b></div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-header.png" width="80%"></div>
             </p>
             <p>
-                <b>Customize homepage layout - Hide video thumbnails</b> <br>
-                <i style="color: grey">
-                    Note: This excludes video thumnails of the advertisements.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-thumbnail.png" width="80%">
+                <div class="feature-title">
+                    <b>Customize homepage layout - Hide video thumbnails</b>
+                    <div class="feature-note">
+                        Note: This excludes video thumnails of the advertisements.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-thumbnail.png" width="80%"></div>
             </p>
         </div>
-    </div>
 
-    <div id="outline-container-features-navbar" class="outline-3">
         <h3 id="features-navbar">Navigation Bar</h3>
         <div class="outline-text-3" id="text-features-navbar">
             <p>
-                <b>Customize color - Text and icons</b>
-                <ul>
-                    <li>
-                        This changes the color of all the text and icons in the left navigation bar, except for the footer and the profile images.
-                        Only a limited choices of colors are supported currently.
-                    </li>
-                </ul>
+                <div class="feature-title"><b>Customize color - Text and icons</b></div>
+                <p>
+                    This changes the color of all the text and icons in the left navigation bar, except for the footer and the profile images.
+                    Only a limited choices of colors are supported currently.
+                </p>
             </p>
             <p>
-                <b>Redirect YouTube Logo</b>
-                <ul>
-                    <li>
-                        This redirects the YouTube logo on the top left corner of the YouTube website.
-                        We currently support redirection to Home (default), Shorts, Subscriptions, History, Library, Watch Later, and Liked Videos.
-                    </li>
-                </ul>
+                <div class="feature-title"><b>Redirect YouTube Logo</b></div>
+                <p>
+                    This redirects the YouTube logo on the top left corner of the YouTube website.
+                    We currently support redirection to Home (default), Shorts, Subscriptions, History, Library, Watch Later, and Liked Videos.
+                <p>
             </p>
             <p>
-                <b>Hide buttons and sections - Hide the entire navigation bar</b> <br>
-                <i style="color: grey">
-                    Note: We also support hiding each button and section individually.
-                    This includes the Home / Explore / Shorts / Subscriptions buttons,
-                    the Library and quicklinks / Subscriptions / Explore / More from YouTube / Settings and more sections,
-                    and the footer.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/homepage-hide-navbar.png" width="80%">
+                <div class="feature-title">
+                    <b>Hide buttons and sections - Hide the entire navigation bar</b>
+                    <div class="feature-note">
+                        Note: We also support hiding each button and section individually.
+                        This includes the Home / Explore / Shorts / Subscriptions buttons,
+                        the Library and quicklinks / Subscriptions / Explore / More from YouTube / Settings and more sections,
+                        and the footer.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/homepage-hide-navbar.png" width="80%"></div>
+            </p>
+        </div>
+
+        <h3 id="features-vid">Video Player</h3>
+        <div class="outline-text-3" id="text-features-vid">
+            <p>
+                <div class="feature-title">
+                    <b>Customize the scrubber and progress bar - Scrubber pattern</b>
+                    <div class="feature-note">
+                        Note: The scrubbers are GIF images.
+                        We currently support Pusheen, Pikachu, and Capoo.
+                    </div>
+                </div>
+                <div class="feature-title">
+                    <b>Customize the scrubber and progress bar - Progess bar pattern</b>
+                    <div class="feature-note">
+                        Note: We currently support Cherry (best fit with Pusheen), Poké Ball (best fit with Pikachu), and Light Blue (best fit with Capoo).
+                        However, users are free to customize their own combinations.
+                    </div>
+                </div>
+                <div class="flex-img-container">
+                    <div class="flex-img-content" style="flex: 6"><img src="../images/YIC-screenshots/vidplayer-pusheen.png"></div>
+                    <div class="flex-img-content" style="flex: 1; margin-left: 5vw;"><img src="../images/YIC-screenshots/pusheen.gif"></div>
+                </div>
+                <div class="flex-img-container">
+                    <div class="flex-img-content" style="flex: 6"><img src="../images/YIC-screenshots/vidplayer-pikachu.png"></div>
+                    <div class="flex-img-content" style="flex: 1; margin-left: 5vw;"><img src="../images/YIC-screenshots/pikachu.gif"></div>
+                </div>
+                <div class="flex-img-container">
+                    <div class="flex-img-content" style="flex: 6"><img src="../images/YIC-screenshots/vidplayer-capoo.png"></div>
+                    <div class="flex-img-content" style="flex: 1; margin-left: 5vw;"><img src="../images/YIC-screenshots/capoo.gif"></div>
+                </div>
+            </p>
+            <p>
+                <div class="feature-title">
+                    <b>Customize video player layout - Hide the sidebar suggestions</b>
+                    <div class="feature-note">
+                        Note: This not only hides the entire sidebar, but also centers the video player.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/vidplayer-hide-sidebar.png" width="80%"></div>
+            </p>
+            <p>
+                <div class="feature-title"><b>Customize video player layout - Hide the end-of-video suggestions</b></div>
+                <p>
+                    This blocks the end-of-video suggestions from generating.
+                </p>
+            </p>
+            <p>
+                <div class="feature-title"><b>Customize video player layout - Hide the Like button and more</b></div>
+                <p>
+                    This hides the Like / Dislike button, the Share button, the Clip button, and the More button.
+                </p>
+            </p>
+            <p>
+                <div class="feature-title"><b>Customize video player layout - Hide the merch shelf</b></div>
+                <p>
+                    YouTube video player sometimes generates a merch shelf below the video meta information.
+                    This prevents the entire merch shelf from appearing.
+                </p>
+            </p>
+            <p>
+                <div class="feature-title"><b>Customize video player layout - Hide all video comments</b></div>
+                <div><img src="../images/YIC-screenshots/vidplayer-hide-comments.png" width="80%"></div>
+            </p>
+            <p>
+                <div class="feature-title">
+                    <b>Customize video player layout - Hide comment actions</b>
+                    <div class="feature-note">
+                        Note: The hides the comment actions including liking (and like count), disliking, and replying.
+                    </div>
+                </div>
+                <div><img src="../images/YIC-screenshots/vidplayer-hide-actions.png" width="80%"></div>
+            </p>
+            <p>
+                <div class="feature-title"><b>Customize video player layout - Hide comment replies</b></div>
+                <div><img src="../images/YIC-screenshots/vidplayer-hide-replies.png" width="80%"></div>
             </p>
         </div>
     </div>
 
-    <div id="outline-container-features-vid" class="outline-3">
-        <h3 id="features-vid">Video Player</h3>
-        <div class="outline-text-3" id="text-features-vid">
-            <p>
-                <b>Customize the scrubber and progress bar - Scrubber pattern</b> <br>
-                <i style="color: grey">
-                    Note: The scrubbers are GIF images.
-                    We currently support Pusheen, Pikachu, and Capoo.
-                </i><br><br>
-                <b>Customize the scrubber and progress bar - Progess bar pattern</b> <br>
-                <i style="color: grey">
-                    Note: We currently support Cherry (best fit with Pusheen), Poké Ball (best fit with Pikachu), and Light Blue (best fit with Capoo).
-                    However, users are free to customize their own combinations.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/vidplayer-pusheen.png" width="80%">&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src="../images/YIC-screenshots/pusheen.gif" width="10%"><br><br>
-                <img src="../images/YIC-screenshots/vidplayer-pikachu.png" width="80%">&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src="../images/YIC-screenshots/pikachu.gif" width="15%"><br><br>
-                <img src="../images/YIC-screenshots/vidplayer-capoo.png" width="80%">&nbsp;&nbsp;&nbsp;&nbsp;
-                <img src="../images/YIC-screenshots/capoo.gif" width="15%">
-            </p>
-            <p>
-                <b>Customize video player layout - Hide the sidebar suggestions</b> <br>
-                <i style="color: grey">
-                    Note: This not only hides the entire sidebar, but also centers the video player.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/vidplayer-hide-sidebar.png" width="80%">
-            </p>
-            <p>
-                <b>Customize video player layout - Hide the end-of-video suggestions</b> <br>
-                <ul>
-                    <li>
-                        This blocks the end-of-video suggestions from generating.
-                    </li>
-                </ul>
-            </p>
-            <p>
-                <b>Customize video player layout - Hide the Like button and more</b> <br>
-                <ul>
-                    <li>
-                        This hides the Like / Dislike button, the Share button, the Clip button, and the More button.
-                    </li>
-                </ul>
-            </p>
-            <p>
-                <b>Customize video player layout - Hide the merch shelf</b> <br>
-                <ul>
-                    <li>
-                        YouTube video player sometimes generates a merch shelf below the video meta information.
-                        This prevents the entire merch shelf from appearing.
-                    </li>
-                </ul>
-            </p>
-            <p>
-                <b>Customize video player layout - Hide all video comments</b> <br><br>
-                <img src="../images/YIC-screenshots/vidplayer-hide-comments.png" width="80%">
-            </p>
-            <p>
-                <b>Customize video player layout - Hide comment actions</b> <br>
-                <i style="color: grey">
-                    Note: The hides the comment actions including liking (and like count), disliking, and replying.
-                </i><br><br>
-                <img src="../images/YIC-screenshots/vidplayer-hide-actions.png" width="80%">
-            </p>
-            <p>
-                <b>Customize video player layout - Hide comment replies</b> <br><br>
-                <img src="../images/YIC-screenshots/vidplayer-hide-replies.png" width="80%">
-            </p>
-        </div>
-    </div>
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                        SUPPORT                         -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
 
     <div id="outline-container-support" class="outline-2">
         <h2 id="support">Support</h2>
@@ -249,6 +286,12 @@
         </div>
     </div>
 
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                      CONTRIBUTION                      -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
     <div id="outline-container-contribution" class="outline-2">
         <h2 id="contribution">Contribution</h2>
         <div class="outline-text-2" id="text-contribution">
@@ -256,25 +299,23 @@
                 This is an open source project and we welcome your contributions.
                 For details, please visit the <a href="https://github.com/ossd-s23/YouTube-Customizer/blob/main/CONTRIBUTING.md">Contribution page</a>.
                 Also see the <a href="https://github.com/ossd-s23/YouTube-Customizer/blob/main/CODE_OF_CONDUCT.md">Code of Conduct document</a> for community behavior.
-            </p>
-            <p>
                 Here are some brief contributing guidelines:
-                <ul>
+                <ul class="detail-list">
                     <li>
                         <b>Code of Conduct:</b>
                         This project adheres to the <a href="https://github.com/ossd-s23/YouTube-Customizer/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.
-                        By participating, you are expected to uphold this code. <br><br>
+                        By participating, you are expected to uphold this code.
                     </li>
                     <li>
                         <b>Bugs and Feature Requests:</b>
                         To report a bug or request a new feature, please use the GitHub issue tracker.
                         When reporting a bug, please include as much information as possible, such as the version of the extension you are using, the browser version, and steps to reproduce the issue.
-                        The above also applies to bugs reporting and feature requests via submitting <a href="https://forms.gle/gPhK9o5SXBqGF5qB9"></a>. <br><br>
+                        The above also applies to bugs reporting and feature requests via submitting <a href="https://forms.gle/gPhK9o5SXBqGF5qB9"></a>.
                     </li>
                     <li>
                         <b>Submitting Changes:</b>
                         We use the GitFlow branching model for our development process. To contribute, follow these steps:
-                        <ol>
+                        <ol style="margin-top: 10px; margin-bottom: 10px;">
                             <li>Fork the repository.</li>
                             <li>Create a new branch from the develop branch.</li>
                             <li>Make your changes.</li>
@@ -294,23 +335,33 @@
         </div>
     </div>
 
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                        LICENSE                         -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
     <div id="outline-container-license" class="outline-2">
         <h2 id="license">License</h2>
         <div class="outline-text-2" id="text-license">
             <p>
-                <b>Youtube Interface Customizer</b> is licensed under the <a href="https://github.com/ossd-s23/YouTube-Customizer/blob/main/LICENSE">Mozilla Public License 2.0</a>. <br><br>
-                <i style="color: grey">
-                    Note: Permissions of this weak copyleft license are conditioned on making available source code of licensed files and modifications of those files under the same license (or in certain cases, one of the GNU licenses).
-                    Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
-                    However, a larger work using the licensed work may be distributed under different terms and without source code for files added in the larger work.
-                </i><br><br>
+                <div class="feature-title">
+                    <b>Youtube Interface Customizer</b> is licensed under the <a href="https://github.com/ossd-s23/YouTube-Customizer/blob/main/LICENSE">Mozilla Public License 2.0</a>.
+                    <div class="feature-note">
+                        Note: Permissions of this weak copyleft license are conditioned on making available source code of licensed files and modifications of those files under the same license (or in certain cases, one of the GNU licenses).
+                        Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+                        However, a larger work using the licensed work may be distributed under different terms and without source code for files added in the larger work.
+                    </div>
+                </div>
             </p>
         </div>
     </div>
 
-    <br>
-    <br>
+    <div style="margin-top: 60px; color: grey;">
+        This document was last updated on <span class="get-last-updated"></span>.<br>
+    </div>
 
+    <script src="../js/last_updated.js"></script>
 </body>
 
 </html>
