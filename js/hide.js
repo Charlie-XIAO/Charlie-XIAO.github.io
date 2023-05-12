@@ -15,35 +15,65 @@
  * "hidden-content" to that element.
  * 
  * Also note that the innerHTML of the buttons should be left empty.
+ * 
+ * Usage:
+ * 
+ * One should first init a HideInstace object, optinally specifying the hide and
+ * reveal description one wants to show next to the chevron, and whether to put
+ * that description before of after that chevron. By default no additional text
+ * is shown. Then one should run `HideInstance.executeHide()`.
  *
  **/
 
-let hideButtons = document.querySelectorAll("button.hide");
+var HideInstance = HideInstance || (function() {
+    var _hideString;
+    var _revealString;
 
-hideButtons.forEach(hideButton => {
-    let hideButtonIdPrefix = hideButton.id.slice(0, 5);
-    if (hideButtonIdPrefix != "hide-") {
-        console.error(`Detected hide button with ID prefix ${hideButtonIdPrefix}, expected "hide-"`);
-    }
-    hideButton.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
+    return {
+        init: function(hide_description=null, reveal_description=null, front=false) {
+            if (front) {
+                if (hide_description === null) _hideString = `<i class="fa-solid fa-chevron-up"></i>`;
+                else _hideString = `${hide_description} <i class="fa-solid fa-chevron-up"></i>`;
+                if (reveal_description === null) _revealString = `<i class="fa-solid fa-chevron-down"></i>`;
+                else _revealString = `${reveal_description} <i class="fa-solid fa-chevron-down"></i>`;
+            }
+            else {
+                if (hide_description === null) _hideString = `<i class="fa-solid fa-chevron-up"></i>`;
+                else _hideString = `<i class="fa-solid fa-chevron-up"></i> ${hide_description}`;
+                if (reveal_description === null) _revealString = `<i class="fa-solid fa-chevron-down"></i>`;
+                else _revealString = `<i class="fa-solid fa-chevron-down"></i> ${reveal_description}`;
+            }
+        },
+        executeHide: function() {
+            let hideButtons = document.querySelectorAll("button.hide");
 
-    let hideTargetId = hideButton.id.slice(5);
-    let hideTarget = document.getElementById(hideTargetId);
-    if (hideTarget.classList.contains("hidden-content")) {
-        hideButton.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
-    }
-    else {
-        hideButton.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
-    }
+            hideButtons.forEach(hideButton => {
+                let hideButtonIdPrefix = hideButton.id.slice(0, 5);
+                if (hideButtonIdPrefix != "hide-") {
+                    console.error(`Detected hide button with ID prefix ${hideButtonIdPrefix}, expected "hide-"`);
+                }
+                hideButton.innerHTML = _revealString;
 
-    hideButton.addEventListener("click", () => {
-        if (hideTarget.classList.contains("hidden-content")) {
-            hideButton.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
-            hideTarget.classList.toggle("hidden-content");
+                let hideTargetId = hideButton.id.slice(5);
+                let hideTarget = document.getElementById(hideTargetId);
+                if (hideTarget.classList.contains("hidden-content")) {
+                    hideButton.innerHTML = _revealString;
+                }
+                else {
+                    hideButton.innerHTML = _hideString;
+                }
+
+                hideButton.addEventListener("click", () => {
+                    if (hideTarget.classList.contains("hidden-content")) {
+                        hideButton.innerHTML = _hideString;
+                        hideTarget.classList.toggle("hidden-content");
+                    }
+                    else {
+                        hideButton.innerHTML = _revealString;
+                        hideTarget.classList.add("hidden-content");
+                    }
+                });
+            });
         }
-        else {
-            hideButton.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
-            hideTarget.classList.add("hidden-content");
-        }
-    });
-});
+    }
+}());

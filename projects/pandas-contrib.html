@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
-    <style> .pre-code { white-space: pre !important; } </style>
+    <style> .pre-code { white-space: pre !important; line-height: 135% !important; } </style>
     <style>
         .contrib-item { padding-bottom: 10px; }
         .contrib-descrp { padding-left: 2.5%; padding-top: 10px; line-height: 150%; }
@@ -54,8 +54,9 @@
                 <li>
                     <a href="#code-contrib">Code Contributions</a>
                     <ul>
+                        <li><a href="#groupby">Groupby</a></li>
+                        <li><a href="#multiindex">MultiIndex</a></li>
                         <li><a href="#reshaping">Reshaping</a></li>
-                        <li><a href="#output-formatting">Output Formatting</a></li>
                     </ul>
                 </li>
                 <li>
@@ -106,21 +107,41 @@
         <div class="outline-text-2" id="text-code-contrib">
             <p>Items in each section are sorted in reverse chronological order by the time of merge.</p>
 
-            <h3 id="reshaping">Reshaping</h3>
+            <h3 id="groupby">Groupby</h3>
             <p>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH: When merging with incompatible keys, include the first incompatible key in the error message #51947</a>
-                    <button class="hide" id="hide-51947"></button>
-                    <div class="hidden-content contrib-descrp" id="51947">
-                        <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
-                        but there was no information provided in the error message that indicate which keys are incompatible.
-                        I improved the error message by displaying the first imcompatible key. For instance,
-                        <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
+                    <a href="https://github.com/pandas-dev/pandas/pull/53049">BUG: GroupBy.quantile implicitly sorts index.levels #53049</a>
+                    <button class="hide" id="hide-53049"></button>
+                    <div class="hidden-content contrib-descrp" id="53049">
+                        Previously, even if <code>groupby</code> is called with <code>sort=False</code>, the indices may get sorted.
+                        For instance,
+                        <pre><code class="pre-code language-python">>>> ind = pd.MultiIndex.from_tuples(
+...     [(0, "B"), (0, "A"), (1, "B"), (1, "A")],
+...     names=["sample", "category"],
+... )
+>>> ser = pd.Series(range(4), index=ind)
+>>> ser  # Here, we shall see that the B's are all before the A's
+sample  category
+0       B           0
+        A           1
+1       B           2
+        A           3
+dtype: int64
+>>> grp = ser.groupby(level="category", sort=False).quantile([0.2, 0.8])
+>>> grp.unstack()  # Here, we can see that A and B are sorted though sort=False
+          0.2  0.8
+category          
+A         1.4  2.6
+B         0.4  1.6</code></pre>
+                        After investigating, this is caused by <code>index.levels</code> being sorted, and some methods are using those levels.
+                        This does not happen for <code>MultiIndex</code> since the index levels are manually created, so we manually create for non-multi <code>Index</code> as well.
+                        Then we found an approximately 50% performance regression due to always using 64-bit indices.
+                        We then called <code>coerce_indexer_dtype</code> to avoid this regression.
                     </div>
                 </div>
             </p>
 
-            <h3 id="output-formatting">Output Formatting</h3>
+            <h3 id="multiindex">MultiIndex</h3>
             <p>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53044">BUG: MultiIndex displays incorrectly with a long element #53044</a>
@@ -131,6 +152,20 @@
                         This is because an important variable during I/O formatting was set only when breaking out of a for loop.
                         It did not consider cases where the for loop terminates naturally, causing further errors.
                         I fixed this bug so that such objects can be displayed correctly.
+                    </div>
+                </div>
+            </p>
+
+            <h3 id="reshaping">Reshaping</h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH: When merging with incompatible keys, include the first incompatible key in the error message #51947</a>
+                    <button class="hide" id="hide-51947"></button>
+                    <div class="hidden-content contrib-descrp" id="51947">
+                        <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
+                        but there was no information provided in the error message that indicate which keys are incompatible.
+                        I improved the error message by displaying the first imcompatible key. For instance,
+                        <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
                     </div>
                 </div>
             </p>
@@ -150,10 +185,6 @@
 
             <h3 id="future-prs">Pull Requests</h3>
             <p>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53049">BUG: GroupBy.quantile implicitly sorts index.levels #53049</a>
-                    (under review)
-                </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53124">BUG pd.NA not treated correctly in where and mask operations #53124</a>
                     (under review)
@@ -201,6 +232,10 @@
 
     <script src="../js/hide.js"></script>
     <script src="../js/last_updated.js"></script>
+    <script>
+        HideInstance.init();
+        HideInstance.executeHide();
+    </script>
 </body>
 
 </html>

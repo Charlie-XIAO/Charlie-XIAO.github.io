@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
-    <style> .pre-code { white-space: pre !important; } </style>
+    <style> .pre-code { white-space: pre !important; line-height: 135% !important; } </style>
     <style>
         .contrib-item { padding-bottom: 10px; }
         .contrib-descrp { padding-left: 2.5%; padding-top: 10px; line-height: 150%; }
@@ -310,6 +310,10 @@
 
     <script src="../js/hide.js"></script>
     <script src="../js/last_updated.js"></script>
+    <script>
+        HideInstance.init();
+        HideInstance.executeHide();
+    </script>
 </body>
 
 </html>

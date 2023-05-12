@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Org Mode" />
+    <link rel="stylesheet" type="text/css" href="../css/hide.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css" />
+    <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/languages/julia.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+    <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+    <style> .pre-code { white-space: pre !important; line-height: 135% !important; } </style>
+    <style>
+        .question { margin-bottom: 30px; }
+        .solution { margin-top: 15px; padding: 10px; line-height: 150%; background-color: #eeeeee; }
+        .img-container { margin: 10px 0; }
+    </style>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            "HTML-CSS": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
+            tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, ignoreClass: "tex2jax_ignore|dno"},
+            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}},
+            messageStyle: "none",
+            "HTML-CSS": {scale: 80, minScaleAdjust: 50},
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+    <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
+    <title>Yao Xiao | MATH-UA.0396 | HW</title>
+</head>
+
+<body>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                  LATEX COMMAND MACROS                  -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div style="display: none;">
+        $$
+            \renewcommand{\RR}{\mathbb{R}}
+            \renewcommand{\CC}{\mathbb{C}}
+            \renewcommand{\ZZ}{\mathbb{Z}}
+            \renewcommand{\NNbr}{\mathbb{N}}
+            \renewcommand{\PP}{\mathbb{P}}
+            \renewcommand{\QQ}{\mathbb{Q}}
+            \renewcommand{\A}{\mathcal{A}}
+            \renewcommand{\re}{\mathrm{Re}}
+            \renewcommand{\im}{\mathrm{Im}}
+            \renewcommand{\Arg}{\mathrm{Arg}}
+            \renewcommand{\Log}{\mathrm{Log}}
+            \renewcommand{\Mat}{\mathrm{Mat}}
+            \renewcommand{\res}{\mathrm{Res}}
+            \renewcommand{\tr}{\mathrm{tr}}
+            \renewcommand{\bkt}[1]{\left(#1\right)}
+            \renewcommand{\sqbkt}[1]{\left[#1\right]}
+            \renewcommand{\set}[1]{\left\{#1\right\}}
+            \renewcommand{\bil}[1]{\left\langle#1\right\rangle}
+            \renewcommand{\norm}[1]{\left\lVert#1\right\rVert}
+            \renewcommand{\pdrv}[2]{\frac{\partial#1}{\partial#2}}
+            \renewcommand{\argmin}{\arg\min}
+            \renewcommand{\argmax}{\arg\max}
+        $$
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                   TABLE OF CONTENTS                    -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="content" class="content">
+        <p><a href="../index.html#education">Education</a><span style="color: #808080;"> / MATH-UA.0396 HW</span></p>
+        <h1 class="title">MATH-UA.0396 Honors Numerical Analysis | Homework Collection</h1>
+        <div id="table-of-contents" role="doc-toc">
+            <h2>Table of Contents</h2>
+            <div id="text-table-of-contents" role="doc-toc">
+            <ul>
+                <li>
+                    <a href="#hw1">Homework 1</a>
+                    <ul>
+                        <li><a href="#p1p1">1.1 Floating Point</a></li>
+                        <li><a href="#p1p2">1.2 IEEE Rounding</a></li>
+                        <li><a href="#p1p3">1.3 Multiple Root Finding</a></li>
+                        <li><a href="#p1p4">1.4 Newton Failures</a></li>
+                        <li><a href="#p1p5">1.5 Secant Convergence</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <a href="#"><i class="fa-solid fa-chevron-up"></i> &nbsp; Back to Top</a>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                        OVERVIEW                        -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-overview" class="outline-2">
+        <div class="outline-text-2" id="text-overview">
+            <p>
+                This is the collection of the homework assignments of Honors Numerical Analysis and my solutions.
+                <i>Disclaimer: Note that the solutions are not guaranteed to be correct.</i>
+            </p>
+            <div class="note">
+                This document is being updated!
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 1                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw1" class="outline-2">
+        <h2 id="hw1">Homework 1</h2>
+        <div class="outline-text-2" id="text-hw1">
+
+            <!-- Homework 1 Problem 1 -->
+
+            <h3 id="p1p1">Problem 1.1 - Floating Point</h3>
+            <p>
+                <div class="question">
+                    Julia supports $16$, $32$, and $64$ bit floating point numbers (<i>i.e.</i>, half, single, and double precision).
+                    See <a href="https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/">here</a> for details.
+                    Write a code to calculate machine precision for each of these types.
+                    <div><button class="hide noindent" id="hide-1-1"></button></div>
+                    <div class="hidden-content solution" id="1-1">
+                        <i>Solution.</i>
+                        The machine precision is reached when the machine can no longer tell $1.0$ from its next floating point number.
+                        Therefore, we write the following code for printing out the machine precision of specific data types.
+                        <pre><code class="pre-code language-julia">function machep(dtype)
+    """Print out the machine precision of the specified data type."""
+    for i = 1 : 100
+        macheps = 2.0 ^ (-i)
+        if (dtype(1.0) == dtype(1.0 + macheps))
+            @printf("Machine precision for %s is %e\n", string(dtype), 2.0 ^ (-i + 1))
+            break
+        end
+    end
+end</code></pre>
+                        We run this code with <code>Float16</code>, <code>Float32</code>, and <code>Float64</code>, respectively.
+                        <pre><code class="pre-code language-julia">machep(Float16)
+machep(Float32)
+machep(Float64)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Machine precision for Float16 is 9.765625e-04
+Machine precision for Float32 is 1.192093e-07
+Machine precision for Float64 is 2.220446e-16</code></pre>
+                    </div>
+                </div>
+            </p>
+            
+            <!-- Homework 1 Problem 2 -->
+
+            <h3 id="p1p2">Problem 1.2 - IEEE Rounding</h3>
+            <p>
+                <div class="question">
+                    In the following questions, assume single precision format.
+                    See the text by <i>Overton</i> for reference, namely Chapter 5.
+                </div>
+                <div class="question">
+                    <b>(a)</b> What are the IEEE single format binary representations for the rounded value of $1/10$ using each of the four rounding modes (up, down, toward zero, and nearest)?
+                    <div><button class="hide noindent" id="hide-1-2-a"></button></div>
+                    <div class="hidden-content solution" id="1-2-a">
+                        <i>Solution.</i>
+                        In the IEEE format, $1/10$ can be written in the normalized form as
+                        $$
+                        \begin{align*}
+                            0.1=(1.1001100110011001100110\underline{0}1100\cdots)_2\times2^{-4},
+                        \end{align*}
+                        $$
+                        where the underlined bit is the machine precision for single precision format. Therefore, under the four rounding modes, $1/10$ is respectively rounded to
+                        $$
+                        \begin{align*}
+                            \texttt{round}(1/10)=
+                            \begin{cases}
+                                (1.10011001100110011001101)_2\times2^{-4}, & \text{round up}, \\
+                                (1.10011001100110011001100)_2\times2^{-4}, & \text{round down}, \\
+                                (1.10011001100110011001100)_2\times2^{-4}, & \text{round towards zero}, \\
+                                (1.10011001100110011001101)_2\times2^{-4}, & \text{round to nearest}.
+                            \end{cases}
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> What is $|\texttt{round}(1/10)-1/10|$, <i>i.e.</i>, the absolute error, for each of the four rounding modes?
+                    <div><button class="hide noindent" id="hide-1-2-b"></button></div>
+                    <div class="hidden-content solution" id="1-2-b">
+                        <i>Solution.</i>
+                        For the round up and the round to nearest modes, we can compute that
+                        $$
+                        \begin{align*}
+                            \text{Absolute Error}={} & |\texttt{round}(1/10)-1/10|=(0.0000000000000000000000\underline{0}\overline{0011})_2\times2^{-4} \nonumber\\
+                            ={} & (0.\overline{0011})_2\times2^{-27}=(0.\overline{1100})_2\times2^{-29}=(0.1)_{10}\times2^{-26}.
+                        \end{align*}
+                        $$
+                        For the round down and the round towards zero modes, we can compute that
+                        $$
+                        \begin{align*}
+                            \text{Absolute Error}={} & |\texttt{round}(1/10)-1/10|=(0.0000000000000000000000\underline{0}\overline{1100})_2\times2^{-4} \nonumber\\
+                            ={} & (0.\overline{1100})_2\times2^{-27}=(0.1)_{10}\times2^{-24}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 1 Problem 3 -->
+
+            <h3 id="p1p3">Problem 1.3 - Multiple Root Finding</h3>
+            <p>
+                <div class="question">
+                    In this problem, you will write a code that will find all of the roots of the function $f(x)=x^5-3x^2+1$ inside the interval $[-2,2]$.
+                    For each part, please submit a printout of your code along with the values you obtain for the roots.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Using the fact that the roots of $f$ on this interval are separated by at least $0.25$, write a program that implements the bisection algorithm to obtain estimates of the roots that are accurate to within $0.1$.
+                    <div><button class="hide noindent" id="hide-1-3-a"></button></div>
+                    <div class="hidden-content solution" id="1-3-a">
+                        <i>Solution.</i>
+                        We implement the bisection method as follows.
+                        <pre><code class="pre-code language-julia">function bisection(func, left, right, tolerance)
+    """Bisection method.
+
+    Parameters
+    ----------
+    func : function
+        The function to find a root for.
+    left : Float64, etc.
+        The left boundary of the interval to find a root.
+    right : Float64, etc.
+        The right boundary of the interval to find a root.
+    tolerance : Float64, etc.
+        The tolerance for the value of the root.
+
+    Returns
+    -------
+    root : Float64 or boolean
+        If a root is successfully found within tolerance, then it will be returned.
+        Otherwise, the function returns false.
+    """
+    mid = (left + right) / 2
+    mid_val = func(mid)
+    if (abs(mid_val) < tolerance)
+        return mid
+    elseif (right - left < 1e-20)
+        return false
+    elseif (mid_val * func(left) < 0)
+        return bisection(func, left, mid, tolerance)
+    else
+        return bisection(func, mid, right, tolerance)
+    end
+end</code></pre>
+                        Now, we can split the interval and find roots in each range.
+                        <pre><code class="pre-code language-julia">f(x) = x ^ 5 - 3 * x ^ 2 + 1
+
+# Find roots in each range
+for i = 0 : 15
+    left, right = 0.25 * i - 2, 0.25 * i - 1.75
+    result = bisection(f, left, right, 0.1)
+    if (typeof(result) == Float64)
+        @printf("Root found in range [%.2f, %.2f]: f(%f) = %e\n", left, right, result, f(result))
+    end
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Root found in range [-0.75, -0.50]: f(-0.562500) = -5.532265e-03
+Root found in range [0.50, 0.75]: f(0.625000) = -7.650757e-02
+Root found in range [1.25, 1.50]: f(1.343750) = -3.579918e-02</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Using the estimates of the roots obtained in the previous part, write a program what implements Newton's method to refine the values of the roots such that the absolute difference between successive iterates is at most $10^{-12}$.
+                    <div><button class="hide noindent" id="hide-1-3-b"></button></div>
+                    <div class="hidden-content solution" id="1-3-b">
+                        <i>Solution.</i>
+                        We implement the Newton's method as follows.
+                        <pre><code class="pre-code language-julia">function newton(f, f_, x0, tolerance, maxiter)
+    """Newton's method.
+
+    Parameters
+    ----------
+    f : function
+        The function to find a root for.
+    f_ : function
+        The derivative of the function to find a root for.
+    x0 : Float64, etc.
+        The initial guess of the root, better near the real root.
+    tolerance : Float64, etc.
+        The tolerance for the value of the root.
+    maxiter : Int64, etc.
+        The maximum number of iterations to run Newton's method.
+
+    Returns
+    -------
+    root : Float64
+        The root found by Newton's method.
+    """
+    cur_x, cur_f = x0, f(x0)
+    for _ = 1 : maxiter
+        next_x = cur_x - cur_f / f_(cur_x)
+        if (abs(next_x - cur_x) < tolerance)
+            break
+        end
+        cur_x, cur_f = next_x, f(next_x)
+    end
+    return cur_x
+end</code></pre>
+                        Now, we can find the roots in each range via bisection method, then refine each root via Newton's method.
+                        <pre><code class="pre-code language-julia">f(x) = x ^ 5 - 3 * x ^ 2 + 1
+f_(x) = 5 * x ^ 4 - 6 * x
+
+# Find roots in range via bisection and refine each root via Newton
+for i = 0 : 15
+    left, right = 0.25 * i - 2, 0.25 * i - 1.75
+    result = bisection(f, left, right, 0.1)
+    if (typeof(result) == Float64)
+        refined_result = newton(f, f_, result, 1e-12, 1000)
+        @printf("Root %f found by Bisection refined to f(%f) = %e\n", result, refined_result, f(refined_result))
+    end
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Root -0.562500 found by Bisection refined to f(-0.561070) = -2.220446e-16
+Root 0.625000 found by Bisection refined to f(0.599241) = 0.000000e+00
+Root 1.343750 found by Bisection refined to f(1.348047) = 2.664535e-15</code></pre>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 1 Problem 4 -->
+
+            <h3 id="p1p4">Problem 1.4 - Newton Failures</h3>
+            <p>
+                <div class="question">
+                    Let the function $f$ be twice continuously differentiable in a neighborhood of $\xi$ (meaning that $f$, $f'$, and $f''$ are all continuous in a neighborhood of $\xi$).
+                    Furthermore, let $f(\xi)=f'(\xi)=0$ and $f''(\xi)>0$. The function $f$ is said to have a double root.
+                </div>
+                <div class="question">
+                    <b>(a)</b> At what rate, or in what range of rates, do you expect Newton's method to converge?
+                    <div><button class="hide noindent" id="hide-1-4-a"></button></div>
+                    <div class="hidden-content solution" id="1-4-a">
+                        <i>Solution.</i>
+                        Quadratic convergence.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Write a program to verify your estimated convergence behavior for the function $f(x)=(x-0.5)^2$, starting with the initial $x_0=0.25$.
+                    Turn in your code, as well as a table of values output by Newton's method.
+                    <div><button class="hide noindent" id="hide-1-4-b"></button></div>
+                    <div class="hidden-content solution" id="1-4-b">
+                        <i>Solution.</i>
+                        In order to visualize the convergence behavior, we need to modify the Newton's method we implemented above to make it memorize the history.
+                        We implement the modified version as follows.
+                        <pre><code class="pre-code language-julia">function newton_hist(f, f_, x0, tolerance, maxiter)
+    """Newton's method with iteration history.
+
+    Parameters
+    ----------
+    f : function
+        The function to find a root for.
+    f_ : function
+        The derivative of the function to find a root for.
+    x0 : Float64, etc.
+        The initial guess of the root, better near the real root.
+    tolerance : Float64, etc.
+        The tolerance for the value of the root.
+    maxiter : Int64, etc.
+        The maximum number of iterations to run Newton's method.
+
+    Returns
+    -------
+    x_hist : 1D array
+        The history of the x values during the Newton's method.
+    f_list : 1D array
+        The history of the f(x) values during the Newton's method.
+    """
+    x_hist, f_hist = [], []
+    cur_x, cur_f = x0, f(x0)
+    for _ = 1 : maxiter
+        next_x = cur_x - cur_f / f_(cur_x)
+        if (abs(next_x - cur_x) < tolerance)
+            break
+        end
+        push!(x_hist, cur_x)
+        push!(f_hist, cur_f)
+        cur_x, cur_f = next_x, f(next_x)
+    end
+    return x_hist, f_hist
+end;</code></pre>
+                        We now print out some of the convergence process.
+                        <pre><code class="pre-code language-julia">f(x) = (x - 0.5) ^ 2
+f_(x) =  2 * x - 1
+
+# Print out the estimated roots and their corresponding values
+x_hist, f_hist = newton_hist(f, f_, 0.25, 1e-12, 1000)
+err_hist = []
+for i in eachindex(x_hist)
+    push!(err_hist, abs(x_hist[i] - 0.5))
+    if i % 5 == 0
+        @printf("Iteration %d: f(%.3f) = %e\n", i, x_hist[i], f_hist[i])
+    end
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Iteration 5: f(0.484) = 2.441406e-04
+Iteration 10: f(0.500) = 2.384186e-07
+Iteration 15: f(0.500) = 2.328306e-10
+Iteration 20: f(0.500) = 2.273737e-13
+Iteration 25: f(0.500) = 2.220446e-16
+Iteration 30: f(0.500) = 2.168404e-19
+Iteration 35: f(0.500) = 2.117582e-22</code></pre>
+                        We can also plot the absolute errors of the approximations during the Newton's iterations.
+                        <pre><code class="pre-code language-julia"># Plot the absolute errors during the Newton iterations
+plt = plot(err_hist, label="", yaxis=:log, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+title!(string("The absolute error when running Newton's method\non ", L"f(x)=(x-0.5)^2", " with ", L"x_0=0.25"))
+xlabel!("Iteration")
+ylabel!("Absolute Error")</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/1-4-b-plot.png"></div>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Rerun your program, except this time on the function $f(x)=x^3-1$.\
+                    Use the starting value $x_0=0.5$. Turn in your code, as well as a table of values output by Newton's method.
+                    <div><button class="hide noindent" id="hide-1-4-c"></button></div>
+                    <div class="hidden-content solution" id="1-4-c">
+                        <i>Solution.</i>
+                        We repeat the same steps as in the previous question.
+                        <pre><code class="pre-code language-julia">f(x) = x ^ 3 - 1
+f_(x) =  3 * x ^ 2
+
+# Print out the estimated roots and their corresponding values
+x_hist, f_hist = newton_hist(f, f_, 0.5, 1e-12, 1000)
+err_hist = []
+for i in eachindex(x_hist)
+    push!(err_hist, abs(x_hist[i] - 1.0))
+    @printf("Iteration %d: f(%.3f) = %e\n", i, x_hist[i], f_hist[i])
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Iteration 1: f(0.500) = -8.750000e-01
+Iteration 2: f(1.667) = 3.629630e+00
+Iteration 3: f(1.231) = 8.659146e-01
+Iteration 4: f(1.041) = 1.270414e-01
+Iteration 5: f(1.002) = 4.713635e-03
+Iteration 6: f(1.000) = 7.367531e-06
+Iteration 7: f(1.000) = 1.809353e-11</code></pre>
+                        Then we plot the absolute errors of the approximations during the Newton's iterations.
+                        <pre><code class="pre-code language-julia">plt = plot(err_hist, label="", yaxis=:log, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+title!(string("The absolute error when running Newton's method\non ", L"f(x)=(x-0.5)^2", " with ", L"x_0=0.25"))
+xlabel!("Iteration")
+ylabel!("Absolute Error")</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/1-4-c-plot.png"></div>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 1 Problem 5 -->
+
+            <h3 id="p1p5">Problem 1.5 - Secant Convergence</h3>
+            <p>
+                <div class="question">
+                    In this problem, you will prove the rate of convergence for the secant method.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Show that the secant method
+                    $$
+                    \begin{align*}
+                        x_{k+1}=x_k-\frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})}f(x_k)
+                    \end{align*}
+                    $$
+                    can be rewritten in the form
+                    $$
+                    \begin{align*}
+                        x_{k+1}=\frac{x_kf(x_{k-1})-x_{k-1}f(x_k)}{f(x_{k-1})-f(x_k)}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-1-5-a"></button></div>
+                    <div class="hidden-content solution" id="1-5-a">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Now, denote the root of $f$ to be $\xi$, so that $f(\xi)=0$. Also assume that $f$ is twice continuously differentiable and that $f'>0$ and $f''>0$ in a neighborhoood of $\xi$. Define the quantity $\phi$ to be
+                    $$
+                    \begin{align*}
+                        \phi(x_k,x_{k-1})=\frac{x_{k+1}-\xi}{(x_k-\xi)(x_{k-1}-\xi)}.
+                    \end{align*}
+                    $$
+                    Compute (for fixed value of $x_{k-1}$) that
+                    $$
+                    \begin{align*}
+                        \psi(x_{k-1})=\lim_{x_k\rightarrow\xi}\phi(x_k,x_{k-1}).
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-1-5-b"></button></div>
+                    <div class="hidden-content solution" id="1-5-b">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Now compute
+                    $$
+                    \begin{align*}
+                        \lim_{x_{k-1}\rightarrow\xi}\psi(x_{k-1}),
+                    \end{align*}
+                    $$
+                    and therefore show that
+                    $$
+                    \begin{align*}
+                        \lim_{x_k,x_{k-1}\rightarrow\xi}\phi(x_k,x_{k-1})=\frac{f''(\xi)}{2f'(\xi)}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-1-5-c"></button></div>
+                    <div class="hidden-content solution" id="1-5-c">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(d)</b> Next, assume that the secant method has convergence order $q$, that is to say that
+                    $$
+                    \begin{align*}
+                        \lim_{k\rightarrow\infty}\frac{|x_{k+1}-\xi|}{|x_k-\xi|^q}=A<\infty.
+                    \end{align*}
+                    $$
+                    Using the above results, show that $q-1-1/q=0$, and therefore that $q=(1+\sqrt{5})/2$.
+                    <div><button class="hide noindent" id="hide-1-5-d"></button></div>
+                    <div class="hidden-content solution" id="1-5-d">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(e)</b> Finally, show that this implies that
+                    $$
+                    \begin{align*}
+                        \lim_{k\rightarrow\infty}\frac{|x_{k+1}-\xi|}{|x_k-\xi|^q}=\bkt{\frac{f''(\xi)}{2f'(\xi)}}^{q/(1+q)}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-1-5-e"></button></div>
+                    <div class="hidden-content solution" id="1-5-e">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+            </p>
+
+            <!--
+
+            Homework x Problem x
+
+            <h3 id="pxpx">Problem x.x - Title</h3>
+            <p>
+                <div class="question">
+                    xxx
+                </div>
+                <div class="question">
+                    <b>(a)</b> xxx
+                    <button class="hide" id="hide-x-x-a"></button>
+                    <div class="hidden-content solution" id="x-x-a">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+            </p>
+
+            -->
+        </div>
+    </div>
+
+    <div style="margin-top: 60px; color: grey;">
+        This document was last updated on <span class="get-last-updated"></span>.
+        For any infringement issue, please contact me and I will delete relevant contents as soon as possible.<br>
+    </div>
+
+    <script src="../js/hide.js"></script>
+    <script src="../js/last_updated.js"></script>
+    <script>
+        HideInstance.init(
+            hide_description="Hide my solution",
+            reveal_description="Reveal my solution",
+        );
+        HideInstance.executeHide();
+    </script>
+</body>
+
+</html>
