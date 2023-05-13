@@ -18,19 +18,19 @@
     <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
     <style> .pre-code { white-space: pre !important; line-height: 135% !important; } </style>
     <style>
-        .question { margin-bottom: 30px; }
+        .question { margin-bottom: 30px; line-height: 150%; }
         .solution { margin-top: 15px; padding: 10px; line-height: 150%; background-color: #eeeeee; }
         .img-container { margin: 10px 0; }
     </style>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
-            jax: ["input/TeX", "output/HTML-CSS"],
+            jax: ["input/TeX", "output/SVG"],
             extensions: ["tex2jax.js"],
-            "HTML-CSS": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
+            "SVG": {preferredFont: "TeX", availableFonts: ["STIX", "TeX"]},
             tex2jax: {inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, ignoreClass: "tex2jax_ignore|dno"},
-            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}},
+            TeX: {noUndefined: {attributes: {mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%"}}, extensions: ["AMSmath.js", "AMSsymbols.js"]},
             messageStyle: "none",
-            "HTML-CSS": {scale: 80, minScaleAdjust: 50},
+            "SVG": {scale: 80, minScaleAdjust: 50},
         });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
@@ -94,6 +94,24 @@
                         <li><a href="#p1p3">1.3 Multiple Root Finding</a></li>
                         <li><a href="#p1p4">1.4 Newton Failures</a></li>
                         <li><a href="#p1p5">1.5 Secant Convergence</a></li>
+                        <li><a href="#p1p6">1.6 Vector and Matrix Norm Inequalities</a></li>
+                        <li><a href="#p1p7">1.7 Frobenius Matrix Norm</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#hw2">Homework 2</a>
+                    <ul>
+                        <li><a href="#p2p1">2.1 Quasi-Newton Optimization</a></li>
+                        <li><a href="#p2p2">2.2 Flop Counts</a></li>
+                        <li><a href="#p2p3">2.3 LU Cost</a></li>
+                        <li><a href="#p2p4">2.4 More LU</a></li>
+                        <li><a href="#p2p5">2.5 Gram-Schmidt Stability</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#hw3">Homework 3</a>
+                    <ul>
+                        
                     </ul>
                 </li>
             </ul>
@@ -433,7 +451,7 @@ ylabel!("Absolute Error")</code></pre>
                     </div>
                 </div>
                 <div class="question">
-                    <b>(c)</b> Rerun your program, except this time on the function $f(x)=x^3-1$.\
+                    <b>(c)</b> Rerun your program, except this time on the function $f(x)=x^3-1$.
                     Use the starting value $x_0=0.5$. Turn in your code, as well as a table of values output by Newton's method.
                     <div><button class="hide noindent" id="hide-1-4-c"></button></div>
                     <div class="hidden-content solution" id="1-4-c">
@@ -490,8 +508,15 @@ ylabel!("Absolute Error")</code></pre>
                     $$
                     <div><button class="hide noindent" id="hide-1-5-a"></button></div>
                     <div class="hidden-content solution" id="1-5-a">
-                        <i>Solution.</i>
-                        xxx
+                        <i>Proof.</i>
+                        We can write that
+                        $$
+                        \begin{align*}
+                            x_{k+1}=x_k-\frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})}f(x_k)={} & \frac{x_k(f(x_k)-f(x_{k-1}))-f(x_k)(x_k-x_{k-1})}{f(x_k)-f(x_{k-1})} \nonumber\\
+                            ={} & \frac{x_{k-1}f(x_k)-x_kf(x_{k-1})}{f(x_k)-f(x_{k-1})}=\frac{x_kf(x_{k-1})-x_{k-1}f(x_k)}{f(x_{k-1})-f(x_k)},
+                        \end{align*}
+                        $$
+                        which gives the desired result.
                     </div>
                 </div>
                 <div class="question">
@@ -510,7 +535,17 @@ ylabel!("Absolute Error")</code></pre>
                     <div><button class="hide noindent" id="hide-1-5-b"></button></div>
                     <div class="hidden-content solution" id="1-5-b">
                         <i>Solution.</i>
-                        xxx
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            \psi(x_{k-1})={} & \lim_{x_k\rightarrow\xi}\phi(x_k,x_{k-1})=\lim_{x_k\rightarrow\xi}\frac{x_{k+1}-\xi}{(x_k-\xi)(x_{k-1}-\xi)}=\lim_{x_k\rightarrow\xi}\frac{\frac{x_kf(x_{k-1})-x_{k-1}f(x_k)}{f(x_{k-1})-f(x_k)}-\xi}{(x_k-\xi)(x_{k-1}-\xi)} \nonumber\\
+                            ={} & \lim_{x_k\rightarrow\xi}\frac{x_kf(x_{k-1})-x_{k-1}f(x_k)-\xi f(x_{k-1})+\xi f(x_k)}{(f(x_{k-1})-f(x_k))(x_k-\xi)(x_{k-1}-\xi)} \nonumber\\
+                            ={} & \lim_{x_k\rightarrow\xi}\frac{(x_k-\xi)f(x_{k-1})-(x_{k-1}-\xi)f(x_k)}{(f(x_{k-1})-f(x_k))(x_k-\xi)(x_{k-1}-\xi)} \nonumber\\
+                            ={} & \frac{f(x_{k-1})}{x_{k-1}-\xi}\cdot\lim_{x_k\rightarrow\xi}\frac{1}{f(x_{k-1})-f(x_k)}-\lim_{x_k\rightarrow\xi}\frac{1}{f(x_{k-1})-f(x_k)}\cdot\lim_{x_k\rightarrow\infty}\frac{f(x_k)}{x_k-\xi} \nonumber\\
+                            ={} & \frac{f(x_{k-1})}{x_{k-1}-\xi}\cdot\frac{1}{f(x_{k-1})-f(\xi)}-\frac{1}{f(x_{k-1})-f(\xi)}\cdot\lim_{x_k\rightarrow\infty}\frac{f(x_k)-f(\xi)}{x_k-\xi} \nonumber\\
+                            ={} & \frac{1}{x_{k-1}-\xi}-\frac{f'(\xi)}{f(x_{k-1})-f(\xi)}=\frac{f(x_{k-1})-x_{k-1}f'(\xi)+\xi f'(\xi)}{(x_{k-1}-\xi)f(x_{k-1})}.
+                        \end{align*}
+                        $$
                     </div>
                 </div>
                 <div class="question">
@@ -528,8 +563,21 @@ ylabel!("Absolute Error")</code></pre>
                     $$
                     <div><button class="hide noindent" id="hide-1-5-c"></button></div>
                     <div class="hidden-content solution" id="1-5-c">
-                        <i>Solution.</i>
-                        xxx
+                        <i>Proof.</i>
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            \lim_{x_{k-1}\rightarrow\xi}\psi(x_{k-1})={} & \lim_{x_{k-1}\rightarrow\xi}\frac{f(x_{k-1})-x_{k-1}f'(\xi)+\xi f'(\xi)}{(x_{k-1}-\xi)f(x_{k-1})}\overset{\text{L'Hosp.}}{=}\lim_{x_{k-1}\rightarrow\xi}\frac{f'(x_{k-1})-f'(\xi)}{f(x_{k-1})+(x_{k-1}-\xi)f'(x_{k-1})} \nonumber\\
+                            \overset{\text{L'Hosp.}}{=}{} & \lim_{x_{k-1}\rightarrow\xi}\frac{f''(x_{k-1})}{f'(x_{k-1})+f'(x_{k-1})+(x_{k-1}-\xi)f''(x_{k-1})}=\frac{f''(\xi)}{2f'(\xi)}.
+                        \end{align*}
+                        $$
+                        Therefore, we can conclude that
+                        $$
+                        \begin{align*}
+                            \lim_{x_k,x_{k-1}\rightarrow\xi}\phi(x_k,x_{k-1})=\lim_{x_{k-1}\rightarrow\xi}\psi(x_{k-1})=\frac{f''(\xi)}{2f'(\xi)},
+                        \end{align*}
+                        $$
+                        and the proof is done.
                     </div>
                 </div>
                 <div class="question">
@@ -542,8 +590,32 @@ ylabel!("Absolute Error")</code></pre>
                     Using the above results, show that $q-1-1/q=0$, and therefore that $q=(1+\sqrt{5})/2$.
                     <div><button class="hide noindent" id="hide-1-5-d"></button></div>
                     <div class="hidden-content solution" id="1-5-d">
-                        <i>Solution.</i>
-                        xxx
+                        <i>Proof.</i>
+                        Assuming that the secant method has convergence order $q$, we have that
+                        $$
+                        \begin{align*}
+                            \lim_{k\rightarrow\infty}|x_{k+1}-\xi|=A\lim_{k\rightarrow\infty}|x_k-\xi|^q\implies\lim_{k\rightarrow\infty}\ln|x_{k+1}-\xi|=\ln A+q\lim_{k\rightarrow\infty}\ln|x_k-\xi|.
+                        \end{align*}
+                        $$
+                        Denote $\epsilon_{t}:=\lim_{k\rightarrow\infty}\ln|x_t-\xi|$, $t\in\set{k-1,k,k+1}$, then we can rewrite and deduce that
+                        $$
+                        \begin{align*}
+                            \epsilon_{k+1}=\ln A+q\epsilon_k,\quad\epsilon_k=\ln A+q\epsilon_{k-1}\implies\epsilon_{k-1}=\frac{\epsilon_k-\ln A}{q}.
+                        \end{align*}
+                        $$
+                        Bringing in this result, now we can compute that
+                        $$
+                        \begin{align*}
+                            \lim_{k\rightarrow\infty}\ln\phi(x_k,x_{k-1})=\epsilon_{k+1}-\epsilon_k-\epsilon_{k-1}=\bkt{1+\frac{1}{q}}\ln A+\bkt{q-1-\frac{1}{q}}\epsilon_k.
+                        \end{align*}
+                        $$
+                        Note that $\epsilon_k$ is (negative) infinity, since $x_k\rightarrow\xi$ as $k\rightarrow\infty$. However, the left-hand side is finite, which can be deduced from the limit. Therefore, we must require
+                        $$
+                        \begin{align*}
+                            q-1-\frac{1}{q}=0\implies q^2-q-1=0\implies q=\frac{1+\sqrt{5}}{2}\quad\text{(ignoring negative solution)}.
+                        \end{align*}
+                        $$
+                        This is exactly the desired result.
                     </div>
                 </div>
                 <div class="question">
@@ -555,25 +627,1069 @@ ylabel!("Absolute Error")</code></pre>
                     $$
                     <div><button class="hide noindent" id="hide-1-5-e"></button></div>
                     <div class="hidden-content solution" id="1-5-e">
-                        <i>Solution.</i>
-                        xxx
+                        <i>Proof.</i>
+                        Using the limit and the previous result on $q$, we can rewrite that
+                        $$
+                        \begin{align*}
+                            \ln\bkt{\frac{f''(\xi)}{2f'(\xi)}}=\bkt{1+\frac{1}{q}}\ln A\implies\ln A=\frac{q}{q+1}\cdot\ln\bkt{\frac{f''(\xi)}{2f'(\xi)}}\implies A=\bkt{\frac{f''(\xi)}{2f'(\xi)}}^{q/(1+q)}.
+                        \end{align*}
+                        $$
+                        Therefore, we can conclude that
+                        $$
+                        \begin{align*}
+                            \lim_{k\rightarrow\infty}\frac{|x_{k+1}-\xi|}{|x_k-\xi|^q}=A=\bkt{\frac{f''(\xi)}{2f'(\xi)}}^{q/(1+q)},
+                        \end{align*}
+                        $$
+                        which proves the desired result.
                     </div>
                 </div>
             </p>
 
+            <!-- Homework 1 Problem 6 -->
+
+            <h3 id="p1p6">Problem 1.6 - Vector and Matrix Norm Inequalities</h3>
+            <p>
+                <div class="question">
+                    <b>(a)</b> Let $\mathbf{v}=(v_1,\cdots,v_n)^\top\in\RR^n$. Prove the following two inequalities:
+                    $$
+                    \begin{align*}
+                        \norm{\mathbf{v}}_{\infty}\leq{} & \norm{\mathbf{v}}_2, \\
+                        \norm{\mathbf{v}}_2^2\leq{} & \norm{\mathbf{v}}_1\norm{\mathbf{v}}_{\infty}.
+                    \end{align*}
+                    $$
+                    For each inequality, given an example of a non-zero vector $\mathbf{v}$ for which equality is obtained. Finally, show that
+                    $$
+                    \begin{align*}
+                        \norm{\mathbf{v}}_{\infty}\leq{} & \norm{\mathbf{v}}_2\leq\norm{\mathbf{v}}_1, \\
+                        \norm{\mathbf{v}}_2\leq{} & \sqrt{n}\norm{\mathbf{v}}_{\infty}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-1-6-a"></button></div>
+                    <div class="hidden-content solution" id="1-6-a">
+                        <i>Proof.</i>
+                        For the first inequality, we have that
+                        $$
+                        \begin{align*}
+                            \norm{\mathbf{v}}_{\infty}=\max_{1\leq i\leq n}|v_i|=\max_{1\leq i\leq n}\sqrt{|v_i|^2}=\sqrt{\max_{1\leq i\leq n}|v_i|^2}\leq\sqrt{\sum_{i=1}^n|v_i|^2}=\norm{\mathbf{v}}_2,
+                        \end{align*}
+                        $$
+                        where the equality holds when $\mathbf{v}$ has at most one non-zero component, for instance, $\mathbf{v}=(1,0,\cdots,0)^\top$. For the second inequality, we have that
+                        $$
+                        \begin{align*}
+                            \norm{\mathbf{v}}_2^2=\sum_{i=1}^n|v_i|^2=\sum_{i=1}^n|v_i|\bkt{\max_{1\leq i\leq n}|v_i|}=\max_{1\leq i\leq n}|v_i|\cdot\sum_{i=1}^n|v_i|=\norm{\mathbf{v}}_{\infty}\norm{\mathbf{v}}_1,
+                        \end{align*}
+                        $$
+                        where the equality holds when all components of $\mathbf{v}$ are equal, for instance, $\mathbf{v}=(1,\cdots,1)^\top$. For the third inequality, the left-hand side has already been shown, so it suffices to prove the right-hand side. Indeed, we have that
+                        $$
+                        \begin{align*}
+                            \norm{\mathbf{v}}_2=\sqrt{\sum_{i=1}^n|v_i|^2}\leq\sqrt{\sum_{i=1}^n|v_i|^2+\sum_{i\lt j}|v_i||v_j|}=\sqrt{\bkt{\sum_{i=1}^n|v_i|}^2}=\sum_{i=1}^n|v_i|=\norm{\mathbf{v}}_1,
+                        \end{align*}
+                        $$
+                        where the equality holds when $\mathbf{v}=\mathbf{0}$. Finally, for the last inequality, we can show that
+                        $$
+                        \begin{align*}
+                            \norm{\mathbf{v}}_2=\sqrt{\sum_{i=1}^n|v_i|^2}\leq\sqrt{\sum_{i=1}^n\bkt{\max_{1\leq j\leq n}|v_i|}^2}=\sqrt{n\bkt{\max_{1\leq j\leq n}|v_i|}^2}=\sqrt{n}\max_{1\leq j\leq n}|v_i|=\sqrt{n}\norm{\mathbf{v}}_{\infty},
+                        \end{align*}
+                        $$
+                        where the equality holds when all components of $\mathbf{v}$ are equal, for instance, $\mathbf{v}=(1,\cdots,1)^\top$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Next, let $A\in\RR^{m\times n}$ be any real-valued matrix. Show that
+                    $$
+                    \begin{align*}
+                        \norm{A}_{\infty}\leq{} & \sqrt{n}\norm{A}_2, \\
+                        \norm{A}_2\leq{} & \sqrt{m}\norm{A}_{\infty},
+                    \end{align*}
+                    $$
+                    where above, the norms are interpreted as the induced matrix norms. For each inequality, give an example matrix $A$ for which equality is attained.
+                    <div><button class="hide noindent" id="hide-1-6-b"></button></div>
+                    <div class="hidden-content solution" id="1-6-b">
+                        <i>Proof.</i>
+                        For the first inequality, we can deduce that
+                        $$
+                        \begin{align*}
+                            \norm{A}_{\infty}=\max_{\mathbf{u}\in\RR^n}\frac{\norm{A\mathbf{u}}_{\infty}}{\norm{\mathbf{u}}_{\infty}}\leq\max_{\mathbf{u}\in\RR^n}\frac{\norm{A\mathbf{u}}_2}{\norm{\mathbf{u}}_2/\sqrt{n}}=\sqrt{n}\max_{\mathbf{u}\in\RR^n}\frac{\norm{A\mathbf{u}}_2}{\norm{\mathbf{u}}_2}=\sqrt{n}\norm{A}_2,
+                        \end{align*}
+                        $$
+                        where an example of $A$ such that the equality holds is a matrix with the first row all $1$'s and the other entries all $0$'s. For the second inequality, we can again deduce that
+                        $$
+                        \begin{align*}
+                            \norm{A}_2=\max_{\mathbf{u}\in\RR^n}\frac{\norm{A\mathbf{u}}_2}{\norm{\mathbf{u}}_2}\leq\max_{\mathbf{u}\in\RR^n}\frac{\sqrt{m}\norm{A\mathbf{u}}_{\infty}}{\norm{\mathbf{u}}_{\infty}}=\sqrt{m}\max_{\mathbf{u}\in\RR^n}\frac{\norm{A\mathbf{u}}_{\infty}}{\norm{\mathbf{u}}_{\infty}}=\sqrt{m}\norm{A}_{\infty},
+                        \end{align*}
+                        $$
+                        where an example of $A$ such that the equality holds is a matrix with the first column all $1$'s and the other entries all $0$'s.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 1 Problem 7 -->
+
+            <h3 id="p1p7">Problem 1.7 - Frobenius Matrix Norm</h3>
+            <p>
+                <div class="question">
+                    Another commonly used matrix norm in linear algebra is the <i>Frobenius norm</i>, defined for a matrix $A\in\RR_{m\times n}$ as
+                    $$
+                    \begin{align*}
+                        \norm{A}_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2}.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Prove that $\norm{A}_F=\sqrt{\tr(A^\top A)}$.
+                    <div><button class="hide noindent" id="hide-1-7-a"></button></div>
+                    <div class="hidden-content solution" id="1-7-a">
+                        <i>Proof.</i>
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            A^\top A=
+                            \begin{pmatrix}
+                                a_{11} & \cdots & a_{m1} \\
+                                \vdots & \ddots & \vdots \\
+                                a_{1n} & \cdots & a_{mn}
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                a_{11} & \cdots & a_{1n} \\
+                                \vdots & \ddots & \vdots \\
+                                a_{m1} & \cdots & a_{mn}
+                            \end{pmatrix}
+                            =
+                            \begin{pmatrix}
+                                \sum_{i=1}^ma_{i1}^2 & \cdots & \sum_{i=1}^ma_{i1}a_{in} \\
+                                \vdots & \ddots & \vdots \\
+                                \sum_{i=1}^ma_{i1}a_{in} & \cdots & \sum_{i=1}^ma_{in}^2
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Therefore, the trace of $A^\top A$ can be computed as
+                        $$
+                        \begin{align*}
+                            \tr(A^\top A)=\sum_{j=1}^n(A^\top A)_{jj}=\sum_{j=1}^n\sum_{i=1}^ma_{ij}^2=\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2.
+                        \end{align*}
+                        $$
+                        Therefore, by definition of the Frobenius norm, we can conclude that
+                        $$
+                        \begin{align*}
+                            \norm{A}_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2}=\sqrt{\tr(A^\top A)},
+                        \end{align*}
+                        $$
+                        and the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Prove also that $\norm{A}_F=\sqrt{\sum_j\sigma_j^2}$, where $\sigma_j$ are the singular values of $A$.
+                    <div><button class="hide noindent" id="hide-1-7-b"></button></div>
+                    <div class="hidden-content solution" id="1-7-b">
+                        <i>Proof.</i>
+                        By singular value decomposition (for real matrices), we can write
+                        $$
+                        \begin{align*}
+                            A=U\Sigma V^\top,
+                        \end{align*}
+                        $$
+                        where $U\in\RR^{m\times m}$ and $V\in\RR^{n\times n}$ are unitary matrices and $\Sigma\in\RR^{m\times n}$ is a rectangular diagonal matrix with diagonal entries equal to the singular values of $A$. Therefore, we can expand
+                        $$
+                        \begin{align*}
+                            \norm{A}_F=\sqrt{\tr(A^\top A)}=\sqrt{\tr(V\Sigma^\top U^\top U\Sigma V^\top)}=\sqrt{\tr(V\Sigma^\top\Sigma V^\top)}=\sqrt{\tr(\Sigma^\top\Sigma V^\top V)}=\sqrt{\tr(\Sigma^\top\Sigma)},
+                        \end{align*}
+                        $$
+                        where we make use of the property $\tr(MN)=\tr(NM)$ for any matrix $M$ and $N$, and that $M^\top M=I$ for any unitary real matrix $M$. Now note that $\Sigma^\top\Sigma$ is an $n\times n$ diagonal matrix with diagonal entries equal to the square of the singular values of $A$. Therefore, we can conclude that
+                        $$
+                        \begin{align*}
+                            \norm{A}_F=\sqrt{\sum_{j=1}^n\sigma_j^2},
+                        \end{align*}
+                        $$
+                        where $\sigma_j$ are the singular values of $A$, and the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Show that $\norm{A}_2\leq\norm{A}_F$.
+                    <div><button class="hide noindent" id="hide-1-7-c"></button></div>
+                    <div class="hidden-content solution" id="1-7-c">
+                        <i>Proof.</i>
+                        For an arbitrary $\mathbf{x}\in\RR^n$, we can see that
+                        $$
+                        \begin{align*}
+                            \norm{A\mathbf{x}}_2={} & \sqrt{\mathbf{x}^\top A^\top A\mathbf{x}}=\sqrt{\mathbf{x}^\top V\Sigma^\top U^\top U\Sigma V^\top\mathbf{x}}=\sqrt{\mathbf{x}^\top V\Sigma^\top\Sigma V^\top\mathbf{x}}=\sqrt{\tr(\mathbf{x}^\top V\Sigma^\top\Sigma V^\top\mathbf{x})} \nonumber\\
+                            ={} & \sqrt{\tr(\mathbf{x}^\top\Sigma^\top\Sigma V^\top V\mathbf{x})}=\sqrt{\tr(\mathbf{x}^\top\Sigma^\top\Sigma\mathbf{x})}=\sqrt{\mathbf{x}^\top\Sigma^\top\Sigma\mathbf{x}}=\sqrt{\sum_{j=1}^n\sigma_j^2x_j^2}.
+                        \end{align*}
+                        $$
+                        Also, note that
+                        $$
+                        \begin{align*}
+                            \sum_{j=1}^n\sigma_j^2x_j^2\leq\sum_{j=1}^n\sigma_j^2x_j^2+\sum_{i\neq j}\sigma_ix_j=\bkt{\sum_{i=1}^n\sigma_i^2}\bkt{\sum_{i=1}^nx_i^2}.
+                        \end{align*}
+                        $$
+                        Therefore, we can conclude that
+                        $$
+                        \begin{align*}
+                            \norm{A}_2=\max_{\norm{\mathbf{x}}_2=1}\norm{A\mathbf{x}}_2={} & \max_{\norm{\mathbf{x}}_2=1}\sqrt{\sum_{j=1}^n\sigma_j^2x_j^2}\leq\max_{\norm{\mathbf{x}}_2=1}\sqrt{\bkt{\sum_{i=1}^n\sigma_i^2}\bkt{\sum_{i=1}^nx_i^2}} \nonumber\\
+                            ={} & \max_{\norm{\mathbf{x}}_2=1}\sqrt{\sum_{i=1}^n\sigma_i^2}=\sqrt{\sum_{i=1}^n\sigma_i^2}=\norm{A}_F,
+                        \end{align*}
+                        $$
+                        where the equality holds when all the singular values of $A$ are zero, and the proof is complete.
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 2                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw2" class="outline-2">
+        <h2 id="hw2">Homework 2</h2>
+        <div class="outline-text-2" id="text-hw2">
+
+            <!-- Homework 2 Problem 1 -->
+
+            <h3 id="p2p1">Problem 2.1 - Quasi-Newton Optimization</h3>
+            <p>
+                <div class="question">
+                    <b>(a)</b> Suppose that we want to find the minimizer of a convex function $f=f(\mathbf{x})$, such that
+                    $$
+                    \begin{align*}
+                        \mathbf{x}^*=\argmin_{\mathbf{x}}f(\mathbf{x}),
+                    \end{align*}
+                    $$
+                    where $\mathbf{x}\in\RR^n$. At a current guess $\mathbf{x}_k$ for the minimizer, a quadratic approximation $m_k$ of the objective function $f$ can be written as
+                    $$
+                    \begin{align*}
+                        m_k(\mathbf{z})=f_k+(\nabla f_k)^\top(\mathbf{z}-\mathbf{x}_k)+\frac{1}{2}(\mathbf{z}-\mathbf{x}_k)^\top B_k(\mathbf{z}-\mathbf{x}_k),
+                    \end{align*}
+                    $$
+                    where $f_k=f(\mathbf{x}_k)$ and $B_k$ denotes the Hessian of $f$ evaluated at $\mathbf{x}_k$. Find the $\mathbf{z}$ that maximizes $m_k$.
+                    <div><button class="hide noindent" id="hide-2-1-a"></button></div>
+                    <div class="hidden-content solution" id="2-1-a">
+                        <i>Solution.</i>
+                        In order to find a minimizer of the quadratic form, we first compute its gradient as
+                        $$
+                        \begin{align*}
+                            \nabla_{\mathbf{z}}m_k(\mathbf{z})=\nabla f_k+\frac{1}{2}(B_k+B_k^\top)(\mathbf{z}-\mathbf{x}_k)=\nabla f_k+B_k(\mathbf{z}-\mathbf{x}_k),
+                        \end{align*}
+                        $$
+                        where the last equality follows from the symmetry of Hessian matrices. To minimize $m_k$, we thus require
+                        $$
+                        \begin{align*}
+                            \nabla_{\mathbf{z}}m_k(\mathbf{z})=0\iff\nabla f_k+B_k(\mathbf{z}-\mathbf{x}_k)=0\iff\mathbf{z}=\mathbf{x}_k-B_k^{-1}\nabla f_k,
+                        \end{align*}
+                        $$
+                        as long as the Hessian matrix $B_k$ is invertible.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> In the BFGS optimization method, only an approximation of the Hessian matrix is used, which is why it is a <i>quasi-Newton</i> method. Let the approximation be denoted by $\tilde{B}_k$. The key computational benefit of the BFGS is that this approximation is easily updated after each step according to
+                    $$
+                    \begin{align*}
+                        \tilde{B}_{k+1}=\tilde{B}_k-\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}+\frac{\mathbf{y}_k\mathbf{y}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k},
+                    \end{align*}
+                    $$
+                    where
+                    $$
+                    \begin{align*}
+                        & \mathbf{s}_k=\mathbf{x}_{k+1}-\mathbf{x}_k, \\
+                        & \mathbf{y}_k=\nabla f_{k+1}-\nabla f_k.
+                    \end{align*}
+                    $$
+                    Use the Sherman-Morrion-Woodbury formula, derive an analogous update formula to the given formula, but for the inverse matrix $\tilde{B}_{k+1}^{-1}$.
+                    <div><button class="hide noindent" id="hide-2-1-b"></button></div>
+                    <div class="hidden-content solution" id="2-1-b">
+                        <i>Solution.</i>
+                        Recall that the Sherman-Morrison-Woodbury formula states that
+                        $$
+                        \begin{align*}
+                            (A+\mathbf{u}\mathbf{v}^\top)^{-1}=A^{-1}-\frac{A^{-1}\mathbf{u}\mathbf{v}^\top A^{-1}}{1+\mathbf{v}^\top A^{-1}\mathbf{u}}.
+                        \end{align*}
+                        $$
+                        Therefore, we can rewrite the BFGS updating formula as
+                        $$
+                        \begin{align*}
+                            \tilde{B}_{k+1}^{-1}={} & \bkt{\tilde{B}_k+\frac{\mathbf{y}_k\mathbf{y}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k}-\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}}^{-1}=\bkt{\tilde{B}_k+\frac{\mathbf{y}_k\mathbf{y}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k}+\frac{-1}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}(\tilde{B}_k\mathbf{s}_k)(\tilde{B}_k\mathbf{s}_k)^\top}^{-1} \nonumber\\
+                            =:{} & \bkt{\tilde{D}_k+\frac{-1}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}(\tilde{B}_k\mathbf{s}_k)(\tilde{B}_k\mathbf{s}_k)^\top}^{-1}\overset{\textit{S-M-W}}{=}\tilde{D}_k^{-1}-\frac{\tilde{D}_k^{-1}\bkt{\frac{-1}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}(\tilde{B}_k\mathbf{s}_k)(\tilde{B}_k\mathbf{s}_k)^\top}\tilde{D}_k^{-1}}{1+\frac{-1}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}(\tilde{B}_k\mathbf{s}_k)^\top\tilde{D}_k^{-1}(\tilde{B}_k\mathbf{s}_k)} \nonumber\\
+                            ={} & \tilde{D}_k^{-1}+\frac{\tilde{D}_k^{-1}(\tilde{B}_k\mathbf{s}_k)(\tilde{B}_k\mathbf{s}_k)^\top\tilde{D}_k^{-1}}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-(\tilde{B}_k\mathbf{s}_k)^\top\tilde{D}_k^{-1}(\tilde{B}_k\mathbf{s}_k)}=\tilde{D}_k^{-1}+\tilde{D}_k^{-1}\underbrace{\bkt{\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-\mathbf{s}_k^\top\tilde{B}_k^\top\tilde{D}_k^{-1}\tilde{B}_k\mathbf{s}_k}}}_{=:A_k}\tilde{D}_k^{-1}, \label{eq:1-b-temp-update}
+                        \end{align*}
+                        $$
+                        where we denote
+                        $$
+                        \begin{align*}
+                            \tilde{D}_k:=\tilde{B}_k+\frac{\mathbf{y}_k\mathbf{y}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k},\qquad A_k:=\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-\mathbf{s}_k^\top\tilde{B}_k^\top\tilde{D}_k^{-1}\tilde{B}_k\mathbf{s}_k}.
+                        \end{align*}
+                        $$
+                        Furthermore, we have that
+                        $$
+                        \begin{align*}
+                            \tilde{D}_k^{-1}=\bkt{\tilde{B}_k+\frac{1}{\mathbf{y}_k^\top\mathbf{s}_k}\mathbf{y}_k\mathbf{y}_k^\top}^{-1}\overset{\textit{S-M-W}}{=}\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\bkt{\frac{1}{\mathbf{y}_k^\top\mathbf{s}_k}\mathbf{y}_k\mathbf{y}_k^\top}\tilde{B}_k^{-1}}{1+\frac{1}{\mathbf{y}_k^\top\mathbf{s}_k}\mathbf{y}_k^\top\tilde{B}_k^{-1}\mathbf{y}_k}=\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{\mathbf{y}_k^\top\mathbf{s}_k+\mathbf{y}_k^\top\tilde{B}_k^{-1}\mathbf{y}_k}.
+                        \end{align*}
+                        $$
+                        Now let $p_k=\mathbf{y}_k^\top\mathbf{s}_k=\mathbf{s}_k^\top\mathbf{y}_k$ and $q_k=\mathbf{y}_k^\top\tilde{B}_k^{-1}\mathbf{y}_k$ for the sake of simplicity. Then by plugging the previous expression of $\tilde{D}_k^{-1}$ into that of $A_k$, we can compute that
+                        $$
+                        \begin{align*}
+                            A_k={} & \frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-\mathbf{s}_k^\top\tilde{B}_k^\top\tilde{D}_k^{-1}\tilde{B}_k\mathbf{s}_k}=\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-\mathbf{s}_k^\top\tilde{B}_k^\top\bkt{\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}}\tilde{B}_k\mathbf{s}_k} \nonumber\\
+                            ={} & \frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k-\mathbf{s}_k^\top\tilde{B}_k^\top\mathbf{s}_k+\frac{\mathbf{s}_k^\top\mathbf{y}_k\mathbf{y}_k^\top\mathbf{s}_k}{p_k+q_k}}=\frac{\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top}{\frac{(\mathbf{s}_k^\top\mathbf{y}_k)(\mathbf{y}_k^\top\mathbf{s}_k)}{p_k+q_k}}=\frac{p_k+q_k}{p_k^2}\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top.
+                        \end{align*}
+                        $$
+                        Substituting the expressions of $D_k^{-1}$ and $A_k$ into the BFGS updating formula, we then have that
+                        $$
+                        \begin{align*}
+                            \tilde{B}_{k+1}^{-1}={} & \bkt{\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}}+\frac{p_k+q_k}{p_k^2}\bkt{\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}}\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top\bkt{\tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}} \nonumber\\
+                            ={} & \tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}+\frac{(p_k+q_k)\mathbf{s}_k\mathbf{s}_k^\top}{p_k^2}+\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\mathbf{s}_k\mathbf{s}_k^\top\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k^2(p_k+q_k)}-\frac{\mathbf{s}_k\mathbf{s}_k^\top\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}+\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\mathbf{s}_k\mathbf{s}_k^\top}{p_k^2} \nonumber\\
+                            ={} &  \tilde{B}_k^{-1}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}+\frac{(p_k+q_k)\mathbf{s}_k\mathbf{s}_k^\top}{p_k^2}+\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k+q_k}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}+\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{s}_k^\top}{p_k} \nonumber\\
+                            ={} & \tilde{B}_k^{-1}+\frac{(p_k+q_k)\mathbf{s}_k\mathbf{s}_k^\top}{p_k^2}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k}-\frac{\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{s}_k^\top}{p_k}=\tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}+\frac{(p_k+q_k)\mathbf{s}_k\mathbf{s}_k^\top}{p_k^2}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k} \nonumber\\
+                            ={} & \tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}+\frac{\mathbf{s}_k\mathbf{s}_k^\top}{p_k}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k}+\frac{\mathbf{s}_kq_k\mathbf{s}_k^\top}{p_k^2} \nonumber\\
+                            ={} & \tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}+\frac{\mathbf{s}_k\mathbf{s}_k^\top}{p_k}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k}+\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}\mathbf{y}_k\mathbf{s}_k^\top}{p_k^2} \nonumber\\
+                            ={} & \tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}+\frac{\mathbf{s}_k\mathbf{s}_k^\top}{p_k}-\frac{\mathbf{s}_k\mathbf{y}_k^\top\tilde{B}_k^{-1}}{p_k}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}=\bkt{I-\frac{\mathbf{s}_k\mathbf{y}_k^\top}{p_k}}\tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{p_k}}+\frac{\mathbf{s}_k\mathbf{s}_k^\top}{p_k} \nonumber\\
+                            ={} & \bkt{I-\frac{\mathbf{s}_k\mathbf{y}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k}}\tilde{B}_k^{-1}\bkt{I-\frac{\mathbf{y}_k\mathbf{s}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k}}+\frac{\mathbf{s}_k\mathbf{s}_k^\top}{\mathbf{y}_k^\top\mathbf{s}_k}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Assume that the quantity $\mathbf{y}_k^\top\mathbf{s}_k>0$. Show that if $\tilde{B}_k$ is symmetric positive definite, then so is the updated matrix $\tilde{B}_{k+1}$.
+                    <div><button class="hide noindent" id="hide-2-1-c"></button></div>
+                    <div class="hidden-content solution" id="2-1-c">
+                        <i>Proof.</i>
+                        Let $\mathbf{z}\in\RR^n\setminus\set{\mathbf{0}}$ be an arbitrary nonzero vector, then we have that
+                        $$
+                        \begin{align*}
+                            \mathbf{z}^\top\tilde{B}_{k+1}\mathbf{z}={} & \mathbf{z}^\top\tilde{B}_k\mathbf{z}-\frac{1}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}\mathbf{z}^\top\tilde{B}_k\mathbf{s}_k\mathbf{s}_k^\top\tilde{B}_k^\top\mathbf{z}+\frac{1}{\mathbf{y}_k^\top\mathbf{s}_k}\mathbf{z}^\top\mathbf{y}_k\mathbf{y}_k^\top\mathbf{z}=\mathbf{z}^\top\tilde{B}_k\mathbf{z}-\frac{(\mathbf{z}^\top\tilde{B}_k\mathbf{s}_k)^2}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}+\frac{(\mathbf{z}^\top\mathbf{y}_k)^2}{\mathbf{y}_k^\top\mathbf{s}_k}.
+                        \end{align*}
+                        $$
+                        Since $\tilde{B}_k$ is symmetric positive definite, by Cauchy Schwarz inequality, we have that
+                        $$
+                        \begin{align*}
+                            (\mathbf{z}^\top\tilde{B}_k\mathbf{s}_k)^2\leq(\mathbf{z}^\top\tilde{B}_k\mathbf{z})(\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k).
+                        \end{align*}
+                        $$
+                        Therefore, using the above results and given $\mathbf{y}_k^\top\mathbf{s}_k>0$, we can deduce that
+                        $$
+                        \begin{align*}
+                            \mathbf{z}^\top\tilde{B}_{k+1}\mathbf{z}\geq\mathbf{z}^\top\tilde{B}_k\mathbf{z}-\frac{(\mathbf{z}^\top\tilde{B}_k\mathbf{z})(\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k)}{\mathbf{s}_k^\top\tilde{B}_k\mathbf{s}_k}+\frac{(\mathbf{z}^\top\mathbf{y}_k)^2}{\mathbf{y}_k^\top\mathbf{s}_k}=\frac{(\mathbf{z}^\top\mathbf{y}_k)^2}{\mathbf{y}_k^\top\mathbf{s}_k}>0
+                        \end{align*}
+                        $$
+                        By the arbitrariness of $\mathbf{z}$, we thus conclude our proof that $\tilde{B}_{k+1}$ is also positive semidefinite.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 2 Problem 2 -->
+
+            <h3 id="p2p2">Problem 2.2 - Flop Counts</h3>
+            <p>
+                <div class="question">
+                    Use the fact that
+                    $$
+                    \begin{align*}
+                        \sum_{k=1}^nk=\frac{n(n+1)}{2}\qquad\text{and}\qquad\sum_{k=1}^nk^2=\frac{n(n+1)(2n+1)}{6}
+                    \end{align*}
+                    $$
+                    to compute the exact sum in
+                    $$
+                    \begin{align*}
+                        \sum_{j=1}^{n-1}\sum_{i=j+1}^n(2(n-j)+3).
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-2-2"></button></div>
+                    <div class="hidden-content solution" id="2-2">
+                        <i>Solution.</i>
+                        The sum can be computed as
+                        $$
+                        \begin{align*}
+                            \sum_{j=1}^{n-1}\sum_{i=j+1}^n(2(n-j)+3)={} & \sum_{j=1}^n(2(n-j)^2+3(n-j))=\underbrace{2\sum_{k=1}^{n-1}k^2+3\sum_{k=1}^{n-1}k}_{\text{change $k=n-j$}}=\frac{n(n-1)(2n-1)}{3}+\frac{3n(n-1)}{2} \nonumber\\
+                            ={} & \frac{2n^3-3n^2+n}{3}+\frac{3n^2-3n}{2}=\frac{4n^3-6n^2+2n+9n^2-9n}{6}=\frac{4n^3+3n^2-7n}{6}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 2 Problem 3 -->
+
+            <h3 id="p2p3">Problem 2.3 - LU Cost</h3>
+            <p>
+                <div class="question">
+                    Let the matrix $A\in\RR^{m\times n}$, with $m\geq n$, have rank $n$ and be such that when computing its LU decomposition $A=LU$, no pivoting whatsoever is needed.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Carefully derive the computational cost (in floating point operations, referred to as flops) of computing $A=LU$. Assume that addition, subtraction, multiplication, and division each count as $1$ flop. For example, computing $x=a(b+c)/d-e$ requires $4$ flops.
+                    <div><button class="hide noindent" id="hide-2-3-a"></button></div>
+                    <div class="hidden-content solution" id="2-3-a">
+                        <i>Solution.</i>
+                        Let us consider the following scenario of computing the LU factorization, such that
+                        $$
+                        \begin{align*}
+                            A=
+                            \begin{pmatrix}
+                                a_{11} & a_{12} & \cdots & a_{1n} \\
+                                a_{21} & a_{22} & \cdots & a_{2n} \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                a_{n1} & a_{n2} & \cdots & a_{nn}
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 \\
+                                l_{21} & 1 & \cdots & 0 \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                l_{n1} & l_{n2} & \cdots & 1
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                u_{11} & u_{12} & \cdots & u_{1n} \\
+                                0 & u_{22} & \cdots & u_{2n} \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                0 & 0 & \cdots & u_{nn}
+                            \end{pmatrix}=LU.
+                        \end{align*}
+                        $$
+                        By direct matrix multiplication, we can see that
+                        $$
+                        \begin{align*}
+                            \begin{pmatrix}
+                                a_{11} & a_{12} & \cdots & a_{1n} \\
+                                a_{21} & a_{22} & \cdots & a_{2n} \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                a_{n1} & a_{n2} & \cdots & a_{nn}
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                u_{11} & u_{12} & \cdots & u_{1n} \\
+                                l_{21}u_{11} & l_{21}u_{12}+u_{22} & \cdots & l_{21}u_{1n}+u_{2n} \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                l_{n1}u_{11} & l_{n1}u_{12}+l_{n2}u_{22} & \cdots & \sum_{i=1}^{n-1}l_{ni}u_{in}+u_{nn}
+                            \end{pmatrix}
+                        \end{align*}
+                        $$
+                        Therefore, we can use the following algorithm to compute the entries $l_{ij}$ for $1\leq j\lt i\leq n$ and the entries $u_{kl}$ for $1\leq k\leq l\leq n$.
+                        <div style="padding: 3px 2.5% 3px 2.5%; border-top: 1px solid #000000; border-bottom: 1px solid #000000; margin: 7px 0;">
+                            $L\gets\texttt{eye}(n)$, $U\gets{A}$;<br>
+                            <b>for</b> $j=1$ to $n-1$ <b>do</b><br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; <b>for</b> $i=j+1$ to $n$ <b>do</b><br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $l_{ij}\gets u_{ij}/u_{jj}$; &nbsp; &nbsp; &nbsp; $\texttt{// 1 division}$<br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>for</b> $k=j$ to $n$ <b>do</b><br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $u_{ik}\gets u_{ik}-l_{ij}u_{jk}$; &nbsp; &nbsp; &nbsp; $\texttt{// 1 multiplication and 1 subtraction}$
+                        </div>
+                        With this algorithm, the number of flops can be computed as
+                        $$
+                        \begin{align*}
+                            \sum_{j=1}^{n-1}\sum_{i=j+1}^n\bkt{1+\sum_{k=j}^n2}={} & \sum_{j=1}^{n-1}\sum_{i=j+1}^n(2n-2j+3)=\sum_{j=1}^{n-1}\bkt{2(n-j)^2+3(n-j)}=\underbrace{2\sum_{k=1}^{n-1}k^2+3\sum_{k=1}^{n-1}k}_{\text{change $k=n-j$}} \nonumber\\
+                            ={} & \frac{n(n-1)(2n-1)}{3}+\frac{3n(n-1)}{2}=\frac{4n^3+3n^2-7n}{6}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Now suppose that the matrix $A\in\RR^{n\times n}$ is such that in computing its LU factorization, row-pivoting is required. This means that we can write $PA=LU$ where $P$ is a permutation matrix (see Lecture 21 in Trefethen & Bau). Find $P$, $L$, and $U$ for the matrix
+                    $$
+                    \begin{align*}
+                        A=
+                        \begin{pmatrix}
+                            1 & 1 & 1 \\
+                            6 & 6 & 0 \\
+                            3 & 0 & 2
+                        \end{pmatrix}.
+                    \end{align*}
+                    $$
+                    If you do not show your work, you will not receive any credit for the problem.
+                    <div><button class="hide noindent" id="hide-2-3-b"></button></div>
+                    <div class="hidden-content solution" id="2-3-b">
+                        <i>Solution.</i>
+                        With partial pivoting, the first step is to interchange the first and the second row of $A$ (since $6$ is the largest element in absolute value in the first column), such that
+                        $$
+                        \begin{align*}
+                            P_1A=
+                            \begin{pmatrix}
+                                0 & 1 & 0 \\
+                                1 & 0 & 0 \\
+                                0 & 0 & 1
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                1 & 1 & 1 \\
+                                6 & 6 & 0 \\
+                                3 & 0 & 2
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                6 & 6 & 0 \\
+                                1 & 1 & 1 \\
+                                3 & 0 & 2
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Next, we perform the first elimination step, such that
+                        $$
+                        \begin{align*}
+                            L_1P_1A=
+                            \begin{pmatrix}
+                                1 & 0 & 0 \\
+                                -1/6 & 1 & 0 \\
+                                -1/2 & 0 & 1
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                6 & 6 & 0 \\
+                                1 & 1 & 1 \\
+                                3 & 0 & 2
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                6 & 6 & 0 \\
+                                0 & 0 & 1 \\
+                                0 & -3 & 2
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Now we interchange the second and the third row of $A$ (since $-3$ is the largest element in absolute value in the second column among the rest rows), such that
+                        $$
+                        \begin{align*}
+                            P_2L_1P_1A=
+                            \begin{pmatrix}
+                                1 & 0 & 0 \\
+                                0 & 0 & 1 \\
+                                0 & 1 & 0
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                6 & 6 & 0 \\
+                                0 & 0 & 1 \\
+                                0 & -3 & 2
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                6 & 6 & 0 \\
+                                0 & -3 & 2 \\
+                                0 & 0 & 1
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Note that there is already no need for further elimination. Therefore, we have that
+                        $$
+                        \begin{align*}
+                            P_2L_1P_1A=U.
+                        \end{align*}
+                        $$
+                        Let $L_1'=P_2L_1P_2$ and note that permutation matrices satisfy $P_j^{-1}=P_j=P_j^\top$. Then we have that
+                        $$
+                        \begin{align*}
+                            L_1'P_2P_1A=P_2L_1P_2P_2P_1A=P_2L_1P_1A=U\implies(P_2P_1)A=L_1'^{-1}U.
+                        \end{align*}
+                        $$
+                        If we explicitly write out the matrices, this becomes
+                        $$
+                        \begin{align*}
+                            \underbrace{\begin{pmatrix}
+                                0 & 1 & 0 \\
+                                0 & 0 & 1 \\
+                                1 & 0 & 0
+                            \end{pmatrix}}_{=:P}
+                            \begin{pmatrix}
+                                1 & 1 & 1 \\
+                                6 & 6 & 0 \\
+                                3 & 0 & 2
+                            \end{pmatrix}=
+                            \underbrace{\begin{pmatrix}
+                                1 & 0 & 0 \\
+                                1/6 & 1 & 0 \\
+                                1/2 & 0 & 1
+                            \end{pmatrix}}_{=:L}
+                            \underbrace{\begin{pmatrix}
+                                6 & 6 & 0 \\
+                                0 & -3 & 2 \\
+                                0 & 0 & 1
+                            \end{pmatrix}}_{:=U}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 2 Problem 4 -->
+
+            <h3 id="p2p4">Problem 2.4 - More LU</h3>
+            <p>
+                <div class="question">
+                    Consider the $n\times n$ linear system $A\mathbf{x}=\mathbf{b}$, where $A$ has entries
+                    $$
+                    \begin{align*}
+                        A_{ij}=1\;\;\text{if $i=j$},\qquad A_{ij}=-1\;\;\text{if $i>j$},\qquad A_{in}=1\;\;\text{for all $i$},\qquad A_{ij}=0\;\;\text{otherwise}.
+                    \end{align*}
+                    $$
+                    For example, when $n=5$, the matrix $A$ is given by
+                    $$
+                    \begin{align*}
+                        A=
+                        \begin{pmatrix}
+                            1 & 0 & 0 & 0 & 1 \\
+                            -1 & 1 & 0 & 0 & 1 \\
+                            -1 & -1 & 1 & 0 & 1 \\
+                            -1 & -1 & -1 & 1 & 1 \\
+                            -1 & -1 & -1 & -1 & 1
+                        \end{pmatrix}.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Using induction, show that $A$ is invertible for all $n>0$.
+                    <div><button class="hide noindent" id="hide-2-4-a"></button></div>
+                    <div class="hidden-content solution" id="2-4-a">
+                        <i>Proof.</i>
+                        We prove by induction on $n$. The base case $n=1$ is trivial: clearly the matrix $\begin{pmatrix}
+                            1
+                        \end{pmatrix}$ is invertible. Now we assume that $A_k$ is invertible (where $A_k$ denotes the matrix $A$ for $n=k$). Then for $n=k+1$, we have that
+                        $$
+                        \begin{align*}
+                            \det(A_{k+1})={} & \det
+                            \begin{pmatrix}
+                                1 & 0 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & 0 & \cdots & 0 & 1 \\
+                                -1 & -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{(k+1)\times(k+1)} \nonumber\\
+                            ={} & \det
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{k\times k}+(-1)^k\det
+                            \begin{pmatrix}
+                                -1 & 1 & 0 & \cdots & 0 \\
+                                -1 & -1 & 1 & \cdots & 0 \\
+                                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                                -1 & -1 & -1 & \cdots & 1 \\
+                                -1 & -1 & -1 & \cdots & -1
+                            \end{pmatrix}_{k\times k} \nonumber\\
+                            & \textit{used cofactor expansion (expanding based on the first row)} \nonumber\\
+                            ={} & \det
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{k\times k}+(-1)^{2k-1}\det
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & -1 \\
+                                -1 & 1 & \cdots & 0 & -1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & -1 \\
+                                -1 & -1 & \cdots & -1 & -1
+                            \end{pmatrix}_{k\times k} \nonumber\\
+                            & \textit{exchanged columns $1$ and $2$, $2$ and $3$, etc., until $k-1$ and $k$, resulting in $(-1)^{k-1}$ coefficient} \nonumber\\
+                            ={} & \det
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{k\times k}+(-1)^{2k}\det
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{k\times k} \nonumber\\
+                            & \textit{mutiplied the $k$th column by $-1$, resulting in $-1$ coefficient} \nonumber\\
+                            ={} & 2\det(A_k)>0,\qquad\textit{since by the inductive hypothesis, $A_k$ is invertible}.
+                        \end{align*}
+                        $$
+                        Therefore, $A_{k+1}$ is also invertible, so the statement holds for $n=k+1$, and thus concluding the proof.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> In the case where $n=5$ and $\mathbf{b}=\begin{pmatrix}
+                        1 & \frac{1}{4} & \frac{1}{9} & \frac{1}{16} & \frac{1}{25}
+                    \end{pmatrix}^\top$, solve $A\mathbf{x}=\mathbf{b}$ using Gaussian elimination.
+                    <div><button class="hide noindent" id="hide-2-4-b"></button></div>
+                    <div class="hidden-content solution" id="2-4-b">
+                        <i>Solution.</i>
+                        The linear system $A\mathbf{x}=\mathbf{b}$ can be solved via Gaussian elimination as follows.
+                        $$
+                        \begin{align*}
+                            (A~|~\mathbf{b})={} &
+                            \left(
+                            \begin{array}{ccccc|c}
+                                1 & 0 & 0 & 0 & 1 & 1 \\
+                                -1 & 1 & 0 & 0 & 1 & 1/4 \\
+                                -1 & -1 & 1 & 0 & 1 & 1/9 \\
+                                -1 & -1 & -1 & 1 & 1 & 1/16 \\
+                                -1 & -1 & -1 & -1 & 1 & 1/25
+                            \end{array}
+                            \right) \\
+                            \longrightarrow{} &
+                            \left(
+                            \begin{array}{ccccc|c}
+                                1 & 0 & 0 & 0 & 1 & 1 \\
+                                0 & 1 & 0 & 0 & 2 & 5/4 \\
+                                0 & -1 & 1 & 0 & 2 & 10/9 \\
+                                0 & -1 & -1 & 1 & 2 & 17/16 \\
+                                0 & -1 & -1 & -1 & 2 & 26/25
+                            \end{array}
+                            \right) \\
+                            & R_2+1\times R_1,\;R_3+1\times R_1,\;R_4+1\times R_1,\;R_5+1\times R_1 \nonumber\\
+                            \longrightarrow{} &
+                            \left(
+                            \begin{array}{ccccc|c}
+                                1 & 0 & 0 & 0 & 1 & 1 \\
+                                0 & 1 & 0 & 0 & 2 & 5/4 \\
+                                0 & 0 & 1 & 0 & 4 & 85/36 \\
+                                0 & 0 & -1 & 1 & 4 & 37/16 \\
+                                0 & 0 & -1 & -1 & 4 & 229/100
+                            \end{array}
+                            \right) \\
+                            & R_3+1\times R_2,\;R_4+1\times R_2,\;R_5+1\times R_2 \nonumber\\
+                            \longrightarrow{} &
+                            \left(
+                            \begin{array}{ccccc|c}
+                                1 & 0 & 0 & 0 & 1 & 1 \\
+                                0 & 1 & 0 & 0 & 2 & 5/4 \\
+                                0 & 0 & 1 & 0 & 4 & 85/36 \\
+                                0 & 0 & 0 & 1 & 8 & 673/144 \\
+                                0 & 0 & 0 & -1 & 8 & 2093/450
+                            \end{array}
+                            \right) \\
+                            & R_4+1\times R_3,\;R_5+1\times R_3 \nonumber\\
+                            \longrightarrow{} &
+                            \left(
+                            \begin{array}{ccccc|c}
+                                1 & 0 & 0 & 0 & 1 & 1 \\
+                                0 & 1 & 0 & 0 & 2 & 5/4 \\
+                                0 & 0 & 1 & 0 & 4 & 85/36 \\
+                                0 & 0 & 0 & 1 & 8 & 673/144 \\
+                                0 & 0 & 0 & 0 & 16 & 33569/3600
+                            \end{array}
+                            \right). \\
+                            & R_5+1\times R_4 \nonumber
+                        \end{align*}
+                        $$
+                        Therefore, we have that
+                        $$
+                        \begin{align*}
+                            x_5={} & \frac{1}{16}\cdot\frac{33569}{3600}=\frac{33569}{57600}, \\
+                            x_4={} & \frac{673}{144}-8x_5=\frac{673}{144}-\frac{33569}{7200}=\frac{9}{800}, \\
+                            x_3={} & \frac{85}{36}-4x_5=\frac{85}{36}-\frac{33569}{14400}=\frac{431}{14400}, \\
+                            x_2={} & \frac{5}{4}-2x_5=\frac{5}{4}-\frac{33569}{28800}=\frac{2431}{28800}, \\
+                            x_1={} & 1-x_5=1-\frac{33569}{57600}=\frac{24031}{57600}.
+                        \end{align*}
+                        $$
+                        In other words, the solution is
+                        $$
+                        \begin{align*}
+                            \mathbf{x}=
+                            \begin{pmatrix}
+                                \dfrac{24031}{57600} & \dfrac{2431}{28800} & \dfrac{431}{14400} & \dfrac{9}{800} & \dfrac{33569}{57600}
+                            \end{pmatrix}^\top.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> For an arbitrary $n$, find the entries $L_{ij}$ and $U_{ij}$ of the LU factorization of $A$. What is $\max_{i,j}|U_{ij}|$?
+                    <div><button class="hide noindent" id="hide-2-4-c"></button></div>
+                    <div class="hidden-content solution" id="2-4-c">
+                        <i>Solution.</i>
+                        In order to find the LU factorization of $A$ (for an arbitrary $n$), we start by eliminating the first column. Note that no pivoting is needed, since all the entries in the first column are the same in absolute value. The elimination can be done such that
+                        $$
+                        \begin{align*}
+                            L_1A=
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 0 \\
+                                1 & 1 & \cdots & 0 & 0 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                1 & 0 & \cdots & 1 & 0 \\
+                                1 & 0 & \cdots & 0 & 1
+                            \end{pmatrix}_{n\times n}
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                -1 & 1 & \cdots & 0 & 1 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                -1 & -1 & \cdots & 1 & 1 \\
+                                -1 & -1 & \cdots & -1 & 1
+                            \end{pmatrix}_{n\times n}=
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                0 & 1 & \cdots & 0 & 2 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                0 & -1 & \cdots & 1 & 2 \\
+                                0 & -1 & \cdots & -1 & 2
+                            \end{pmatrix}_{n\times n}.
+                        \end{align*}
+                        $$
+                        Then similarly, we eliminate the second column, such that
+                        $$
+                        \begin{align*}
+                            L_2L_1A=
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 0 \\
+                                0 & 1 & \cdots & 0 & 0 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                0 & 1 & \cdots & 1 & 0 \\
+                                0 & 1 & \cdots & 0 & 1
+                            \end{pmatrix}_{n\times n}
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                0 & 1 & \cdots & 0 & 2 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                0 & -1 & \cdots & 1 & 2 \\
+                                0 & -1 & \cdots & -1 & 2
+                            \end{pmatrix}_{n\times n}=
+                            \begin{pmatrix}
+                                1 & 0 & \cdots & 0 & 1 \\
+                                0 & 1 & \cdots & 0 & 2 \\
+                                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                0 & 0 & \cdots & 1 & 4 \\
+                                0 & 0 & \cdots & -1 & 4
+                            \end{pmatrix}_{n\times n}.
+                        \end{align*}
+                        $$
+                        Here we can already observe the pattern. When we eliminate the $k$th column, we use a lower triangular matrix $L_k$, such that it has all $1$'s on its diagonal, and all $1$'s also on the $k$th column below the diagonal. Moreover, the first $k$ columns of the resulting matrix will be all $0$'s except for the diagonal, and the last column would be $1,2,4,\cdots,2^{k-1},2^k,2^k,\cdots,2^k$ from top to bottom. Therefore, we claim that
+                        $$
+                        \begin{align*}
+                            LA=U,
+                        \end{align*}
+                        $$
+                        where
+                        $$
+                        \begin{align*}
+                            L=
+                            \begin{pmatrix}
+                                1 & 0 & 0 & \cdots & 0 & 0 & 0 \\
+                                1 & 1 & 0 & \cdots & 0 & 0 & 0 \\
+                                2 & 1 & 1 & \cdots & 0 & 0 & 0 \\
+                                \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                2^{n-4} & 2^{n-5} & 2^{n-6} & \cdots & 1 & 0 & 0 \\
+                                2^{n-3} & 2^{n-4} & 2^{n-5} & \cdots & 1 & 1 & 0 \\
+                                2^{n-2} & 2^{n-3} & 2^{n-4} & \cdots & 2 & 1 & 1
+                            \end{pmatrix}_{n\times n},\qquad U=
+                            \begin{pmatrix}
+                                1 & 0 & 0 & \cdots & 0 & 0 & 1 \\
+                                0 & 1 & 0 & \cdots & 0 & 0 & 2 \\
+                                0 & 0 & 1 & \cdots & 0 & 0 & 4 \\
+                                \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+                                0 & 0 & 0 & \cdots & 1 & 0 & 2^{n-3} \\
+                                0 & 0 & 0 & \cdots & 0 & 1 & 2^{n-2} \\
+                                0 & 0 & 0 & \cdots & 0 & 0 & 2^{n-1}
+                            \end{pmatrix}_{n\times n}.
+                        \end{align*}
+                        $$
+                        To be more specific, the lower triangular matrix $L$ is such that for $k=1,\cdots,n-1$, if $i=j+k$, then $L_{ij}=2^{k-1}$. Moreover, $L_{ii}=1$ for all $i$, and $L_{ij}=0$ if $i\lt j$. As for the upper triangular matrix $U$, we require $U_{ii}=1$ for $i=1,\cdots,n-1$, $U_{in}=2^{i-1}$, and all other entries of $U$ are $0$'s. Therefore, we have that
+                        $$
+                        \begin{align*}
+                            \max_{i,j}|U_{ij}|=2^{n-1}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(d)</b> For large values of $n$, for example $n=2000$, what problems can you see with trying to solve $A\mathbf{x}=\mathbf{b}$ on a computer using double precision floating point arithmetic? Explain your reasoning.
+                    <div><button class="hide noindent" id="hide-2-4-d"></button></div>
+                    <div class="hidden-content solution" id="2-4-d">
+                        <i>Solution.</i>
+                        Suppose we use LU factorization to solve the linear system $A\mathbf{x}=\mathbf{b}$. If $n$ is large, there will be an overflow. For instance, if $n=2000$, then
+                        $$
+                        \begin{align*}
+                            \max_{i,j}|U_{ij}|=2^{1999}.
+                        \end{align*}
+                        $$
+                        However, if we use double precision floating point arithmetic (which is $64$ bits), it would have only $52$ bits of mantissa, which is not enough for storing such a large number. The case is similar if use Gaussian elimination.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 2 Problem 5 -->
+
+            <h3 id="p2p5">Problem 2.5 - Gram-Schmidt Stability</h3>
+            <p>
+                <div class="question">
+                    The $n\times n$ Hilbert matrix $H$ is defined via its entries $H_{ij}$, such that
+                    $$
+                    \begin{align*}
+                        H_{ij}=\frac{1}{i+j-1}.
+                    \end{align*}
+                    $$
+                    The Hilbert matrix is a very ill conditioned matrix, with its condition number approximately $\kappa(A)\sim n^{-1/2}(1+\sqrt{2})^{4n}$. In this problem, you will study the behavior of the Gram-Schmidt algorithm applied to this matrix.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Write a function in Julia that takes as input an $n\times n$ real-valued matrix $A$ and returns an $n\times n$ orthogonal matrix $Q$ obtained from the Gram-Schmidt process applied to the columns of $A$. You should be able to call the function as
+                    <pre><code class="pre-code language-julia">Q = classical_gs(n, A)</code></pre>
+                    The code should use the "Classical Gram-Schmidt" algorithm, as described in Algorithm 7.1 in Trefethen & Bau. The matrix $A$ should not be harmed when calling this function. To test your code, do the following:
+                    <pre><code class="pre-code language-julia">n = 10
+A = rand(n, n)
+Q = classical_gs(n, A)
+err = norm(Q' * Q - I)</code></pre>
+                    The value of <code>err</code> is a measure of how orthonormal the columns of $Q$ are.
+                    <div><button class="hide noindent" id="hide-2-5-a"></button></div>
+                    <div class="hidden-content solution" id="2-5-a">
+                        <i>Solution.</i>
+                        We can implement the classical Gram-Schmidt algorithm as follows.
+                        <pre><code class="pre-code language-julia">function classical_gs(n, A)
+    """Classical Gram-Schmidt orthogonalization algorithm.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the matrix to be orthogonalized.
+    A : Matrix{Float64}, etc.
+        The matrix to be orthogonalized.
+
+    Returns
+    -------
+    Q : Matrix{Float64}
+        The orthogonalized matrix via the classical Gram-Schmidt algorithm.
+    """
+    Q = Array{Float64}(undef, n, n)
+    for j = 1 : n
+        v = copy(A[:, j])
+        for i = 1 : (j - 1)
+            v .-= dot(Q[:, i], A[:, j]) * Q[:, i]
+        end
+        Q[:, j] = v / norm(v)
+    end
+    return Q
+end</code></pre>
+                        Then, we can use the sample code to test the function.
+                        <pre><code class="pre-code language-julia">n = 10
+A = rand(n, n)
+Q = classical_gs(n, A)
+err = norm(Q' * Q - I)
+@printf("Error: %.4f\n", err)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Error: 0.0000</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> It turns out that the Classical Gram-Schmidt algorithm can be numerically unstable. In order to fix the instability (most of the time), the orthonormal vectors need to be "re-orthgonalized" on every step. Now, implement the "Modified Gram-Schmidt" algorithm, as described in Algorithm 8.1 in Trefethen & Bau. You should be able to call the function as
+                    <pre><code class="pre-code language-julia">Q = modified_gs(n, A)</code></pre>
+                    The matrix $A$ should not be harmed when calling this function. Test your code using the procedure in the previous part of the problem.
+                    <div><button class="hide noindent" id="hide-2-5-b"></button></div>
+                    <div class="hidden-content solution" id="2-5-b">
+                        <i>Solution.</i>
+                        We can implement the modified Gram-Schmidt algorithm as follows.
+                        <pre><code class="pre-code language-julia">function modified_gs(n, A)
+    """Modified Gram-Schmidt orthogonalization algorithm.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the matrix to be orthogonalized.
+    A : Matrix{Float64}, etc.
+        The matrix to be orthogonalized.
+
+    Returns
+    -------
+    Q : Matrix{Float64}
+        The orthogonalized matrix via the modified Gram-Schmidt algorithm.
+    """
+    Q = Array{Float64}(undef, n, n)
+    V = copy(A)
+    for i = 1 : n
+        Q[:, i] = V[:, i] / norm(V[:, i])
+        for j = (i + 1) : n
+            V[:, j] .-= dot(Q[:, i], V[:, j]) * Q[:, i]
+        end
+    end
+    return Q
+end</code></pre>
+                        Then, we can use the sample test code as in the previous part to test our function.
+                        <pre><code class="pre-code language-julia">n = 10
+A = rand(n, n)
+Q = modified_gs(n, A)
+err = norm(Q' * Q - I)
+@printf("Error: %.4f\n", err)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Error: 0.0000</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Now, finally compare the behavior of the two algorithms when applied to the Hilbert matrix described at the beginning of the problem. Write a routine that generates the Hilbert matrix
+                    <pre><code class="pre-code language-julia">H = hilbert(n)</code></pre>
+                    Show the difference in behavior of the classical and modified Gram-Schmidt algorithms when applied to the Hilbert matrix $H$ for $n=25,50,100,200,400$.
+                    <div><button class="hide noindent" id="hide-2-5-c"></button></div>
+                    <div class="hidden-content solution" id="2-5-c">
+                        <i>Solution.</i>
+                        We first implement the function to generate Hilbert matrices as follows.
+                        <pre><code class="pre-code language-julia">function hilbert(n)
+    """Generates a Hilbert matrix, with H_ij = (i+j-1) ^(-1).
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the Hilbert matrix to generate.
+
+    Returns
+    -------
+    H : Matrix{Float64}
+        The Hilbert matrix of the specified dimension.
+    """
+    H = Array{Float64}(undef, n, n)
+    for i = 1 : n
+        for j = 1 : n
+            H[i, j] = 1 / (i + j - 1)
+        end
+    end
+    return H
+end</code></pre>
+                        Then, for the specified values of $n$, we test both the classical and the modified Gram-Schmidt algorithms.
+                        <pre><code class="pre-code language-julia">for n = [25, 50, 100, 200, 400]
+    H = hilbert(n)
+    Q1 = classical_gs(n, H)
+    Q2 = modified_gs(n, H)
+    err1 = norm(Q1' * Q1 - I)
+    err2 = norm(Q2' * Q2 - I)
+    @printf("n=%d, Classical-GS error: %.4f, Modified-GS error: %.4f\n", n, err1, err2)
+end</code></pre>
+                        The comparison between the error outputs of the two algorithms on Hilbert matrices is shown as follows.
+                        <pre><code class="pre-code language-plaintext">n=25, Classical-GS error: 18.4755, Modified-GS error: 2.7030
+n=50, Classical-GS error: 42.6547, Modified-GS error: 3.0941
+n=100, Classical-GS error: 92.5390, Modified-GS error: 3.7117
+n=200, Classical-GS error: 192.4722, Modified-GS error: 4.3593
+n=400, Classical-GS error: 392.4678, Modified-GS error: 4.8997</code></pre>
+                        Clearly, we can see that the modified Gram-Schmidt algorithm is much more stable than the classical Gram-Schmidt algorithm.
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 3                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw3" class="outline-2">
+        <h2 id="hw3">Homework 3</h2>
+        <div class="outline-text-2" id="text-hw3">
+    
+
             <!--
 
-            Homework x Problem x
+            Homework 3 Problem x
 
-            <h3 id="pxpx">Problem x.x - Title</h3>
+            <h3 id="p3px">Problem 3.x - Title</h3>
             <p>
                 <div class="question">
                     xxx
                 </div>
                 <div class="question">
                     <b>(a)</b> xxx
-                    <button class="hide" id="hide-x-x-a"></button>
-                    <div class="hidden-content solution" id="x-x-a">
+                    <div><button class="hide noindent" id="hide-3-x-a"></button></div>
+                    <div class="hidden-content solution" id="3-x-a">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> xxx
+                    <div><button class="hide noindent" id="hide-3-x-b"></button></div>
+                    <div class="hidden-content solution" id="3-x-b">
+                        <i>Solution.</i>
+                        xxx
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> xxx
+                    <div><button class="hide noindent" id="hide-3-x-c"></button></div>
+                    <div class="hidden-content solution" id="3-x-c">
                         <i>Solution.</i>
                         xxx
                     </div>
@@ -581,6 +1697,7 @@ ylabel!("Absolute Error")</code></pre>
             </p>
 
             -->
+
         </div>
     </div>
 
