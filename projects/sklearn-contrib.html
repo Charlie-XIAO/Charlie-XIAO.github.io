@@ -38,6 +38,12 @@
 
 <body>
 
+    <script>
+        const mergedPRs = 25;
+        const linesAdded = 598;
+        const linesDeleted = 180;
+    </script>
+
     <!-- ---------- ---------- ---------- ---------- ---------- -->
     <!--                                                        -->
     <!--                   TABLE OF CONTENTS                    -->
@@ -57,9 +63,10 @@
                         <li><a href="#ensemble"><code>sklearn.ensemble</code></a></li>
                         <li><a href="#feature_selection"><code>sklearn.feature_selection</code></a></li>
                         <li><a href="#metrics"><code>sklearn.metrics</code></a></li>
-                        <li><a href="#param-val">Automatic Parameter Validation</a></li>
+                        <li><a href="#tree"><code>sklearn.tree</code></a></li>
                     </ul>
                 </li>
+                <li><a href="#maint-contrib">Maintenance Contributions</a></li>
                 <li><a href="#doc-contrib">Documentation Contributions</a></li>
                 <li>
                     <a href="#future-work">Future Work</a>
@@ -88,8 +95,8 @@
                 It has its code base maintained on <a href="https://github.com/scikit-learn/scikit-learn">GitHub</a>, with over 2500 contributors.
             </p>
             <p>
-                I have made <a href="https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO">23 pull requests</a> that have been merged into the code base of scikit-learn.
-                Currently I am the <a href="https://github.com/scikit-learn/scikit-learn/graphs/contributors">Top #89 contributor</a> to scikit-learn, with 460 lines of addition and 84 lines of deletion.
+                I have made <a href="https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO"><span id="sklearn-merged-prs"></span> pull requests</a> that have been merged into the code base of scikit-learn.
+                Currently I am the <a href="https://github.com/scikit-learn/scikit-learn/graphs/contributors">Top #<span id="sklearn-rank-contributor"></span> contributor</a> to scikit-learn, with <span id="sklearn-lines-addition"></span> lines of addition and <span id="sklearn-lines-deletion"></span> lines of deletion.
                 These data are collected on <span class="get-last-updated"></span>.
             </p>
             <p>
@@ -158,7 +165,30 @@
                 </div>
             </p>
 
-            <h3 id="param-val">Automatic Parameter Validation</h3>
+            <h3 id="tree"><code>sklearn.tree</code></h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26289">FIX export_text and export_graphviz accepts feature and class names as array-like #26289</a>
+                    <button class="hide" id="hide-26289"></button>
+                    <div class="hidden-content contrib-descrp" id="26289">
+                        <code>tree.export_text</code> and <code>tree.export_graphviz</code> previously only accepts <code>feature_names</code> <code>class_names</code> as lists of strings.
+                        However, under many circumstances users get feature names and class names from numpy arrays or pandas dataframes, etc.
+                        I made these methods to support all array-like inputs for feature names and class names, so that users do not need to convert in advance.
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--               MAINTENANCE CONTRIBUTIONS                -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-maint-contrib" class="outline-2">
+        <h2 id="maint-contrib">Maintenance Contributions</h2>
+        <div class="outline-text-2" id="text-maint-contrib">
             <p>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26122">MAINT Parameters validation for sklearn.metrics.pairwise.manhattan_distances #26122</a></div>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26227">MAINT Parameters validation for sklearn.model_selection.learning_curve #26227</a></div>
@@ -179,6 +209,7 @@
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26048">MAINT Parameters validation for sklearn.metrics.pairwise.laplacian_kernel #26048</a></div>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26047">MAINT Parameters validation for sklearn.metrics.pairwise.haversine_distances #26047</a></div>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26036">MAINT Parameters validation for sklearn.preprocessing.scale #26036</a></div>
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26034">MAINT Parameters validation for sklearn.tree.export_graphviz #26034</a></div>
                 <!--
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/"></a></div>
                 -->
@@ -228,10 +259,6 @@
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26034">MAINT Parameters validation for sklearn.tree.export_graphviz #26034</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26124">MAINT Parameters validation for sklearn.metrics.pairwise_distances_argmin #26124</a>
                     (pending)
                 </div>
@@ -244,16 +271,12 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26289">FIX tree.export_text and tree.export_graphviz accepts feature and class names as array-like #26289</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26337">FIX KernelPCA inverse transform when gamma is not given #26337</a>
                     (under review)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26367">ENH despine keyword for ROC and PR curves #26367</a>
-                    (pending)
+                    (under review)
                 </div>
                 <!--
                 <div class="contrib-item">
@@ -286,10 +309,6 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26265">sklearn.tree.export_text failing when feature_names supplied #26265</a>
-                    (PR fix)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26280">KernelPCA inverse transform behaves unexpectly. #26280</a>
                     (PR fix)
                 </div>
@@ -314,9 +333,14 @@
 
     <script src="../js/hide.js"></script>
     <script src="../js/last_updated.js"></script>
+    <script src="../js/open_source.js"></script>
     <script>
         HideInstance.init();
         HideInstance.executeHide();
+        insertSklearnMergedPRs();
+        insertSklearnLinesAddition();
+        insertSklearnLinesDeletion();
+        insertSklearnRankContributor();
     </script>
 </body>
 

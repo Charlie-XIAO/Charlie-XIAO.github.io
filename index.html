@@ -369,7 +369,7 @@
                     <h3>Scikit-learn: Machine Learning in Python</h3>
                     <p>Open Source Contributions</p>
                     <p>
-                        Top 100 contributors of <a href="https://github.com/scikit-learn/scikit-learn">scikit-learn</a>, with 23 merged pull requests.
+                        Top #<span id="sklearn-rank-contributor"></span> contributor of <a href="https://github.com/scikit-learn/scikit-learn">scikit-learn</a>, with <span id="sklearn-merged-prs"></span> merged pull requests.
                         Contributions mainly include automatic parameter validation, visual improvements of display classes, and bug fixing.
                     </p>
                     <a class="shortcut" href="https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO">Contributions</a>
@@ -380,7 +380,7 @@
                     <h3>Pandas: Python Data Analysis Library</h3>
                     <p>Open Source Contributions</p>
                     <p>
-                        Contributing to <a href="https://github.com/pandas-dev/pandas">pandas</a>, with 4 merged pull requests.
+                        Contributing to <a href="https://github.com/pandas-dev/pandas">pandas</a>, with <span id="pandas-merged-prs"></span> merged pull requests.
                         Contributions mainly include I/O formatting, error message improvements, and bug fixing.
                     </p>
                     <a class="shortcut" href="https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO">Contributions</a>
@@ -510,6 +510,13 @@
 
     <script src="./js/index.js"></script>
     <script src="./js/last_updated.js"></script>
+    <script src="../js/open_source.js"></script>
+    <script>
+        insertSklearnMergedPRs();
+        insertSklearnRankContributor();
+        insertPandasMergedPRs();
+        // insertPandasRankContributor();
+    </script>
 </body>
 
 </html>

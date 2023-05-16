@@ -57,9 +57,9 @@
                         <li><a href="#groupby">Groupby</a></li>
                         <li><a href="#multiindex">MultiIndex</a></li>
                         <li><a href="#reshaping">Reshaping</a></li>
-                        <li><a href="#utils">Utils</a></li>
                     </ul>
                 </li>
+                <li><a href="#maint-contrib">Maintenance Contributions</a></li>
                 <li>
                     <a href="#future-work">Future Work</a>
                     <ul>
@@ -87,7 +87,9 @@
                 It has its code base maintained on <a href="https://github.com/pandas-dev/pandas">GitHub</a>, with nearly 3000 contributors.
             </p>
             <p>
-                I have made <a href="https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO">4 pull requests</a> that have been merged into the code base of pandas.
+                I have made <a href="https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO"><span id="pandas-merged-prs"></span> pull requests</a> that have been merged into the code base of pandas.
+                <!-- Currently I am the <a href="https://github.com/pandas-dev/pandas/graphs/contributors">Top #<span id="pandas-rank-contributor"></span> contributor</a> to pandas, with <span id="pandas-lines-addition"></span> lines of addition and <span id="pandas-lines-deletion"></span> lines of deletion. -->
+                Currently I have made <span id="pandas-lines-addition"></span> lines of addition and <span id="pandas-lines-deletion"></span> lines of deletion.
                 These data are collected on <span class="get-last-updated"></span>.
             </p>
             <p>
@@ -160,7 +162,7 @@ B         0.4  1.6</code></pre>
             <h3 id="reshaping">Reshaping</h3>
             <p>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH: When merging with incompatible keys, include the first incompatible key in the error message #51947</a>
+                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH include the first incompatible key in error message when merging #51947</a>
                     <button class="hide" id="hide-51947"></button>
                     <div class="hidden-content contrib-descrp" id="51947">
                         <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
@@ -169,9 +171,43 @@ B         0.4  1.6</code></pre>
                         <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
                     </div>
                 </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53215">BUG Merge not behaving correctly when having MultiIndex with a single level #53215</a>
+                    <button class="hide" id="hide-53215"></button>
+                    <div class="hidden-content contrib-descrp" id="53215">
+                        Suppose that we have two dataframes as follows.
+                        <pre><code class="pre-code language-python">>>> df = pd.DataFrame({"col1": ["A"]})
+>>> df
+col1
+0    A
+>>> df2 = pd.DataFrame(
+...     data={"col2": [100]},
+...     index=pd.MultiIndex.from_tuples([("A",)], names=["col1"]),
+... )
+      col2
+col1      
+A      100
+>>> df2</code></pre>
+                        Then when we write <pre><code class="pre-code language-python">df.merge(df2, left_on=["col1"], right_index=True, how="left")</code></pre>
+                        we would expect a single-row dataframe with column <code>col1</code> as <code>A</code> and column <code>col2</code> as <code>100</code>.
+                        But previously, the column <code>col2</code> would be the missing value <code>NaN</code>, which is undesired.
+                        This is because when there is a single join key, pandas would treat as indices as single index, thus <code>"A"</code> and <code>("A",)</code> were treated as different keys.
+                        I modified this part of logic to treat <code>MultiIndex</code> correctly and simplified the code.
+                    </div>
+                </div>
             </p>
+        </div>
+    </div>
 
-            <h3 id="utils">Utils</h3>
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--               MAINTENANCE CONTRIBUTIONS                -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-maint-contrib" class="outline-2">
+        <h2 id="maint-contrib">Maintenance Contributions</h2>
+        <div class="outline-text-2" id="text-maint-contrib">
             <p>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53218">FIX typo in deprecation message of deprecate_kwarg decorator #53218</a>
@@ -198,10 +234,6 @@ B         0.4  1.6</code></pre>
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53215">BUG Merge not behaving correctly when having MultiIndex with a single level #53215</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53216">DEPR Rename keyword "quantile" to "q" in Rolling.quantile #53216</a>
                     (under review)
                 </div>
@@ -218,10 +250,6 @@ B         0.4  1.6</code></pre>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/28283">Various methods don't call call __finalize__ #28283</a>
                     (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/52331">BUG: Unexpected Behaviour pd.merge using left_on and right_index=True with single level MultiIndex #52331</a>
-                    (PR fix)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/52550">ENH: Differing variable name for quantile vs rolling.quantile #52550</a>
@@ -248,9 +276,14 @@ B         0.4  1.6</code></pre>
 
     <script src="../js/hide.js"></script>
     <script src="../js/last_updated.js"></script>
+    <script src="../js/open_source.js"></script>
     <script>
         HideInstance.init();
         HideInstance.executeHide();
+        insertPandasMergedPRs();
+        insertPandasLinesAddition();
+        insertPandasLinesDeletion();
+        // insertPandasRankContributor();
     </script>
 </body>
 
