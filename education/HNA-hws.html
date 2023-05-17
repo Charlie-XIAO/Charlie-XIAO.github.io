@@ -64,6 +64,7 @@
             \renewcommand{\tr}{\mathrm{tr}}
             \renewcommand{\bkt}[1]{\left(#1\right)}
             \renewcommand{\sqbkt}[1]{\left[#1\right]}
+            \renewcommand{\abs}[1]{\left|#1\right|}
             \renewcommand{\set}[1]{\left\{#1\right\}}
             \renewcommand{\bil}[1]{\left\langle#1\right\rangle}
             \renewcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -111,7 +112,10 @@
                 <li>
                     <a href="#hw3">Homework 3</a>
                     <ul>
-                        
+                        <li><a href="#p3p1">3.1 Inverse Power Method</a></li>
+                        <li><a href="#p3p2">3.2 Companion Matrices</a></li>
+                        <li><a href="#p3p3">3.3 Matrix Functions</a></li>
+                        <li><a href="#p3p4">3.4 Jacobi's Method</a></li>
                     </ul>
                 </li>
             </ul>
@@ -1060,7 +1064,7 @@ ylabel!("Absolute Error")</code></pre>
                         \end{align*}
                         $$
                         Therefore, we can use the following algorithm to compute the entries $l_{ij}$ for $1\leq j\lt i\leq n$ and the entries $u_{kl}$ for $1\leq k\leq l\leq n$.
-                        <div style="padding: 3px 2.5% 3px 2.5%; border-top: 1px solid #000000; border-bottom: 1px solid #000000; margin: 7px 0;">
+                        <div style="padding: 3px 2.5% 3px 2.5%; border: 1px solid #000000; margin: 7px 0;">
                             $L\gets\texttt{eye}(n)$, $U\gets{A}$;<br>
                             <b>for</b> $j=1$ to $n-1$ <b>do</b><br>
                             &nbsp; &nbsp; &nbsp; &nbsp; <b>for</b> $i=j+1$ to $n$ <b>do</b><br>
@@ -1659,6 +1663,374 @@ n=400, Classical-GS error: 392.4678, Modified-GS error: 4.8997</code></pre>
     <div id="outline-container-hw3" class="outline-2">
         <h2 id="hw3">Homework 3</h2>
         <div class="outline-text-2" id="text-hw3">
+
+            <!-- Homework 3 Problem 1 -->
+
+            <h3 id="p3p1">Problem 3.1 - Inverse Power Method</h3>
+            <p>
+                <div class="question">
+                    Let the $3\times3$ matrix $A$ be given as
+                    $$
+                    \begin{align*}
+                        A=
+                        \begin{pmatrix}
+                            1 & 0 & 2\epsilon \\
+                            0 & 3 & \epsilon \\
+                            2\epsilon & \epsilon & 6
+                        \end{pmatrix},
+                    \end{align*}
+                    $$
+                    where $0\leq\epsilon\leq1/2$.
+                </div>
+                <div class="question">
+                    <b>(a)</b> In terms of $\epsilon$, what is the fastest rate at which the basic power method <i>could</i> converge to the top eigenvalue? You do not need to compute the actual eigenvalues.
+                    <div><button class="hide noindent" id="hide-3-1-a"></button></div>
+                    <div class="hidden-content solution" id="3-1-a">
+                        <i>Solution.</i>
+                        The Gerschgorin disks can be computed as
+                        $$
+                        \begin{align*}
+                            D_1={} & \set{z\in\CC;\;|z-1|\leq2\epsilon}, \\
+                            D_2={} & \set{z\in\CC;\;|z-3|\leq\epsilon}, \\
+                            D_3={} & \set{z\in\CC;\;|z-6|\leq3\epsilon}.
+                        \end{align*}
+                        $$
+                        Given that $0\leq\epsilon\leq1/2$, the Gerschgorin disks are mutually disconnected, so that there is exactly one eigenvalue in each disk. We look for the largest and the second largest eigenvalues in absolute value, which should be in $D_3$ and $D_2$, respectively. We denote them by $\lambda_1$ and $\lambda_2$. In order to obtain the fastest rate of convergence, we want $|\lambda_2|/|\lambda_1|$ to be as small as possible. Moreover, since $A$ is real and symmetric, all its eigenvalues must be real, and thus we know that
+                        $$
+                        \begin{align*}
+                            & |\lambda_1-6|\leq3\epsilon\leq\frac{3}{2}\implies\frac{9}{2}\leq\lambda_1\leq\frac{15}{2}, \\
+                            & |\lambda_2-3|\leq\epsilon\leq\frac{1}{2}\implies\frac{5}{2}\leq\lambda_2\leq\frac{7}{2}.
+                        \end{align*}
+                        $$
+                        Therefore, the minimum possible value of $|\lambda_2|/|\lambda_1|$ is $1/3$. Hence, we can conclude that the fastest rate of convergence is geometric convergence with ratio $1/3$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> How could you use the inverse power method with a shift to calculate the middle eigenvalue and eigenvector? What shift should you use, and what would the iteration be?
+                    <div><button class="hide noindent" id="hide-3-1-b"></button></div>
+                    <div class="hidden-content solution" id="3-1-b">
+                        <i>Solution.</i>
+                        To compute the eigenvalue in the middle, <i>i.e.</i>, $\lambda_2$, we can shift to somewhere near it, and $3$ can be a good choice. The idea is to apply the power method to $(A-3I)^{-1}$, which has eigenvalues $(\lambda_1-3)^{-1}$, $(\lambda_2-3)^{-1}$, and $(\lambda_3-3)^{-1}$. Note that 
+                        $$
+                        \begin{align*}
+                            \frac{9}{2}\leq\lambda_1\leq\frac{15}{2}\implies{} & \frac{3}{2}\leq\lambda_1-3\leq\frac{9}{2}\implies\frac{2}{9}\leq\abs{\frac{1}{\lambda_1-3}}\leq\frac{2}{3}, \\
+                            \frac{5}{2}\leq\lambda_2\leq\frac{7}{2}\implies{} & -\frac{1}{2}\leq\lambda_2-3\leq\frac{1}{2}\implies\abs{\frac{1}{\lambda_2-3}}\geq2, \\
+                            |\lambda_3-1|\leq2\epsilon\leq1\implies0\leq\lambda_3\leq2\implies{} & -3\leq\lambda_3-3\leq-1\implies\frac{1}{3}\leq\abs{\frac{1}{\lambda_3-3}}\leq1
+                        \end{align*}
+                        $$
+                        Therefore, we can find $(\lambda_2-3)^{-1}$, and thus $\lambda_2$, as desired. The iteration would be as follows.
+                        <div style="padding: 3px 2.5% 3px 2.5%; border: 1px solid #000000; margin: 7px 0;">
+                            choose $\mathbf{w}_0$ uniformly at random, $k\gets0$;<br>
+                            <b>repeat</b><br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; $k\gets k+1$;<br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; solve $(A-3I)\mathbf{y}_k=\mathbf{w}_{k-1}$, which is equivalent to $\mathbf{y}_k=(A-3I)^{-1}\mathbf{w}_{k-1}$;<br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; $\mathbf{w}_k\gets\mathbf{y}_k/\norm{\mathbf{y}_k}$;<br>
+                            <b>until</b> terminating condition is met;
+                        </div>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Set $\epsilon=0.25$. Write a Julia code to compute the <i>middle</i> eigenvalue and corresponding eigenvector $\mathbf{v}$ to the relative precision of $10^{-12}$ using the inverse power method with shift.
+                    <div><button class="hide noindent" id="hide-3-1-c"></button></div>
+                    <div class="hidden-content solution" id="3-1-c">
+                        <i>Solution.</i>
+                        The inverse power method with shift can be implemented as follows.
+                        <pre><code class="pre-code language-julia">function inverse_power_with_shift(n, A, s)
+    """The inverse power method with shift.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimenstion of the matrix for which some eigenvalue will be computed.
+    A : Matrix{Float64}, etc.
+        The matrix for which some eigenvalue will be computed.
+    s : Float64, etc.
+        The amount of shift. s should be taken near the target eigenvalue.
+
+    Returns
+    -------
+    eigval : Float64, etc.
+        The eigenvalue of A that is closest to the shift s.
+    eigvec : Vector{Float64}, etc.
+        The eigenvector corresponding to the eigenvalue found.
+    """
+    sA, w, y = A - s * I, rand(n), zeros(n)
+    eigval_prev, eigval = 1, 10
+    while abs((eigval - eigval_prev) / eigval_prev) > 1e-12
+        @printf("Absolute error: %.5e\n", abs(eigval - eigval_prev))
+        eigval_prev = eigval
+        y = w / norm(w)
+        w = sA \ y
+        eigval = 1 / dot(y, w) + s
+    end
+    return eigval, w
+end</code></pre>
+                        We then print out the absolute error in each iteration, the results, and validate our implementation.
+                        <pre><code class="pre-code language-julia">A = [1 0 0.5; 0 3 0.25; 0.5 0.25 6]
+n, s = 3, 3
+
+eigval, eigvec = inverse_power_with_shift(n, A, s)
+
+@printf("\n")
+@printf("Results\n")
+@printf("-------\n")
+@printf("Eigenvalue   approx. %.5f\n", eigval)
+@printf("Eigenvector  approx. [")
+map(x -> @printf(" %.5f", x), eigvec)
+@printf(" ]\n\n")
+
+@printf("Validation\n")
+@printf("----------\n")
+@printf("Av = [")
+map(x -> @printf(" %.5f", x), A * eigvec)
+@printf(" ]\n")
+@printf("lv = [")
+map(x -> @printf(" %.5f", x), eigval * eigvec)
+@printf(" ]\n")</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Absolute error: 9.00000e+00
+Absolute error: 7.05502e+00
+Absolute error: 3.51488e-02
+Absolute error: 1.82714e-06
+Absolute error: 1.10647e-10
+
+Results
+-------
+Eigenvalue   approx. 2.98013
+Eigenvector  approx. [ 1.00666 -50.16970 3.98663 ]
+
+Validation
+----------
+Av = [ 2.99997 -149.51246 11.88070 ]
+lv = [ 2.99997 -149.51246 11.88070 ]</code></pre>
+Clearly, from the change of absolute error, we can see that the rate of convergence is approximately $4$, <i>i.e.</i>, the absolute error drops to approximately $10^{-4}$ the previous value in each iteration, or in other words, we obtain approximately $4$ more digits of precision in each iteration.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 3 Problem 2 -->
+
+            <h3 id="p3p2">Problem 3.2 - Companion Matrices</h3>
+            <p>
+                <div class="question">
+                    An efficient way to find individual roots of a polynomial is to use Newton's method. However, as we have seen, Newton's method requires an initialization close to the root one wants to find, and it can be difficult to find <i>all</i> roots of a polynomial. Luckily, one can use the following relationship between eigenvalues and polynomial roots to find all roots of a given polynomial at once: Let us consider a polynomial of degree $n$ with leading coefficient $a_n=1$:
+                    $$
+                    \begin{align*}
+                        p(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}+x^n,\qquad\text{with $a_i\in\RR$}.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Show that $p$ is the characteristic polynomial of the matrix
+                    $$
+                    \begin{align*}
+                        A_p=
+                        \begin{pmatrix}
+                            0 & & & -a_0 \\
+                            1 & \ddots & & -a_1 \\
+                            & \ddots & 0 & \vdots \\
+                            & & 1 & -a_{n-1}
+                        \end{pmatrix}\in\RR^{n\times n},
+                    \end{align*}
+                    $$
+                    which is sometimes called a companion matrix for $p$. Thus, the roots of $p$ can be computed as the eigenvalues of $A_p$ using, for example, the QR algorithm. Julia's <code>eigen</code> function can do this computation.
+                    <div><button class="hide noindent" id="hide-3-2-a"></button></div>
+                    <div class="hidden-content solution" id="3-2-a">
+                        <i>Solution.</i>
+                        By cofactor expansion with respect to the first row, we have that
+                        $$
+                        \begin{align*}
+                            & \det(A_p-xI)=\det
+                            \begin{pmatrix}
+                                -x & & & -a_0 \\
+                                1 & \ddots & & -a_1 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix} \nonumber\\
+                            & \qquad\qquad=-x\cdot\det
+                            \begin{pmatrix}
+                                -x & & & -a_1 \\
+                                1 & \ddots & & -a_2 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix}+(-1)^{n+1}(-a_0)\cdot\det
+                            \underbrace{\begin{pmatrix}
+                                1 & -x & & \\
+                                0 & \ddots & \ddots & \\
+                                & \ddots & \ddots & -x \\
+                                & & 0 & 1
+                            \end{pmatrix}}_{\text{upper triangular}} \nonumber\\
+                            & \qquad\qquad=-x\cdot\det
+                            \begin{pmatrix}
+                                -x & & & -a_1 \\
+                                1 & \ddots & & -a_2 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix}+(-1)^na_0.
+                        \end{align*}
+                        $$
+                        Similarly, we can write that
+                        $$
+                        \begin{align*}
+                            \det
+                            \begin{pmatrix}
+                                -x & & & -a_1 \\
+                                1 & \ddots & & -a_2 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix}=-x\det
+                            \begin{pmatrix}
+                                -x & & & -a_2 \\
+                                1 & \ddots & & -a_3 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix}-(-1)^na_1.
+                        \end{align*}
+                        $$
+                        Plugging this result into the previous expression, we can obtain that
+                        $$
+                        \begin{align*}
+                            \det(A_p-xI)=x^2\det
+                            \begin{pmatrix}
+                                -x & & & -a_2 \\
+                                1 & \ddots & & -a_3 \\
+                                & \ddots & -x & \vdots \\
+                                & & 1 & -a_{n-1}-x
+                            \end{pmatrix}+(-1)^na_1x+(-1)^na_0.
+                        \end{align*}
+                        $$
+                        Iterating this process, we can finally obtain that
+                        $$
+                        \begin{align*}
+                            \det(A_p-xI)={} & (-x)^{n-2}\det
+                            \begin{pmatrix}
+                                -x & -a_{n-2} \\
+                                1 & -a_{n-1}-x
+                            \end{pmatrix}+(-1)^n(a_{n-3}x^{n-3}+\cdots+a_1x+a_0) \nonumber\\
+                            ={} & (-x)^{n-2}(a_{n-1}x+x^2+a_{n-2})+(-1)^n(a_{n-3}x^{n-3}+\cdots+a_1x+a_0) \nonumber\\
+                            ={} & (-1)^n(x^n+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}+a_{n-3}x^{n-3}+\cdots+a_1x+a_0).
+                        \end{align*}
+                        $$
+                        By keeping the leading coefficient as $1$, this is exactly $p(x)$. A more formal proof can be done via mathematical induction, but I think this way of writing it is more intrinsic.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b>  Next, let us consider Wilkinson's polynomial $p_w$ of degree $15$, <i>i.e.</i>, the polynomial with the roots $1,2,\cdots,15$:
+                    $$
+                    \begin{align*}
+                        p_w(x)=(x-1)(x-2)\cdots(x-15).
+                    \end{align*}
+                    $$
+                    Write a Julia function called <code>pwcoefs(n)</code> which returns the coefficients $a_i$ of the Wilkinson's polynomial as an array. Submit these coefficients, clearly labelled, and showing all significant digits.
+                    Then, use these coefficients to populate the associated companion matrix $A_p$. Use $A_p$ to separately compute the roots of $p_w$, and compute their <i>relative</i> error. Can you explain the results?
+                    <div><button class="hide noindent" id="hide-3-2-b"></button></div>
+                    <div class="hidden-content solution" id="3-2-b">
+                        <i>Solution.</i>
+                        We implement the function for generating Wilkinson coefficients as follows.
+                        <pre><code class="pre-code language-julia">function pwcoefs(n)
+    """Returns the coefficients of Wilkinson's polynomial.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The order of the Wilkinson's polynomial, i.e., the polynomial
+        (x - 1)(x - 2)(x - 3) ... (x - n)
+    
+    Returns
+    -------
+    coeffs : Array{Float64}, etc.
+        The array of coefficients, starting from the constant term.
+
+    """
+    coeffs = zeros(n + 1)
+    coeffs[1] = 1
+    for i in 1 : n
+        for j in (i + 1) : -1 : 2
+            coeffs[j] = coeffs[j - 1] - i * coeffs[j]
+        end
+        coeffs[1] = -i * coeffs[1]
+    end
+    return coeffs
+end</code></pre>
+                        We then print out the coefficients, the computed eigenvalues, and their relative errors with the real roots of the Wilkinson polynomial.
+                        <pre><code class="pre-code language-julia">n = 15
+coeffs = pwcoefs(n)
+
+# Printing the polynomial
+@printf("Wilkinson's polynomial of order %d\n", n)
+@printf("----------------------------------\n")
+for (i, coeff) in enumerate(coeffs)
+    if i == 1
+        @printf("%d", coeff)
+    elseif i == 2
+        if coeff < 0
+            if coeff == -1
+                @printf(" - x")
+            else
+                @printf(" - %d x", -coeff)
+            end
+        elseif coeff > 0
+            if coeff == 1
+                @printf(" + x")
+            else
+                @printf(" + %d x", coeff)
+            end
+        end
+    else
+        if coeff < 0
+            if coeff == -1
+                @printf(" - x^%d", i - 1)
+            else
+                @printf(" - %d x^%d", -coeff, i - 1)
+            end
+        elseif coeff > 0
+            if coeff == 1
+                @printf(" + x^%d", i - 1)
+            else
+                @printf(" + %d x^%d", coeff, i - 1)
+            end
+        end
+    end
+end
+@printf("\n\n")
+
+# Finding eigenvalues, i.e., roots
+l, _ = eigen(Ap)
+@printf("The eigenvalues, i.e., computed roots\n")
+@printf("-------------------------------------\n")
+for (i, eigval) in enumerate(l)
+    @printf("Eigenvalue: %.10f \t Relative error = %.5e\n", eigval, abs(eigval - i) / i)
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Wilkinson's polynomial of order 15
+----------------------------------
+-1307674368000 + 4339163001600 x - 6165817614720 x^2 + 5056995703824 x^3
+    - 2706813345600 x^4 + 1009672107080 x^5 - 272803210680 x^6
+    + 54631129553 x^7 - 8207628000 x^8 + 928095740 x^9
+    - 78558480 x^10 + 4899622 x^11 - 218400 x^12
+    + 6580 x^13 - 120 x^14 + x^15
+
+The eigenvalues, i.e., computed roots
+-------------------------------------
+Eigenvalue: 1.0000000000         Relative error = 2.78444e-13
+Eigenvalue: 2.0000000000         Relative error = 1.38967e-11
+Eigenvalue: 2.9999999994         Relative error = 1.97443e-10
+Eigenvalue: 4.0000000057         Relative error = 1.41314e-09
+Eigenvalue: 4.9999999663         Relative error = 6.73660e-09
+Eigenvalue: 6.0000001620         Relative error = 2.69928e-08
+Eigenvalue: 6.9999993188         Relative error = 9.73189e-08
+Eigenvalue: 8.0000022444         Relative error = 2.80553e-07
+Eigenvalue: 8.9999948078         Relative error = 5.76907e-07
+Eigenvalue: 10.0000079743        Relative error = 7.97429e-07
+Eigenvalue: 10.9999922537        Relative error = 7.04207e-07
+Eigenvalue: 12.0000043031        Relative error = 3.58593e-07
+Eigenvalue: 12.9999990613        Relative error = 7.22108e-08
+Eigenvalue: 13.9999997975        Relative error = 1.44646e-08
+Eigenvalue: 15.0000001057        Relative error = 7.04763e-09</code></pre>
+                        The reason for the error is because the coefficients are too large. Therefore, using floating-point arithmetic, precision can get lost, and thus errors occur.
+                    </div>
+                </div>
+            </p>
     
 
             <!--
