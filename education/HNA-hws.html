@@ -118,6 +118,17 @@
                         <li><a href="#p3p4">3.4 Jacobi's Method</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#hw4">Homework 4</a>
+                    <ul>
+                        <li><a href="#p4p1">4.1 Bidiagonal QR</a></li>
+                        <li><a href="#p4p2">4.2 Lagrange Interpolant</a></li>
+                        <li><a href="#p4p3">4.3 More on Lagrange</a></li>
+                        <li><a href="#p4p4">4.4 Chebyshev Polynomials</a></li>
+                        <li><a href="#p4p5">4.5 Change of Basis</a></li>
+                        <li><a href="#p4p6">4.6 Quadratic Approximation and Interpolation</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <a href="#"><i class="fa-solid fa-chevron-up"></i> &nbsp; Back to Top</a>
@@ -2031,37 +2042,1043 @@ Eigenvalue: 15.0000001057        Relative error = 7.04763e-09</code></pre>
                     </div>
                 </div>
             </p>
+
+            <!-- Homework 3 Problem 3 -->
+
+            <h3 id="p3p3">Problem 3.3 - Matrix Functions</h3>
+            <p>
+                <div class="question">
+                    Let $A\in\CC^{n\times n}$ be a \textit{normal} matrix. For $t\in\RR$, the matrix exponential is defined as
+                    $$
+                    \begin{align*}
+                        e^{tA}=I+tA+\frac{(tA)^2}{2!}+\frac{(tA)^3}{3!}+\cdots=\sum_{k=0}^{\infty}\frac{(tA)^k}{k!}.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Can you relate the eigenvalue decomposition of $A$ to that of $e^{tA}$?
+                    <div><button class="hide noindent" id="hide-3-3-a"></button></div>
+                    <div class="hidden-content solution" id="3-3-a">
+                        <i>Solution.</i>
+                        Suppose that $A$ can be decomposed as
+                        $$
+                        \begin{align*}
+                            A=Q\Lambda Q^{-1},
+                        \end{align*}
+                        $$
+                        where $\Lambda$ is a diagonal matrix with diagonal entries the eigenvalues of $A$, and $Q$ is the matrix in which the $i$th column is the eigenvector corresponding to the $i$th eigenvalue in $\Lambda$. Then, we can compute that
+                        $$
+                        \begin{align*}
+                            tA={} & Q\Lambda Q^{-1}, \\
+                            (tA)^2={} & t^2Q\Lambda Q^{-1}Q\Lambda Q^{-1}=t^2Q\Lambda^2Q^{-1}, \\
+                            \vdots \nonumber\\
+                            (tA)^k={} & t^kQ\Lambda^kQ^{-1}.
+                        \end{align*}
+                        $$
+                        Then, by definition of the matrix exponential, we have that
+                        $$
+                        \begin{align*}
+                            e^{tA}=\sum_{k=0}^{\infty}\frac{t^kQ\Lambda^kQ^{-1}}{k!}=Q\bkt{\sum_{k=0}^{\infty}\frac{(t\Lambda)^k}{k!}}Q^{-1}=Qe^{t\Lambda}Q^{-1}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Now further suppose that the matrix $A$ is symmetric positive definite. If $X$ is a matrix such that $X^*X=A$, then $X$ is referred to as <i>the square root of $A$</i>. If you are given the eigendecomposition of $A$, <i>i.e.</i>, $A=UDU^{-1}$, can you find the square root of $A$?
+                    <div><button class="hide noindent" id="hide-3-3-b"></button></div>
+                    <div class="hidden-content solution" id="3-3-b">
+                        <i>Solution.</i>
+                        Denote the diagonal elements, <i>i.e.</i>, the eigenvalues of $A$ as $\lambda_1,\cdots,\lambda_n$. Note that since $A$ is symmetric positive definite, all these eigenvalues are real and positive. Now consider the diagonal matrix $S$ with diagonal elements $\sqrt{\lambda_1},\cdots,\sqrt{\lambda_n}$. Then, taking $X=USU^{-1}$, we can compute that
+                        $$
+                        \begin{align*}
+                            X^*X=\underbrace{(U^{-1})^*}_{=U}S^*\underbrace{U^*U}_{=I}SU^{-1}=US^*SU^{-1}=UDU^{-1}=A,
+                        \end{align*}
+                        $$
+                        since $U$ is unitary due to the symmetry of $A$, and that
+                        $$
+                        \begin{align*}
+                            S^*S=
+                            \begin{pmatrix}
+                                \sqrt{\lambda_1} & & \\
+                                & \ddots & \\
+                                & & \sqrt{\lambda_n}
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                \sqrt{\lambda_1} & & \\
+                                & \ddots & \\
+                                & & \sqrt{\lambda_n}
+                            \end{pmatrix}=
+                            \begin{pmatrix}
+                                \lambda_1 & & \\
+                                & \ddots & \\
+                                & & \lambda_n
+                            \end{pmatrix}=D.
+                        \end{align*}
+                        $$
+                        Therefore, we can conclude that the square root of $A$ is $X=USU^{-1}$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Is the matrix square root unique? If not, provide an alternative square root matrix to the one in the previous part.
+                    <div><button class="hide noindent" id="hide-3-3-c"></button></div>
+                    <div class="hidden-content solution" id="3-3-c">
+                        <i>Solution.</i>
+                        The matrix square root is not unique. Take $Y=SU^{-1}$, then we can check that
+                        $$
+                        \begin{align*}
+                            Y^*Y=\underbrace{(U^{-1})^*}_{=U}S^*SU^{-1}=US^*SU^{-1}=UDU^{-1}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(d)</b> Motivated by the previous questions, can you determine a method for computing general <i>matrix functions</i> of real symmetric matrices? That is, if $f=f(x)$ is a scalar function, how can one define $f(A)$?
+                    <div><button class="hide noindent" id="hide-3-3-d"></button></div>
+                    <div class="hidden-content solution" id="3-3-d">
+                        <i>Solution.</i>
+                        Using the same notations as the question above, we define $f(A)$ such that
+                        $$
+                        \begin{align*}
+                            f(A)=U
+                            \begin{pmatrix}
+                                f(\lambda_1) & & \\
+                                & \ddots & \\
+                                & & f(\lambda_n)
+                            \end{pmatrix}
+                            U^{-1}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(e)</b> In class, we saw how to use Newton's method to find the square root of a number $a$ by finding the root of the function $f(x)=x^2-a$. Can you use a similar Newton iteration to find the square root of a symmetric positive definite matrix $A$ by finding the root of some matrix function $f=f(A)$? Implement your algorithm and use it to find the square root of the $6\times6$ matrix $A$ with entries
+                    $$
+                    \begin{align*}
+                        A_{ij}=5\delta_{ij}+\sqrt{i^2+j^2}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-3-3-e"></button></div>
+                    <div class="hidden-content solution" id="3-3-e">
+                        <i>Solution.</i>
+                        Analogous to Newton's method, we use a similar iteration such that
+                        $$
+                        \begin{align*}
+                            X_{k+1}=X_k-(2X_k)^{-1}(X_k^2-A)=X_k-\frac{X_k-X_k^{-1}A}{2}=\frac{X_k+X_k^{-1}A}{2}.
+                        \end{align*}
+                        $$
+                        We take the initial value $X_0=A$ and terminate when $\norm{X_k-X_{k-1}}\lt 10^{-12}$. The algorithm can thus be implemented as follows.
+                        <pre><code class="pre-code language-julia">function mat_sqrt(A)
+    """Find the square root of a symmetric positive definite matrix.
+
+    Parameters
+    ----------
+    A : Matrix{Float64}, etc.
+        The matrix to find the square root of.
     
+    Returns
+    -------
+    sqA : Matrix{Float64}
+        The square root of the given matrix.
+    """
+    X = copy(A)
+    for _ = 1 : 1000
+        X_new = (inv(X) * A + X) / 2
+        if norm(X_new - X) < 1e-12
+            break
+        end
+        X = X_new
+    end
+    return X
+end</code></pre>
+                        Then, we use the following code to compute and validate the result.
+                        <pre><code class="pre-code language-julia"># Constructing the matrix
+n = 6
+A = Matrix{Float64}(5I, n, n)
+for i = 1 : n
+    for j = 1 : n
+        A[i, j] += sqrt(i ^ 2 + j ^ 2)
+    end
+end
+
+# Eigendecomposition of A
+l, U = eigen(A)
+D = Diagonal(l)
+
+# Find the square root of A
+sqA = mat_sqrt(A)
+@printf("sqrt(A) found via Newton's iteration\n")
+@printf("------------------------------------\n")
+display(sqA)
+@printf("\n")
+
+# Result validation
+@printf("Result validation\n")
+@printf("-----------------\n")
+@printf("| sqrt(A)' * sqrt(A) - A | = %.5e\n", norm(sqA' * sqA - A))</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">sqrt(A) found via Newton's iteration
+------------------------------------
+6*6 Matrix{Float64}:
+ 2.1871    0.12786   0.318478  0.508397  0.695035  0.878351
+ 0.12786   2.47818   0.386222  0.541298  0.699949  0.859427
+ 0.318478  0.386222  2.71939   0.597323  0.720606  0.84905
+ 0.508397  0.541298  0.597323  2.90706   0.756943  0.851258
+ 0.695035  0.699949  0.720606  0.756943  3.04239   0.865851
+ 0.878351  0.859427  0.84905   0.851258  0.865851  3.12729
+
+Result validation
+-----------------
+| sqrt(A)' * sqrt(A) - A | = 9.25156e-15</code></pre>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 3 Problem 4 -->
+
+            <h3 id="p3p4">Problem 3.4 - Jacobi's Method</h3>
+            <p>
+                <div class="question">
+                    Write a code that computes the eigenvalues of a symmetric matrix $A$ using Jacobi's method (as discussed in class). Your algorithm should terminate when the square root of the sum of the squares of the off-diagonal elements of the transformed matrix is less than $10^{-8}$. Apply your code to the $N\times N$ matrix with the $(i,j)$th entries given by
+                    $$
+                    \begin{align*}
+                        A_{ij}=\sqrt{i^2+j^2},
+                    \end{align*}
+                    $$
+                    for $N=10,20,40$. In addition to submitting your code, print out and submit the $5$ largest eigenvalues (in the sense of absolute value) for each value of $N$ above.
+                    <div><button class="hide noindent" id="hide-3-4"></button></div>
+                    <div class="hidden-content solution" id="3-4">
+                        <i>Solution.</i>
+                        We can implement Jacobi's method as follows.
+                        <pre><code class="pre-code language-julia">function _generate_Rpq(n, p, q, phi)
+    """Generate R_pq for the Jacobi method."""
+    R, c, s = Array{Float64}(I, n, n), cos(phi), sin(phi)
+    R[p, p] = c
+    R[q, q] = c
+    R[p, q] = s
+    R[q, p] = -s
+    return R
+end
+
+function jacobi_eigen(n, A)
+    """The Jacobi method for eigenproblem.
+    
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the matrix to be found eigenvalues and eigenvectors of.
+    A : Matrix{Float64}, etc.
+        The matrix to be found eigenvalues of.
+
+    Returns
+    -------
+    eigvals : Array{Float64}
+        The array of eigenvalues of the given matrix.
+    eigvecs : Matrix{Float64}
+        The matrix where each column is an eigenvector of the given matrix.
+
+    Notes
+    -----
+    Note that the eigenvalues and the eigenvectors given in `eigvals` and `eigvecs`
+    respectively are in the same order.
+    """
+    D, eigvecs, p, q, target = copy(A), Matrix{Float64}(I, n, n), 0, 0, -1
+    for i = 1 : n
+        for j = 1 : n
+            if i != j && abs(D[i, j]) > target
+                p, q, target = i, j, abs(D[i, j])
+            end
+        end
+    end
+    for _ = 1 : 1000
+        phi = atan(2 * D[p, q] / (D[q, q] - D[p, p])) / 2
+        R = _generate_Rpq(n, p, q, phi)
+        D = R' * D * R
+        eigvecs *= R
+        target, sum_of_squares = -1, 0
+        for i = 1 : n
+            for j = 1 : n
+                if i != j
+                    sum_of_squares += D[i, j] ^ 2
+                    if abs(D[i, j]) > target
+                        p, q, target = i, j, abs(D[i, j])
+                    end
+                end
+            end
+        end
+        if sqrt(sum_of_squares) <= 1e-8
+            break
+        end
+    end
+    return diag(D), eigvecs
+end</code></pre>
+                        Then, we apply Jacobi's method, validate the result, and print out the $5$ largest eigenvalues for each value of $N$.
+                        <pre><code class="pre-code language-julia">function generate(n)
+    A = Array{Float64}(undef, n, n)
+    for i = 1 : n
+        for j = 1 : n
+            A[i, j] = sqrt(i ^ 2 + j ^ 2)
+        end
+    end
+    return A
+end
+
+for n = [10, 20, 40]
+    # Generate the target matrix
+    @printf("Case n = %d\n", n)
+    @printf("-----------\n")
+    A = generate(n)
+
+    # Run the Jacobi method
+    eigvals, eigvecs = jacobi_eigen(n, A)
+    @printf("Validate: | UDU^-1 - A | = %.5e\n", norm(eigvecs * diagm(eigvals) * inv(eigvecs) - A))
+
+    # Output the 5 largest eigenvalues
+    idx = sortperm(abs.(eigvals))
+    largest = eigvals[idx[end - 4 : end]]
+    @printf("Showing the 5 largest eigenvalues:\n")
+    for i = 1 : 5
+        @printf("  [%d]  %.5f\n", i, largest[6 - i])
+    end
+    @printf("\n")
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Case n = 10
+-----------
+Validate: | UDU^-1 - A | = 6.05089e-09
+Showing the 5 largest eigenvalues:
+  [1]  87.28988
+  [2]  -8.95725
+  [3]  -0.49118
+  [4]  -0.05302
+  [5]  -0.00605
+
+Case n = 20
+-----------
+Validate: | UDU^-1 - A | = 9.64148e-09
+Showing the 5 largest eigenvalues:
+  [1]  336.77585
+  [2]  -37.10268
+  [3]  -2.30460
+  [4]  -0.31706
+  [5]  -0.05487
+
+Case n = 40
+-----------
+Validate: | UDU^-1 - A | = 1.68860e-05
+Showing the 5 largest eigenvalues:
+  [1]  1322.25552
+  [2]  -150.79814
+  [3]  -9.89504
+  [4]  -1.50351
+  [5]  -0.30898</code></pre>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 4                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw4" class="outline-2">
+        <h2 id="hw4">Homework 4</h2>
+        <div class="outline-text-2" id="text-hw4">
+
+            <!-- Homework 4 Problem 1 -->
+
+            <h3 id="p4p1">Problem 4.1 - Bidiagonal QR</h3>
+            <p>
+                <div class="question">
+                    Consider the $n\times n$ bidiagonal matrix $A$ with diagonal entries given by $A_{ii}=\sqrt{i}$, for $i=1,\cdots,n$, and super-diagonal entries given by $A_{i(i+1)}=(1+i)^{0.03}$, for $i=1,\cdots,n-1$.
+                    Implement the QR algorithm for finding the singular values of this matrix. For $n=25$, submit the top ten singular values, accurate to an estimated relative precision of $10^{-6}$. Also, generate a plot showing the time taken for this algorithm to run for $n=10,20,40,80,160,320,640$ (to the same precision).
+                    What is the empirical asymptotic scaling (<i>e.g.</i>, $O(n)$, $O(n^{3/2})$, etc.) of this algorithm?
+                    <div><button class="hide noindent" id="hide-4-1"></button></div>
+                    <div class="hidden-content solution" id="4-1">
+                        <i>Solution.</i>
+                        The QR algorithm for finding singular values can be implemented as follows.
+                        <pre><code class="pre-code language-julia">function qr_svd(n, A)
+    """The QR algorithm.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the matrix to find singular values of.
+    A : Matrix{Float64}, etc.
+        The matrix to find singular values of.
+    
+    Returns
+    -------
+    singvals : Array{Float64}
+        The array of singular values of the given matrix.
+    """
+    B = A' * A
+    prev = 1
+    for _ = 1 : 1000
+        (Q, R) = qr(B)
+        B = R * Q
+        sum_of_squares = 0
+        for i = 2 : n
+            for j = 1 : (i - 1)
+                sum_of_squares += B[i, j] ^ 2
+            end
+        end
+        if abs((sqrt(sum_of_squares) - prev) / prev) <= 1e-6
+            break
+        end
+        prev = sum_of_squares
+    end
+    return sqrt.(diag(B))
+end</code></pre>
+                        Then, we construct the required bidiagonal matrices, compute their singular values, and validate the results.
+                        <pre><code class="pre-code language-julia">function construct_bidiag(n)
+    """Contruct a bidiagonal matrix.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The dimension of the bidiagonal matrix to construct.
+
+    Returns
+    -------
+    A : Matrix{Float64}, etc.
+        The construct bidiagonal matrix of the given dimension.
+        The diagonal entries A_ii are given by sqrt(i), and
+        the super-diagonal entries A_i(i+1) are given by (1+i)^0.03.
+    """
+    A = zeros(n, n)
+    for i = 1 : (n - 1)
+        A[i, i] = sqrt(i)
+        A[i, i + 1] = (1 + i) ^ 0.03
+    end
+    A[n, n] = sqrt(n)
+    return A
+end
+
+# Contruct the bidiagonal matrix A
+n = 25
+A = construct_bidiag(n)
+
+# Perform the QR algorithm and compare with built-in SVD
+singvals = sort(qr_svd(n, A), rev=true)
+ref_singvals = sort(svd(A).S, rev=true)
+@printf("Singular values of A (largest ten)\n")
+@printf("----------------------------------\n")
+@printf("    \t   QR    \tJulia SVD\n")
+@printf("----\t---------\t---------\n")
+for i = 1 : 10
+    @printf("[%d]\t%.7f\t%.7f\n", i, singvals[i], ref_singvals[i])
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Singular values of A (largest ten)
+----------------------------------
+           QR           Julia SVD
+----    ---------       ---------
+[1]     5.8046518       5.8046518
+[2]     5.5090336       5.5090336
+[3]     5.2643190       5.2643190
+[4]     5.0463878       5.0463878
+[5]     4.8462526       4.8462526
+[6]     4.6595135       4.6595135
+[7]     4.4837920       4.4837920
+[8]     4.3178160       4.3178160
+[9]     4.1609606       4.1609606
+[10]    4.0127275       4.0127275</code></pre>
+                        We then plot the runtime with different dimensions $n$ and fit the plot with the nonlinear curve $y=ax^b$.
+                        <pre><code class="pre-code language-julia"># Time on different sizes of A
+runtime, ns = [], [10, 20, 40, 80, 160, 320, 640]
+for n = ns
+    A = construct_bidiag(n)
+    t = @elapsed qr_svd(n, A)
+    push!(runtime, t)
+end
+
+# Draw the plot
+plt = plot(ns / 100, runtime, label="", xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+title!("The runtime versus different dimensions of bidiagonal matrices")
+xlabel!("Dimension (* 100)")
+ylabel!("Runtime")
+
+# Nonlinear fitting
+model(x, params) = (x .^ params[2]) .* params[1]
+params_init = [1.0, 2.0]
+params_fit = curve_fit(model, ns / 100, runtime, params_init).param
+xs = LinRange(ns[1] / 100, ns[end] / 100, 30)
+plot!(xs, model(xs, params_fit), label=@sprintf("%.2f * (x ^ %.2f)", params_fit[1], params_fit[2]), linestyle=:dot)
+savefig(plt, "images/Q1-plot.png")</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/HW4-Q1-plot.png"></div>
+                        From the plot itself as well as the fitted parameters, we can see that the empirical asymptotic scaling of this algorithm is approximately $O(n^2)$.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 4 Problem 2 -->
+
+            <h3 id="p4p2">Problem 4.2 - Lagrange Interpolant</h3>
+            <p>
+                <div class="question">
+                    <b>(a)</b> Show <i>explicitly</i> that for any $n\geq0$, and \textit{any} choice of nodes $x_0,x_1,\cdots,x_n$, the Lagrange interpolant $p_n$ of the function $f(x)=1$ is exactly, mathematically $p_n(x)=1$.
+                    <div><button class="hide noindent" id="hide-4-2-a"></button></div>
+                    <div class="hidden-content solution" id="4-2-a">
+                        <i>Proof.</i>
+                        The Lagrange interpolant $p_n$ of the function $f(x)=1$ is given by
+                        $$
+                        \begin{align*}
+                            p_n(x)=\sum_{k=0}^nL_k(x)y_k=\sum_{k=0}^nL_k(x).
+                        \end{align*}
+                        $$
+                        Note that the $0$th order polynomial $p_n(x)=1$ passes through any choice of nodes, thus perfectly interpolating $f$. By the uniqueness of the Lagrange interpolation, we can thus conclude that no matter what nodes we choose, the Lagrange interpolant of $f(x)=1$ is always constant $1$, and the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Next, consider the polynomial
+                    $$
+                    \begin{align*}
+                        f(x)=x^9-5x^4+3x-1
+                    \end{align*}
+                    $$
+                    on the interval $[-1,1]$ and the $2n+1$ equispaced interpolation nodes
+                    $$
+                    \begin{align*}
+                        x_i=-1+\frac{i}{n},\qquad i=0,1,\cdots,2n.
+                    \end{align*}
+                    $$
+                    For $n=4$, write a code that numerically evaluates the three forms of the $8$th-degree Lagrange polynomial $p_8$ that interpolates the function $f$ at the above nodes: (1) the standard Lagrange form, (2) the first Barycentric form, and (3) the second Barycentric form.
+                    On the same axes, plot $f$ and each of these three interpolating polynomials at $1000$ equispaced points on $[-1,1]$. On a separate plot, plot the function $\texttt{err}(x)=\log_{10}|f(x)-p_8(x)|$ for each form of the interpolant. Make sure that your axes are scaled reasonably.
+                    <div><button class="hide noindent" id="hide-4-2-b"></button></div>
+                    <div class="hidden-content solution" id="4-2-b">
+                        <i>Solution.</i>
+                        The standard Lagrange form can be implemented as follows.
+                        <pre><code class="pre-code language-julia">function lagrange(f, n, x)
+    """The standard Lagrange form of polynomial interpolant.
+
+    Parameters
+    ----------
+    f : Function of the form lambda x: f(x)
+        The function to interpolate.
+    n : Int64, etc.
+        The degree of the polynomial interpolant.
+    x : Float64, etc.
+        The point to evaluate the polynomial interpolant at.
+    
+    Returns
+    -------
+    p : Float64
+        The value of the polynomial interpolant at the given point.
+    """
+    p, xs = 0, [i / n - 1 for i in 0 : (2 * n)]
+    for k = 0 : (2 * n)
+        Lk = 1
+        for i = 0 : (2 * n)
+            if i == k
+                continue
+            else
+                Lk *= (x - xs[i + 1]) / (xs[k + 1] - xs[i + 1])
+            end
+        end
+        p += Lk * f(xs[k + 1])
+    end
+    return p
+end</code></pre>
+                        The first Barycentric form can be implemented as follows.
+                        <pre><code class="pre-code language-julia">function barycentric1(f, n, x)
+    """The first Barycentric form of polynomial interpolant.
+
+    Parameters
+    ----------
+    f : Function of the form lambda x: f(x)
+        The function to interpolate.
+    n : Int64, etc.
+        The degree of the polynomial interpolant.
+    x : Float64, etc.
+        The point to evaluate the polynomial interpolant at.
+    
+    Returns
+    -------
+    p : Float64
+        The value of the polynomial interpolant at the given point.
+    """
+    xs = [i / n - 1 for i in 0 : (2 * n)]
+    phi = prod([x - xs[j + 1] for j = 0 : (2 * n)])
+    p = 0
+    for k = 0 : (2 * n)
+        wk = 1
+        for i = 0 : (2 * n)
+            if i == k
+                continue
+            else
+                wk /= (xs[k + 1] - xs[i + 1])
+            end
+        end
+        p += phi * f(xs[k + 1]) / (x - xs[k + 1]) * wk
+    end
+    return p
+end</code></pre>
+                        Finally, the second Barycentric form can be implemented as follows.
+                        <pre><code class="pre-code language-julia">function barycentric2(f, n, x)
+    """The second Barycentric form of polynomial interpolant.
+
+    Parameters
+    ----------
+    f : Function of the form lambda x: f(x)
+        The function to interpolate.
+    n : Int64, etc.
+        The degree of the polynomial interpolant.
+    x : Float64, etc.
+        The point to evaluate the polynomial interpolant at.
+    
+    Returns
+    -------
+    p : Float64
+        The value of the polynomial interpolant at the given point.
+    """
+    xs = [i / n - 1 for i in 0 : (2 * n)]
+    numerator, denominator = 0, 0
+    for k = 0 : (2 * n)
+        wk = 1
+        for i = 0 : (2 * n)
+            if i == k
+                continue
+            else
+                wk /= (xs[k + 1] - xs[i + 1])
+            end
+        end
+        numerator += f(xs[k + 1]) * wk / (x - xs[k + 1])
+        denominator += wk / (x - xs[k + 1])
+    end
+    return numerator / denominator
+end</code></pre>
+                        Now we take $n=4$ and make the plots.
+                        <pre><code class="pre-code language-julia"># Construct the function and compute the interpolants
+n = 4
+f(x) = x ^ 9 - 5 * x ^ 4 + 3 * x - 1
+lagrange_(x) = lagrange(f, n, x)
+barycentric1_(x) = barycentric1(f, n, x)
+barycentric2_(x) = barycentric2(f, n, x)
+
+# Compute the values of the original function and three interpolants
+xs = LinRange(-1, 1, 1000)
+fs, ls, b1s, b2s = f.(xs), lagrange_.(xs), barycentric1_.(xs), barycentric2_.(xs)
+
+# Draw the plot of the original function and three interpolants
+pfuncs = plot(xs, fs, label="Original function", linewidth=4, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+plot!(xs, ls, label="Standard Lagrange", linewidth=3)
+plot!(xs, b1s, label="First Barycentric", linewidth=2)
+plot!(xs, b2s, label="Second Barycentric", linewidth=1)
+title!("The functions")
+xlabel!("x")
+ylabel!("y")
+
+# Draw the plot of errors of the three interpolants
+perrs = plot(xs, log10.(abs.(fs - ls)), label="Standard Lagrange", linewidth=3, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+plot!(xs, log10.(abs.(fs - b1s)), label="First Barycentric", linewidth=2, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+plot!(xs, log10.(abs.(fs - b2s)), label="Second Barycentric", linewidth=1, xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+title!("The errors")
+xlabel!("x")
+ylabel!("Error (base 10 log scale)")
+plt = plot(pfuncs, perrs)</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/HW4-Q2-b-plot.png"></div>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Lastly, consider the $10$th degree interpolating polynomial $p_{10}$. This interpolating polynomial is exactly mathematically equivalent to the original function $f$. Generate the same error plots as above for this interpolating polynomial.
+                    <div><button class="hide noindent" id="hide-4-2-c"></button></div>
+                    <div class="hidden-content solution" id="4-2-c">
+                        <i>Solution.</i>
+                        We simply run the same code as above for $n=5$. This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/HW4-Q2-c-plot.png"></div>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 4 Problem 3 -->
+
+            <h3 id="p4p3">Problem 4.3 - More on Lagrange</h3>
+            <p>
+                <div class="question">
+                    <b>(a)</b> Write down the interpolating polynomial in Lagrange form of degree $1$ for the function $f(x)=x^3$ using the points $x_0=0$ and $x_1=a$.
+                    <div><button class="hide noindent" id="hide-4-3-a"></button></div>
+                    <div class="hidden-content solution" id="4-3-a">
+                        <i>Solution.</i>
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            L_0(x)=\frac{x-x_1}{x_0-x_1}=-\frac{x-a}{a},\qquad L_1(x)=\frac{x-x_0}{x_1-x_0}=\frac{x}{a}.
+                        \end{align*}
+                        $$
+                        Therefore, the interpolating polynomial of degree $1$ can be written as
+                        $$
+                        \begin{align*}
+                            p_1(x)=L_0(x)f(x_0)+L_1(x)f(x_1)=-\frac{x-a}{a}\cdot0+\frac{x}{a}\cdot a^3=a^2x.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Theorem 6.2 in <i>Suli & Mayers</i> states that for $x\in[0,a]$, there exists $\xi=\xi(x)\in(0,a)$, such that
+                    $$
+                    \begin{align*}
+                        f(x)-p_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{j=0}^n(x-x_j).
+                    \end{align*}
+                    $$
+                    Here, $n$ is the degree of the interpolating polynomial $p_n$. Verify the above formula, by direct calculation, for the function and interpolating polynomial from (a). Show that in this case, $\xi$ is unique and has the value $\xi=\frac{1}{3}(x+a)$.
+                    <div><button class="hide noindent" id="hide-4-3-b"></button></div>
+                    <div class="hidden-content solution" id="4-3-b">
+                        <i>Proof.</i>
+                        Here we have $n=1$. The second derivative of $f$ is thus $f^{(2)}(x)=6x$. Therefore, by taking $\xi=\frac{1}{3}(x+a)$, we have that
+                        $$
+                        \begin{align*}
+                            \frac{f^{(2)}(\xi)}{2!}\prod_{j=0}^1(x-x_j)=\frac{2(x+a)}{2}\cdot x\cdot(x-a)=x(x+a)(x-a)=x^3-a^2x=f(x)-p_1(x),
+                        \end{align*}
+                        $$
+                        as desired. Moreover, indeed $\xi=\frac{1}{3}(x+a)\in\sqbkt{\frac{a}{3},\frac{2a}{3}}\subseteq(0,a)$ given $x\in[0,a]$, so the existence is done. Now assume that there exists $\xi'\in(0,a)$ that satisfies the same equation and such that $\xi'\neq\xi$. This means that
+                        $$
+                        \begin{align*}
+                            \frac{6\xi'}{2}\cdot x\cdot(x-a)=f(x)-p_1(x)=\frac{6\xi}{2}\cdot x\cdot(x-a)\implies(\xi'-\xi)x(x-a)=0.
+                        \end{align*}
+                        $$
+                        By arbitrariness of $x$, we must have $\xi'=\xi$, leading to a contradiction. Therefore, the uniqueness of $\xi$ is also done, and the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Repeat (a) and (b) for the function $f(x)=(2x-a)^4$. This time, show that there are two possible values for $\xi$, and give their values.
+                    <div><button class="hide noindent" id="hide-4-3-c"></button></div>
+                    <div class="hidden-content solution" id="4-3-c">
+                        <i>Solution.</i>
+                        We have the same $L_0$ and $L_1$ as in (a). Therefore, the interpolating polynomial of degree $1$ can be written as
+                        $$
+                        \begin{align*}
+                            p_1(x)=L_0(x)f(x_0)+L_1(x)f(x_1)=-\frac{x-a}{a}\cdot a^4+\frac{x}{a}\cdot a^4=a^4.
+                        \end{align*}
+                        $$
+                        Here we have $n=1$. The first derivative of $f$ is $f^{(1)}(x)=8(2x-a)^3$, and thus the second derivative of $f$ is $f^{(2)}(x)=48(2x-a)^2$. Now, we want to find
+                        $$
+                        \begin{align*}
+                            & (2x-a)^4-a^4=f(x)-p_n(x)=\frac{f^{(2)}(\xi)}{2!}\prod_{j=0}^1(x-x_j)=24(2\xi-a)^2x(x-a) \nonumber\\
+                            \implies{} & (2\xi-a)^2=\frac{(2x-2a)(2x-a+a)((2x-a)^2+a^2)}{24x(x-a)}=\frac{2x(2x-2a)(4x^2-4ax+2a^2)}{24x(x-a)}=\frac{2x^2-2ax+a^2}{3} \nonumber\\
+                            \implies{} & 2\xi-a=\pm\sqrt{\frac{2x^2-2ax+a^2}{3}}\implies\xi_{1,2}=\frac{1}{2}\bkt{a\pm\sqrt{\frac{2x^2-2ax+a^2}{3}}}.
+                        \end{align*}
+                        $$
+                        Given $x\in[0,a]$, we have that
+                        $$
+                        \begin{align*}
+                            2x^2-2ax+a^2=2\bkt{x-\frac{a}{2}}^2+\frac{a^2}{2}\in\sqbkt{\frac{a^2}{2},a^2}\implies\sqrt{\frac{2x^2-2ax+a^2}{3}}\in\sqbkt{\frac{a}{\sqrt{6}},\frac{a}{\sqrt{3}}}.
+                        \end{align*}
+                        $$
+                        Therefore, we can see that
+                        $$
+                        \begin{align*}
+                            \xi_1\in\sqbkt{\bkt{1+\frac{1}{\sqrt{6}}}\frac{a}{2},\bkt{1+\frac{1}{\sqrt{3}}}\frac{a}{2}}\subseteq(0,a),\qquad\xi_2\in\sqbkt{\bkt{1-\frac{1}{\sqrt{3}}}\frac{a}{2},\bkt{1-\frac{1}{\sqrt{6}}}\frac{a}{2}}\subseteq(0,a).
+                        \end{align*}
+                        $$
+                        Therefore, we can see that there are two possible values of $\xi$, that is,
+                        $$
+                        \begin{align*}
+                            \xi_{1,2}=\frac{1}{2}\bkt{a\pm\sqrt{\frac{2x^2-2ax+a^2}{3}}}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 4 Problem 4 -->
+
+            <h3 id="p4p4">Problem 4.4 - Chebyshev Polynomials</h3>
+            <p>
+                <div class="question">
+                    There are two commonly used equivalent formulas defining Chebyshev polynomials, which are
+                    $$
+                    \begin{align*}
+                        T_n(x)=\cos(n\arccos x)
+                    \end{align*}
+                    $$
+                    and
+                    $$
+                    \begin{align*}
+                        T_0(x)={} & 1, \\
+                        T_1(x)={} & x, \\
+                        T_{n+1}(x)={} & 2xT_n(x)-T_{n-1}(x).
+                    \end{align*}
+                    $$
+                    Show that these formulas are equivalent.
+                    <div><button class="hide noindent" id="hide-4-4"></button></div>
+                    <div class="hidden-content solution" id="4-4">
+                        <i>Proof.</i>
+                        First we prove that the trigonometric form satisfies the recurrence relation. Clearly, we have that
+                        $$
+                        \begin{align*}
+                            T_0(x)=\cos0=1,\qquad T_1(x)=\cos(\arccos x)=x.
+                        \end{align*}
+                        $$
+                        Moreover, we can compute that
+                        $$
+                        \begin{align*}
+                            T_{n+1}(x)={} & \cos((n+1)\arccos x)=\cos(\arccos x+n\arccos x) \nonumber\\
+                            ={} & \cos(\arccos x)\cos(n\arccos x)-\sin(\arccos x)\sin(n\arccos x) \nonumber\\
+                            ={} & 2\cos(\arccos x)\cos(n\arccos x)-(\sin(\arccos x)\sin(n\arccos x)+\cos(\arccos x)\cos(n\arccos x)) \nonumber\\
+                            ={} & 2\cos(\arccos x)\cos(n\arccos x)-\cos(n\arccos x-\arccos x) \nonumber\\
+                            ={} & 2\cos(\arccos x)\cos(n\arccos x)-\cos((n-1)\arccos x)=2xT_n(x)-T_{n-1}(x).
+                        \end{align*}
+                        $$
+                        Now we prove the the recurrence relation yields the trigonometric form by strong induction. The base cases $n=0$ and $n=1$ clearly hold. Now we assume that $T_k(x)=\cos(k\arccos x)$ for all $k\leq n$. Then for $k=n+1$, we can use the inductive hypothesis and compute that
+                        $$
+                        \begin{align*}
+                            T_{n+1}(x)={} & 2xT_n(x)-T_{n-1}(x)=2x\cos(n\arccos x)-\cos((n-1)\arccos x) \nonumber\\
+                            ={} & 2x\cos(n\arccos x)-\cos(n\arccos x-\arccos x) \nonumber\\
+                            ={} & 2x\cos(n\arccos x)-(\cos(n\arccos x)\cos(\arccos x)+\sin(n\arccos x)\sin(\arccos x)) \nonumber\\
+                            ={} & 2x\cos(n\arccos x)-x\cos(n\arccos x)-\sin(n\arccos x)\sin(\arccos x) \nonumber\\
+                            ={} & x\cos(n\arccos x)-\sin(n\arccos x)\sin(\arccos x) \nonumber\\
+                            ={} & \cos(\arccos x)\cos(n\arccos x)-\sin(n\arccos x)\sin(\arccos x) \nonumber\\
+                            ={} & \cos(\arccos x+n\arccos x)=\cos((n+1)\arccos x),
+                        \end{align*}
+                        $$
+                        so our inductive assumption also holds for $k=n+1$. Therefore, we can conclude that the recurrence relation yields the trigonometric form. We have shown the equivalence between the two forms, so the proof is complete.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 4 Problem 5 -->
+
+            <h3 id="p4p5">Problem 4.5 - Change of Basis</h3>
+            <p>
+                <div class="question">
+                    Let $\mathcal{P}_n$ be the space of functions defined on $[-1,1]$ that can be described by polynomials of degree less than or equal to $n$ with coefficients in $\RR$. The space $\mathcal{P}_n$ is a linear space in the sense of abstract linear algebra. The $n+1$ monomials $\set{1,x,x^2,\cdots,x^n}$ are a basis for $\mathcal{P}_n$.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Show that for pairwise distinct points $x_0,x_1,\cdots,x_n\in[-1,1]$, the Lagrange polynomials $L_k(x)$ are in $\mathcal{P}_n$, and that they are linearly independent. Note that this implies that the $n+1$ Lagrange polynomials also form a basis of $\mathcal{P}_n$.
+                    <div><button class="hide noindent" id="hide-4-5-a"></button></div>
+                    <div class="hidden-content solution" id="4-5-a">
+                        <i>Proof.</i>
+                        Note that each Lagrange polynomial can be written as
+                        $$
+                        \begin{align*}
+                            L_k(x)=\prod_{i=0,i\neq k}^n\frac{x-x_i}{x_k-x_i}.
+                        \end{align*}
+                        $$
+                        Clearly, each $L_k$ is of order at $n$ since $x_i$ are pairwise distinct, so that $L_k\in\mathcal{P}_n$. Moreover, if for some constants $c_0,\cdots,c_n$, we have that
+                        $$
+                        \begin{align*}
+                            \sum_{k=0}^nc_kL_k(x)=0,\qquad\forall x\in[-1,1].
+                        \end{align*}
+                        $$
+                        Specifically, if we evaluate as each $x=x_i$, we have that
+                        $$
+                        \begin{align*}
+                            \sum_{k=0}^nc_kL_k(x_i)=\sum_{k=0}^nc_k\delta_{ik}=c_i=0.
+                        \end{align*}
+                        $$
+                        Therefore, all the constants $c_0,\cdots,c_n$ must be zero, implying that the Lagrange polynomials $L_0,\cdots,L_n$ are linearly independent. Moreover, there are $n+1$ of them, which is equal to the dimension of $\mathcal{P}_n$, so that the Lagrange polynomials form a basis of $\mathcal{P}_n$, and the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Since both the monomials and the Lagrange polynomials are a basis of $\mathcal{P}_n$, each $p\in\mathcal{P}_n$ can be written as linear combination of monomials as well as Lagrange polynomials, <i>i.e.</i>,
+                    $$
+                    \begin{align*}
+                        p(x)=\sum_{k=0}^nb_kL_k(x)=\sum_{k=0}^na_kx^k,
+                    \end{align*}
+                    $$
+                    with appropriate coefficients $a_k,b_k\in\RR$. As you know from linear algebra, there exists a basis transformation matrix $V$ that converts the coefficients $\mathbf{a}=\begin{pmatrix} a_0 & \cdots & a_n \end{pmatrix}^\top$ to the coefficients $\mathbf{b}=\begin{pmatrix} b_0 & \cdots & b_n \end{pmatrix}^\top$, and vice versa. Write down the matrix $V$ or $V^{-1}$, either for the transformation $\mathbf{b}=V\mathbf{a}$ or $\mathbf{a}=V^{-1}\mathbf{b}$, whichever is easier for you.
+                    <div><button class="hide noindent" id="hide-4-5-b"></button></div>
+                    <div class="hidden-content solution" id="4-5-b">
+                        <i>Solution.</i>
+                        Suppose that the original function is $f$ and we interpolate on nodes $x_0,\cdots,x_n$. Then, we would require $p(x_i)=f(x_i)$ for each $i=0,\cdots,n$. Note that
+                        $$
+                        \begin{align*}
+                            f(x_i)=p(x_i)=\sum_{k=0}^na_kx_i^k=
+                            \begin{pmatrix}
+                                1 & x_i & \cdots & x_i^n
+                            \end{pmatrix}
+                            \begin{pmatrix}
+                                a_0 \\
+                                a_1 \\
+                                \vdots \\
+                                a_n
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Expanding the matrix expression, we can write that
+                        $$
+                        \begin{align*}
+                            \underbrace{\begin{pmatrix}
+                                1 & x_0 & \cdots & x_0^n \\
+                                1 & x_1 & \cdots & x_1^n \\
+                                \vdots & \vdots & \ddots & \vdots \\
+                                1 & x_n & \cdots & x_n^n
+                            \end{pmatrix}}_{V}
+                            \underbrace{\begin{pmatrix}
+                                a_0 \\
+                                a_1 \\
+                                \vdots \\
+                                a_n
+                            \end{pmatrix}}_{\mathbf{a}}=
+                            \begin{pmatrix}
+                                f(x_0) \\
+                                f(x_1) \\
+                                \vdots \\
+                                f(x_n)
+                            \end{pmatrix}.
+                        \end{align*}
+                        $$
+                        Furthermore, note that the interpolation polynomial can be written in the standard Lagrange form as
+                        $$
+                        \begin{align*}
+                            p(x)=\sum_{k=0}^nL_k(x)f(x_k)=
+                            \begin{pmatrix}
+                                L_0(x) & L_1(x) & \cdots & L_n(x)
+                            \end{pmatrix}
+                            \underbrace{\begin{pmatrix}
+                                f(x_0) \\
+                                f(x_1) \\
+                                \vdots \\
+                                f(x_n)
+                            \end{pmatrix}}_{\mathbf{b}},
+                        \end{align*}
+                        $$
+                        with the Lagrange polynomials $L_k(x)$ as its basis. Therefore, we can conclude that $V\mathbf{a}=\mathbf{b}$ with $V$ defined as above, <i>i.e.</i>, the Vandermonde matrix.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Note that since $V$ transforms one basis into another basis, it must be an invertible matrix. Write a computer code to compute the $2$-norm condition number $\kappa_2(V)$ for $n=5,15,25$ with uniformly spaced nodes $x_i=-1+(2i)/n$, $i=0,\cdots,n$. Based on the condition numbers, can this basis transformation be accurately computed numerically in double-precision floating-point arithmetic?
+                    <div><button class="hide noindent" id="hide-4-5-c"></button></div>
+                    <div class="hidden-content solution" id="4-5-c">
+                        <i>Solution.</i>
+                        We construct the Vandermonde matrices and use Julia built-in functions to find out their condition numbers.
+                        <pre><code class="pre-code language-julia">@printf("Condition number of transform of basis\n")
+@printf("--------------------------------------\n")
+for n = [5, 15, 25]
+    # Contruct the Vandermonde matrix
+    V = Matrix{Float64}(undef, n + 1, n + 1)
+    for i = 1 : (n + 1)
+        xi = 2 * (i - 1) / n - 1
+        for j = 1 : (n + 1)
+            V[i, j] = xi ^ (j - 1)
+        end
+    end
+    # Compute and print the condition number
+    @printf("n = %d \t Condition number = %.5e\n", n, cond(V))
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Condition number of transform of basis
+--------------------------------------
+n = 5    Condition number = 6.38273e+01
+n = 15   Condition number = 3.28003e+06
+n = 25   Condition number = 2.13144e+11</code></pre>
+                        As we can see, the condition numbers are large, especially in the cases that $n$ is large. Therefore, this basis transformation cannot be accurately computed numerically in double-precision floating-point arithmetic.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 4 Problem 6 -->
+
+            <h3 id="p4p6">Problem 4.6 - Quadratic Approximation and Interpolation</h3>
+            <p>
+                <div class="question">
+                    Compute explicitly the optimal $L_2$ quadratic approximation of $\sin(x)$ on $[0,\pi]$ under the standard $L_2$ inner product. Compare it on the same plot as the exact sine function, as well as the quadratic interpolant of $\sin(x)$ with nodes $x_0=0$, $x_1=\pi/2$, $x_2=\pi$.
+                    <div><button class="hide noindent" id="hide-4-6"></button></div>
+                    <div class="hidden-content solution" id="4-6">
+                        <i>Solution.</i>
+                        We first use the Gram-Schmidt process to find a system of orthogonal polynomials $\phi_0,\phi_1,\phi_2$ for $[0,\pi]$ and weight $w(x)\equiv1$. We start with $\phi_0(x)=1$, then we set
+                        $$
+                        \begin{align*}
+                            \phi_1(x)={} & m_1(x)-\frac{\bil{m_1,\phi_0}}{\bil{\phi_0,\phi_0}}\phi_0(x)=x-\frac{\int_0^{\pi}xdx}{\int_0^{\pi}dx}=x-\frac{\frac{\pi^2}{2}}{\pi}=x-\frac{\pi}{2}, \\
+                            \phi_2(x)={} & m_2(x)-\frac{\bil{m_2,\phi_0}}{\bil{\phi_0,\phi_0}}\phi_0(x)-\frac{\bil{m_2,\phi_1}}{\bil{\phi_1,\phi_1}}\phi_1(x)=x^2-\frac{\int_0^{\pi}x^2dx}{\int_0^{\pi}dx}-\frac{\int_0^{\pi}\bkt{x^3-\frac{\pi x^2}{2}}dx}{\int_0^{\pi}\bkt{x^2-\pi x+\frac{\pi^2}{4}}dx}\bkt{x-\frac{\pi}{2}} \nonumber\\
+                            ={} & x^2-\frac{\frac{\pi^3}{3}}{\pi}-\frac{\frac{\pi^4}{4}-\frac{\pi}{2}\frac{\pi^3}{3}}{\frac{\pi^3}{3}-\pi\frac{\pi^2}{2}+\frac{\pi^2}{4}\pi}\bkt{x-\frac{\pi}{2}}=x^2-\frac{\pi^2}{3}-\pi\bkt{x-\frac{\pi}{2}}=x^2-\pi x+\frac{\pi^2}{6}.
+                        \end{align*}
+                        $$
+                        Then, the optimal $L_2$ quadratic approximation of $f(x)=\sin x$ would be given by
+                        $$
+                        \begin{align*}
+                            p_2(x)={} & \frac{\bil{f,\phi_0}}{\bil{\phi_0,\phi_0}}\phi_0(x)+\frac{\bil{f,\phi_1}}{\bil{\phi_1,\phi_1}}\phi_1(x)+\frac{\bil{f,\phi_2}}{\bil{\phi_2,\phi_2}}\phi_2(x) \nonumber\\
+                            ={} & \frac{\int_0^{\pi}\sin xdx}{\int_0^{\pi}dx}+\frac{\int_0^{\pi}\bkt{x-\frac{\pi}{2}}\sin xdx}{\int_0^{\pi}\bkt{x^2-\pi x+\frac{\pi^2}{4}}dx}\bkt{x-\frac{\pi}{2}}+\frac{\int_0^{\pi}\bkt{x^2-\pi x+\frac{\pi^2}{6}}\sin xdx}{\int_0^{\pi}\bkt{x^4-2\pi x^3+\frac{4\pi^2x^2}{3}-\frac{\pi^3x}{3}+\frac{\pi^4}{36}}dx}\bkt{x^2-\pi x+\frac{\pi^2}{6}} \nonumber\\
+                            ={} & \frac{2}{\pi}+\frac{\pi-\frac{\pi}{2}\cdot2}{\texttt{something}}\bkt{x-\frac{\pi}{2}}+\frac{(\pi^2-4)-\pi\cdot\pi+\frac{\pi^2}{6}\cdot2}{\frac{\pi^5}{5}-2\pi\frac{\pi^4}{4}+\frac{4\pi^2}{3}\frac{\pi^3}{3}-\frac{\pi^3}{3}\frac{\pi^2}{2}+\frac{\pi^4}{36}\pi}\bkt{x^2-\pi x+\frac{\pi^2}{6}} \nonumber\\
+                            ={} & \frac{2}{\pi}+\frac{\frac{\pi^2}{3}-4}{\frac{\pi^5}{180}}\bkt{x^2-\pi x+\frac{\pi^2}{6}}=\frac{12\pi^2-120}{\pi^3}-\frac{60\pi^2-720}{\pi^4}x+\frac{60\pi^2-720}{\pi^5}x^2.
+                        \end{align*}
+                        $$
+                        Moreover, the quadratic interpolant of $f(x)=\sin x$ with nodes $x_0=0,x_1=\pi/2,x_2=\pi$ can be computed as
+                        $$
+                        \begin{align*}
+                            \tilde{p}_2(x)=L_0(x)f(x_0)+L_1(x)f(x_1)+L_2(x)f(x_2)=L_1(x)=\frac{x-x_0}{x_1-x_0}\cdot\frac{x-x_2}{x_1-x_2}=-\frac{x(x-\pi)}{\pi^2/4}=\frac{4}{\pi}x-\frac{4}{\pi^2}x^2.
+                        \end{align*}
+                        $$
+                        Now, we implement these results and make the plot.
+                        <pre><code class="pre-code language-julia"># The originl function
+f(x) = sin(x)
+
+# The best quadratic approximation
+approx(x) =
+    (12 * π ^ 2 - 120) / (π ^ 3) -
+    (60 * π ^ 2 - 720) / (π ^ 4) * x +
+    (60 * π ^ 2 - 720) / (π ^ 5) * x ^ 2
+
+# The quadratic interpolant with x0=0, x1=π/2, x2=π
+interp(x) =
+    4 / π * x -
+    4 / (π ^ 2) * x ^ 2
+
+# Compute the values of the original function, the approximation, and the interpolant
+xs = LinRange(0, π, 1000)
+fs, approxs, interps = f.(xs), approx.(xs), interp.(xs)
+
+# Draw the plot of the original function, the approximation, and the interpolant
+plt = plot(xs, fs, label="Original function", xguidefontsize=10, yguidefontsize=10, titlefontsize=12)
+plot!(xs, approxs, label="Quadratic approximation")
+plot!(xs, interps, label="Quadratic interpolant")
+title!("The quadratic approximation and interpolant")
+xlims!((0, π))
+ylims!((0, 1))
+xlabel!("x")
+ylabel!("y")</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/HW4-Q6-plot.png"></div>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+    
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 5                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw5" class="outline-2">
+        <h2 id="hw5">Homework 5</h2>
+        <div class="outline-text-2" id="text-hw5">
 
             <!--
 
-            Homework 3 Problem x
+            Homework 5 Problem x
 
-            <h3 id="p3px">Problem 3.x - Title</h3>
+            <h3 id="p5px">Problem 5.x - Title</h3>
             <p>
                 <div class="question">
                     xxx
                 </div>
                 <div class="question">
                     <b>(a)</b> xxx
-                    <div><button class="hide noindent" id="hide-3-x-a"></button></div>
-                    <div class="hidden-content solution" id="3-x-a">
+                    <div><button class="hide noindent" id="hide-5-x-a"></button></div>
+                    <div class="hidden-content solution" id="5-x-a">
                         <i>Solution.</i>
                         xxx
                     </div>
                 </div>
                 <div class="question">
                     <b>(b)</b> xxx
-                    <div><button class="hide noindent" id="hide-3-x-b"></button></div>
-                    <div class="hidden-content solution" id="3-x-b">
+                    <div><button class="hide noindent" id="hide-5-x-b"></button></div>
+                    <div class="hidden-content solution" id="5-x-b">
                         <i>Solution.</i>
                         xxx
                     </div>
                 </div>
                 <div class="question">
                     <b>(c)</b> xxx
-                    <div><button class="hide noindent" id="hide-3-x-c"></button></div>
-                    <div class="hidden-content solution" id="3-x-c">
+                    <div><button class="hide noindent" id="hide-5-x-c"></button></div>
+                    <div class="hidden-content solution" id="5-x-c">
                         <i>Solution.</i>
                         xxx
                     </div>
@@ -2072,6 +3089,8 @@ Eigenvalue: 15.0000001057        Relative error = 7.04763e-09</code></pre>
 
         </div>
     </div>
+
+    <!-- <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/1-4-b-plot.png"></div> -->
 
     <div style="margin-top: 60px; color: grey;">
         This document was last updated on <span class="get-last-updated"></span>.
