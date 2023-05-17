@@ -162,16 +162,6 @@ B         0.4  1.6</code></pre>
             <h3 id="reshaping">Reshaping</h3>
             <p>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH include the first incompatible key in error message when merging #51947</a>
-                    <button class="hide" id="hide-51947"></button>
-                    <div class="hidden-content contrib-descrp" id="51947">
-                        <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
-                        but there was no information provided in the error message that indicate which keys are incompatible.
-                        I improved the error message by displaying the first imcompatible key. For instance,
-                        <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
-                    </div>
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53215">BUG Merge not behaving correctly when having MultiIndex with a single level #53215</a>
                     <button class="hide" id="hide-53215"></button>
                     <div class="hidden-content contrib-descrp" id="53215">
@@ -195,6 +185,16 @@ A      100
                         I modified this part of logic to treat <code>MultiIndex</code> correctly and simplified the code.
                     </div>
                 </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/51947">ENH include the first incompatible key in error message when merging #51947</a>
+                    <button class="hide" id="hide-51947"></button>
+                    <div class="hidden-content contrib-descrp" id="51947">
+                        <code>DataFrame.merge</code> raises an error when there are imcompatible keys,
+                        but there was no information provided in the error message that indicate which keys are incompatible.
+                        I improved the error message by displaying the first imcompatible key. For instance,
+                        <pre><code class="pre-code language-plaintext">ValueError: You are trying to merge on int64 and object columns for key 'd'. If you wish to proceed you should use pd.concat</code></pre>
+                    </div>
+                </div>
             </p>
         </div>
     </div>
@@ -209,9 +209,8 @@ A      100
         <h2 id="maint-contrib">Maintenance Contributions</h2>
         <div class="outline-text-2" id="text-maint-contrib">
             <p>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53218">FIX typo in deprecation message of deprecate_kwarg decorator #53218</a>
-                </div>
+                <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53216">DEPR Rename keyword "quantile" to "q" in Rolling.quantile #53216</a></div>
+                <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53218">FIX typo in deprecation message of deprecate_kwarg decorator #53218</a></div>
             </p>
         </div>
     </div>
@@ -234,10 +233,6 @@ A      100
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53216">DEPR Rename keyword "quantile" to "q" in Rolling.quantile #53216</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53237">BUG DataFrameGroupBy.agg with list not respecting as_index=False #53237</a>
                     (pending)
                 </div>
@@ -254,10 +249,6 @@ A      100
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/28283">Various methods don't call call __finalize__ #28283</a>
                     (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/52550">ENH: Differing variable name for quantile vs rolling.quantile #52550</a>
-                    (PR fix)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/52849">BUG: DataFrameGroupBy.agg with lists doesn't respect as_index=False #52849</a>

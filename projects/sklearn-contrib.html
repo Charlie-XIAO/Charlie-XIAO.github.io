@@ -60,6 +60,7 @@
                 <li>
                     <a href="#code-contrib">Code Contributions</a>
                     <ul>
+                        <li><a href="#decomposition"><code>sklearn.decomposition</code></a></li>
                         <li><a href="#ensemble"><code>sklearn.ensemble</code></a></li>
                         <li><a href="#feature_selection"><code>sklearn.feature_selection</code></a></li>
                         <li><a href="#metrics"><code>sklearn.metrics</code></a></li>
@@ -116,6 +117,21 @@
         <h2 id="code-contrib">Code Contributions</h2>
         <div class="outline-text-2" id="text-code-contrib">
             <p>Items in each section are sorted in reverse chronological order by the time of merge.</p>
+
+            <h3 id="decomposition"><code>sklearn.decomposition</code></h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26337">FIX KernelPCA inverse transform when gamma is not given #26337</a>
+                    <button class="hide" id="hide-26337"></button>
+                    <div class="hidden-content contrib-descrp" id="26337">
+                        Originally, <code>KernelPCA</code> may produce incorrect results through <code>inverse_transform</code> if <code>gamma=None</code>.
+                        This was because <code>gamma</code> would be automatically set to <code>1 / n_features</code> when the kernel is called.
+                        However, when using <code>inverse_transform</code>, <code>n_features</code> is not that of the data that the model is fitted on.
+                        I modified the logic so that now <code>gamma</code> will be chosen correctly in the very beginning of the fitting process.
+                        I also provided a new attribute <code>gamma_</code> is provided for revealing the actual value of <code>gamma</code> used each time the kernel is called.
+                    </div>
+                </div>
+            </p>
 
             <h3 id="ensemble"><code>sklearn.ensemble</code></h3>
             <p>
@@ -271,10 +287,6 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26337">FIX KernelPCA inverse transform when gamma is not given #26337</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26367">ENH despine keyword for ROC and PR curves #26367</a>
                     (under review)
                 </div>
@@ -307,10 +319,6 @@
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26170">RFC BayesSearchCV in scikit-learn #26170</a>
                     (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26280">KernelPCA inverse transform behaves unexpectly. #26280</a>
-                    (PR fix)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26303">PowerTransformer fails with unhelpful stack trace with all-nan feature and method='box-cox' #26303</a>

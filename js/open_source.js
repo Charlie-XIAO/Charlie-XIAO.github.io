@@ -6,16 +6,16 @@
 
 /* Statistics for scikit-learn */
 
-const SKLEARN_MERGED_PRS = 25;
-const SKLEARN_LINES_ADDITION = 598;
-const SKLEARN_LINES_DELETION = 180;
+const SKLEARN_MERGED_PRS = 26;
+const SKLEARN_LINES_ADDITION = 644;
+const SKLEARN_LINES_DELETION = 182;
 const SKLEARN_RANK_CONTRIBUTOR = 88;
 
 /* Statistics for pandas */
 
-const PANDAS_MERGED_PRS = 5;
-const PANDAS_LINES_ADDITION = 119;
-const PANDAS_LINES_DELETION = 34;
+const PANDAS_MERGED_PRS = 6;
+const PANDAS_LINES_ADDITION = 159;
+const PANDAS_LINES_DELETION = 45;
 const PANDAS_RANK_CONTRIBUTOR = null;
 
 /* Definining insertion functions */
