@@ -129,6 +129,27 @@
                         <li><a href="#p4p6">4.6 Quadratic Approximation and Interpolation</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#hw5">Homework 5</a>
+                    <ul>
+                        <li><a href="#p5p1">5.1 Legendre Recurrence</a></li>
+                        <li><a href="#p5p2">5.2 Bessel Function Evaluation</a></li>
+                        <li><a href="#p5p3">5.3 Gauss-Legendre Quadrature</a></li>
+                        <li><a href="#p5p4">5.4 Custom Quadrature</a></li>
+                        <li><a href="#p5p5">5.5 Trapezoidal and Simpson Rules</a></li>
+                        <li><a href="#p5p6">5.6 Singular Integration</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#hw6">Homework 6</a>
+                    <ul>
+                        <li><a href="#p6p1">6.1 Richardson Extrapolation</a></li>
+                        <li><a href="#p6p2">6.2 Discrete Orthogonality</a></li>
+                        <li><a href="#p6p3">6.3 Spectral Legendre Differentiation</a></li>
+                        <li><a href="#p6p4">6.4 Acyclic Convolution</a></li>
+                        <li><a href="#p6p5">6.5 Fourier Transform</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <a href="#"><i class="fa-solid fa-chevron-up"></i> &nbsp; Back to Top</a>
@@ -146,9 +167,10 @@
                 This is the collection of the homework assignments of Honors Numerical Analysis and my solutions.
                 <i>Disclaimer: Note that the solutions are not guaranteed to be correct.</i>
             </p>
-            <div class="note">
-                This document is being updated!
-            </div>
+            <p>
+                <a href="https://julialang.org/">Julia</a> is the programming language used in the coding part.
+                The packages that have been used include <a href="https://docs.julialang.org/en/v1/stdlib/Printf/">Printf</a>, <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/">LinearAlgebra</a>, <a href="https://docs.juliaplots.org/stable/">Plots</a>, <a href="https://julianlsolvers.github.io/LsqFit.jl/latest/">LsqFit</a>, <a href="https://juliamath.github.io/FFTW.jl/stable/">FFTW</a>, <a href="https://juliamath.github.io/QuadGK.jl/stable/">QuadGK</a>, and <a href="https://docs.juliahub.com/LaTeXStrings/H4HGh/1.2.0/autodocs/">LaTeXStrings</a>.
+            </p>
         </div>
     </div>
 
@@ -3050,47 +3072,1200 @@ ylabel!("y")</code></pre>
         <h2 id="hw5">Homework 5</h2>
         <div class="outline-text-2" id="text-hw5">
 
-            <!--
+            <!-- Homework 5 Problem 1 -->
 
-            Homework 5 Problem x
-
-            <h3 id="p5px">Problem 5.x - Title</h3>
+            <h3 id="p5p1">Problem 5.1 - Legendre Recurrence</h3>
             <p>
                 <div class="question">
-                    xxx
-                </div>
-                <div class="question">
-                    <b>(a)</b> xxx
-                    <div><button class="hide noindent" id="hide-5-x-a"></button></div>
-                    <div class="hidden-content solution" id="5-x-a">
+                    We saw in class that an alternative form of the three-term recurrence relation for the Legendre polynomials is
+                    $$
+                    \begin{align*}
+                        P_0(x)={} & 1, \\
+                        P_1(x)={} & x, \\
+                        P_{n+1}(x)={} & (x-\delta_{n+1})P_n(x)-\gamma_{n+1}P_{n-1}(x).
+                    \end{align*}
+                    $$
+                    Show that the coefficients $\delta_{n+1}$ and $\gamma_{n+1}$ can be obtained by applying Gram-Schmidt orthogonalization to the sequence of polynomials $1,x,x^2,\cdots$. What are these coefficients? (They will depend on inner products of Legendre polynomials.)
+                    <div><button class="hide noindent" id="hide-5-1"></button></div>
+                    <div class="hidden-content solution" id="5-1">
                         <i>Solution.</i>
-                        xxx
-                    </div>
-                </div>
-                <div class="question">
-                    <b>(b)</b> xxx
-                    <div><button class="hide noindent" id="hide-5-x-b"></button></div>
-                    <div class="hidden-content solution" id="5-x-b">
-                        <i>Solution.</i>
-                        xxx
-                    </div>
-                </div>
-                <div class="question">
-                    <b>(c)</b> xxx
-                    <div><button class="hide noindent" id="hide-5-x-c"></button></div>
-                    <div class="hidden-content solution" id="5-x-c">
-                        <i>Solution.</i>
-                        xxx
+                        Note that $\bil{P_n,P_m}=0$ for all $m\leq n-1$ and that $\bil{P_{n-1},P_m}=0$ for all $m\leq n-2$ by definition of the Legendre polynomials. Moreover, $\bil{xP_n,P_m}=\bil{P_n,xP_m}=0$ for all $m\leq n-2$, since $xP_m$ is of degree $m+1$. Therefore, suppose that we want to form
+                        $$
+                        \begin{align*}
+                            P_{n+1}(x)={} & (x-\delta_{n+1})P_n(x)-\gamma_{n+1}P_{n-1}(x),
+                        \end{align*}
+                        $$
+                        then we have that
+                        $$
+                        \begin{align*}
+                            \bil{P_{n+1},P_m}={} & \bil{xP_n,P_m}-\delta_{n+1}\bil{P_n,P_m}-\gamma_{n+1}\bil{P_{n-1},P_m}=0,\qquad\forall m\leq n-2, \\
+                            \bil{P_{n+1},P_{n-1}}={} & \bil{xP_n,P_{n-1}}-\delta_{n+1}\bil{P_n,P_{n-1}}-\gamma_{n+1}\bil{P_{n-1},P_{n-1}}=\bil{xP_n,P_{n-1}}-\gamma_{n+1}\bil{P_{n-1},P_{n-1}}, \\
+                            \bil{P_{n+1},P_n}={} & \bil{xP_n,P_n}-\delta_{n+1}\bil{P_n,P_n}-\gamma_{n+1}\bil{P_{n-1},P_n}=\bil{xP_n,P_n}-\delta_{n+1}\bil{P_n,P_n}.
+                        \end{align*}
+                        $$
+                        Since we require $\bil{P_{n+1},P_m}=0$ for all $m\geq n$, it suffices to make the second and the third equations above to vanish. Therefore, we can express the coefficients (depending on inner products of the Legendre polynomials) as
+                        $$
+                        \begin{align*}
+                            \gamma_{n+1}=\frac{\bil{xP_n,P_{n-1}}}{\bil{P_{n-1},P_{n-1}}},\qquad\delta_{n+1}=\frac{\bil{xP_n,P_n}}{\bil{P_n,P_n}}.
+                        \end{align*}
+                        $$
                     </div>
                 </div>
             </p>
 
-            -->
+            <!-- Homework 5 Problem 2 -->
 
+            <h3 id="p5p2">Problem 5.2 - Bessel Function Evaluation</h3>
+            <p>
+                <div class="question">
+                    The $0$th-order Bessel function of the first kind, $J_0$, can be written using the integral representation as
+                    $$
+                    \begin{align*}
+                        J_0(x)=\frac{1}{\pi}\int_0^{\pi}\cos(x\cos\theta)d\theta.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Prove that the integrand in this expression is a smooth periodic function on $[0,\pi]$.
+                    <div><button class="hide noindent" id="hide-5-2-a"></button></div>
+                    <div class="hidden-content solution" id="5-2-a">
+                        <i>Proof.</i>
+                        Note that the cosine function is a smooth function. Therefore, the integrand is the composite of two smooth functions, thus smooth as well. (Any order of derivative can be computed via chain rule.) As for the periodicity, we can easily see that
+                        $$
+                        \begin{align*}
+                            \cos(x\cos(\theta+2\pi))=\cos(x\cos\theta),
+                        \end{align*}
+                        $$
+                        so the integrand is also periodic with period $T=2\pi$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Use this integral representation to evaluate $J_0(x)$, taking advantage of the superalgebraic convergence of the composite trapezoidal rule applied to periodic functions. Be sure that your integrals are accurate to an absolute accuracy of $10^{-14}$ at each of the following values of $x$: $x=1,2,4,8,\cdots,256$. For each value $x$ determine the smallest $n$ that can be used in the trapezoidal to provide the requested accuracy.
+                    <div><button class="hide noindent" id="hide-5-2-b"></button></div>
+                    <div class="hidden-content solution" id="5-2-b">
+                        <i>Solution.</i>
+                        We first implement the composite Trapezoidal rule as follows.
+                        <pre><code class="pre-code language-julia">function trapezium(f, a, b, n=1)
+    """The (composite) Trapezium rule for numerical integration.
+
+    Parameters
+    ----------
+    f : function
+        The integrand, which should be single-variate.
+    a : Float64, etc.
+        The lower bound of the interval of integration.
+    b : Float64, etc.
+        The upper bound of the interval of integration.
+    n : Int64, etc., default=1
+        The number of subintervals used for composite Trapezium rule.
+        This is by default 1, which is the normal Trapezium rule.
+    
+    Returns
+    -------
+    integral : Float64
+        The numerical approximation of int_a^b f(x) dx.
+    """
+    h, x0 = (b - a) / n, a
+    fs = zeros(Float64, n + 1)
+    for i = 1 : (n + 1)
+        fs[i] = f(x0)
+        x0 += h
+    end
+    return h * (sum(fs) - f(a) / 2 - f(b) / 2)
+end</code></pre>
+                        Then we iterate values of $n$ to find out the smallest $n$ required to reach the desired accuracy.
+                        <pre><code class="pre-code language-julia">for x = [1, 2, 4, 8, 16, 32, 64, 128, 256]
+    f(θ) = cos(x * cos(θ)) / π
+    true_approx = trapezium(f, 0, π, 1000)
+    n, integral = 1, 0
+    while true
+        integral = trapezium(f, 0, π, n)
+        if abs(integral - true_approx) < 1e-14
+            break
+        end
+        n += 1
+    end
+    @printf("x = %d\t   n = %d\t   integral = %.15f\n", x, n, integral)
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">x = 1      n = 7           integral = 0.765197686557965
+x = 2      n = 9           integral = 0.223890779141235
+x = 4      n = 11          integral = -0.397149809863854
+x = 8      n = 16          integral = 0.171650807137554
+x = 16     n = 85          integral = -0.174899073983628
+x = 32     n = 33          integral = 0.138079009746554
+x = 64     n = 53          integral = 0.092590012216046
+x = 128    n = 162         integral = 0.001472222328188
+x = 256    n = 160         integral = -0.036653498061707</code></pre>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 5 Problem 3 -->
+
+            <h3 id="p5p3">Problem 5.3 - Gauss-Legendre Quadrature</h3>
+            <p>
+                <div class="question">
+                    Construct an $n$-point Gauss-Legendre quadrature rule on the interval $[-1,1]$ in the following steps.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Write a code to find the zeros of $P_n$, the Legendre polynomial of degree $n$. You must write your own code for evaluating Legendre polynomials.
+                    <div style="font-style: italic;">
+                        Hint: Use the three-term recursion formula to evaluate $P_n$ and $P_n'$, then use Newton's method to find all the roots of $P_n$. You can use as initial starting guesses for the $n$ roots of the Chebyshev polynomial $T_n$, i.e., the roots of $T_n$ and $P_n$ are quite close.
+                    </div>
+                    <div><button class="hide noindent" id="hide-5-3-a"></button></div>
+                    <div class="hidden-content solution" id="5-3-a">
+                        <i>Solution.</i>
+                        We first implement the functions for evaluating $P_n$ and $P_n'$ via the three-term recursion formula. We use dynamic programming for lower computational complexity. One good thing is that you can easily obtain the Legendre polynomials of degrees at most $n$, but we only need that of degree exactly $n$ here.
+                        <pre><code class="pre-code language-julia">function legendre(n, x)
+    """Evaluate the Legendre polynomial of degree n at x.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The degree of the Legendre polynomial to evalute.
+    x : Float64, etc.
+        The point to evaluate the Legendre polynomial at.
+
+    Returns
+    -------
+    val : Float64, etc.
+        The Legendre polynomial of degree n at x.
+    """
+    DP = zeros(Float64, n + 1)
+    DP[1] = 1.0
+    DP[2] = x
+    for i = 2 : n
+        DP[i + 1] = ((2 * i - 1) * x * DP[i] - (i - 1) * DP[i - 1]) / i
+    end
+    return DP[n + 1]
+end
+
+function dlegendre(n, x)
+    """Evaluate the derivative of the Legendre polynomial of degree n at x.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The degree of the Legendre polynomial to evalute.
+    x : Float64, etc.
+        The point to evaluate the derivative at.
+
+    Returns
+    -------
+    val : Float64, etc.
+        The derivative of the Legendre polynomial of degree n at x.
+    """
+    DP = zeros(Float64, n + 1)
+    DP[1] = 0
+    DP[2] = 1
+    for i = 2 : n
+        DP[i + 1] = ((2 * i - 1) * (legendre(i - 1, x) + x * DP[i]) - (i - 1) * DP[i - 1]) / i
+    end
+    return DP[n + 1]
+end</code></pre>
+                        We then use the Newton's method to find the zeros of the Legendre polynomials.
+                        <pre><code class="pre-code language-julia">function legendre_zeros(n)
+    """Find the zeros of the Legendre polynomial of order n.
+
+    The initial guesses would be the Chebyshev nodes, i.e., the zeros
+    of the Chebyshev polynomial of the first kind of degree n. They
+    are given by
+    
+        :math:` x_k = cos ( (2k - 1)π / (2n) ), k = 1, ..., n`
+    
+    The roots of the Chebyshev polynomial of degree n are quite close
+    to the roots of the Legendre polynomial of degree n.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The order of the Legendre polynomial to find zeros of.
+    
+    Returns
+    -------
+    zs : Array{Float64}
+        The zeros of the Legendre polynomial of order n. This would be
+        an array of length n.
+    """
+    zs = zeros(Float64, n)
+    for i = 1 : n
+        root = cos((2 * i - 1) * π / (2 * n))
+        while true
+            dr = legendre(n, root) / dlegendre(n, root)
+            if abs(dr) < 1e-14
+                break
+            end
+            root -= dr
+        end
+        zs[i] = root
+    end
+    return zs
+end</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Write a code which computes the Gauss-Legendre weights $w_1,\cdots,w_n$ by enforcing that the following integrals are exactly computed by the quadrature rule, such that
+                    $$
+                    \begin{align*}
+                        I_m=\int_{-1}^1T_m(x)dx=\sum_{i=1}^nw_iT_m(x_i),\qquad m=0,\cdots,n-1.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-5-3-b"></button></div>
+                    <div class="hidden-content solution" id="5-3-b">
+                        <i>Solution.</i>
+                        We directly use the formula for Gauss-Legendre weights and implement it as follows.
+                        <pre><code class="pre-code language-julia">function gauss_legendre_weights(n)
+    """The Gauss-Legendre weights for the quadrature rule with n points.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The number of points used for the quadrature rule.
+        
+    Returns
+    -------
+    ws : Array{Float64}
+        The Gauss-Legendre weights for the quadrature rule with n points.
+        This would an an array of length n.
+    """
+    xs = legendre_zeros(n)
+    ws = zeros(Float64, n)
+    for i = 1 : n
+        ws[i] = 2 / (1 - xs[i] ^ 2) / (dlegendre(n, xs[i]) ^ 2)
+    end
+    return ws
+end</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> For $n=10$, show that the quadrature rule constructed gives the exact (numerically, up to machine precision) answer for the integrals
+                    $$
+                    \begin{align*}
+                        I_m=\int_{-1}^1T_m(x)dx,\qquad m=0,\cdots,2n-1.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-5-3-c"></button></div>
+                    <div class="hidden-content solution" id="5-3-c">
+                        <i>Proof.</i>
+                        We check as follows.
+                        <pre><code class="pre-code language-julia"># Hard coded roots and corresponding fraction displays
+real_strs = ["  2", "  0", "-2/3", "  0", "-2/15", "  0", "-2/35", "  0", "-2/63", "  0", "-2/99", "  0", "-2/143", "  0", "-2/195", "  0", "-2/255", "  0", "-2/323", "  0"]
+real_flts = [2, 0, - 2 / 3, 0, - 2 / 15, 0, - 2 / 35, 0, - 2 / 63, 0, - 2 / 99, 0, - 2 / 143, 0, - 2 / 195, 0, - 2 / 255, 0, - 2 / 323, 0]
+
+# Setting up
+n = 10
+ws = gauss_legendre_weights(n)
+zs = legendre_zeros(n)
+
+# Compute the roots and errors
+@printf(" m \t True \t\t   Error   \n")
+@printf("---\t------\t\t-----------\n")
+for m = 0 : (2 * n - 1)
+    integral = 0
+    for i = 1 : n
+        integral += ws[i] * cos(m * acos(zs[i]))
+    end
+    @printf("%d\t%s\t\t%.5e\n", m, real_strs[m + 1], abs(real_flts[m + 1] - integral))
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext"> m       True              Error   
+---     ------          -----------
+0         2             4.44089e-16
+1         0             1.38778e-17
+2       -2/3            1.11022e-16
+3         0             1.31839e-16
+4       -2/15           1.94289e-16
+5         0             3.46945e-18
+6       -2/35           7.84095e-16
+7         0             6.77843e-16
+8       -2/63           1.15880e-15
+9         0             4.02456e-16
+10      -2/99           8.84709e-16
+11        0             3.60822e-16
+12      -2/143          3.90313e-16
+13        0             1.66533e-16
+14      -2/195          8.41341e-16
+15        0             5.41234e-16
+16      -2/255          1.99840e-15
+17        0             3.26128e-16
+18      -2/323          1.59421e-15
+19        0             1.18655e-15</code></pre>
+                        As we can see, the errors are below machine precision, which means that the results are numerically exact, so the proof is complete.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(d)</b> Use your quadrature rule to evaluate the integrals
+                    $$
+                    \begin{align*}
+                        \phi_1={} & \int_0^1\frac{4}{1+256(x-0.375)^2}dx=\frac{1}{4}(\arctan10+\arctan6), \\
+                        \phi_2={} & \int_0^{2\pi}e^{-x}\sin(10x)dx=\frac{10}{101}(1-e^{-2\pi}).
+                    \end{align*}
+                    $$
+                    Determine the number of nodes required to evaluate each of the integrals with absolute error tolerances $10^{-2}$, $10^{-4}$, and $10^{-8}$.
+                    <div><button class="hide noindent" id="hide-5-3-d"></button></div>
+                    <div class="hidden-content solution" id="5-3-d">
+                        <i>Solution.</i>
+                        We first rescale the integrals to $[-1,1]$ via change of variables, such that
+                        $$
+                        \begin{align*}
+                            \phi_1={} & \int_{-1}^1\frac{4}{1+256\bkt{\frac{y+1}{2}-0.375}^2}\frac{dy}{2}=\int_{-1}^1\frac{2}{1+256(0.5y+0.125)^2}dy, \\
+                            \phi_2={} & \int_{-1}^1e^{-\pi(y+1)}\sin(10\pi(y+1))\pi dy=\int_{-1}^1\pi e^{-\pi(y+1)}\sin(10\pi(y+1))dy.
+                        \end{align*}
+                        $$
+                        Then we implement numerical integration via Gauss-Legendre quadrature as follows.
+                        <pre><code class="pre-code language-julia">function gauss_legendre_integrate(f, n)
+    """The Gauss-Legendre quadrature for numerical integration on [-1, 1].
+
+    Parameters
+    ----------
+    f : function
+        The integrand, which should be single-variate.
+    n : Int64, etc.
+        The order of the Legendre polynomial used for integration.
+    
+    Returns
+    -------
+    integral : Float64
+        The numerical approximation of int_a^b f(x) dx.
+    """
+    ws = gauss_legendre_weights(n)
+    zs = legendre_zeros(n)
+    integral = 0
+    for i = 1 : n
+        integral += ws[i] * f(zs[i])
+    end
+    return integral
+end</code></pre>
+                        Now we iteratively find out the numbers of nodes required to evaluate the integrals with absolute error tolerances $10^{-2}$, $10^{-4}$, and $10^{-8}$.
+                        <pre><code class="pre-code language-julia"># Helper
+function helper(tolerance, f, expected)
+    n, integral = 1, 0
+    while true
+        integral = gauss_legendre_integrate(f, n)
+        if abs(integral - expected) < tolerance
+            break
+        end
+        n += 1
+    end
+    @printf("tolerance = %.0e, n = %d, error = %.5e\n", tolerance, n, abs(integral - expected))
+end
+
+# The first integral ∫ [0, 1] 4 / (1 + 256 (x - 0.375) ^ 2) dx
+# After rescaling, it is ∫ [-1, 1] 2 / (1 + 256 (0.5x + 0.125) ^ 2) dx
+# The expected result is (1 / 4) * (arctan(10) + arctan(6))
+@printf("\nThe first integral\n")
+@printf("------------------\n")
+f(x) = 2 / (1 + 256 * (0.5 * x + 0.125) ^ 2)
+expected_f = (atan(10) + atan(6)) / 4
+
+# Find least n to reach desired tolerance level
+helper(1e-2, f, expected_f)
+helper(1e-4, f, expected_f)
+helper(1e-8, f, expected_f)
+
+
+# The first integral ∫ [0, 2π] e ^ (-x) sin( 10x ) dx
+# After rescaling, it is ∫ [-1, 1] π e ^ ( -π (x + 1) ) sin( 10π (x + 1) ) dx
+# The expected result is (10 / 101) * (1 - e ^ (-2π))
+@printf("\nThe second integral\n")
+@printf("-------------------\n")
+g(x) = π * exp(-π * (x + 1)) * sin(10 * π * (x + 1))
+expected_g = (10 / 101) * (1 - exp(-2π))
+
+# Find least n to reach desired tolerance level
+helper(1e-2, g, expected_g)
+helper(1e-4, g, expected_g)
+helper(1e-8, g, expected_g)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">The first integral
+------------------
+tolerance = 1e-02, n = 9, error = 4.30887e-03
+tolerance = 1e-04, n = 34, error = 2.55911e-06
+tolerance = 1e-08, n = 59, error = 9.72474e-09
+
+The second integral
+-------------------
+tolerance = 1e-02, n = 19, error = 2.71670e-03
+tolerance = 1e-04, n = 21, error = 4.35686e-05
+tolerance = 1e-08, n = 26, error = 8.21879e-09</code></pre>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 5 Problem 4 -->
+
+            <h3 id="p5p4">Problem 5.4 - Custom Quadrature</h3>
+            <p>
+                <div class="question">
+                    Consider a quadrature formula on the interval $[-1,1]$ that uses the quadrature roots $x_1=-\alpha$ and $x_2=\alpha$, where $\alpha\in(0,1]$, such that
+                    $$
+                    \begin{align*}
+                        \int_{-1}^1f(x)dx\approx w_1f(-\alpha)+w_2f(\alpha).
+                    \end{align*}
+                    $$
+                    Now assume that the formula is required to be exact whenever $f$ is a polynomial of degree $1$. Show that $w_1=w_2=1$, independent of the value of $\alpha$. Show also that there is one particular value of $\alpha$ for which the formula is exact also for all polynomials of degree $2$. Find this $\alpha$, and show that for this value, the formula is also exact for all polynomials of degree $3$.
+                    <div><button class="hide noindent" id="hide-5-4"></button></div>
+                    <div class="hidden-content solution" id="5-4">
+                        <i>Proof.</i>
+                        Let $f(x)=ax+b$, so that we require
+                        $$
+                        \begin{align*}
+                            2b=\int_{-1}^1(ax+b)dx=w_1(-a\alpha+b)+w_2(a\alpha+b)=(w_2-w_1)\alpha a+(w_1+w_2)b,\qquad\forall a,b.
+                        \end{align*}
+                        $$
+                        Therefore, we have that
+                        $$
+                        \begin{align*}
+                            \left\{\begin{array}{l}
+                                (w_2-w_1)\alpha=0, \\
+                                w_1+w_2=2,
+                            \end{array}\right.\implies\left\{\begin{array}{l}
+                                w_1=1, \\
+                                w_2=1.
+                            \end{array}\right.
+                        \end{align*}
+                        $$
+                        Now let $f(x)=ax^2+bx+c$, so that we further require
+                        $$
+                        \begin{align*}
+                            \frac{2a}{3}+2c=\int_{-1}^1(ax^2+bx+c)dx={} & w_1(a\alpha^2-b\alpha+c)+w_2(a\alpha^2+b\alpha+c) \nonumber\\
+                            ={} & (w_1+w_2)\alpha^2a+(w_2-w_1)\alpha b+(w_1+w_2)c,\qquad\forall a,b,c.
+                        \end{align*}
+                        $$
+                        Therefore, we have that
+                        $$
+                        \begin{align*}
+                            \left\{\begin{array}{l}
+                                (w_1+w_2)\alpha^2=2/3, \\
+                                (w_2-w_1)\alpha=0, \\
+                                w_1+w_2=2,
+                            \end{array}\right.\implies\left\{\begin{array}{l}
+                                w_1=1, \\
+                                w_2=1, \\
+                                \alpha=1/\sqrt{3}.
+                            \end{array}\right.
+                        \end{align*}
+                        $$
+                        In this case, let $f(x)=ax^3+bx^2+cx+d$, so we have that
+                        $$
+                        \begin{align*}
+                            & \int_{-1}^1f(x)dx=\int_{-1}^1(ax^3+bx^2+cx+d)dx=\frac{2b}{3}+2d, \\
+                            & w_1f(-\alpha)+w_2f(\alpha)=f(-1/\sqrt{3})+f(1/\sqrt{3})=2b\bkt{\frac{1}{\sqrt{3}}}^2+2d=\frac{2b}{3}+2d,
+                        \end{align*}
+                        $$
+                        implying that the formula is exact. Therefore, the proof is complete.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 5 Problem 5 -->
+
+            <h3 id="p5p5">Problem 5.5 - Trapezoidal and Simpson Rules</h3>
+            <p>
+                <div class="question">
+                    Denote by $T_nf$ the composite Trapezoidal rule applied to $f$ on the interval $[a,b]$, such that
+                    $$
+                    \begin{align*}
+                        T_nf=h\bkt{\frac{1}{2}f(a)+f(x_1)+f(x_2)+\cdots+f(x_{n-1})+\frac{1}{2}f(x_n)},
+                    \end{align*}
+                    $$
+                    with $h=x_j-x_{j-1}$, and by $S_{2n}f$ the composite Simpsons rule applied to $f$ on the same interval, such that
+                    $$
+                    \begin{align*}
+                        S_{2n}f=\frac{h}{3}\bkt{f(a)+4f(x_1)+2f(x_2)+4f(x_3)+\cdots+2f(x_{2n-2})+4f(x_{2n-1})+f(b)}.
+                    \end{align*}
+                    $$
+                    Show that
+                    $$
+                    \begin{align*}
+                        S_{2n}f=\frac{4T_{2n}f-T_nf}{3}.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-5-5"></button></div>
+                    <div class="hidden-content solution" id="5-5">
+                        <i>Proof.</i>
+                        Let $x_i=a+\frac{i(b-a)}{2n}$, then we can compute that
+                        $$
+                        \begin{align*}
+                            T_nf={} & \frac{b-a}{n}\bkt{\frac{1}{2}f(a)+f(x_2)+f(x_4)+\cdots+f(x_{2n-2})+\frac{1}{2}f(x_n)}, \\
+                            T_{2n}f={} & \frac{b-a}{2n}\bkt{\frac{1}{2}f(a)+f(x_1)+f(x_2)+\cdots+f(x_{2n-1})+\frac{1}{2}f(b)}.
+                        \end{align*}
+                        $$
+                        Therefore, we can see that
+                        $$
+                        \begin{align*}
+                            4T_{2n}f-T_nf={} & \frac{b-a}{n}\bigg(f(a)+2f(x_1)+2f(x_2)+\cdots+2f(x_{2n-1})+f(b) \nonumber\\
+                            & \qquad\qquad-\frac{1}{2}f(a)-f(x_2)-f(x_4)-\cdots-f(x_{2n-2})-\frac{1}{2}f(x_n)\bigg) \nonumber\\
+                            ={} & \frac{b-a}{n}\bkt{\frac{1}{2}f(a)+2f(x_1)+f(x_2)+2f(x_3)+f(x_4)+\cdots+f(x_{2n-2})+2f(x_{2n-1})+\frac{1}{2}f(b)}.
+                        \end{align*}
+                        $$
+                        Consequently, we have that
+                        $$
+                        \begin{align*}
+                            \frac{4T_{2n}f-T_nf}{3}={} & \frac{b-a}{6n}\bkt{f(a)+4f(x_1)+2f(x_2)+4f(x_3)+2f(x_4)+\cdots+2f(x_{2n-2})+4f(x_{2n-1})+f(b)} \nonumber\\
+                            ={} & \frac{h}{3}\bkt{f(a)+4f(x_1)+2f(x_2)+4f(x_3)+2f(x_4)+\cdots+2f(x_{2n-2})+4f(x_{2n-1})+f(b)}=S_{2n}f,
+                        \end{align*}
+                        $$
+                        as desired, so the proof is complete.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 5 Problem 6 -->
+
+            <h3 id="p5p6">Problem 5.6 - Singular Integration</h3>
+            <p>
+                <div class="question">
+                    In this problem you will construct a quadrature rule that will exactly integrate low-degree polynomials times $\log x$, a singular function. Define the $n$-point left-end corrected trapezoidal rule of order $m$ on the interval $(0,1]$ for functions $\phi$ of the form $\phi(x)=f(x)\log x$ to be
+                    $$
+                    \begin{align*}
+                        \int_0^1\phi(x)dx=\int_0^1f(x)\log xdx\approx T_n^m\phi(x)=h\sum_{i=1}^n\phi(x_i)-\frac{h}{2}\phi(x_n)+h\sum_{i=1}^mc_{n,i}\phi(x_i),
+                    \end{align*}
+                    $$
+                    where $x_i=i/n$ and $h=1/n$. For $m=4$ and $n=10$, numerically compute $c_{n,i}$, such that the above formula is exact for $f(x)=1,x,x^2,x^3$. Print out and submit in your write-up the $c_{n,i}$'s that you computed, showing all $15$ significant digits.
+                    <div><button class="hide noindent" id="hide-5-6"></button></div>
+                    <div class="hidden-content solution" id="5-6">
+                        <i>Solution.</i>
+                        For $f(x)=1$, we have that $\phi(x)=\log x$, so that
+                        $$
+                        \begin{align*}
+                            -1={} & h\sum_{i=1}^n\log\bkt{\frac{i}{n}}-\frac{h}{2}\log(1)+h\sum_{i=1}^mc_{n,i}\log\bkt{\frac{i}{n}}, \\
+                            -\frac{1}{4}={} & h\sum_{i=1}^n\frac{i}{n}\log\bkt{\frac{i}{n}}-\frac{h}{2}\log(1)+h\sum_{i=1}^mc_{n,i}\frac{i}{n}\log\bkt{\frac{i}{n}}, \\
+                            -\frac{1}{9}={} & h\sum_{i=1}^n\bkt{\frac{i}{n}}^2\log\bkt{\frac{i}{n}}-\frac{h}{2}\log(1)+h\sum_{i=1}^mc_{n,i}\bkt{\frac{i}{n}}^2\log\bkt{\frac{i}{n}}, \\
+                            -\frac{1}{16}={} & h\sum_{i=1}^n\bkt{\frac{i}{n}}^3\log\bkt{\frac{i}{n}}-\frac{h}{2}\log(1)+h\sum_{i=1}^mc_{n,i}\bkt{\frac{i}{n}}^3\log\bkt{\frac{i}{n}}.
+                        \end{align*}
+                        $$
+                        Plugging in $n=10$ and $m=4$, and rewriting the system, we would be able to obtain that
+                        $$
+                        \begin{align*}
+                            & \log\bkt{\frac{1}{10}}c_{10,1}+\log\bkt{\frac{2}{10}}c_{10,2}+\log\bkt{\frac{3}{10}}c_{10,3}+\log\bkt{\frac{4}{10}}c_{10,4} \nonumber\\
+                            & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad=-10+\frac{\log(1)}{2}-\sum_{i=1}^{10}\log\bkt{\frac{i}{10}}, \\
+                            & \frac{1}{10}\log\bkt{\frac{1}{10}}c_{10,1}+\frac{2}{10}\log\bkt{\frac{2}{10}}c_{10,2}+\frac{3}{10}\log\bkt{\frac{3}{10}}c_{10,3}+\frac{4}{10}\log\bkt{\frac{4}{10}}c_{10,4} \nonumber\\
+                            & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad=-\frac{10}{4}+\frac{\log(1)}{2}-\sum_{i=1}^{10}\frac{i}{10}\log\bkt{\frac{i}{10}}, \\
+                            & \bkt{\frac{1}{10}}^2\log\bkt{\frac{1}{10}}c_{10,1}+\bkt{\frac{2}{10}}^2\log\bkt{\frac{2}{10}}c_{10,2}+\bkt{\frac{3}{10}}^2\log\bkt{\frac{3}{10}}c_{10,3}+\bkt{\frac{4}{10}}^2\log\bkt{\frac{4}{10}}c_{10,4} \nonumber\\
+                            & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad=-\frac{10}{9}+\frac{\log(1)}{2}-\sum_{i=1}^{10}\bkt{\frac{i}{10}}^2\log\bkt{\frac{i}{10}}, \\
+                            & \bkt{\frac{1}{10}}^3\log\bkt{\frac{1}{10}}c_{10,1}+\bkt{\frac{2}{10}}^3\log\bkt{\frac{2}{10}}c_{10,2}+\bkt{\frac{3}{10}}^3\log\bkt{\frac{3}{10}}c_{10,3}+\bkt{\frac{4}{10}}^3\log\bkt{\frac{4}{10}}c_{10,4} \nonumber\\
+                            & \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad=-\frac{10}{16}+\frac{\log(1)}{2}-\sum_{i=1}^{10}\bkt{\frac{i}{10}}^3\log\bkt{\frac{i}{10}}.
+                        \end{align*}
+                        $$
+                        We can thus compute the coefficients by solving the linear system.
+                        <pre><code class="pre-code language-julia">A = Matrix{Float64}(undef, 4, 4)
+for i = 1 : 4
+    for j = 1 : 4
+        A[i, j] = (j / 10) ^ (i - 1) * log(j / 10)
+    end
+end
+
+b = zeros(Float64, 4)
+for i = 1 : 4
+    b[i] = log(1) / 2 - 10 / (i ^ 2)
+    for j = 1 : 10
+        b[i] -= (j / 10) ^ (i - 1) * log(j / 10)
+    end
+end
+
+cs = A \ b
+for i = 1 : 4
+    @printf("c(10, %d) = %.15f\n", i, cs[i])
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">c(10, 1) = 2.743772546002644
+c(10, 2) = -4.717463053205773
+c(10, 3) = 3.409723714875073
+c(10, 4) = -0.820655309867872</code></pre>
+                    </div>
+                </div>
+            </p>
         </div>
     </div>
 
-    <!-- <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/1-4-b-plot.png"></div> -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+    <!--                                                        -->
+    <!--                       HOMEWORK 6                       -->
+    <!--                                                        -->
+    <!-- ---------- ---------- ---------- ---------- ---------- -->
+
+    <div id="outline-container-hw6" class="outline-2">
+        <h2 id="hw6">Homework 6</h2>
+        <div class="outline-text-2" id="text-hw6">
+
+            <p>
+                In the below questions, we will use the following notation for the discrete Fourier transform: for a sequence of complex numbers $f_0,f_1,\cdots,f_{n-1}$, the $k$th discrete Fourier coefficient $F_k$ is computed as
+                $$
+                \begin{align*}
+                    F_k=\frac{1}{n}\sum_{j=0}^{n-1}f_j\exp\bkt{-\frac{i2\pi jk}{n}}.
+                \end{align*}
+                $$
+                In Julia, you may want to use the package <code>FFTW</code> to compute the discrete Fourier transforms (which probably do <i>not</i> have the $1/n$ scaling in the front, check this).
+            </p>
+
+            <!-- Homework 6 Problem 1 -->
+
+            <h3 id="p6p1">Problem 6.1 - Richardson Extrapolation</h3>
+            <p>
+                <div class="question">
+                    Imagine that you are trying to approximate some quantity $\Phi$ and you have a sequence of estimates $\phi(h)$, $\phi(h/2)$, $\phi(h/4)$, etc. You also know that
+                    $$
+                    \begin{align*}
+                        \phi(h)=\Phi+O(h^p),
+                    \end{align*}
+                    $$
+                    but you do <i>not</i> know what $p$ is. Show how you can use Richardson extrapolation to obtain a better estimate of $\Phi$ despite not knowing the value of $p$.
+                    <div><button class="hide noindent" id="hide-6-1"></button></div>
+                    <div class="hidden-content solution" id="6-1">
+                        <i>Solution.</i>
+                        We start by using the two estimates $\phi(h)$ and $\phi(h/2)$ to obtain an estimate of $\Phi$ that is more accurate than either of these estimates alone. Since $\phi(h)=\Phi+O(h^p)$, we can write that
+                        $$
+                        \begin{align*}
+                            \phi(h)-\Phi=C_0h^p+O\bkt{h^{p+1}}.
+                        \end{align*}
+                        $$
+                        Therefore, we have that
+                        $$
+                        \begin{align*}
+                            \phi\bkt{\frac{h}{2}}-\Phi=C_0\bkt{\frac{h}{2}}^p+O\bkt{h^{p+1}}.
+                        \end{align*}
+                        $$
+                        Subtracting $2^p$ times the second equation by the first equation, we can obtain that
+                        $$
+                        \begin{align*}
+                            2^p\phi\bkt{\frac{h}{2}}-\phi(h)-\bkt{2^p-1}\Phi=O\bkt{h^{p+1}}\implies\underbrace{\frac{2^p\phi(h/2)-\phi(h)}{2^p-1}}_{=:\Phi^{(1)}(h)}-\Phi=O\bkt{h^{p+1}}.
+                        \end{align*}
+                        $$
+                        The estimate $\Phi^{(1)}(h)$ has already improved the order of accuracy, and we can further repeat this process. By using the two estimates $\Phi^{(1)}(h)$ (obtained from $\phi(h)$ and $\phi(h/2)$) and $\Phi^{(1)}(h/2)$ (obtained from $\phi(h/2)$ and $\phi(h/4)$), we aim to obtain an estimate of $\Phi$ that is even more accurate then either of these estimates alone. Similar to above, we can write that
+                        $$
+                        \begin{align*}
+                            \Phi^{(1)}(h)-\Phi=C_1h^{p+1}+O\bkt{h^{p+2}}.
+                        \end{align*}
+                        $$
+                        Therefore, we also have that
+                        $$
+                        \begin{align*}
+                            \Phi^{(1)}\bkt{\frac{h}{2}}-\Phi=C_1\bkt{\frac{h}{2}}^{p+1}+O\bkt{h^{p+2}}.
+                        \end{align*}
+                        $$
+                        Subtracting $2^{p+1}$ times the second equation by the first equation, we can obtain that
+                        $$
+                        \begin{align*}
+                            2^{p+1}\Phi^{(1)}\bkt{\frac{h}{2}}-\Phi^{(1)}(h)-\bkt{2^{p+1}-1}\Phi=O\bkt{h^{p+2}}\implies\underbrace{\frac{2^{p+1}\Phi^{(1)}(h/2)-\Phi^{(1)}(h)}{2^{p+1}-1}}_{=:\Phi^{(2)}(h)}-\Phi=O\bkt{h^{p+2}}.
+                        \end{align*}
+                        $$
+                        The estimate $\Phi^{(2)}(h)$ again improves the order of accuracy. Iterating this process as many times as we want until there is no more $\phi$ to use, we will be able to obtain better estimates of $\Phi$ despite not knowing the value of $p$. Note that in each step we need to approximate $p$. For instance, in the first step, we can estimate that
+                        $$
+                        \begin{align*}
+                            \frac{\phi(h)-\phi(h/2)}{\phi(h/2)-\phi(h/4)}=2^p,
+                        \end{align*}
+                        $$
+                        etc., details will not be elaborated here, but in the second step we should use $\Phi^{(1)}$ for approximation and so on.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 6 Problem 2 -->
+
+            <h3 id="p6p2">Problem 6.2 - Discrete Orthogonality</h3>
+            <p>
+                <div class="question">
+                    For integers $j\neq k$, prove that
+                    $$
+                    \begin{align*}
+                        \sum_{n=0}^{N-1}\exp\bkt{\frac{-i2\pi jn}{N}}\exp\bkt{\frac{-i2\pi kn}{N}}=0.
+                    \end{align*}
+                    $$
+                    <div><button class="hide noindent" id="hide-6-2"></button></div>
+                    <div class="hidden-content solution" id="6-2">
+                        <i>Proof.</i>
+                        Let $\omega_N=\exp\bkt{i2\pi/N}$ be the $N$th root of unity, then we have that
+                        $$
+                        \begin{align*}
+                            \sum_{n=0}^{N-1}\exp\bkt{\frac{-i2\pi jn}{N}}\exp\bkt{\frac{-i2\pi kn}{N}}=\sum_{n=0}^{N-1}\omega_N^{-jn}\omega_N^{-kn}=\sum_{n=0}^{N-1}\bkt{\omega_N^{-j-k}}^n=\frac{1-\bkt{\omega_N^{-j-k}}^N}{1-\omega_N^{-j-k}}=\frac{1-\bkt{\omega_N^N}^{-j-k}}{1-\omega_N^{-j-k}}=0.
+                        \end{align*}
+                        $$
+                        Here we have used the fact that
+                        $$
+                        \begin{align*}
+                            \omega_N^N=\exp\bkt{\frac{i2\pi N}{N}}=\exp\bkt{i2\pi}=\cos(2\pi)+i\sin(2\pi)=1,
+                        \end{align*}
+                        $$
+                        so the proof is complete.
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 6 Problem 3 -->
+
+            <h3 id="p6p3">Problem 6.3 - Spectral Legendre Differentiation</h3>
+            <p>
+                <div class="question">
+                    Suppose that a function $f$ is defined via its Legendre expansion
+                    $$
+                    \begin{align*}
+                        f(x)=\sum_{n=0}^N\alpha_nP_n(x),
+                    \end{align*}
+                    $$
+                    where the Legendre polynomials are defined via their three-term recurrence
+                    $$
+                    \begin{align*}
+                        P_0(x)={} & 1, \\
+                        P_1(x)={} & x, \\
+                        P_{n+1}(x)={} & \frac{2n+1}{n+1}xP_n(x)-\frac{n}{n+1}P_{n-1}(x).
+                    \end{align*}
+                    $$
+                    The function $f$ can be differentiated <i>spectrally</i> by differentiating term by term, such that
+                    $$
+                    \begin{align*}
+                        f'(x)=\sum_{n=0}^N\alpha_nP_n'(x).
+                    \end{align*}
+                    $$
+                    However, $f'$ is just another polynomial, so it can be written in terms of a Legendre expansion as well, such that
+                    $$
+                    \begin{align*}
+                        f'(x)=\sum_{n=0}^{N-1}\beta_nP_n(x).
+                    \end{align*}
+                    $$
+                    The coefficients $\beta_n$ can be obtained from the $\alpha_n$ coefficients using the following relationship for Legendre polynomials, such that
+                    $$
+                    \begin{align*}
+                        P_{n+1}'(x)=(2n+1)P_n(x)+(2(n-2)+1)P_{n-2}(x)+(2(n-4)+1)P_{n-4}(x)+\cdots
+                    \end{align*}
+                    $$
+                    You can assume that $P_n=0$ for $n\lt 0$. Notice that the Legendre expansion for $f$ contains $N+1$ terms and the expansion for $f'$ contains $N$ terms (since the degree of $f'$ is one less than the degree of $f$). This means that the linear <i>spectral differentiation operator</i> that maps the $\alpha_n$'s to the $\beta_n$'s is an $N\times(N+1)$ matrix.
+                </div>
+                <div class="question">
+                    <b>(a)</b> Write a function in Julia whose input is $N$ an whose output is an $N\times(N+1)$ matrix $D_N$ that converts the $\alpha_n$'s into the $\beta_n$'s. Turn in a printout of this matrix for $N=6$, and make sure that your output is cleanly formatted. Print each entry in scientific notation with $5$ significant digits of accuracy, <i>e.g.</i>, <code>3.1416E+00</code>.
+                    <div><button class="hide noindent" id="hide-6-3-a"></button></div>
+                    <div class="hidden-content solution" id="6-3-a">
+                        <i>Solution.</i>
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            f'(x)={} & \sum_{n=0}^N\alpha_nP_n'(x) \nonumber\\
+                            ={} & \sum_{n=0}^N\alpha_n(2n-1)P_{n-1}(x)+\sum_{n=0}^N\alpha_n(2n-5)P_{n-3}(x)+\sum_{n=0}^N\alpha_n(2n-9)P_{n-5}(x)+\cdots \nonumber\\
+                            ={} & P_0(x)\bkt{\alpha_1+\alpha_3+\alpha_5+\cdots}+P_1(x)\bkt{3\alpha_2+3\alpha_4+3\alpha_6+\cdots}+P_2(x)\bkt{5\alpha_3+5\alpha_5+\cdots}+\cdots
+                        \end{align*}
+                        $$
+                        On the other hand, we have that
+                        $$
+                        \begin{align*}
+                            f'(x)=\sum_{n=0}^{N-1}\beta_nP_n(x)=P_0(x)\beta_0+P_1(x)\beta_1+P_2(x)\beta_2+\cdots
+                        \end{align*}
+                        $$
+                        Therefore, we must require that
+                        $$
+                        \begin{align*}
+                            \beta_0=\alpha_1+\alpha_3+\alpha_5+\cdots,\qquad\beta_1=3(\alpha_2+\alpha_4+\alpha_6+\cdots),\qquad\beta_2=5(\alpha_3+\alpha_5+\cdots),\qquad\cdots
+                        \end{align*}
+                        $$
+                        We then construct the spectral differentiation matrix based on this observation.
+                        <pre><code class="pre-code language-julia">function spectral_diff_mat(N)
+    """The matrix representing the spectral differentiation operator.
+
+    A function f can be differentiated spectrally by differentiating term by term,
+    such that
+        f'(x) = sum_{n=0}^N alpha_n P_n'(x).
+
+    However, f' is just another polynomial, so it can be written in terms of a Legendre
+    expansion as well, such that
+        f'(x) = sum_{n=0}^{N-1} beta_n P_n(x).
+    
+    The coefficients beta_n can be obtained from the alpha_n coefficients using the
+    following relationship for Legendre polynomials, such that
+        P_{n+1}'(x) = (2n+1) P_n(x) + (2(n-2)+1) P_{n-2}(x) + (2(n-4)+1) P_{n-4}(x) + ...
+    
+    The linear spectral differentiation operator maps the alpha_n's to the beta_n's,
+    which is an N*(N+1) matrix.
+
+    Parameters
+    ----------
+    N : Int64, etc.
+        The degree of the Legendre expansion.
+    
+    Returns
+    -------
+    D : Matrix{Float64}
+        The spectral differentiation matrix.
+    """
+    D = zeros(Float64, N, N + 1)
+    for i = 1 : N
+        for j = (i + 1) : 2 : (N + 1)
+            D[i, j] = 2 * i - 1
+        end
+    end
+    return D
+end</code></pre>
+                        We then report the printout when $n=6$.
+                        <pre><code class="pre-code language-julia"># Initialize the spectral differentiation matrix
+N = 6
+@printf("Spectral differentiation matrix with N = %d\n", N)
+@printf("------------------------------------------\n")
+D = spectral_diff_mat(N)
+
+# Pretty-print the matrix
+# Each entry 5 signigicant digits in scientific format
+for i = 1 : N
+    for j = 1 : (N + 1)
+        @printf("%.4e ", D[i, j])
+    end
+    @printf("\n")
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Spectral differentiation matrix with N = 6
+------------------------------------------
+0.0000e+00 1.0000e+00 0.0000e+00 1.0000e+00 0.0000e+00 1.0000e+00 0.0000e+00 
+0.0000e+00 0.0000e+00 3.0000e+00 0.0000e+00 3.0000e+00 0.0000e+00 3.0000e+00
+0.0000e+00 0.0000e+00 0.0000e+00 5.0000e+00 0.0000e+00 5.0000e+00 0.0000e+00
+0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 7.0000e+00 0.0000e+00 7.0000e+00
+0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 9.0000e+00 0.0000e+00
+0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00 1.1000e+01</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> Obviously, $D_N$ has null-space since the derivative of a constant is $0$. For $N=5,10,20,40,80,160$, what is the largest singular value $\sigma_1$ of $D_N$? What is the smallest nonzero singular value $\sigma_{N-1}$? Can you estimate how the ratio $\sigma_1/\sigma_{N-1}$ scales with $N$?
+                    <div><button class="hide noindent" id="hide-6-3-b"></button></div>
+                    <div class="hidden-content solution" id="6-3-b">
+                        <i>Solution.</i>
+                        We use Julia built-in SVD to and obtain the required results.
+                        <pre><code class="pre-code language-julia">@printf(" N \t  Largest  \t  Smallest \t   Ratio   \n")
+@printf("---\t ----------\t ----------\t ----------\n")
+
+Ns = [5, 10, 20, 40, 80, 160]
+ratios = []
+
+for N = Ns
+    # Initialize the spectral differentiation matrix
+    # Perform the singular value decomposition
+    D = spectral_diff_mat(N)
+    sings = svd(D).S
+    
+    # Find the largest and smallest singular values
+    singmax = sings[1]
+    singmin = 0
+    for i in reverse(eachindex(sings))
+        if sings[i] > 0
+            singmin = sings[i]
+            break
+        end
+    end
+    ratio = singmax / singmin
+    push!(ratios, ratio)
+
+    # Printout formatting
+    @printf("%d\t %.4e\t %.4e\t %.4e\n", N, singmax, singmin, ratio)
+end</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext"> N        Largest         Smallest         Ratio   
+---      ----------      ----------      ----------
+5        1.0707e+01      9.7982e-01      1.0928e+01
+10       3.3206e+01      9.7982e-01      3.3890e+01
+20       1.1545e+02      9.7982e-01      1.1783e+02
+40       4.2946e+02      9.7982e-01      4.3831e+02
+80       1.6556e+03      9.7982e-01      1.6897e+03
+160      6.5003e+03      9.7982e-01      6.6342e+03</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> To an approximate absolute accuracy of $10^{-14}$, we have the following (approximate) Legendre expansion on $[-1,1]$, such that
+                    $$
+                    \begin{align*}
+                        g(x)=\bkt{\cos\bkt{\frac{\pi x}{2}}}^2\approx{} & \bkt{0.5\times10^0}P_0(x)-\bkt{7.599088773175333\times10^{-1}}P_2(x) \\
+                        & +\bkt{2.912233514331487\times10^{-1}}P_4(x)-\bkt{3.305724823190062\times10^{-2}}P_6(x) \\
+                        & +\bkt{1.799174525897176\times10^{-3}}P_8(x)-\bkt{5.759823919649204\times10^{-5}}P_{10}(x) \\
+                        & +\bkt{1.215836626076345\times10^{-6}}P_{12}(x)-\bkt{1.820891118602361\times10^{-8}}P_{14}(x) \\
+                        & +\bkt{2.036231068730444\times10^{-10}}P_{16}(x)-\bkt{1.765589810261640\times10^{-12}}P_{18}(x) \\
+                        & +\bkt{1.222019420329161\times10^{-14}}P_{20}(x).
+                    \end{align*}
+                    $$
+                    Using the spectral differentiation matrix constructed in (a), compute the coefficients in the Legendre expansion of $g'$. Estimate the accuracy of the obtained expansion by sampling the interval $[-1,1]$ at $1000$ equispaced points and comparing the values obtained by exact differentiation and those obtained from your Legendre series.
+                    <div><button class="hide noindent" id="hide-6-3-c"></button></div>
+                    <div class="hidden-content solution" id="6-3-c">
+                        <i>Solution.</i>
+                        We first implement a function for evaluating the Legendre polynomials of degrees up to $n$. This can be done via a single dynamic programming to improve computational performance.
+                        <pre><code class="pre-code language-julia">function legendres(n, x)
+    """Evaluate the Legendre polynomial of degree up to n at x.
+
+    Parameters
+    ----------
+    n : Int64, etc.
+        The degree of the Legendre polynomial to evalute.
+    x : Float64, etc.
+        The point to evaluate the Legendre polynomial at.
+
+    Returns
+    -------
+    val : Vector{Float64}, etc.
+        The Legendre polynomials of degrees from 0 to n at x.
+    """
+    DP = zeros(Float64, n + 1)
+    DP[1] = 1.0
+    DP[2] = x
+    for i = 2 : n
+        DP[i + 1] = ((2 * i - 1) * x * DP[i] - (i - 1) * DP[i - 1]) / i
+    end
+    return DP
+end</code></pre>
+                        We then evaluate the result of our spectral differentiation at the $1000$ equispaced sample points in $[-1,1]$ and compare with the values obtained by exact differentiation $g'(x)=-\pi\sin(\pi x)/2$.
+                        <pre><code class="pre-code language-julia"># Initialize the coefficients on the Legendre expansion of the function, i.e., alpha
+alpha = [5e-1, 0, -7.599088773175333e-1, 0, 2.912233514331487e-1, 0, -3.305724823190062e-2, 0, 1.799174525897176e-3, 0, -5.759823919649204e-5, 0, 1.215836626076345e-6, 0, -1.820891118602361e-8, 0, 2.036231068730444e-10, 0, -1.765589810261640e-12, 0, 1.222019420329161e-14]
+
+# Initialize the spectral differentiation matrix
+# Compute the coefficients on the Legendre expansion of the derivative, i.e., beta
+N = 20
+D = spectral_diff_mat(N)
+beta = D * alpha
+
+# The accurate derivative and approximate derivatives
+dg(x) = - π / 2 * sin(π * x)
+ag(x) = dot(beta, legendres(N - 1, x))
+
+# Evaluate at equispaced points
+function errstats(acc, app, rng)
+    max_error, tot_error = 0, 0
+    for x = rng
+        error = abs(acc(x) - app(x))
+        tot_error += error
+        if error > max_error
+            max_error = error
+        end
+    end
+    return max_error, tot_error / length(rng)
+end
+max_error, mean_error = errstats(dg, ag, LinRange(-1, 1, 1000))
+
+@printf("Maximum error   %.5e\n", max_error)
+@printf("Mean error      %.5e\n", mean_error)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Maximum error   1.79089e-14
+Mean error      4.62429e-16</code></pre>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 6 Problem 4 -->
+
+            <h3 id="p6p4">Problem 6.4 - Acyclic Convolution</h3>
+            <p>
+                <div class="question">
+                    For two sequences $f_0,\cdots,f_{m-1}$ and $g_0,\cdots,g_{n-1}$, where $m$ and $n$ are integers, the \textit{acyclic convolution} $h=f*g$ is defined as
+                    \begin{align*}
+                        h_k=\sum_{j=-\infty}^{\infty}f_{k-j}g_j,
+                    \end{align*}
+                    where $f_l=0$ if $l\lt 0$ or $l\geq m$, and $g_l=0$ if $l\lt 0$ or $l\geq n$.
+                </div>
+                <div class="question">
+                    <b>(a)</b> For what values of $k$ can you assume that $h_k$ is zero?
+                    <div><button class="hide noindent" id="hide-6-4-a"></button></div>
+                    <div class="hidden-content solution" id="6-4-a">
+                        <i>Solution.</i>
+                        Since $f_l=0$ if $l\lt 0$ or $k\geq m$, and $g_l=0$ if $l\lt 0$ or $l\geq n$, we can reduce the sum to
+                        $$
+                        \begin{align*}
+                            h_k=\sum_{j=-\infty}^{\infty}f_{k-j}g_j=\sum_{j=0}^{n-1}f_{k-j}g_j=\sum_{j=\max(k+1-m,0)}^{\min(k,n-1)}f_{k-j}g_j.
+                        \end{align*}
+                        $$
+                        Therefore, if the lower limit of the sum is greater than the upper limit, then the sum can be guaranteed as zero. This means that $\max(k+1-m,0)>\min(k,n-1)$, which solves to $k\lt 0$ or $k>m+n-2$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> How can one use the DFT (and therefore the FFT) to compute all the $h_k$'s?
+                    <div><button class="hide noindent" id="hide-6-4-b"></button></div>
+                    <div class="hidden-content solution" id="6-4-b">
+                        <i>Solution.</i>
+                        We first pad the sequences of $f$ and $g$ with zeros to length $m+n-1$ so that they have the same length. This is feasible since $h_k=0$ for $k\lt 0$ or $k>m+n-2$, as we have shown in the previous part. Then, we can compute the DFT of $f$ and $g$ respectively using FFT. Then, multiply the resulting DFTs $F$ and $G$ elementwise, and compute the IDFT of the result using again FFT. The resulting sequence of length $m+n-1$ will be the acyclic convolution $h$, only including $h_k$ for $0\leq k\leq m+n-2$.
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> Let $m=128$ and $n=256$. Define the $m$-term sequence $f$ by
+                    $$
+                    \begin{align*}
+                        f_j=
+                        \begin{cases}
+                            1/32, & j=0,\cdots,31, \\
+                            0, & j=32,\cdots,127,
+                        \end{cases}
+                    \end{align*}
+                    $$
+                    and the $n$-term sequence $g$ by
+                    $$
+                    \begin{align*}
+                        g_j=
+                        \begin{cases}
+                            0, & j=0,\cdots,191, \\
+                            1/64, & j=192,\cdots,255.
+                        \end{cases}
+                    \end{align*}
+                    $$
+                    Write a code to compute the acyclic convolution $h$ of these two sequences. Include a plot of the sequence $h_k$.
+                    <div><button class="hide noindent" id="hide-6-4-c"></button></div>
+                    <div class="hidden-content solution" id="6-4-c">
+                        <i>Solution.</i>
+                        We implement the strategy mentioned in (b) for computing the acyclic convolution.
+                        <pre><code class="pre-code language-julia">function acyclic_convolution(m, f, n, g)
+    """Computes the acyclic convolution using FFT.
+
+    Parameters
+    ----------
+    m : Int64, etc.
+        The sequence f is assumed to be zero for index < 0 or >= m.
+        Must be a positive integer.
+    f : Vector{Float64}, etc.
+        The input sequence f of length m for computing the convolution.
+    n : Int64, etc.
+        The sequence g is assumed to be zero for index < 0 or >= m.
+        Must be a positive integer.
+    g : Vector{Float64}, etc.
+        The input sequence g of length n for computing the convolution.
+
+    Returns
+    -------
+    h : Vector{Float64}
+        The acyclic convolution of f and g, of length m+n-1.
+    """
+    F = fft([f; zeros(n - 1)])
+    G = fft([g; zeros(m - 1)])
+    H = F .* G
+    return ifft(H)
+end</code></pre>
+                    We then use it to compute the desired acyclic convolution and make the plot of the resulting sequence $h_k$.
+                    <pre><code class="pre-code language-julia"># Initialize the sequences f and g
+m, n = 128, 256
+f, g = zeros(m), zeros(n)
+for j = 1 : 32
+    f[j] = 1 / 32
+end
+for j = 193 : 256
+    g[j] = 1 / 64
+end
+
+# Compute the acyclic convolution f * g
+h = acyclic_convolution(m, f, n, g)
+hreal = real.(h)
+
+# Plot the acyclic convolution
+plt = plot(hreal, label="", titlefontsize=12)
+title!("The acyclic convolution h = f * g")</code></pre>
+                        This would produce the following plot.
+                        <div class="img-container"><img style="width: 60%;" src="../images/HNA-hws/HW6-Q5-c-plot.png"></div>
+                    </div>
+                </div>
+            </p>
+
+            <!-- Homework 6 Problem 5 -->
+
+            <h3 id="p6p5">Problem 6.5 - Fourier Transform</h3>
+            <p>
+                <div class="question">
+                    As mentioned briefly in class, for a function $f\in L^2(\RR)$, the Fourier transform is defined as
+                    $$
+                    \begin{align*}
+                        \hat{f}(\omega)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)\exp\bkt{-i\omega x}dx.
+                    \end{align*}
+                    $$
+                    The inverse Fourier transform (<i>i.e.</i>, the reconstruction of $f$ from $\hat{f}$) is then given by
+                    $$
+                    \begin{align*}
+                        f(x)=\int_{-\infty}^{\infty}\hat{f}(\omega)\exp\bkt{i\omega x}d\omega.
+                    \end{align*}
+                    $$
+                </div>
+                <div class="question">
+                    <b>(a)</b> Let the function $f$ be given as
+                    $$
+                    \begin{align*}
+                        f(x)=\frac{1}{\sqrt{2\pi}}\exp\bkt{-\frac{(x-1)^2}{2}}.
+                    \end{align*}
+                    $$
+                    Find an interval $[a,b]$ and an integer $n>0$, such that the $n$-interval composite Trapezoidal rule on $[a,b]$ can be used to approximate $\hat{f}(0)$ to an absolute accuracy of $10^{-14}$, \textit{i.e.}, find $n$ and $[a,b]$ such that
+                    $$
+                    \begin{align*}
+                        \hat{f}(0)=\frac{h}{2\pi}\bkt{\sum_{j=0}^nf(x_j)-\frac{1}{2}(f(a)+f(b))}+\epsilon,
+                    \end{align*}
+                    $$
+                    with $|\epsilon|\lt 10^{-14}$, $h=(b-a)/n$, and $x_j=a+jh$. You may do this analytically, or computationally.
+                    <div><button class="hide noindent" id="hide-6-5-a"></button></div>
+                    <div class="hidden-content solution" id="6-5-a">
+                        <i>Solution.</i>
+                        When taking $a$ sufficiently small, $b$ sufficiently large, and $n$ sufficiently large, the approximation will be accurate. For instance, $a=-100$, $b=100$, $n=10000$. We evaluate the result computationally as follows.
+                        <pre><code class="pre-code language-julia">function trapezoidal(a, b, n)
+    h, x0 = (b - a) / n, a
+    fs = zeros(Float64, n + 1)
+    for i = 1 : (n + 1)
+        fs[i] = f(x0)
+        x0 += h
+    end
+    return h * (sum(fs) - f(a) / 2 - f(b) / 2) / (2 * π)
+end
+
+f(x) = exp(-(x - 1) ^ 2 / 2) / sqrt(2 * π)
+intf(x) = f(x) / (2 * π)
+integral, _ = quadgk(intf, -Inf, Inf)
+
+a, b, n = -100, 100, 10000
+diff = abs(integral - trapezoidal(a, b, n))
+@printf("Error: %5e\n", diff)</code></pre>
+                        This would produce the following output.
+                        <pre><code class="pre-code language-plaintext">Error: 1.193490e-15</code></pre>
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(b)</b> The Trapezium discretization obtained in the previous part defines an $(n+1)$-term sequence $f$ with $f_j=f(x_j)$. Let $F$ denote the discrete Fourier transform of this sequence, whose elements are $F_k$. How can $\hat{f}(0)$ be approximated from the coefficients $F_k$?
+                    <div><button class="hide noindent" id="hide-6-5-b"></button></div>
+                    <div class="hidden-content solution" id="6-5-b">
+                        <i>Solution.</i>
+                        Assume that $a$ is sufficiently small and $b$ is sufficiently large, so that we can assume $f(a)=f(b)$. Then the Trapezoidal approximation can be simplified as
+                        $$
+                        \begin{align*}
+                            \hat{f}(0)=\frac{h}{2\pi}\sum_{j=0}^{n-1}f(x_j).
+                        \end{align*}
+                        $$
+                        Note that DFT gives
+                        $$
+                        \begin{align*}
+                            F_k=\frac{1}{n}\sum_{j=0}^{n-1}f_j\exp\bkt{-\frac{i2\pi jk}{n}}\implies F_0=\frac{1}{n}\sum_{j=0}^{n-1}f_j=\frac{1}{n}\sum_{j=0}^{n-1}f(x_j)=\frac{2\pi}{nh}\hat{f}(0)=\frac{2\pi}{b-a}\hat{f}(0).
+                        \end{align*}
+                        $$
+                        Therefore, we can obtain the approximation
+                        $$
+                        \begin{align*}
+                            \hat{f}(0)=\frac{b-a}{2\pi}F_0.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+                <div class="question">
+                    <b>(c)</b> How can an estimate for $\hat{f}(1)$ be obtained from the $F_k$'s? What you have shown in this problem is that the continuous Fourier transform can be numerically approximated using the FFT.
+                    <div><button class="hide noindent" id="hide-6-5-c"></button></div>
+                    <div class="hidden-content solution" id="6-5-c">
+                        <i>Solution.</i>
+                        We can compute that
+                        $$
+                        \begin{align*}
+                            \hat{f}(1)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)\exp\bkt{-ix}dx.
+                        \end{align*}
+                        $$
+                        Then again, we assume that $a$ is sufficiently small and $b$ is sufficiently large, so that we can assume $f(a)=f(b)$. The Trapezoidal rule then gives
+                        $$
+                        \begin{align*}
+                            \hat{f}(1)=\frac{h}{2\pi}\sum_{j=0}^{n-1}f(x_j)\exp\bkt{-ix_j}=\frac{h}{2\pi}\sum_{j=0}^{n-1}f(x_j)\exp\bkt{-i(a+jh)}=\frac{h\exp\bkt{-ia}}{2\pi}\sum_{j=0}^{n-1}f(x_j)\exp\bkt{-ijh}.
+                        \end{align*}
+                        $$
+                        Note that DFT gives
+                        $$
+                        \begin{align*}
+                            F_k=\frac{1}{n}\sum_{j=0}^{n-1}f_j\exp\bkt{-\frac{i2\pi jk}{n}}\implies F_{\frac{b-a}{2\pi}}=\frac{1}{n}\sum_{j=0}^{n-1}f_j\exp\bkt{-\frac{ij(b-a)}{n}}=\frac{1}{n}\sum_{j=0}^{n-1}f_j\exp\bkt{-ijh}.
+                        \end{align*}
+                        $$
+                        Therefore, we can obtain the approximation
+                        $$
+                        \begin{align*}
+                            \hat{f}(1)=\frac{nh\exp\bkt{-ia}}{2\pi}F_{\frac{b-a}{2\pi}}=\frac{(b-a)\exp\bkt{-ia}}{2\pi}F_{\frac{b-a}{2\pi}}.
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
 
     <div style="margin-top: 60px; color: grey;">
         This document was last updated on <span class="get-last-updated"></span>.
