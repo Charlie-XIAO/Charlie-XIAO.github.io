@@ -168,6 +168,17 @@
             <h3 id="metrics"><code>sklearn.metrics</code></h3>
             <p>
                 <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26019">ENH PrecisionRecallDisplay add option to plot chance level #26019</a>
+                    <button class="hide" id="hide-26019"></button>
+                    <div class="hidden-content contrib-descrp" id="26019">
+                        <code>PrecisionRecallDisplay</code> plots the Precision-Recall (PR) curve.
+                        The PR curve is constructed by plotting the precision against recall, where precision is the proportion of true positives among all actual positives, and recall is the proportion of true positives among all predicted positives.
+                        The baseline is called chance level, which is the PR curve of a predictor that predicts all examples as positive.
+                        Therefore, I added a keyword <code>plot_chance_level</code> for plotting the chance level.
+                        I also provided a keyword <code>chance_level_kw</code> that supports a dictionary of matplotlib keywords for customizing the rendering of the chance level line.
+                    </div>
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/25987">ENH RocCurveDisplay add option to plot chance level #25987</a>
                     <button class="hide" id="hide-25987"></button>
                     <div class="hidden-content contrib-descrp" id="25987">
@@ -176,7 +187,6 @@
                         The baseline is called chance level, which is the diagonal, and the farther the ROC curve is from the baseline, the better performance the classifier has.
                         Therefore, I added a keyword <code>plot_chance_level</code> for plotting the chance level.
                         I also provided a keyword <code>chance_level_kw</code> that supports a dictionary of matplotlib keywords for customizing the rendering of the chance level line.
-
                     </div>
                 </div>
             </p>
@@ -271,10 +281,6 @@
             <h3 id="future-prs">Pull Requests</h3>
             <p>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26019">ENH PrecisionRecallDisplay add option to plot chance level #26019</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26124">MAINT Parameters validation for sklearn.metrics.pairwise_distances_argmin #26124</a>
                     (pending)
                 </div>
@@ -294,6 +300,10 @@
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26400">FIX PowerTransformer raise when "box-cox" has nan column #26400</a>
                     (pending)
                 </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26410">ENH KNeighborsClassifier raise when all neighbors of some sample have zero weights #26410</a>
+                    (under review)
+                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/"></a>
@@ -309,12 +319,20 @@
                     (PR towards)
                 </div>
                 <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/issues/25193">StratifiedKFold and StratifiedGroupKFold for multilabel classification #25193</a>
+                    (working)
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25711">SequentialFeatureSelector is not working with ColumnTransformer #25711</a>
                     (pending)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25771">maximal information coefficient for feature selection #25771</a>
                     (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/issues/25854">KNeighborsClassifier with Default Label #25854</a>
+                    (PR fix)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25929">Visual improvements for ROC and precision-recall plots #25929</a>

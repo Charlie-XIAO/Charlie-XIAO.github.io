@@ -114,6 +114,15 @@
             <h3 id="groupby">Groupby</h3>
             <p>
                 <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53237">BUG DataFrameGroupBy.agg with list not respecting as_index=False #53237</a>
+                    <button class="hide" id="hide-53237"></button>
+                    <div class="hidden-content contrib-descrp" id="53237">
+                        When <code>groupby</code> is called with <code>as_index=False</code>, the group labels of the aggregated output should be columns rather than index, which is effectively SQL-style.
+                        However, if the aggregation functions are passed in as a list, <code>as_index</code> is not respected.
+                        I modified the logic of result processing so that this bug is fixed.
+                    </div>
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53049">BUG: GroupBy.quantile implicitly sorts index.levels #53049</a>
                     <button class="hide" id="hide-53049"></button>
                     <div class="hidden-content contrib-descrp" id="53049">
@@ -247,10 +256,6 @@ A      100
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53237">BUG DataFrameGroupBy.agg with list not respecting as_index=False #53237</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53294">BUG date_range with end, periods, and freq failing #53294</a>
                     (pending)
                 </div>
@@ -267,10 +272,6 @@ A      100
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/28283">Various methods don't call call __finalize__ #28283</a>
                     (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/52849">BUG: DataFrameGroupBy.agg with lists doesn't respect as_index=False #52849</a>
-                    (PR fix)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/52955">BUG: NA value doesn't match mask condition, still masked #52955</a>
