@@ -6,10 +6,10 @@
 
 /* Statistics for scikit-learn */
 
-const SKLEARN_MERGED_PRS = 27;
-const SKLEARN_LINES_ADDITION = 865;
-const SKLEARN_LINES_DELETION = 188;
-const SKLEARN_RANK_CONTRIBUTOR = 87;
+const SKLEARN_MERGED_PRS = 28;
+const SKLEARN_LINES_ADDITION = 918;
+const SKLEARN_LINES_DELETION = 225;
+const SKLEARN_RANK_CONTRIBUTOR = 85;
 
 /* Statistics for pandas */
 
