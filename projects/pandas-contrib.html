@@ -114,6 +114,17 @@
             <h3 id="groupby">Groupby</h3>
             <p>
                 <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53517">FIX groupby with column selection not returning tuple when grouping by list of a single element #53517</a>
+                    <button class="hide" id="hide-53517"></button>
+                    <div class="hidden-content contrib-descrp" id="53517">
+                        When we traverse a GroupBy object like <code>for k, v in df.groupby(["a"])</code>, even though <code>["a"]</code> is a list of a single element, the returned keys are tuples.
+                        However, after column selection such as <code>for k, v in df.groupby(["a"])["a"]</code> or <code>for k, v in df.groupby(["a"])[["a"]]</code>, the returned keys <code>k</code> were no longer tuples.
+                        This is undesired, and caused by keys getting lost from the very beginning when creating the GroupBy objects.
+                        With <a href="https://github.com/rhshadrach">@rhshadrach</a>'s help, I fixed this by passing keys explicitly instead of using groupers to imply keys.
+                        Now the behaviors with and without column selection are consistent.
+                    </div>
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53237">BUG DataFrameGroupBy.agg with list not respecting as_index=False #53237</a>
                     <button class="hide" id="hide-53237"></button>
                     <div class="hidden-content contrib-descrp" id="53237">
@@ -256,12 +267,8 @@ A      100
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53517">FIX groupby with column selection not returning tuple when grouping by list of a single element #53517</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53520">DEPR fill_method and limit keywords in pct_change #53520</a>
-                    (pending)
+                    (under review)
                 </div>
                 <!--
                 <div class="contrib-item">
@@ -283,10 +290,6 @@ A      100
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/53491">DEPR: pct_change method/limit keyword #53491</a>
-                    (PR fix)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/53500">BUG: column selection in GroupBy NOT returning tuple when grouping by a list containing single element #53500</a>
                     (PR fix)
                 </div>
                 <!--
