@@ -64,6 +64,7 @@
                         <li><a href="#ensemble"><code>sklearn.ensemble</code></a></li>
                         <li><a href="#feature_selection"><code>sklearn.feature_selection</code></a></li>
                         <li><a href="#metrics"><code>sklearn.metrics</code></a></li>
+                        <li><a href="#preprocessing"><code>sklearn.preprocessing</code></a></li>
                         <li><a href="#tree"><code>sklearn.tree</code></a></li>
                     </ul>
                 </li>
@@ -190,6 +191,20 @@
                     </div>
                 </div>
             </p>
+            
+            <h3 id="preprocessing"><code>sklearn.preprocessing</code></h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26400">FIX PowerTransformer raise when "box-cox" has nan column #26400</a>
+                    <button class="hide" id="hide-26400"></button>
+                    <div class="hidden-content contrib-descrp" id="26400">
+                        Box-Cox transformation is a statistical technique that transforms data to resemble a normal distribution.
+                        However, missing values in the data can affect the computation we must get rid of them in advance.
+                        Yet there are corner cases where a whole column is nan, causing an empty array to be passed to <code>stats.boxcox</code> and raising a non-informative error.
+                        Since box-cox transformation should not work for constant columns and nan column can be considered "constant", the proposed solution is to raise an informative error saying "column must not be all nan".
+                    </div>
+                </div>
+            </p>
 
             <h3 id="tree"><code>sklearn.tree</code></h3>
             <p>
@@ -298,10 +313,6 @@
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26400">FIX PowerTransformer raise when "box-cox" has nan column #26400</a>
-                    (pending)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26410">ENH KNeighborsClassifier raise when all neighbors of some sample have zero weights #26410</a>
                     (under review)
                 </div>
@@ -346,10 +357,6 @@
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26170">RFC BayesSearchCV in scikit-learn #26170</a>
                     (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26303">PowerTransformer fails with unhelpful stack trace with all-nan feature and method='box-cox' #26303</a>
-                    (PR fix)
                 </div>
                 <!--
                 <div class="contrib-item">

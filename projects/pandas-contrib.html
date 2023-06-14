@@ -114,6 +114,25 @@
             <h3 id="groupby">Groupby</h3>
             <p>
                 <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53623">BUG: groupby sum turning inf+inf and (-inf)+(-inf) into nan #53623</a>
+                    <button class="hide" id="hide-53623"></button>
+                    <div class="hidden-content contrib-descrp" id="53623">
+                        Previously when calling <code>sum</code> on a GroupBy object, it summed <code>inf+inf</code> and <code>(-inf)+(-inf)</code> to <code>nan</code>, which is undesired.
+                        Moreover, this behavior was inconsistent with calling <code>apply</code> on a standard summation function.
+                        The problem was caused by the Cython function <code>group_sum</code>, which implements <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm">Kahan's summation</a> to reduce numerical error caused by finite-precision floating-point operations.
+                        It maintains a compensation for low-order bits, and fix the excess in further rounds, which can be interpreted as follows.
+                        <pre><code class="pre-code language-plaintext">var y = input[i] - c
+var t = sum + y
+c = (t - sum) - y    // c is initialized to zero before the loop
+sum = t              // sum is initialized to zero before the loop
+next i</code></pre>
+                        In the case where input is <code>inf</code>, then <code>y</code> and <code>t</code> would become <code>inf</code>, and thus when computing <code>c</code>, <i>i.e.</i>, the compentation, we would be performing <code>inf-inf</code> which gives <code>nan</code>.
+                        To fix this, we can set the compensation back to zero whenever it becomes <code>nan</code>.
+                        Also note that for efficiency, this Cython function is written with nogil so that we cannot use <code>util.is_nan</code>.
+                        Instead, we can use <code>c != c</code> to represent <code>util.is_nan(c)</code>.
+                    </div>
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53517">FIX groupby with column selection not returning tuple when grouping by list of a single element #53517</a>
                     <button class="hide" id="hide-53517"></button>
                     <div class="hidden-content contrib-descrp" id="53517">
@@ -268,12 +287,8 @@ A      100
                     (under review)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53623">BUG: groupby sum turning inf+inf and (-inf)+(-inf) into nan #53623</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53641">BUG: pd.concat dataframes with different datetime64 resolutions #53641</a>
-                    (pending)
+                    (under review)
                 </div>
                 <!--
                 <div class="contrib-item">
@@ -294,12 +309,8 @@ A      100
                     (PR fix)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/53606">BUG: inconsistent treatment of numpy.Inf between groupby.sum() and groupby.apply(lambda: _grp: _grp.sum()) #53606</a>
-                    (pending)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/53640">BUG: pd.concat dataframes with different datetime64 types #53640</a>
-                    (pending)
+                    (PR fix)
                 </div>
                 <!--
                 <div class="contrib-item">
