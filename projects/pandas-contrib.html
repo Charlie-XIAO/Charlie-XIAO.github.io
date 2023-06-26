@@ -55,8 +55,9 @@
                     <a href="#code-contrib">Code Contributions</a>
                     <ul>
                         <li><a href="#groupby">Groupby</a></li>
-                        <li><a href="#multiindex">MultiIndex</a></li>
-                        <li><a href="#numeric">Numeric Operations</a></li>
+                        <li><a href="#io">I/O</a></li>
+                        <li><a href="#numeric">Numeric</a></li>
+                        <li><a href="#resample">Resample</a></li>
                         <li><a href="#reshaping">Reshaping</a></li>
                     </ul>
                 </li>
@@ -184,8 +185,24 @@ B         0.4  1.6</code></pre>
                 </div>
             </p>
 
-            <h3 id="multiindex">MultiIndex</h3>
+            <h3 id="io">I/O</h3>
             <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53764">BUG: bad display for complex series with nan #53764</a>
+                    <button class="hide" id="hide-53764"></button>
+                    <div class="hidden-content contrib-descrp" id="53764">
+                        This is related to <a href="https://github.com/pandas-dev/pandas/pull/53682">pandas-dev/pandas#53862</a>.
+                        Though <code>complex("nan")</code> no longer raises in series and dataframe, it is not displayed correctly, for instance <code>N000a000N</code>.
+                        This is also because pandas not considering that complex numbers can have nans, thus splitting by <code>+</code>, <code>-</code>, and <code>j</code> and maunally adding zeros for padding, causing this issue to happen.
+                        I applied some tricks here: if dtype is complex then I do not display nans as <code>NaN</code> but as <code>NaN+0.0j</code>. 
+                        The I split the real and imaginary parts with some regex and pad both the real and imaginary parts of a single number but also all real (resp. imaginary) parts of all the numbers using some existing helper function.
+                        Now <code>complex("nan")</code> can be displayed properly, for instance, <code>pd.Series([1.23, complex("nan"), -1.2j])</code> will print
+                        <pre><code class="pre-code language-plaintext">0   1.23+0.00j
+1    NaN+0.00j
+2   0.00-1.20j
+dtype: complex128</code></pre>
+                    </div>
+                </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53044">BUG: MultiIndex displays incorrectly with a long element #53044</a>
                     <button class="hide" id="hide-53044"></button>
@@ -199,8 +216,19 @@ B         0.4  1.6</code></pre>
                 </div>
             </p>
 
-            <h3 id="numeric">Numeric Operations</h3>
+            <h3 id="numeric">Numeric</h3>
             <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53682">BUG: series with complex nan #53682</a>
+                    <button class="hide" id="hide-53682"></button>
+                    <div class="hidden-content contrib-descrp" id="53682">
+                        Previously, series and dataframe with <code>complex("nan")</code> will raise an error.
+                        This is caused by a hard conversion from complex nan into float dtype in the Cython code.
+                        When designing the constructor, pandas considered all objects that <code>util.is_nan</code> evaluate to True as float nans.
+                        I added a check for complex nans to avoid this invalid conversion.
+                        <code>complex("nan")</code> is now allowed in series and dataframe, displayed as <code>NaN+0.0j</code>.
+                    </div>
+                </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53288">FIX RangeIndex rsub by constant #53288</a>
                     <button class="hide" id="hide-53288"></button>
@@ -208,6 +236,24 @@ B         0.4  1.6</code></pre>
                         Previously, negative <code>RangeIndex</code> correctly set the step size to the opposite of the original, but constant minus <code>RangeIndex</code> did not.
                         This was because the former would call <code>__neg__</code> while the latter would undergo some more complex numeric operations.
                         I made a small modification so that now the latter case also reverts the step size correctly.
+                    </div>
+                </div>
+            </p>
+
+            <h3 id="resample">Resample</h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53736">BUG: resampling empty series loses time zone from dtype #53736</a>
+                    <button class="hide" id="hide-53736"></button>
+                    <div class="hidden-content contrib-descrp" id="53736">
+                        For instance, look at the following code snippet.
+                        <pre><code class="pre-code language-python">df = pd.DataFrame({"ts": [], "values": []}).astype({"ts": "datetime64[ns, Atlantic/Faroe]"})
+result = df.resample("2MS", on="ts", closed="left", label="left", origin="start")["values"].sum()
+print(result.index)  # This prints DatetimeIndex([], dtype='datetime64[ns]', name='ts', freq='2MS')</code></pre>
+                        Clearly the timezone information is lost, but this does not happen if the constructing series is not empty.
+                        The reason for this bug is that, the case of empty series is dealt with separately and dtype is not explicitly provided.
+                        Therefore, pandas tried to provide a minimum compatible time for the empty index, causing the loss of timezone.
+                        I made an easy fix that takes dtype into consideration.
                     </div>
                 </div>
             </p>
@@ -290,6 +336,14 @@ A      100
                     <a href="https://github.com/pandas-dev/pandas/pull/53641">BUG: pd.concat dataframes with different datetime64 resolutions #53641</a>
                     (under review)
                 </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53829">CLN: Make internal numpy sort and argsort use kind="stable" #53829</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53844">BUG: complex Series/DataFrame display all complex nans as nan+0j #53844</a>
+                    (pending)
+                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/"></a>
@@ -309,7 +363,19 @@ A      100
                     (PR fix)
                 </div>
                 <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/53558">Should internal usages of sorting with numpy use kind="stable"? #53558</a>
+                    (PR fix)
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/53640">BUG: pd.concat dataframes with different datetime64 types #53640</a>
+                    (PR fix)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/53826">CLN: use lib.no_default instead of lib.NoDefault in reshape.pivot #53826</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/issues/53841">BUG: complex Series/DataFrame display all complex nans as nan+0j #53841</a>
                     (PR fix)
                 </div>
                 <!--
