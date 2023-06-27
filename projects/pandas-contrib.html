@@ -90,8 +90,7 @@
             </p>
             <p>
                 I have made <a href="https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO"><span id="pandas-merged-prs"></span> pull requests</a> that have been merged into the code base of pandas.
-                <!-- Currently I am the <a href="https://github.com/pandas-dev/pandas/graphs/contributors">Top #<span id="pandas-rank-contributor"></span> contributor</a> to pandas, with <span id="pandas-lines-addition"></span> lines of addition and <span id="pandas-lines-deletion"></span> lines of deletion. -->
-                Currently I have made <span id="pandas-lines-addition"></span> lines of addition and <span id="pandas-lines-deletion"></span> lines of deletion.
+                Currently I am the <a href="https://github.com/pandas-dev/pandas/graphs/contributors">Top #<span id="pandas-rank-contributor"></span> contributor</a> to pandas, with <span id="pandas-lines-addition"></span> lines of addition and <span id="pandas-lines-deletion"></span> lines of deletion.
                 These data are collected on <span class="get-last-updated"></span>.
             </p>
             <p>
@@ -187,6 +186,22 @@ B         0.4  1.6</code></pre>
 
             <h3 id="io">I/O</h3>
             <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53844">BUG: complex Series/DataFrame display all complex nans as nan+0j #53844</a>
+                    <button class="hide" id="hide-53844"></button>
+                    <div class="hidden-content contrib-descrp" id="53844">
+                        This is related to <a href="https://github.com/pandas-dev/pandas/pull/53764">pandas-dev/pandas#53764</a>.
+                        Previously in that PR (also made by me), I considered nan of complex dtype simply as <code>nan+0.0j</code>, but this is incorrect.
+                        Both the real and imaginary part can be nan, and either of these parts being nan will lead to <code>util.is_nan</code> returning True.
+                        Therefore, the previous PR led to all types of complex nans being displayed as <code>NaN+0.0j</code>, though the underlying data is stored correctly.
+                        In this PR, I split real and imaginary parts, format them separately, and concatenate them (hopefully) properly.
+                        Since the imaginary part can also be <code>NaN</code>, it also has to be padded manually to the maximum length.
+                        For instance, we may have
+                        <pre><code class="pre-code language-plaintext">0      NaN-1.2345j
+1      NaN+   NaNj
+2  -1.2345+   NaNj</code></pre>
+                    </div>
+                </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/53764">BUG: bad display for complex series with nan #53764</a>
                     <button class="hide" id="hide-53764"></button>
@@ -340,10 +355,6 @@ A      100
                     <a href="https://github.com/pandas-dev/pandas/pull/53829">CLN: Make internal numpy sort and argsort use kind="stable" #53829</a>
                     (under review)
                 </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53844">BUG: complex Series/DataFrame display all complex nans as nan+0j #53844</a>
-                    (pending)
-                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/"></a>
@@ -374,10 +385,6 @@ A      100
                     <a href="https://github.com/pandas-dev/pandas/issues/53826">CLN: use lib.no_default instead of lib.NoDefault in reshape.pivot #53826</a>
                     (pending)
                 </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/53841">BUG: complex Series/DataFrame display all complex nans as nan+0j #53841</a>
-                    (PR fix)
-                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/"></a>
@@ -402,7 +409,7 @@ A      100
         insertPandasMergedPRs();
         insertPandasLinesAddition();
         insertPandasLinesDeletion();
-        // insertPandasRankContributor();
+        insertPandasRankContributor();
     </script>
 </body>
 
