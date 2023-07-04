@@ -149,6 +149,16 @@
             <h3 id="feature_selection"><code>sklearn.feature_selection</code></h3>
             <p>
                 <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26748">FIX mutual_info_regression when X is of integer dtype #26748</a>
+                    <button class="hide" id="hide-26748"></button>
+                    <div class="hidden-content contrib-descrp" id="26748">
+                        Previously, <code>feature_selection.mutual_info_regression</code> would return inaccurate or incorrect result when <code>X</code> is of integer dtype.
+                        This is because after scaling the data, it was directly assigned back to <code>X</code>, causing the values to be rounded to integers.
+                        Converting <code>X</code> to float dtype after that would already be too late.
+                        I made a simple fix to convert <code>X</code> to float dtype in the first place, thus avoiding this problem.
+                    </div>
+                </div>
+                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/25973">FIX SequentialFeatureSelector throws IndexError when cv is a generator #25973</a>
                     <button class="hide" id="hide-25973"></button>
                     <div class="hidden-content contrib-descrp" id="25973">
@@ -267,6 +277,7 @@
             <p>Items are sorted in reverse chronological order by the time of merge.</p>
             <p>
                 <!-- <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/"></a></div> -->
+                <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26661">DOC show usage of __ in Pipeline and FeatureUnion #26661</a></div>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26610">DOC search link to sphinx version #26610</a></div>
                 <div class="contrib-item"><a href="https://github.com/scikit-learn/scikit-learn/pull/26018">DOC fix SplineTransformer include_bias docstring #26018</a></div>
             </p>
@@ -302,10 +313,6 @@
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/26602">ENH ravel prediction of PLSRegression when fitted on 1d y #26602</a>
                     (pending)
                 </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26661">DOC show usage of __ in Pipeline and FeatureUnion #26661</a>
-                    (under review)
-                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/pull/"></a>
@@ -323,6 +330,10 @@
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25193">StratifiedKFold and StratifiedGroupKFold for multilabel classification #25193</a>
                     (PR towards)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/issues/25623">KernelDensity incorrect handling of bandwidth #25623</a>
+                    (pending, xref <a href="https://github.com/scikit-learn/scikit-learn/issues/26658">#26658</a>)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25711">SequentialFeatureSelector is not working with ColumnTransformer #25711</a>
@@ -357,12 +368,12 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26656">Pipeline doc references inexistent example #26656</a>
-                    (PR fix)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26684">ENH warnings.warn stacklevel #26684</a>
                     (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26658">Automatic bandwidth calculation valid only for normalized data #26658</a>
+                    (pending, xref <a href="https://github.com/scikit-learn/scikit-learn/issues/25623">#25623</a>)
                 </div>
                 <!--
                 <div class="contrib-item">
