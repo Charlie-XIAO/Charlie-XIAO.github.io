@@ -56,6 +56,7 @@
                     <ul>
                         <li><a href="#groupby">Groupby</a></li>
                         <li><a href="#io">I/O</a></li>
+                        <li><a href="#missing-data">Missing Data</a></li>
                         <li><a href="#numeric">Numeric</a></li>
                         <li><a href="#resample">Resample</a></li>
                         <li><a href="#reshaping">Reshaping</a></li>
@@ -233,6 +234,31 @@ dtype: complex128</code></pre>
                 </div>
             </p>
 
+            <h3 id="missing-data">Missing Data</h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/pandas-dev/pandas/pull/53962">BUG: interpolate with fillna methods fail to fill across multiblocks #53962</a>
+                    <button class="hide" id="hide-53962"></button>
+                    <div class="hidden-content contrib-descrp" id="53962">
+                        Previously, interpolating will <code>fillna</code> methods such as <code>"ffill"</code> could not fill across blocks.
+                        For instance, we make a multi-block DataFrame and interpolate it.
+                        <pre><code class="pre-code language-python">df = pd.DataFrame(np.random.randn(3, 3), columns=["A", "B", "C"])
+df["D"] = np.nan
+df["E"] = 1.0
+df.interpolate(method="ffill", axis=1)</code></pre>
+                        This, previously would give the follows.
+                        <pre><code class="pre-code language-plaintext">          A         B         C   D    E
+0 -0.656239  0.898067  0.842284 NaN  1.0
+1 -0.914892 -0.018121 -0.382542 NaN  1.0
+2  1.818251 -0.148962  0.550328 NaN  1.0</code></pre>
+                        Though interpolating with <code>fillna</code> methods have been deprecated, it would still be meaningful to fix this bug.
+                        The reason is that, when dealing with multi-block DataFrames, one would have to transpose it before passing it to the block manager and then transpose the result back.
+                        I reorganized the code a bit and fixed this issue.
+                        Now despite raising a deprecation warning, the functionality works correctly.
+                    </div>
+                </div>
+            </p>
+
             <h3 id="numeric">Numeric</h3>
             <p>
                 <div class="contrib-item">
@@ -326,6 +352,7 @@ A      100
         <div class="outline-text-2" id="text-maint-contrib">
             <p>
                 <!-- <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/"></a></div> -->
+                <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53958">API: add NaTType and NAType to pandas.api.typing #53958</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53901">CI: linting check to ensure lib.NoDefault is only used for typing #53901</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53877">CLN: use lib.no_default instead of lib.NoDefault in .pivot #53877</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53520">DEPR fill_method and limit keywords in pct_change #53520</a></div>
@@ -347,6 +374,7 @@ A      100
             <p>Items are sorted in reverse chronological order by the time of merge.</p>
             <p>
                 <!-- <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/"></a></div> -->
+                <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53957">DOC: EX01 (part of ExtensionArray) #53957</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53925">DOC: EX01 ({Categorical, Interval, Multi, Datetime, Timedelta}-Index) #53925</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53920">DOC: EX01 (Index and RangeIndex) #53920</a></div>
                 <div class="contrib-item"><a href="https://github.com/pandas-dev/pandas/pull/53902">DOC: fix asv test results link in contributors doc #53902</a></div>
@@ -379,18 +407,6 @@ A      100
                     <a href="https://github.com/pandas-dev/pandas/pull/53829">CLN: Make internal numpy sort and argsort use kind="stable" #53829</a>
                     (under review)
                 </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53957">DOC: EX01 (part of ExtensionArray) #53957</a>
-                    (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53958">API: add NaTType and NAType to pandas.api.typing #53958</a>
-                    (under review)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/pull/53962">BUG: interpolate with fillna methods fail to fill across multiblocks #53962</a>
-                    (under review)
-                </div>
                 <!--
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/pull/"></a>
@@ -415,14 +431,6 @@ A      100
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/pandas-dev/pandas/issues/53640">BUG: pd.concat dataframes with different datetime64 types #53640</a>
-                    (PR fix)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/53898">BUG: interpolate with ffill/bfill method, axis=1, multi-block #53898</a>
-                    (PR fix)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/pandas-dev/pandas/issues/53934">API: NaTType and NAType are in inconsistent packages #53934</a>
                     (PR fix)
                 </div>
                 <!--

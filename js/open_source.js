@@ -13,10 +13,10 @@ const SKLEARN_RANK_CONTRIBUTOR = 68;
 
 /* Statistics for pandas */
 
-const PANDAS_MERGED_PRS = 20;
-const PANDAS_LINES_ADDITION = 1149;
-const PANDAS_LINES_DELETION = 247;
-const PANDAS_RANK_CONTRIBUTOR = 87;
+const PANDAS_MERGED_PRS = 23;
+const PANDAS_LINES_ADDITION = 1294;
+const PANDAS_LINES_DELETION = 292;
+const PANDAS_RANK_CONTRIBUTOR = 79;
 
 /* Definining insertion functions */
 
