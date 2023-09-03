@@ -18,7 +18,7 @@
  * 
  * Usage:
  * 
- * One should first init a HideInstace object, optinally specifying the hide and
+ * One should first init a HideInstace object, optionally specifying the hide and
  * reveal description one wants to show next to the chevron, and whether to put
  * that description before of after that chevron. By default no additional text
  * is shown. Then one should run `HideInstance.executeHide()`.

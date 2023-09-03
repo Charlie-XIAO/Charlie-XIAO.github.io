@@ -23,6 +23,7 @@
     <script src="https://kit.fontawesome.com/96558c71d2.js" crossorigin="anonymous"></script>
     <!-- Cutomized CSS -->
     <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/flipper.css" />
 </head>
 
 <body>
@@ -89,16 +90,16 @@
             <h2 class="heading">About <span>Me</span></h2>
             <p>
                 My name is 萧尧 (xiāo yáo).
-                I am an undergraduate (currently in junior year) majoring in Honors Mathematics and Computer Science at <a href="https://shanghai.nyu.edu/">NYU Shanghai</a>.
+                I am a senior majoring in Honors Mathematics and Computer Science at <a href="https://shanghai.nyu.edu/">NYU Shanghai</a>.
             </p>
             <p>
                 I was born in Shanghai and graduated from <a href="http://www.hsefz.cn">No.2 High School Affiliated to East China Normal University</a> (华东师范大学第二附属中学, 2017-20).
                 After that, I entered <a href="https://shanghai.nyu.edu/">NYU Shanghai</a>, where I am currently studying.
-                During the Fall 2022 and Spring 2023 semesters, I am studying away in New York at <a href="https://cims.nyu.edu/dynamic/">NYU Courant</a>.
-                I am Tutor for Operating Systems at NYU Courant and Research Assistant in network security.
+                During the Fall 2022 and Spring 2023 semesters, I studied away in New York at <a href="https://cims.nyu.edu/dynamic/">NYU Courant</a>.
             </p>
             <p>
                 I am really interested in Mathematical Sciences, Computer Science, and programming.
+                My research interest is mainly in computer networking and system design.
                 As for music and art, I like playing the piano in my spare time.
                 Currently, I aim to become a software engineer in the future.
                 If you want to contact me, you may reach me at <a href="mailto: yx2436@nyu.edu"><code>yx2436@nyu.edu</code></a>.
@@ -117,7 +118,42 @@
     <!-- ---------- ---------- ---------- ---------- ---------- -->
 
     <section class="education" id="education">
-        <div class="heading">Recent <span>Education</span></div>
+        <div class="heading">
+            Recent <span>Education</span>
+            <div class="flip-select" id="flip-select-education-check"></div>
+        </div>
+        <div class="heading-select opaque-content" id="education-check">
+            <label id="education-check-fa23"><input type="checkbox" checked>Fall 2023</label>
+            <label id="education-check-sp23"><input type="checkbox" checked>Spring 2023</label>
+            <label id="education-check-fa22"><input type="checkbox" checked>Fall 2022</label>
+            <label id="education-check-sp22"><input type="checkbox">Spring 2022</label>
+            <label id="education-check-fa21"><input type="checkbox">Fall 2021</label>
+            <label id="education-check-sp21"><input type="checkbox">Spring 2021</label>
+            <label id="education-check-fa20"><input type="checkbox">Fall 2020</label>
+        </div>
+
+        <!-- Fall 2023 Semester -->
+        <div class="education-content" id="education-fa23">
+            <div class="education-semester">
+                <h2>Fall <span>2023</span></h2>
+            </div>
+            <div class="education-container">
+                <div class="education-box education-cs" id="education-network">
+                    <h3><a href="./education/Network.html">Computer Networking</a></h3>
+                    <p>CSCI-SHU.0308</p>
+                </div>
+                <div class="education-box education-math" id="education-halg">
+                    <h3><a href="./education/HAlg.html">Honors Algebra</a></h3>
+                    <p>MATH-SHU.0348</p>
+                    <a class="shortcut" href="./notes/halg-notes.pdf">Notes</a>
+                </div>
+                <div class="education-box education-math" id="education-prob-limit-thm">
+                    <h3><a href="./education/PLT.html">Probability Limit Theorems</a></h3>
+                    <p>MATH-SHU.0350</p>
+                    <a class="shortcut" href="./notes/plt-notes.pdf">Notes</a>
+                </div>
+            </div>
+        </div>
         
         <!-- Spring 2023 Semester -->
         <div class="education-content" id="education-sp23">
@@ -500,6 +536,7 @@
     </footer>
 
     <script src="./js/index.js"></script>
+    <script src="./js/flipper.js"></script>
     <script src="./js/last_updated.js"></script>
     <script src="../js/open_source.js"></script>
     <script>
@@ -507,6 +544,10 @@
         insertSklearnRankContributor();
         insertPandasMergedPRs();
         insertPandasRankContributor();
+    </script>
+    <script>
+        FlipSelectInstance.init();
+        FlipSelectInstance.executeFlipSelect();
     </script>
 </body>
 

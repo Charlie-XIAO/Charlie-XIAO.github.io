@@ -41,4 +41,24 @@ window.onscroll = () => {
     navbar.classList.remove("active");
 };
 
+// ---------- ---------- ---------- ---------- ---------- //
+//                                                        //
+//               EDUCATION SECTION SELECTOR               //
+//                                                        //
+// ---------- ---------- ---------- ---------- ---------- //
+
+let educationSelectors = document.querySelectorAll(".education .heading-select label");
+
+educationSelectors.forEach(selector => {
+    let selectorTargetId = selector.id.slice(16);
+    let selectorTarget = document.getElementById(`education-${selectorTargetId}`);
+    if (!selector.childNodes[0].checked) {
+        selectorTarget.classList.add("force-display-none");
+    }
+    selector.addEventListener("change", () => {
+        selectorTarget.classList.toggle("force-display-none");
+    });
+});
+
+
 // https://www.youtube.com/watch?v=Tkp3FDgOueM >> 50 min

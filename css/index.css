@@ -44,6 +44,10 @@ a {
     transition: all 250ms ease;
 }
 
+.force-display-none {
+    display: none !important;
+}
+
 /* ---------- ---------- ---------- ---------- ---------- */
 /*                                                        */
 /*                      HEADER STYLE                      */
@@ -252,6 +256,19 @@ a {
 .education .heading span {
     color: var(--main-color);
     font-family: "Poppins", sans-serif;
+}
+
+.education .heading-select {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.education .heading-select label {
+    margin: 0 1.2rem;
+}
+
+.education .heading-select label input {
+    margin-right: 0.6rem;
 }
 
 .education-content {
