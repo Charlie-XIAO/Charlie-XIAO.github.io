@@ -9,7 +9,7 @@
  * it controls to be "<something>".
  * 
  * If one decides to not show the element initially, then one should add the class
- * "opaque-content" to that element.
+ * "hidden-content" to that element.
  * 
  * Also note that the innerHTML of the divs should be left empty.
  * 
@@ -26,12 +26,6 @@ var FlipSelectInstance = FlipSelectInstance || (function() {
         executeFlipSelect: function() {
             let flipSelectDivs = document.querySelectorAll("div.flip-select");
 
-            // let isFlipped = false;
-            // triangle.addEventListener("click", () => {
-            //     isFlipped = !isFlipped;
-            //     triangle.style.transform = isFlipped ? "scaleX(1) scaleY(-1)" : "scaleX(1) scaleY(1)";
-            // });
-
             flipSelectDivs.forEach(flipSelectDiv => {
                 let flipSelectDivIdPrefix = flipSelectDiv.id.slice(0, 12);
                 if (flipSelectDivIdPrefix != "flip-select-") {
@@ -40,15 +34,14 @@ var FlipSelectInstance = FlipSelectInstance || (function() {
 
                 let flipSelectTargetId = flipSelectDiv.id.slice(12);
                 let flipSelectTarget = document.getElementById(flipSelectTargetId);
-                flipSelectTarget.classList.add("smooth-opaque");
 
                 flipSelectDiv.addEventListener("click", () => {
-                    if (flipSelectTarget.classList.contains("opaque-content")) {
-                        flipSelectTarget.classList.toggle("opaque-content");
+                    if (flipSelectTarget.classList.contains("hidden-content")) {
+                        flipSelectTarget.classList.toggle("hidden-content");
                         flipSelectDiv.style.transform = "scaleX(1) scaleY(-1)";
                     }
                     else {
-                        flipSelectTarget.classList.add("opaque-content");
+                        flipSelectTarget.classList.add("hidden-content");
                         flipSelectDiv.style.transform = "scaleX(1) scaleY(1)";
                     }
                 });

@@ -4,12 +4,8 @@
  *
  **/
 
-.opaque-content {
-    opacity: 0;
-}
-
-.smooth-opaque {
-    transition: opacity 0.5s;
+.hidden-content {
+    display: none;
 }
 
 div .flip-select {

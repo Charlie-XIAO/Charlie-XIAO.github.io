@@ -54,6 +54,7 @@
                 <li>
                     <a href="#code-contrib">Code Contributions</a>
                     <ul>
+                        <li><a href="#cross_decomposition"><code>sklearn.cross_decomposition</code></a></li>
                         <li><a href="#decomposition"><code>sklearn.decomposition</code></a></li>
                         <li><a href="#ensemble"><code>sklearn.ensemble</code></a></li>
                         <li><a href="#feature_selection"><code>sklearn.feature_selection</code></a></li>
@@ -113,6 +114,19 @@
         <h2 id="code-contrib">Code Contributions</h2>
         <div class="outline-text-2" id="text-code-contrib">
             <p>Items in each section are sorted in reverse chronological order by the time of merge.</p>
+
+            <h3 id="cross_decomposition"><code>sklearn.cross_decomposition</code></h3>
+            <p>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26602">ENH ravel prediction of PLSRegression when fitted on 1d y #26602</a>
+                    <button class="hide" id="hide-26602"></button>
+                    <div class="hidden-content contrib-descrp" id="26602">
+                        Previously, <code>PLSRegression</code> always predicts 2D result no matter if the input is 1D or 2D.
+                        This is somehow inconsistent with other regressors such as <code>LinearRegression</code> and <code>Ridge</code>.
+                        I implemented automatic raveling when input is 1D, so that the regressors now behave consistently.
+                    </div>
+                </div>
+            </p>
 
             <h3 id="decomposition"><code>sklearn.decomposition</code></h3>
             <p>
@@ -311,8 +325,96 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/pull/26602">ENH ravel prediction of PLSRegression when fitted on 1d y #26602</a>
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27216">TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_forest #27216</a>
                     (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27217">TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_gradient_boosting #27217</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27218">TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_iforest #27218</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27219">TST Extend tests for scipy.sparse/*array in sklearn/feature_extraction/tests/test_text #27219</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27222">TST Extend tests for scipy.sparse/*array in sklearn/feature_selection/tests/test_variance_threshold #27222</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27225">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_base #27225</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27226">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_coordinate_descent #27226</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27228">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_quantile #27228</a>
+                    (under review)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27233">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_ransac #27233</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27235">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_ridge #27235</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27237">TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_sparse_coordinate_descent #27237</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27240">TST Extend tests for scipy.sparse/*array in sklearn/manifold/tests/test_spectral_embedding #27240</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27241">TST Extend tests for scipy.sparse/*array in sklearn/metrics/cluster/tests/test_unsupervised #27241</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27246">TST Extend tests for scipy.sparse/*array in sklearn/model_selection/tests/test_split #27246</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27250">TST Extend tests for scipy.sparse/*array in sklearn/neighbors/tests/test_neighbors #27250</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27252">TST Extend tests for scipy.sparse/*array in sklearn/neural_network/tests/test_rbm #27252</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27253">TST Extend tests for scipy.sparse/*array in sklearn/preprocessing/tests/test_data #27253</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27254">TST Extend tests for scipy.sparse/*array in sklearn/preprocessing/tests/test_function_transformer #27254</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27261">TST Extend tests for scipy.sparse/*array in sklearn/tree/tests/test_tree #27261</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27262">TST Extend tests for scipy.sparse/*array in sklearn/utils/tests/test_extmath #27262</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27274">TST Extend tests for scipy.sparse/*array in sklearn/utils/tests/test_multiclass #27274</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27276">TST Extend tests for scipy.sparse/*array in sklearn/utils/tests/test_testing #27276</a>
+                    (pending)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/pull/27277">TST Extend tests for scipy.sparse/*array in sklearn/impute/tests/test_common #27277</a>
+                    (pending)
                 </div>
                 <!--
                 <div class="contrib-item">
@@ -325,24 +427,12 @@
             <h3 id="future-issues">Issues</h3>
             <p>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/24862">Make automatic validation for all scikit-learn public functions #24862</a>
-                    (PR towards)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25193">StratifiedKFold and StratifiedGroupKFold for multilabel classification #25193</a>
                     (PR towards)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25623">KernelDensity incorrect handling of bandwidth #25623</a>
                     (pending, xref <a href="https://github.com/scikit-learn/scikit-learn/issues/26658">#26658</a>)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/25711">SequentialFeatureSelector is not working with ColumnTransformer #25711</a>
-                    (pending)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/25771">maximal information coefficient for feature selection #25771</a>
-                    (pending)
                 </div>
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/25854">KNeighborsClassifier with Default Label #25854</a>
@@ -357,14 +447,6 @@
                     (pending)
                 </div>
                 <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26549">PLSRegression not working with VotingRegressor #26549</a>
-                    (PR towards)
-                </div>
-                <div class="contrib-item">
-                    <a href="https://github.com/scikit-learn/scikit-learn/issues/26552">False positive warning in FunctionTransformer #26552</a>
-                    (pending)
-                </div>
-                <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26617">DOC Introduce dropdowns in the User Guide #26617</a>
                     (pending)
                 </div>
@@ -375,6 +457,10 @@
                 <div class="contrib-item">
                     <a href="https://github.com/scikit-learn/scikit-learn/issues/26658">Automatic bandwidth calculation valid only for normalized data #26658</a>
                     (pending, xref <a href="https://github.com/scikit-learn/scikit-learn/issues/25623">#25623</a>)
+                </div>
+                <div class="contrib-item">
+                    <a href="https://github.com/scikit-learn/scikit-learn/issues/27090">TST Extend tests for scipy.sparse.*array #27090</a>
+                    (PR towards)
                 </div>
                 <!--
                 <div class="contrib-item">
