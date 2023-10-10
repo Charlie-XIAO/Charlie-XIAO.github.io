@@ -1,0 +1,52 @@
+<!--
+
+  This template supports the following:
+
+    startDate  : a date badge (required)
+    endDate    : the end data to append to the date badge (optional)
+    title      : title (required)
+    subtitle   : subtitle in black (required)
+    url        : the hyperlink of the title (optional)
+    remarks    : the remarks below title and subtitle in gray (optional)
+    highlights : the list of highlights (required)
+
+-->
+
+<ul class="card-text font-weight-light list-group list-group-flush">
+  {% for content in data[1] %}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+        {% assign date = content.startDate %}
+        {% if content.endDate %}
+        {% assign date = date | append: "<br>-<br>" %}
+        {% assign date = date | append: content.endDate %}
+        {% endif %}
+        <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+          {{ date }}
+        </span>
+      </div>
+      <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+        <h6 class="title ml-1 ml-md-4 font-weight-bold" style="color: var(--global-theme-color);">
+          {% if content.url %}
+          <a href="{{ content.url }}">{{content.title}}</a>
+          {% else %}
+          {{content.title}}
+          {% endif %}
+        </h6>
+        <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">{{content.subtitle}}</h6>
+        {% if content.remarks %}
+        <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; color: var(--global-text-color-light);">{{content.remarks}}</h6>
+        {% endif %}
+        <ul class="items">
+          {% for item in content.highlights %}
+          <li>
+            <span class="item">{{ item }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>

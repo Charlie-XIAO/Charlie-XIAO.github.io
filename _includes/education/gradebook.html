@@ -1,0 +1,26 @@
+
+<h2 id="gradebook">Gradebook</h2>
+<div class="table-responsive">
+  <table data-toggle="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        {% assign n_cols = 0 %}
+        {% for colname in page.gradebook_cols %}
+          <th>{{ colname }}</th>
+          {% assign n_cols = n_cols | plus: 1 %}
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in page.gradebook %}
+        <tr>
+          <td>{{ data[0] }}</td>
+          {% for i in (1..n_cols) %}
+            <td>{{ data[1][i] }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

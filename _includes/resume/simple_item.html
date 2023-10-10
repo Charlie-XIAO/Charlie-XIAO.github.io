@@ -1,0 +1,25 @@
+<!--
+
+  This template supports the following:
+
+    title    : title (required)
+    contents : contents (required)
+
+-->
+
+<div class="list-groups">
+  {% for content in data[1] %}
+  <div class="list-group col-md-6">
+    <table class="table-cv list-group-table">
+      <tbody>
+        <tr>
+          <td class="list-group-category">{{ content.title }}</td>
+        </tr>
+        <tr>
+          <td class="list-group-name"><b>{{ content.contents }}</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+</div>

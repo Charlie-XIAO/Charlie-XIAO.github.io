@@ -1,0 +1,8 @@
+<h2 id="course-information">Course information</h2>
+<div>
+  <ul>
+    {% for data in page.course_information" %}
+      <li><b>{{ data[0] }}:</b> {{ data[1] }}</li>
+    {% endfor %}
+  </ul>
+</div>

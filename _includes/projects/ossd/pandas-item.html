@@ -1,0 +1,22 @@
+<div class="description-container">
+  <div class="description-summary">
+    {% if include.description %}
+    <!-- The toggle button -->
+    <button class="toggle-button" style="all: unset; cursor: pointer; margin-right: 0.8rem;" data-toggle-target="{{ include.pr }}">
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+    {% else %}
+    <button style="all: unset; margin-right: 0.8rem;">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    {% endif %}
+    <!-- The display title -->
+    <a href="https://github.com/pandas-dev/pandas/pull/{{ include.pr }}">{{ include.title }} #{{ include.pr }}</a>
+    {% if include.description %}
+    <!-- The details that are by default hidden -->
+    <div class="description-details" style="display: none; margin-top: 1rem; margin-bottom: 1rem;" data-toggle-id="{{ include.pr }}">
+      {{ include.description }}
+    </div>
+    {% endif %}
+  </div>
+</div>

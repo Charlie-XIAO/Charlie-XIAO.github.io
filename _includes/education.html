@@ -1,0 +1,16 @@
+<!-- _includes/education.html -->
+<div class="grid-sizer"></div>
+<div class="grid-item">
+  {% if education.redirect -%}
+  <a href="{{ education.redirect }}">
+    {%- else -%}
+    <a href="{{ education.url | relative_url }}">
+      {%- endif %}
+      <div class="card hoverable">
+        <div class="card-body">
+          <h2 class="card-title">{{ education.title }}</h2>
+          <p class="card-text">{{ education.description }}</p>
+        </div>
+      </div>
+    </a>
+</div>

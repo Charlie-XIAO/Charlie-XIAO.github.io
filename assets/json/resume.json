@@ -1,0 +1,157 @@
+{
+  "basics": {
+    "name": "Yao Xiao",
+    "email": "yx2436@nyu.edu",
+    "phone": "(+86) 186-2182-3612",
+    "url": "https://charlie-xiao.github.io/"
+  },
+  "education": [
+    {
+      "title": "New York University Shanghai",
+      "url": "https://shanghai.nyu.edu/",
+      "subtitle": "Honors Mathematics, Bachelor's degree",
+      "startDate": "2020.09",
+      "endDate": "present",
+      "remarks": "GPA: 4.000/4.000",
+      "highlights": [
+        "Honors Calculus",
+        "Honors Linear Algebra",
+        "Honors Analysis",
+        "Honors Ordinary Differential Equations",
+        "Honors Theory of Probability",
+        "Honors Numerical Analysis",
+        "Honors Algebra",
+        "Partial Differential Equations",
+        "Modeling and Simulation",
+        "Complex Analysis*",
+        "Stochastic Calculus*",
+        "Probability Limit Theorems"
+      ]
+    },
+    {
+      "title": "New York University Shanghai",
+      "url": "https://shanghai.nyu.edu/",
+      "subtitle": "Computer Science, Bachelor's degree",
+      "startDate": "2020.09",
+      "endDate": "present",
+      "remarks": "GPA: 3.966/4.000",
+      "highlights": [
+        "Discrete Mathematics",
+        "Data Structures",
+        "Computer Architecture",
+        "Basic Algorithms",
+        "Operating Systems",
+        "Open Source Software Development",
+        "Randomized Algorithms",
+        "Machine Learning*",
+        "Computer Networking"
+      ]
+    }
+  ],
+  "work": [
+
+  ],
+  "research": [
+    {
+      "title": "Efficiently Visualizing Large Graphs",
+      "startDate": "2022.05",
+      "endDate": "2022.09",
+      "subtitle": "Deans' Undergraduate Research Fund (DURF)",
+      "remarks": "Python, NetworkX, pandas, scikit-learn",
+      "highlights": [
+        "Proposed SPLEE, a new graph embedding method based on Laplacian eigenmaps and shortest paths.",
+        "Proposed t-SGNE, a new dimension reduction method designed for graphs, improving runtime while maintaining visualization quality.",
+        "Proposed a new graph visualization method suitable for large graphs by combining SPLEE and t-SGNE."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Scikit-learn",
+      "url": "/projects/ossd-sklearn/",
+      "startDate": "2023.03",
+      "endDate": "present",
+      "subtitle": "Open Source Development",
+      "remarks": "Python, numpy, scipy, scikit-learn, pytest, asv",
+      "highlights": [
+        "Top #50 contributor to scikit-learn, with 62 merged pull requests, 2600 lines of addition and 1833 lines of deletion."
+      ]
+    },
+    {
+      "title": "Pandas",
+      "url": "/projects/ossd-pandas/",
+      "startDate": "2023.03",
+      "endDate": "present",
+      "subtitle": "Open Source Development",
+      "remarks": "Python, numpy, pandas, pytest, asv",
+      "highlights": [
+        "Top #78 contributor to pandas, with 24 merged pull requests, 1297 lines of addition and 295 lines of deletion."
+      ]
+    },
+    {
+      "title": "YouTube Interface Customizer",
+      "startDate": "2023.02",
+      "subtitle": "Course Project",
+      "remarks": "HTML, CSS, JavaScripts, Firefox API",
+      "highlights": [
+        "Built a Firefox extension that allows users to change color themes and hide, rearrange, or customize various elements of the YouTube interface.",
+        "Created the documentations of features and contribution guides, and released (self-distributed) v1.0 at Mozilla Add-ons."
+      ]
+    },
+    {
+      "title": "Simple SQL Optimizer",
+      "startDate": "2022.07",
+      "endDate": "2022.08",
+      "subtitle": "ByteDance 4th Youth Training Camp",
+      "remarks": "Java, SQL",
+      "highlights": [
+        "Implemented an SQL parser that accepts various operators including Filter, GroupBy, Join, etc. to form an abstract syntax tree.",
+        "Implemented rule-based predicate pushdown, limit pushdown, and column pruning to optimize the abstract syntax tree.",
+        "Implemented cost-based join reordering to optimize the abstract syntax tree."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "title": "Programming",
+      "contents": "Python · Java · C · PHP · HTML · CSS · Julia · MATLAB"
+    },
+    {
+      "title": "Workflow",
+      "contents": "Git · GitHub"
+    }
+  ],
+  "languages": [
+    {
+      "title": "Chinese",
+      "contents": "Native speaker"
+    },
+    {
+      "title": "English",
+      "contents": "Fluent"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Meritorious Winner",
+      "startDate": "2023.05",
+      "subtitle": "The Mathematical Contest in Modeling",
+      "url": "https://www.contest.comap.com/undergraduate/contests/index.html"
+    },
+    {
+      "title": "Deans' List of Academic Year",
+      "startDate": "2023.05",
+      "subtitle": "New York University Shanghai"
+    },
+    {
+      "title": "Deans' List of Academic Year",
+      "startDate": "2022.05",
+      "subtitle": "New York University Shanghai"
+    },
+    {
+      "title": "Deans' List of Academic Year",
+      "startDate": "2021.05",
+      "subtitle": "New York University Shanghai"
+    }
+  ]
+}

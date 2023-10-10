@@ -1,0 +1,19 @@
+<script>
+    const toggleButtons = document.querySelectorAll(".toggle-button");
+
+    toggleButtons.forEach(button => {
+        const prnum = button.getAttribute("data-toggle-target");
+        const contents = document.querySelector(`.description-details[data-toggle-id="${prnum}"]`);
+
+        button.addEventListener("click", () => {
+            if (contents.style.display === "none" || contents.style.display === "") {
+                contents.style.display = "block";
+                button.innerHTML = `<i class="fa-solid fa-chevron-up"></i>`;
+            }
+            else {
+                contents.style.display = "none";
+                button.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
+            }
+        });
+    });
+</script>
