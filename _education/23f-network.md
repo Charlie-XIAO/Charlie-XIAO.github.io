@@ -21,6 +21,11 @@ course_information:
     Routing (OSPF, RIP);
     Local area networks (Ethernet).
 
+grade:
+  letter: "NA"
+  actual: "NA"
+  total: "4.00"
+
 gradebook_cols:
   - Grade
   - Letter
@@ -31,5 +36,6 @@ gradebook:
   Final: []
 ---
 
+{% include education/shortcuts.html %}
 {% include education/course_information.html %}
 {% include education/gradebook.html %}

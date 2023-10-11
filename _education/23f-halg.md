@@ -22,6 +22,11 @@ course_information:
     Rings of principal domains, rings of factorial domains, general rings;
     Basics on field theory, finite field.
 
+grade:
+  letter: "NA"
+  actual: "NA"
+  total: "4.00"
+
 gradebook_cols:
   - Grade
   - Letter
