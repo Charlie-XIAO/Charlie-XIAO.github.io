@@ -53,3 +53,19 @@ gradebook:
 Blogs are required reflecting and sharing thoughts on the course contents. My blogs can be found at my [course webpage](https://ossd-s23.github.io/Charlie-XIAO-weekly/).
 
 ## Open Source Projects
+
+### YouTube Interface Customizer
+
+YouTube Interface Customizer is an open source Firefox extension that allows the users to customize a wide variety of elements of the YouTube interface in their favor. We welcome anyone to use our project or contribute to our project! Specifications on how to contribute and the Code of Conduct and be found either in the [documentation](/projects/youtube-interface-customizer/) or in the [repository](https://github.com/ossd-s23/YouTube-Customizer). The full list of features can be found also in the documentation, and as follows is an outline:
+
+{% include projects/youtube-interface-customizer/feature-list.html %}
+
+{% include projects/youtube-interface-customizer/installation.html %}
+
+### Scikit-learn
+
+As the final project, I (along with two other teammates) contribued to [scikit-learn](https://github.com/scikit-learn/scikit-learn), an open source Python library for machine learning. More details about my contributions can be seen [here](/projects/ossd-sklearn/). Our [final presentation](https://www.canva.com/design/DAFhCFVpf-M/hPZ0uyk2KEZ2Z3_p6U5UdA/view?utm_content=DAFhCFVpf-M&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink) summarizes our contributions during the second half of the semester and what we have learned.
+
+### Other Contributions
+
+More minor open source contributions in this course can be seen [here](https://ossd-s23.github.io/Charlie-XIAO-weekly/contributions/).

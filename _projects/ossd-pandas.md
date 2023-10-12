@@ -3,7 +3,7 @@ layout: distill
 title: pandas
 description: Open Source Contributions
 img: assets/img/pandas-logo.png
-importance: 1
+importance: 10
 category: Open Source Development
 
 authors:
