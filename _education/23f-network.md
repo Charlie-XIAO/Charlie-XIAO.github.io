@@ -20,6 +20,7 @@ course_information:
     Addressing (IP);
     Routing (OSPF, RIP);
     Local area networks (Ethernet).
+  Programming Language: Python.
 
 grade:
   letter: "NA"
@@ -31,7 +32,7 @@ gradebook_cols:
   - Letter
 
 gradebook:
-  Homework: []
+  Assignments: []
   Midterm: []
   Final: []
 ---

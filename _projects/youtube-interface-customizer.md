@@ -189,21 +189,21 @@ The outline of the features of YouTube Interface Customizer is as follows:
         {% include figure.html
           path="assets/img/youtube-interface-customizer/pusheen.gif"
           class="img-fluid rounded z-depth-1"
-          zoomable=true
+          zoomable=false
         %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html
           path="assets/img/youtube-interface-customizer/pikachu.gif"
           class="img-fluid rounded z-depth-1"
-          zoomable=true
+          zoomable=false
         %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html
           path="assets/img/youtube-interface-customizer/capoo.gif"
           class="img-fluid rounded z-depth-1"
-          zoomable=true
+          zoomable=false
         %}
     </div>
 </div>
@@ -237,7 +237,7 @@ The outline of the features of YouTube Interface Customizer is as follows:
     </div>
 </div>
 <div class="caption">
-    From the left to the right, they are Cherry with Pusheen, Poké Ball with Pikachu, and Light Blue with Capoo.
+    From the left to the right, they are Cherry with Pusheen, Poké Ball with Pikachu, and Light Blue with Capoo. Zoom in to view them more clearly.
 </div>
 
 - **Hide the end-of-video suggestions:** This blocks the end-of-video suggestions from generating in order to focus.

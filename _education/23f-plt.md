@@ -37,7 +37,7 @@ gradebook_cols:
   - Letter
 
 gradebook:
-  Homework: []
+  Assignments: []
   Midterm: []
   Final: []
 ---
