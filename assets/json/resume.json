@@ -49,7 +49,46 @@
     }
   ],
   "work": [
-
+    {
+      "title": "NYU Shanghai",
+      "startDate": "2023.08",
+      "endDate": "present",
+      "subtitle": "Learning Assistant",
+      "highlights": [
+        "Worked as Learning Assistant for <b>Calculus</b> during Fall 2023 at Academic Resource Center, NYU Shanghai."
+      ]
+    },
+    {
+      "title": "Data Intelligence and Social Computing Lab, Fudan University",
+      "startDate": "2023.05",
+      "endDate": "2023.08",
+      "subtitle": "Lab Assistant",
+      "remarks": "Python, transformers, HuggingFace",
+      "highlights": [
+        "Constructed ~300K instruction data and fine-tuned DISC-LawLLM which is specialized in Chinese legal domain.",
+        "Built a retrieval module for DISC-LawLLM and constructed its database with 800+ Laws and 24K+ legal examinations.",
+        "Designed an evaluation framework from objective and subjective perspectives. DISC-LawLLM outperformed the base model by 23% and GPT-3.5 Turbo by 9%.",
+        "You can view our project demo, technical report, and more details on <a href=\"https://github.com/FudanDISC/DISC-LawLLM\">GitHub</a>."
+      ]
+    },
+    {
+      "title": "NYU Courant",
+      "startDate": "2023.01",
+      "endDate": "2023.05",
+      "subtitle": "Tutor",
+      "highlights": [
+        "Worked as Tutor for <b>Operating Systems</b> during Spring 2023 at Computer Science Department, NYU Courant."
+      ]
+    },
+    {
+      "title": "NYU Shanghai",
+      "startDate": "2021.08",
+      "endDate": "2021.12",
+      "subtitle": "Learning Assistant",
+      "highlights": [
+        "Worked as Learning Assistant for <b>Calculus</b> during Fall 2021 at Academic Resource Center, NYU Shanghai."
+      ]
+    }
   ],
   "research": [
     {
@@ -90,12 +129,35 @@
     },
     {
       "title": "YouTube Interface Customizer",
+      "url": "/projects/youtube-interface-customizer/",
       "startDate": "2023.02",
       "subtitle": "Course Project",
       "remarks": "HTML, CSS, JavaScripts, Firefox API",
       "highlights": [
         "Built a Firefox extension that allows users to change color themes and hide, rearrange, or customize various elements of the YouTube interface.",
         "Created the documentations of features and contribution guides, and released (self-distributed) v1.0 at Mozilla Add-ons."
+      ]
+    },
+    {
+      "title": "Inequality Process Simulation",
+      "url": "/projects/inequality-process-simulation/",
+      "startDate": "2022.12",
+      "subtitle": "Course Project",
+      "remarks": "Python",
+      "highlights": [
+        "Simulated the inequality process via random transactions with certain transaction functions, and analyzed the effect of different transaction functions on the model.",
+        "Fitted the final distribution of wealth and found that the distribution of wealth in a real-world economic system fits the shape of a gamma or beta prime distribution."
+      ]
+    },
+    {
+      "title": "Gyro-Tower Simulation",
+      "url": "/projects/gyro-simulation/",
+      "startDate": "2022.10",
+      "subtitle": "Course Project",
+      "remarks": "MATLAB",
+      "highlights": [
+        "Simulated gyroscopes as networks of springs, and solved the system via differential equations and Euler's method.",
+        "Simulated horizontal stacks of gyroscopes, and found that they obeyed gyroscopic precession assuming a flexible middle axle."
       ]
     },
     {

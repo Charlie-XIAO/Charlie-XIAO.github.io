@@ -4,7 +4,7 @@ title: YouTube Inferface Customizer
 description: Firefox Extension
 img: assets/img/youtube-interface-customizer.jpg
 importance: 100
-category: Open Source Development
+category: Course Projects
 
 authors:
   - name: Yao Xiao

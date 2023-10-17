@@ -11,7 +11,7 @@
         {% if shortcut.link contains '://' -%}
         {%- assign href = shortcut.link -%}
         {%- else -%}
-        {%- assign href = shortcut.link | prepend: '/assets/' | relative_url -%}
+        {%- assign href = shortcut.link | relative_url -%}
         {%- endif %}
 
         {%- if counter > 0 -%}

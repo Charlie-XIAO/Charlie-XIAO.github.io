@@ -5,7 +5,7 @@ permalink: /projects/
 description: Collection of my projects, including dumb ones 🙃.
 nav: true
 nav_order: 2
-display_categories: [Open Source Development, Academic, Course Projects]
+display_categories: [Open Source Development, Academic, Work, Course Projects]
 horizontal: false
 ---
 
@@ -29,7 +29,9 @@ horizontal: false
   {%- else -%}
   <div class="grid">
     {%- for project in sorted_projects -%}
-      {% include projects.html %}
+      {% unless project.hidden %}
+        {% include projects.html %}
+      {% endunless %}
     {%- endfor %}
   </div>
   {%- endif -%}
@@ -50,7 +52,9 @@ horizontal: false
   {%- else -%}
   <div class="grid">
     {%- for project in sorted_projects -%}
-      {% include projects.html %}
+      {% unless project.hidden %}
+        {% include projects.html %}
+      {% endunless %}
     {%- endfor %}
   </div>
   {%- endif -%}

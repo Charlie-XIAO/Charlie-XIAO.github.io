@@ -5,9 +5,9 @@ description: MATH-GA.2903
 importance: 12  # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Honors Mathematics
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Notes
-    link: pdf/education/stoch-notes.pdf
+    link: /assets/pdf/education/stoch-notes.pdf
 
 toc:
   - name: Course Information

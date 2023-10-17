@@ -5,7 +5,7 @@ description: CSCI-UA.0480.61
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Blogs
     link: https://ossd-s23.github.io/Charlie-XIAO-weekly/
   - name: Final

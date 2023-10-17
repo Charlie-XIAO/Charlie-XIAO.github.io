@@ -5,9 +5,9 @@ description: MATH-UA.0396
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Notes
-    link: pdf/education/hna-notes.pdf
+    link: /assets/pdf/education/hna-notes.pdf
 
 toc:
   - name: Course Information

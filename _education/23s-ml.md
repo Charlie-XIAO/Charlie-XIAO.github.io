@@ -5,11 +5,11 @@ description: DS-GA.1003
 importance: 12  # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Computer Science
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Notes
-    link: pdf/education/ml-notes.pdf
+    link: /assets/pdf/education/ml-notes.pdf
   - name: Assignments
-    link: pdf/education/ml-assignments.pdf
+    link: /assets/pdf/education/ml-assignments.pdf
 
 toc:
   - name: Course Information

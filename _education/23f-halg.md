@@ -5,9 +5,9 @@ description: MATH-SHU.0348
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Notes
-    link: pdf/education/halg-notes.pdf
+    link: /assets/pdf/education/halg-notes.pdf
 
 toc:
   - name: Course Information

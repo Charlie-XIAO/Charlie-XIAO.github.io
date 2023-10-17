@@ -1,0 +1,34 @@
+---
+layout: distill
+title: Inequality Process Simulation
+description: Modeling Transactions Within a Community
+img: assets/img/inequality-process-simulation.jpg
+importance: 10
+category: Course Projects
+
+authors:
+  - name: Yao Xiao
+    url: "https://charlie-xiao.github.io/"
+    affiliations:
+      name: NYU Shanghai
+  - name: Ziyue Wang
+    affiliations:
+      name: NYU Shanghai
+
+toc:
+  - name: Overview
+  - name: Results
+  - name: Conclusions
+---
+
+## Overview
+
+In this project, we simulate the inequality process via random transactions with certain transaction functions and restrictions within a population, trying to observe the pattern of the distribution of wealth across the society.
+
+## Results
+
+You may access our GitHub source code [here](https://github.com/Charlie-XIAO/Econ-simulation). The demonstration of animations of histograms and distribution fitting in our simulation can be found on this [dedicated page](/_legacy/inequality-process-simulation-demonstration.html). Our presentation slides can be found [here](https://github.com/Charlie-XIAO/Econ-simulation/blob/master/Paper/Inequality_Process_Simulation__Final_Presentation__Modeling_and_Simulation__Fall_2022_.pdf). Our technical report is titled [Inequality Process Simulation](https://charlie-xiao.github.io/education/inequality-process-simulation.pdf).
+
+## Conclusions
+
+With a real-world economy simulation, we find that the distribution of wealth fits the gamma distribution and the beta prime distribution, agreeing with the research results on real-world economic systems. Moreover, by adjusting the bias towards the richer party, the layers of the society, and the tax policy, we find that a higher bias towards the rich leads to much inequality. Also, the more layers, the more equal the wealth distribution. Finally, a reasonable tax policy can also lead to less inequality.

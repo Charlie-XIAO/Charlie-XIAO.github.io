@@ -5,9 +5,9 @@ description: CSCI-UA.0480.73
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science
 
-shortcuts:  # Relative to /assets/
+shortcuts:
   - name: Notes
-    link: pdf/education/randalg-notes
+    link: /assets/pdf/education/randalg-notes
 
 toc:
   - name: Course Information
