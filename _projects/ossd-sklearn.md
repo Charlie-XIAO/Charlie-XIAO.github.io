@@ -2,7 +2,7 @@
 layout: distill
 title: scikit-learn
 description: Open Source Contributions
-img: assets/img/sklearn-logo.png
+img: assets/img/sklearn-logo.jpg
 importance: 10
 category: Open Source Development
 
