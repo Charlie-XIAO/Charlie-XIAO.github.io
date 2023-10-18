@@ -60,6 +60,7 @@
     },
     {
       "title": "Data Intelligence and Social Computing Lab, Fudan University",
+      "url": "/assets/pdf/projects/disc-lawllm.pdf",
       "startDate": "2023.05",
       "endDate": "2023.08",
       "subtitle": "Lab Assistant",
@@ -67,8 +68,7 @@
       "highlights": [
         "Constructed ~300K instruction data and fine-tuned DISC-LawLLM which is specialized in Chinese legal domain.",
         "Built a retrieval module for DISC-LawLLM and constructed its database with 800+ Laws and 24K+ legal examinations.",
-        "Designed an evaluation framework from objective and subjective perspectives. DISC-LawLLM outperformed the base model by 23% and GPT-3.5 Turbo by 9%.",
-        "You can view our project demo, technical report, and more details on <a href=\"https://github.com/FudanDISC/DISC-LawLLM\">GitHub</a>."
+        "Designed an evaluation framework from objective and subjective perspectives. DISC-LawLLM outperformed the base model by 23% and GPT-3.5 Turbo by 9%."
       ]
     },
     {
@@ -93,6 +93,7 @@
   "research": [
     {
       "title": "Efficiently Visualizing Large Graphs",
+      "url": "/assets/pdf/projects/efficiently-visualizing-large-graphs.pdf",
       "startDate": "2022.05",
       "endDate": "2022.09",
       "subtitle": "Deans' Undergraduate Research Fund (DURF)",
@@ -198,7 +199,7 @@
       "title": "Meritorious Winner",
       "startDate": "2023.05",
       "subtitle": "The Mathematical Contest in Modeling",
-      "url": "https://www.contest.comap.com/undergraduate/contests/index.html"
+      "url": "/projects/mcm-2023-c/"
     },
     {
       "title": "Deans' List of Academic Year",

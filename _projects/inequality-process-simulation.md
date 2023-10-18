@@ -15,6 +15,16 @@ authors:
     affiliations:
       name: NYU Shanghai
 
+shortcuts:
+  - name: Report
+    link: /assets/pdf/projects/inequality-process-simulation.pdf
+  - name: Code
+    link: https://github.com/Charlie-XIAO/Econ-simulation
+  - name: Demo
+    link: /_legacy/inequality-process-simulation-demonstration.html
+  - name: Presentation
+    link: https://github.com/Charlie-XIAO/Econ-simulation/blob/master/Paper/Inequality_Process_Simulation__Final_Presentation__Modeling_and_Simulation__Fall_2022_.pdf
+
 toc:
   - name: Overview
   - name: Results

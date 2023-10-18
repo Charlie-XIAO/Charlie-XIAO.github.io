@@ -6,6 +6,14 @@ img: assets/img/gyro-simulation.jpg
 importance: 10
 category: Course Projects
 
+shortcuts:
+  - name: Report
+    link: /assets/pdf/projects/gyro-simulation.pdf
+  - name: Code
+    link: https://github.com/Charlie-XIAO/Gyro-simulation
+  - name: Demo
+    link: https://drive.google.com/drive/u/0/folders/1UpQE-VyRK9DaUnWq8wOW_s7JVZEpMOUg
+
 authors:
   - name: Yao Xiao
     url: "https://charlie-xiao.github.io/"

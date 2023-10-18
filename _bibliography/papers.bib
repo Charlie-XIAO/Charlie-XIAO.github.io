@@ -31,3 +31,34 @@
   bibtex_show={true},
   selected={true}
 }
+
+@misc{li2023efficiently,
+  abbr={arXiv},
+  title={Efficiently Visualizing Large Graphs},
+  author={Li, Xinyu and Xiao, Yao and Zhou, Yuchen},
+  year={2023},
+  eprint={2310.11186},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  abstract={
+    Most existing graph visualization methods based on dimension reduction are limited to
+    relatively small graphs due to performance issues. In this work, we propose a novel
+    dimension reduction method for graph visualization, called t-Distributed Stochastic
+    Graph Neighbor Embedding (t-SGNE). t-SGNE is specifically designed to visualize cluster
+    structures in the graph. As a variant of the standard t-SNE method, t-SGNE avoids the
+    time-consuming computations of pairwise similarity. Instead, it uses the neighbor structures
+    of the graph to reduce the time complexity from quadratic to linear, thus supporting larger
+    graphs. In addition, to suit t-SGNE, we combined Laplacian Eigenmaps with the shortest path
+    algorithm in graphs to form the graph embedding algorithm ShortestPath Laplacian Eigenmaps
+    Embedding (SPLEE). Performing SPLEE to obtain a high-dimensional embedding of the large-scale
+    graph and then using t-SGNE to reduce its dimension for visualization, we are able to visualize
+    graphs with up to 300K nodes and 1M edges within 5 minutes and achieve approximately 10%
+    improvement in visualization quality. Codes and data are available
+    <a href="https://github.com/Charlie-XIAO/embedding-visualization-test">here</a>.
+  },
+  doi={10.48550/arXiv.2310.11186},
+  html={https://arxiv.org/abs/2310.11186},
+  pdf={projects/efficiently-visualizing-large-graphs.pdf},
+  bibtex_show={true},
+  selected={true}
+}

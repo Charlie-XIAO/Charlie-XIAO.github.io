@@ -20,6 +20,10 @@ authors:
     affiliations:
       name: New York University
 
+shortcuts:
+  - name: Code
+    link: https://github.com/ossd-s23/YouTube-Customizer/
+
 toc:
   - name: Installation
   - name: Features

@@ -2,7 +2,7 @@
 layout: distill
 title: pandas
 description: Open Source Contributions
-img: assets/img/pandas-logo.png
+img: assets/img/pandas-logo.jpg
 importance: 10
 category: Open Source Development
 
@@ -13,6 +13,14 @@ authors:
       name: NYU Shanghai
 
 bibliography: projects-ossd-pandas.bib
+
+shortcuts:
+  - name: Repository
+    link: https://github.com/pandas-dev/pandas
+  - name: Contributions
+    link: https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO
+  - name: Contributor Rank
+    link: https://github.com/pandas-dev/pandas/graphs/contributors
 
 toc:
   - name: Code Contributions

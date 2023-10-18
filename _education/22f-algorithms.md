@@ -38,6 +38,6 @@ gradebook:
   Final: ["82/100", "A-"]
 ---
 
-{% include education/shortcuts.html %}
+{% include shortcuts.html %}
 {% include education/course_information.html %}
 {% include education/gradebook.html %}

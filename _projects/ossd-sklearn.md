@@ -2,7 +2,7 @@
 layout: distill
 title: scikit-learn
 description: Open Source Contributions
-img: assets/img/sklearn-logo.jpg
+img: assets/img/sklearn-logo.png
 importance: 10
 category: Open Source Development
 
@@ -13,6 +13,14 @@ authors:
       name: NYU Shanghai
 
 bibliography: projects-ossd-sklearn.bib
+
+shortcuts:
+  - name: Repository
+    link: https://github.com/scikit-learn/scikit-learn
+  - name: Contributions
+    link: https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO
+  - name: Contributor Rank
+    link: https://github.com/scikit-learn/scikit-learn/graphs/contributors
 
 toc:
   - name: Code Contributions
