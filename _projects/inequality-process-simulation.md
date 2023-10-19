@@ -31,6 +31,8 @@ toc:
   - name: Conclusions
 ---
 
+{% include shortcuts.html %}
+
 ## Overview
 
 In this project, we simulate the inequality process via random transactions with certain transaction functions and restrictions within a population, trying to observe the pattern of the distribution of wealth across the society.

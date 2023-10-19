@@ -37,6 +37,8 @@ toc:
   - name: License
 ---
 
+{% include shortcuts.html %}
+
 <a href="https://addons.mozilla.org/firefox/downloads/file/4069744/438bf7e9f2714ba58ac1-1.0.xpi">
   <img src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white"
     style="max-width: 15%; min-width: 5rem; width: 100%; height: auto;">

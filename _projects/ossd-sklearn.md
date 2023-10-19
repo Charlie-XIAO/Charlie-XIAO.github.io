@@ -36,6 +36,7 @@ toc:
   - name: Documentation Contributions
 ---
 
+{% include shortcuts.html %}
 
 This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
 

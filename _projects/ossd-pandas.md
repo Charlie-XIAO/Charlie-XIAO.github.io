@@ -35,6 +35,7 @@ toc:
   - name: Documentation Contributions
 ---
 
+{% include shortcuts.html %}
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="pandas"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
