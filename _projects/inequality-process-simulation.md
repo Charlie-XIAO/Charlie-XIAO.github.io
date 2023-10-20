@@ -16,7 +16,7 @@ authors:
       name: NYU Shanghai
 
 shortcuts:
-  - name: Report
+  - name: Paper
     link: /assets/pdf/projects/inequality-process-simulation.pdf
   - name: Code
     link: https://github.com/Charlie-XIAO/Econ-simulation

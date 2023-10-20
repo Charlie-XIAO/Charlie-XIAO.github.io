@@ -580,45 +580,68 @@ footer.sticky-bottom {
 // Projects
 
 .projects {
-  a {
-    text-decoration: none;
+  margin-top: 2rem;
 
-    &:hover {
-      .card-title {
-        color: var(--global-theme-color);
-      }
-    }
+  h1 {
+    color: var(--global-theme-color);
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
-  .card {
-    img {
-      width: 100%;
+  h2 {
+    margin-bottom: 1rem;
+
+    span {
+      font-size: 1.5rem;
     }
-  }
-
-  .card-item {
-    width: auto;
-    margin-bottom: 10px;
-
-    .row {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .grid-sizer,
-  .grid-item {
-    width: 250px;
-    margin-bottom: 10px;
   }
 
   h2.category {
     color: var(--global-divider-color);
-    border-bottom: 1px solid var(--global-divider-color);
+    border-top: 1px solid var(--global-divider-color);
     padding-top: 0.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
     text-align: right;
+  }
+
+  ol.container {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+
+    li {
+      margin-bottom: 1rem;
+
+      .preview {
+        width: 100%;
+        min-width: 80px;
+        max-width: 200px;
+      }
+
+      .title {
+        font-weight: bolder;
+      }
+
+      .links {
+        a.btn {
+          color: var(--global-text-color);
+          border: 1px solid var(--global-text-color);
+          padding-left: 1rem;
+          padding-right: 1rem;
+          padding-top: 0.25rem;
+          padding-bottom: 0.25rem;
+          margin-left: 0;
+
+          &:hover {
+            color: var(--global-theme-color);
+            border-color: var(--global-theme-color);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -636,12 +659,6 @@ footer.sticky-bottom {
     }
   }
 
-  .card {
-    img {
-      width: 100%;
-    }
-  }
-
   .card-item {
     width: auto;
     margin-bottom: 10px;
@@ -652,10 +669,21 @@ footer.sticky-bottom {
     }
   }
 
-  .grid-sizer,
-  .grid-item {
-    width: 250px;
-    margin-bottom: 10px;
+  .links {
+    a.btn {
+      color: var(--global-text-color);
+      border: 1px solid var(--global-text-color);
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      margin-left: 0;
+
+      &:hover {
+        color: var(--global-theme-color);
+        border-color: var(--global-theme-color);
+      }
+    }
   }
 
   h2.category {
@@ -666,9 +694,7 @@ footer.sticky-bottom {
     margin-bottom: 1rem;
     text-align: right;
   }
-
 }
-
 
 // Publications
 

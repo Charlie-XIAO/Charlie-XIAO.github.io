@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Randomized Algorithms
-description: CSCI-UA.0480.73
+course_id: CSCI-UA.0480.73
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science
 

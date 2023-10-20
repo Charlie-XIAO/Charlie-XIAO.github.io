@@ -1,0 +1,12 @@
+{% if site.enable_back_to_top %}
+
+<!-- Back-to-top in the footer -->
+<script type="text/javascript">
+  const backToTopButton = document.getElementById("back-to-top");
+  backToTopButton.addEventListener("click", () => {
+    document.body.scrollTop = 0;  // Safari
+    document.documentElement.scrollTop = 0;  // Chrome, Firefox, IE, Opera
+  });
+</script>
+
+{%- endif %}

@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Data Structures
-description: CSCI-SHU.0210
+course_id: CSCI-SHU.0210
 importance: 103  # Undergraduate courses are 1xx, normal major courses 103
 category: Computer Science
 

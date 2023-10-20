@@ -15,12 +15,10 @@ authors:
 bibliography: projects-ossd-pandas.bib
 
 shortcuts:
-  - name: Repository
-    link: https://github.com/pandas-dev/pandas
+  - name: Rank
+    link: https://github.com/pandas-dev/pandas/graphs/contributors
   - name: Contributions
     link: https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO
-  - name: Contributor Rank
-    link: https://github.com/pandas-dev/pandas/graphs/contributors
 
 toc:
   - name: Code Contributions

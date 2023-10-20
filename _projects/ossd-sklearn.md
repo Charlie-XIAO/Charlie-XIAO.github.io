@@ -15,12 +15,10 @@ authors:
 bibliography: projects-ossd-sklearn.bib
 
 shortcuts:
-  - name: Repository
-    link: https://github.com/scikit-learn/scikit-learn
+  - name: Rank
+    link: https://github.com/scikit-learn/scikit-learn/graphs/contributors
   - name: Contributions
     link: https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO
-  - name: Contributor Rank
-    link: https://github.com/scikit-learn/scikit-learn/graphs/contributors
 
 toc:
   - name: Code Contributions

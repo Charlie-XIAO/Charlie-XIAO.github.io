@@ -1,16 +1,30 @@
 <!-- _includes/education.html -->
-<div class="grid-sizer"></div>
-<div class="grid-item">
-  {% if education.redirect -%}
-  <a href="{{ education.redirect }}">
-    {%- else -%}
-    <a href="{{ education.url | relative_url }}">
-      {%- endif %}
-      <div class="card hoverable">
-        <div class="card-body">
-          <h4 class="card-title">{{ education.title }}</h4>
-          <p class="card-text">{{ education.description }}</p>
+<div id="{{ education.course_id | downcase | replace: '.', '-' }}" class="card-item col">
+  {%- if education.redirect -%}
+    {%- assign item_href = education.redirect -%}
+  {%- else -%}
+    {%- assign item_href = education.url | relative_url -%}
+  {%- endif -%}
+  <a href="{{ item_href }}">
+    <div class="card hoverable">
+      <div class="row g-0">
+        <div class="col-md-12">
+          <div class="card-body">
+            <h6 class="card-title">{{ education.title }}</h6>
+            <p class="card-text">{{ education.course_id }}</p>
+            <div class="row ml-1 mr-1 p-0 links">
+              {%- for shortcut in education.shortcuts -%}
+                {% if shortcut.link contains '://' -%}
+                {%- assign href = shortcut.link -%}
+                {%- else -%}
+                {%- assign href = shortcut.link | relative_url -%}
+                {%- endif %}
+                <a class="btn btn-sm z-depth-0" href="{{ href }}">{{ shortcut.name }}</a>
+              {%- endfor -%}
+            </div>
+          </div>
         </div>
       </div>
-    </a>
+    </div>
+  </a>
 </div>

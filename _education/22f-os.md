@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Operating Systems
-description: CSCI-UA.0202
+course_id: CSCI-UA.0202
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science
 

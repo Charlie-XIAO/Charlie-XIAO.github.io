@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Machine Learning
-description: DS-GA.1003
+course_id: DS-GA.1003
 importance: 12  # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Computer Science
 

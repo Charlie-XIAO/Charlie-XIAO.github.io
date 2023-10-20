@@ -8,6 +8,9 @@
         {%- if site.last_updated -%}
         Last updated: {{ "now" | date: '%B %d, %Y' }}.
         {%- endif %}
+        {%- if site.enable_back_to_top -%}
+        <i class="fa-solid fa-circle-notch" id="back-to-top" style="cursor: pointer; margin-left: 0.8rem;"></i>
+        {%- endif -%}
       </div>
     </footer>
     {%- else -%}
@@ -19,7 +22,10 @@
         {%- endif -%}
         {%- if site.last_updated -%}
         Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
+        {%- endif -%}
+        {%- if site.enable_back_to_top -%}
+        <i class="fa-solid fa-circle-notch" id="back-to-top" style="cursor: pointer; margin-left: 0.8rem;"></i>
+        {%- endif -%}
       </div>
     </footer>
     {%- endif %}

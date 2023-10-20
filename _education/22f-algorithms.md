@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Basic Algorithms
-description: CSCI-UA.0310
+course_id: CSCI-UA.0310
 importance: 103  # Undergraduate courses are 1xx, normal major courses 103
 category: Computer Science
 

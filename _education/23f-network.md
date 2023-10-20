@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Computer Networking
-description: CSCI-SHU.0308
+course_id: CSCI-SHU.0308
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science
 

@@ -7,7 +7,7 @@ importance: 10
 category: Course Projects
 
 shortcuts:
-  - name: Report
+  - name: Paper
     link: /assets/pdf/projects/gyro-simulation.pdf
   - name: Code
     link: https://github.com/Charlie-XIAO/Gyro-simulation

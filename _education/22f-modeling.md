@@ -1,7 +1,7 @@
 ---
 layout: distill-noauthor
 title: Modeling and Simulation
-description: MATH-UA.0395
+course_id: MATH-UA.0395
 importance: 102  # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics
 
