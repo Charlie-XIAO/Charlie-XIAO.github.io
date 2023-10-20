@@ -35,7 +35,7 @@ toc:
 
 {% include shortcuts.html %}
 
-This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="pandas"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
+This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
 I have made [24 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #78 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1297** lines of addition and **295** lines of deletion.
 
