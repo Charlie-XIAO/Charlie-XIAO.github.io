@@ -57,6 +57,21 @@ Items in each section are sorted in reverse chronological order by the time of m
 
 <!-- ====================================================================== -->
 
+### Datasets
+
+{% include projects/ossd/sklearn-item.html
+  pr=27438
+  title="ENH make_sparse_spd_matrix use sparse memory layout"
+  description="Previously, the function <code>make_sparse_spd_matrix</code> returns numpy dense arrays and uses dense array methods,
+    even though the output matrix is sparse regarding its Cholesky factor.
+    To achieve better memory efficiency, I used sparse memory layout from the very beginning to reimplement this function,
+    and outputs a scipy sparse matrix based on the new keyword <code>sparse_format</code>.
+    For backward compatibility, however, <code>sparse_format</code> is default to <code>None</code>,
+    meaning that the sparse matrix will still be converted to a dense numpy array in the end in this case."
+%}
+
+<!-- ====================================================================== -->
+
 ### Decomposition
 
 {% capture projects_ossd_sklearn_description_26337 %}
@@ -204,6 +219,107 @@ I made these methods to support all array-like inputs for feature names and clas
 Items are sorted in reverse chronological order by the time of merge.
 
 {% include projects/ossd/sklearn-item.html
+  pr=27468
+  title="FIX make dataset fetchers accept os.Pathlike for data_home"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27250
+  title="TST Extend tests for scipy.sparse/*array in sklearn/neighbors/tests/test_neighbors"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27277
+  title="TST Extend tests for scipy.sparse/*array in sklearn/impute/tests/test_common"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27219
+  title="TST Extend tests for scipy.sparse/*array in sklearn/feature_extraction/tests/test_text"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27216
+  title="TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_forest"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27217
+  title="TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_gradient_boosting"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27218
+  title="TST Extend tests for scipy.sparse/*array in sklearn/ensemble/tests/test_iforest"
+%}
+
+
+{% include projects/ossd/sklearn-item.html
+  pr=27261
+  title="TST Extend tests for scipy.sparse/*array in sklearn/tree/tests/test_tree"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27253
+  title="TST Extend tests for scipy.sparse/*array in sklearn/preprocessing/tests/test_data"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27225
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_base"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27226
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_coordinate_descent"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27237
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_sparse_coordinate_descent"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27222
+  title="TST Extend tests for scipy.sparse/*array in sklearn/feature_selection/tests/test_variance_threshold"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27235
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_ridge"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27228
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_quantile"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27233
+  title="TST Extend tests for scipy.sparse/*array in sklearn/linear_model/tests/test_ransac"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27254
+  title="TST Extend tests for scipy.sparse/*array in sklearn/preprocessing/tests/test_function_transformer"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27252
+  title="TST Extend tests for scipy.sparse/*array in sklearn/neural_network/tests/test_rbm"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27241
+  title="TST Extend tests for scipy.sparse/*array in sklearn/metrics/cluster/tests/test_unsupervised"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27246
+  title="TST Extend tests for scipy.sparse/*array in sklearn/model_selection/tests/test_split"
+%}
+
+{% include projects/ossd/sklearn-item.html
   pr=27262
   title="TST Extend tests for scipy.sparse/*array in sklearn/utils/tests/test_extmath"
 %}
@@ -347,6 +463,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=27472
+  title="DOC fix return type of make_sparse_spd_matrix"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=26661

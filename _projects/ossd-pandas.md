@@ -37,7 +37,7 @@ toc:
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
-I have made [24 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #78 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1297** lines of addition and **295** lines of deletion.
+I have made [25 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #76 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1360** lines of addition and **343** lines of deletion.
 
 ## Code Contributions
 
@@ -351,6 +351,11 @@ I improved the error message by displaying the first imcompatible key.
 ## Maintenance Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/pandas-item.html
+  pr=55527
+  title="BUG fix deprecation of limit and fill_method in pct_change"
+%}
 
 {% include projects/ossd/pandas-item.html
   pr=54855
