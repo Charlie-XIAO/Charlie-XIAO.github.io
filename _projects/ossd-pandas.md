@@ -37,7 +37,7 @@ toc:
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
-I have made [25 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #76 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1360** lines of addition and **343** lines of deletion.
+I have made [26 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #74 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1411** lines of addition and **361** lines of deletion.
 
 ## Code Contributions
 
@@ -299,6 +299,23 @@ I made an easy fix that takes dtype into consideration.
 <!-- ====================================================================== -->
 
 ### Reshaping
+
+{% capture projects_ossd_pandas_description_53641 %}
+Previously, pandas raises a ValueError complaining about shape mismatch if we concatenate two datetime dataframes with different time resolutions.
+Looking into the code base, datetime dataframes with different time resolutions fall in the same branch as extension array types.
+However, extension array types have by default <code>axis=1</code> upon concatenation, while datetime dataframes have <code>axis=0</code>.
+Therefore, the <code>axis</code> keyword must be explicitly passed to the <code>_concat_same_type</code> method of the corresponding class.
+Yet some classes are not supporting the <code>axis</code> keyword in that method, so I had to implement a dirty workaround distinguishing the cases.
+The outcome is nice: it solved its original issue and several other issues that arose during its review process,
+including implicit concatenations such as <code>df.loc[1] = ...</code> to a single-row dataframe.
+Now concatenations work smoothly for datetime dataframes with different time resolutions.
+{% endcapture %}
+
+{% include projects/ossd/pandas-item.html
+  pr=53641
+  title="BUG: pd.concat dataframes with different datetime64 resolutions"
+  description=projects_ossd_pandas_description_53641
+%}
 
 {% capture projects_ossd_pandas_description_53215 %}
 Suppose that we have two dataframes as follows.
