@@ -38,7 +38,7 @@ toc:
 
 This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
 
-I have made [62 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **2600** lines of addition and **1833** lines of deletion.
+I have made [63 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3259** lines of addition and **1862** lines of deletion.
 
 
 ## Code Contributions
@@ -47,27 +47,35 @@ Items in each section are sorted in reverse chronological order by the time of m
 
 ### Cross Decomposition
 
+{% capture projects_ossd_sklearn_description_26602 %}
+Previously, <code>PLSRegression</code> always predicts 2D result no matter if the input is 1D or 2D.
+This is somehow inconsistent with other regressors such as <code>LinearRegression</code> and <code>Ridge</code>.
+I implemented automatic raveling when input is 1D, so that the regressors now behave consistently.
+{% endcapture %}
+
 {% include projects/ossd/sklearn-item.html
   pr=26602
   title="ENH ravel prediction of PLSRegression when fitted on 1d y"
-  description="Previously, <code>PLSRegression</code> always predicts 2D result no matter if the input is 1D or 2D.
-    This is somehow inconsistent with other regressors such as <code>LinearRegression</code> and <code>Ridge</code>.
-    I implemented automatic raveling when input is 1D, so that the regressors now behave consistently."
+  description=projects_ossd_sklearn_description_26602
 %}
 
 <!-- ====================================================================== -->
 
 ### Datasets
 
+{% capture projects_ossd_sklearn_description_27438 %}
+Previously, the function <code>make_sparse_spd_matrix</code> returns numpy dense arrays and uses dense array methods,
+even though the output matrix is sparse regarding its Cholesky factor.
+To achieve better memory efficiency, I used sparse memory layout from the very beginning to reimplement this function,
+and outputs a scipy sparse matrix based on the new keyword <code>sparse_format</code>.
+For backward compatibility, however, <code>sparse_format</code> is default to <code>None</code>,
+meaning that the sparse matrix will still be converted to a dense numpy array in the end in this case.
+{% endcapture %}
+
 {% include projects/ossd/sklearn-item.html
   pr=27438
   title="ENH make_sparse_spd_matrix use sparse memory layout"
-  description="Previously, the function <code>make_sparse_spd_matrix</code> returns numpy dense arrays and uses dense array methods,
-    even though the output matrix is sparse regarding its Cholesky factor.
-    To achieve better memory efficiency, I used sparse memory layout from the very beginning to reimplement this function,
-    and outputs a scipy sparse matrix based on the new keyword <code>sparse_format</code>.
-    For backward compatibility, however, <code>sparse_format</code> is default to <code>None</code>,
-    meaning that the sparse matrix will still be converted to a dense numpy array in the end in this case."
+  description=projects_ossd_sklearn_description_27438
 %}
 
 <!-- ====================================================================== -->
@@ -217,6 +225,11 @@ I made these methods to support all array-like inputs for feature names and clas
 ## Maintenance Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=27240
+  title="TST Extend tests for scipy.sparse/*array in sklearn/manifold/tests/test_spectral_embedding"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=27468
