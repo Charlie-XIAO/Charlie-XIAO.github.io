@@ -38,8 +38,6 @@ gradebook:
   Final: ["60/60", "A"]
 ---
 
-{% include shortcuts.html %}
-
 This is a graduate level course at the [Courant Institute of Mathematical Sciences](https://cims.nyu.edu/), NYU.
 
 {% include education/course_information.html %}

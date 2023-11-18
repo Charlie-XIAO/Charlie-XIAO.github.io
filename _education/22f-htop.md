@@ -41,7 +41,6 @@ gradebook:
   Final Report: ["19/20", ""]
 ---
 
-{% include shortcuts.html %}
 {% include education/course_information.html %}
 {% include education/gradebook.html %}
 

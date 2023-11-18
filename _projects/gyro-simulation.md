@@ -29,8 +29,6 @@ toc:
   - name: Conclusions
 ---
 
-{% include shortcuts.html %}
-
 ## Overview
 
 The question we want to explore in this project is whether stacking up gyroscopes will remain a stable structure given each of them can spin stably. The simulation is done by numerical approximations implemented using MATLAB, involving the implementation of spring networks and rigid body systems.

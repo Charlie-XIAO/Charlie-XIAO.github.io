@@ -37,6 +37,5 @@ gradebook:
   Final: []
 ---
 
-{% include shortcuts.html %}
 {% include education/course_information.html %}
 {% include education/gradebook.html %}
