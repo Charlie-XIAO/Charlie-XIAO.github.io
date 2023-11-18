@@ -40,7 +40,6 @@ gradebook:
   Final: ["", "A"]
 ---
 
-
 This is a graduate level course at the [NYU Center for Data Science](https://cds.nyu.edu/).
 
 {% include education/course_information.html %}
