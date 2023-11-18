@@ -29,6 +29,7 @@ toc:
       - name: Numeric
       - name: Resample
       - name: Reshaping
+      - name: Others
   - name: Maintenance Contributions
   - name: Documentation Contributions
 ---
@@ -37,7 +38,7 @@ toc:
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
-I have made [26 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #74 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1411** lines of addition and **361** lines of deletion.
+I have made [27 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1428** lines of addition and **374** lines of deletion.
 
 ## Code Contributions
 
@@ -361,6 +362,24 @@ I improved the error message by displaying the first imcompatible key.
   pr=51947
   title="ENH include the first incompatible key in error message when merging"
   description=projects_ossd_pandas_description_51947
+%}
+
+<!-- ====================================================================== -->
+
+### Others
+
+{% capture projects_ossd_pandas_description_55395 %}
+<code>Series</code> were unexpectedly raising a deprecation warning when <code>index</code> is a list of <code>Series</code>.
+This is because when validating index type, pandas is implicitly checking for the <code>_data</code> attribute, which has been deprecated for some classes.
+Instead, I made it to check for only certain classes, but since the check happens in Cython code, it suffered from circular import.
+I used runtime importing to resolve this issue and checked that there is no significant performance degradation.
+The <code>Series</code> constructor should now work without deprecation warnings, and accept only valid types of <code>index</code>.
+{% endcapture %}
+
+{% include projects/ossd/pandas-item.html
+  pr=55395
+  title="BUG: avoid DeprecationWarning when the Series has index as list of Series"
+  description=projects_ossd_pandas_description_55395
 %}
 
 <!-- ====================================================================== -->

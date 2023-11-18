@@ -38,7 +38,7 @@ toc:
 
 This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
 
-I have made [63 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3259** lines of addition and **1862** lines of deletion.
+I have made [64 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3287** lines of addition and **1890** lines of deletion.
 
 
 ## Code Contributions
@@ -476,6 +476,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=27790
+  title="DOC minor fixes of splitter docstrings (from #26423)"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=27472
