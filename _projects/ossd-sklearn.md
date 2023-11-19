@@ -36,7 +36,7 @@ toc:
 
 This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
 
-I have made [64 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3287** lines of addition and **1890** lines of deletion.
+I have made [65 pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) that have been merged into the code base of scikit-learn. Currently I am the [Top #49 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3432** lines of addition and **2094** lines of deletion.
 
 
 ## Code Contributions
@@ -223,6 +223,11 @@ I made these methods to support all array-like inputs for feature names and clas
 ## Maintenance Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=27723
+  title="TST Extend tests for scipy.sparse.*array in sklearn/svm/tests/test_sparse"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=27240
