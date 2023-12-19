@@ -15,7 +15,9 @@ footer_text: >
 keywords: academic-website, portfolio-website, nyu-shanghai, honors-mathematics, computer-science  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: 💻  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+# https://www.flaticon.com/free-icons/portfolio
+# Portfolio icons created by Freepik - Flaticon
+icon: portfolio-icon.png  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://charlie-xiao.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/

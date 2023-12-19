@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: pandas
-description: Open Source Contributions
+description: "Top #68 Contributor"
 img: assets/img/pandas-logo.jpg
 importance: 10
 category: Open Source Development
@@ -36,7 +36,7 @@ toc:
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
-I have made [27 pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) that have been merged into the code base of pandas. Currently I am the [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors) to pandas, with **1428** lines of addition and **374** lines of deletion.
+I have contributed [**27** merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) to pandas, and I am currently its [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
 
 ## Code Contributions
 
