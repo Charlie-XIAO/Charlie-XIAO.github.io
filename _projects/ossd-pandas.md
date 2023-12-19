@@ -34,9 +34,13 @@ toc:
   - name: Documentation Contributions
 ---
 
-This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
+This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/),
+a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It
+has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with
+nearly 3000 contributors.
 
-I have contributed [**27** merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) to pandas, and I am currently its [Top **#68** contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
+I have contributed [27 merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO)
+to pandas, and I am currently its [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
 
 ## Code Contributions
 
@@ -45,10 +49,36 @@ Items in each section are sorted in reverse chronological order by the time of m
 ### Groupby
 
 {% capture projects_ossd_pandas_description_53623 %}
-Previously when calling <code>sum</code> on a GroupBy object, it summed <code>inf+inf</code> and <code>(-inf)+(-inf)</code> to <code>nan</code>, which is undesired.
-Moreover, this behavior was inconsistent with calling <code>apply</code> on a standard summation function.
-The problem was caused by the Cython function <code>group_sum</code>, which implements <a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm">Kahan's summation</a> to reduce numerical error caused by finite-precision floating-point operations.
-It maintains a compensation for low-order bits, and fix the excess in further rounds, which can be interpreted as follows.
+In pandas 2.0.3, the <code>sum</code> method of <code>GroupBy</code> objected summed
+<code>inf + inf</code> and <code>(-inf) + (-inf)</code> to <code>nan</code> instead of
+<code>inf</code> and <code>-inf</code> respectively, which is incorrect. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> import pandas as pd
+>>> ser = pd.Series([np.inf, np.inf, np.inf])
+>>> ser.groupby([0, 1, 1]).sum()
+0    inf
+1    NaN
+dtype: float64
+{% endhighlight %}
+
+Moreover, this behavior was inconsistent with calling the <code>apply</code> with a
+standard summation function, which returns the correct result.
+
+{% highlight python %}
+>>> ser.groupby([0, 1, 1]).apply(lambda _grp: _grp.sum())
+0    inf
+1    inf
+dtype: float64
+{% endhighlight %}
+
+The problem was caused by the Cython function <code>group_sum</code> which implements
+<a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm">Kahan's summation</a>
+to reduce numerical error caused by finite-precision floating-point operations. It
+maintains a compensation for low-order bits, and fix the excess in further rounds, which
+can be interpreted as follows.
+
 {% highlight plaintext %}
 var y = input[i] - c
 var t = sum + y
@@ -56,11 +86,16 @@ c = (t - sum) - y    // c is initialized to zero before the loop
 sum = t              // sum is initialized to zero before the loop
 next i
 {% endhighlight %}
-In the case where input is <code>inf</code>, then <code>y</code> and <code>t</code> would become <code>inf</code>,
-and thus when computing <code>c</code>, <i>i.e.</i>, the compentation, we would be performing <code>inf-inf</code> which gives <code>nan</code>.
-To fix this, we can set the compensation back to zero whenever it becomes <code>nan</code>.
-Also note that for efficiency, this Cython function is written with nogil so that we cannot use <code>util.is_nan</code>.
-Instead, we can use <code>c != c</code> to represent <code>util.is_nan(c)</code>.
+
+In the case where input is <code>inf</code>, <code>y</code> and <code>t</code> would
+become <code>inf</code>. Thus when computing <code>c</code>, i.e., the compensation, we
+would be performing <code>inf-inf</code> which gives <code>nan</code>. To fix this, I
+manually set the compensation back to zero whenever it becomes <code>nan</code>. Also
+note that for efficiency, this <code>group_sum</code> function is written with
+<code>cython.nogil</code>, so the safe way to do <code>utils.is_nan(c)</code> is by
+comparing <code>c</code> with itself, i.e., <code>c != c</code>. From pandas 2.1.0, this
+bug is fixed and <code>inf + inf</code> and <code>(-inf) + (-inf)</code> are correctly
+summed to <code>inf</code> and <code>-inf</code> respectively.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -72,13 +107,35 @@ Instead, we can use <code>c != c</code> to represent <code>util.is_nan(c)</code>
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53517 %}
-When we traverse a GroupBy object like <code>for k, v in df.groupby(["a"])</code>,
-even though <code>["a"]</code> is a list of a single element, the returned keys are tuples.
-However, after column selection such as <code>for k, v in df.groupby(["a"])["a"]</code> or <code>for k, v in df.groupby(["a"])[["a"]]</code>,
-the returned keys <code>k</code> were no longer tuples.
-This is undesired, and caused by keys getting lost from the very beginning when creating the GroupBy objects.
-With <a href="https://github.com/rhshadrach">@rhshadrach</a>'s help, I fixed this by passing keys explicitly instead of using groupers to imply keys.
-Now the behaviors with and without column selection are consistent.
+From pandas 2.0.3, when grouping by a singleton list in pandas and iterating over the
+resulting <code>GroupBy</code> object, the correct behavior is that each group name is
+a tuple of length one, in order to be consistent with non-singleton lists. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> df = pd.DataFrame({"a": [1, 1, 2], "b": [4, 5, 4], "c":[7, 8, 9]})
+>>> for name, obj in df.groupby(["a"]):
+...     print(name)
+...
+(1,)
+(2,)
+{% endhighlight %}
+
+However in pandas 2.0.3, performing column selection on the <code>GroupBy</code> object
+would violate the desired behavior.
+
+{% highlight python %}
+>>> for name, obj in df.groupby(["a"])[["a", "b", "c"]]:
+...     print(name)
+...
+1
+2
+{% endhighlight %}
+
+This was caused by keys getting lost in the first place when creating the <code>GroupBy</code>
+objects since the grouper was passed in instead. With <a href="https://github.com/rhshadrach">@rhshadrach</a>'s
+help, I fixed this by passing keys explicitly instead of implying from the grouper. From
+pandas 2.1.0, the result would be consistent with or without column selection.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -90,10 +147,50 @@ Now the behaviors with and without column selection are consistent.
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53237 %}
-When <code>groupby</code> is called with <code>as_index=False</code>,
-the group labels of the aggregated output should be columns rather than index, which is effectively SQL-style.
-However, if the aggregation functions are passed in as a list, <code>as_index</code> is not respected.
-I modified the logic of result processing so that this bug is fixed.
+<code>groupby</code> with <code>as_index=False</code> should behave in SQL-style, i.e.,
+the group labels should be columns after aggregation rather than being moved as index.
+For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> df = pd.DataFrame({"a1": [0, 0, 1], "a2": [2, 3, 3], "b": [4, 5, 6]})
+>>> gb = df.groupby(by=["a1", "a2"], as_index=False)
+>>> gb.agg("sum")
+   a1  a2  b
+0   0   2  4
+1   0   3  5
+2   1   3  6
+{% endhighlight %}
+
+However, if the aggregation functions are passed in as a list, <code>as_index=False</code>
+was not respected in pandas 2.0.3.
+
+{% highlight python %}
+>>> gb.agg(["sum"])
+print(result)
+        b
+      sum
+a1 a2
+0  2    4
+   3    5
+1  3    6
+{% endhighlight %}
+
+This was caused by the logic of result processing, which fell into an early-returning
+case for the above scenario without going through the step of treating <code>as_index=False</code>.
+I made a dummy fix, i.e., call the <code>reset_index</code> method on the result when
+<code>as_index=False</code> and aggregation functions are list-like. From pandas 2.1.0,
+the aggregation result would respect <code>as_index=False</code> in the above scenario,
+i.e.,
+
+{% highlight python %}
+>>> gb.agg(["sum"])
+  a1 a2   b
+        sum
+0  0  2   4
+1  0  3   5
+2  1  3   6
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -105,31 +202,48 @@ I modified the logic of result processing so that this bug is fixed.
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53049 %}
-Previously, even if <code>groupby</code> is called with <code>sort=False</code>, the indices may get sorted. For instance,
+In pandas 2.0.3, indices may get sorted even if <code>groupby</code> is called with
+<code>sort=False</code>. As an illustration, first create a <code>Series</code> with an
+unsorted column "category", i.e., the B's are all before the A's.
+
 {% highlight python %}
+>>> import pandas as pd
 >>> ind = pd.MultiIndex.from_tuples(
 ...     [(0, "B"), (0, "A"), (1, "B"), (1, "A")],
 ...     names=["sample", "category"],
 ... )
 >>> ser = pd.Series(range(4), index=ind)
->>> ser  # Here, we shall see that the B's are all before the A's
+>>> ser
 sample  category
 0       B           0
         A           1
 1       B           2
         A           3
 dtype: int64
+{% endhighlight %}
+
+Now if we call <code>groupby</code> with <code>sort=False</code>, then perform
+<code>.quantile(...).unstack()</code>, the result would be unexpectedly sorted, such
+that A goes before B.
+
+{% highlight python %}
 >>> grp = ser.groupby(level="category", sort=False).quantile([0.2, 0.8])
->>> grp.unstack()  # Here, we can see that A and B are sorted though sort=False
+>>> grp.unstack()
           0.2  0.8
 category
 A         1.4  2.6
 B         0.4  1.6
 {% endhighlight %}
-After investigating, this is caused by <code>index.levels</code> being sorted, and some methods are using those levels.
-This does not happen for <code>MultiIndex</code> since the index levels are manually created, so we manually create for non-multi <code>Index</code> as well.
-Then we found an approximately 50% performance regression due to always using 64-bit indices.
-We then called <code>coerce_indexer_dtype</code> to avoid this regression.
+
+This was caused by <code>index.levels</code> being sorted, while some methods were using
+those levels. <code>index.levels</code> would, however, not be sorted if manually
+created instead of being created using class methods like <code>MultiIndex.from_product</code>.
+Manual creation of <code>MultiIndex</code> in the <code>_insert_quantile_level</code>
+function resolved the issue, but at the cost of nearly 50% performance regression which
+came from always using 64-bit indices. This was fixed using <code>coerce_indexer_dtype</code>
+to find the most appropriate dtype. From pandas 2.1.0, the result would be unsorted when
+specified, at least for the <code>quantile</code> method, without experience performance
+regression.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -143,17 +257,26 @@ We then called <code>coerce_indexer_dtype</code> to avoid this regression.
 ### IO
 
 {% capture projects_ossd_pandas_description_53844 %}
-This is related to <a href="https://github.com/pandas-dev/pandas/pull/53764">pandas-dev/pandas#53764</a>.
-Previously in that PR (also made by me), I considered nan of complex dtype simply as <code>nan+0.0j</code>, but this is incorrect.
-Both the real and imaginary part can be nan, and either of these parts being nan will lead to <code>util.is_nan</code> returning True.
-Therefore, the previous PR led to all types of complex nans being displayed as <code>NaN+0.0j</code>, though the underlying data is stored correctly.
-In this PR, I split real and imaginary parts, format them separately, and concatenate them (hopefully) properly.
-Since the imaginary part can also be <code>NaN</code>, it also has to be padded manually to the maximum length.
-For instance, we may have
-{% highlight plaintext %}
-0      NaN-1.2345j
-1      NaN+   NaNj
-2  -1.2345+   NaNj
+This is a follow-up on <a href="https://github.com/pandas-dev/pandas/pull/53764">pandas-dev/pandas#53764</a>
+which is made also by me, fixing the display of complex <code>nan</code> values. However,
+the trick that <em>if complex dtype then <code>nan</code> values are represented as
+<code>NaN+0.0j</code></em> is wrong. In fact, both the real and the imaginary part of a
+complex <code>nan</code> value can be <code>nan</code>. Thus the previous pull request
+led to all types of complex <code>nan</code> values being displayed as <code>NaN+0.0j</code>,
+even though the underlying data is stored correctly. In this pull request, I split the
+real and imaginary parts, format them separately, and concatenate them (hopefully)
+properly. Since the imaginary part can also be <code>NaN</code>, it also has to be
+padded manually to the maximum length. For instance, from pandas 2.1.0, <code>Series</code>
+with complex <code>nan</code> values would be displayed like
+
+{% highlight python %}
+>>> import numpy as np
+>>> import pandas as pd
+>>> pd.Series([complex(np.nan, -1.2), complex(np.nan, np.nan), complex(-1.23, np.nan)])
+0     NaN-1.20j
+1     NaN+ NaNj
+2   -1.23+ NaNj
+dtype: complex128
 {% endhighlight %}
 {% endcapture %}
 
@@ -166,38 +289,62 @@ For instance, we may have
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53764 %}
-This is related to <a href="https://github.com/pandas-dev/pandas/pull/53682">pandas-dev/pandas#53862</a>.
-Though <code>complex("nan")</code> no longer raises in series and dataframe, it is not displayed correctly, for instance <code>N000a000N</code>.
-This is also because pandas not considering that complex numbers can have nans,
-thus splitting by <code>+</code>, <code>-</code>, and <code>j</code> and maunally adding zeros for padding, causing this issue to happen.
-I applied some tricks here: if dtype is complex then I do not display nans as <code>NaN</code> but as <code>NaN+0.0j</code>.
-Then I split the real and imaginary parts with some regex and pad both the real and imaginary parts of a single number,
-but also all real (resp. imaginary) parts of all the numbers using some existing helper function.
-Now <code>complex("nan")</code> can be displayed properly, for instance, <code>pd.Series([1.23, complex("nan"), -1.2j])</code> will print
+This is a follow-up on <a href="https://github.com/pandas-dev/pandas/pull/53682">pandas-dev/pandas#53862</a>,
+which fixed the bug in pandas 2.0.3 of being unable to construct <code>Series</code>
+with complex <code>nan</code> values. However, that pull request did not account for the
+display issues, which could result in for instance <code>N000a000N</code> being shown.
+The internal reason was that pandas 2.0.3 did not consider complex numbers to have
+<code>nan</code> values, thus splitting by <code>+</code>, <code>-</code>, and <code>j</code>
+while representing complex <code>nan</code> values still as <code>NaN</code>. I applied
+some tricks here: if complex dtype then <code>nan</code> values are represented as
+<code>NaN+0.0j</code>. Then I split the real and imaginary parts with some regex and pad
+both the real and imaginary parts of a single number, but also all real (resp. imaginary)
+parts of all the numbers using some existing helper function. With the above fix,
+<code>complex("nan")</code> can be displayed properly, starting from pandas 2.1.0.
+
 {% highlight python %}
+>>> import pandas as pd
+>>> pd.Series([1.23, complex("nan"), -1.2j])
 0   1.23+0.00j
 1    NaN+0.00j
 2   0.00-1.20j
 dtype: complex128
 {% endhighlight %}
+
+<em>Update: This implementation turned out to be not considerate enough. Please refer to
+my follow-up fix in <a href="https://github.com/pandas-dev/pandas/pull/53764">pandas-dev/pandas#53844</a>
+or the item above.</em>
+
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
   pr=53764
-  title="BUG: bad display for complex series with nan #53764"
+  title="BUG: bad display for complex series with nan"
   description=projects_ossd_pandas_description_53764
 %}
 
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53044 %}
-I/O formatting was failing to display <code>MultiIndex</code> objects with a long elements, such as
+In pandas 2.0.3, displaying <code>MultiIndex</code> objects with long elements would
+fail. For instance,
+
 {% highlight python %}
-print(pd.MultiIndex.from_tuples([("c" * 62,)]))  # Raises an error
+>>> import pandas as pd
+>>> pd.MultiIndex.from_tuples([("c" * 62,)])
+AttributeError: 'tuple' object has no attribute 'rstrip'
 {% endhighlight %}
-This is because an important variable during I/O formatting was set only when breaking out of a for loop.
-It did not consider cases where the for loop terminates naturally, causing further errors.
-I fixed this bug so that such objects can be displayed correctly.
+
+This was caused an important variable being set only when breaking out of a for loop
+during formatting, not addressding the case where the loop terminates naturally and thus
+causing further errors. With an easy fix, the above code snippet would print correctly
+starting from pandas 2.1.0.
+
+{% highlight python %}
+>>> pd.MultiIndex.from_tuples([("c" * 62,)])
+MultiIndex([('cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',)],
+           )
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html

@@ -80,7 +80,7 @@ The outline of the features of YouTube Interface Customizer is as follows:
     </div>
 </div>
 <div class="caption">
-    Customize your color theme. From left to right, the themes are <b>Bright Sky</b>, <b>Cute Earth</b>, and <b>Petite Valentine</b>.
+    Customize your color theme. From left to right, the themes are <strong>Bright Sky</b>, <strong>Cute Earth</b>, and <strong>Petite Valentine</strong>.
 </div>
 
 ### Homepage
