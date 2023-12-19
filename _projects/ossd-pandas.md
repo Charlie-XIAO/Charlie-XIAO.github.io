@@ -36,7 +36,7 @@ toc:
 
 This is the collection of my open source contributions to [pandas](https://pandas.pydata.org/), a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-cite> It has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with nearly 3000 contributors.
 
-I have contributed [**27** merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) to pandas, and I am currently its [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
+I have contributed [**27** merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO) to pandas, and I am currently its [Top **#68** contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
 
 ## Code Contributions
 

@@ -36,7 +36,7 @@ toc:
 
 This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
 
-I have contributed [68 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) to scikit-learn, and I am currently its [Top #49 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn, with **3432** lines of addition and **2094** lines of deletion.
+I have contributed [**68** merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) to scikit-learn, and I am currently its [Top **#49** contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn.
 
 
 ## Code Contributions
