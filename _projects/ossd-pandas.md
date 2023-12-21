@@ -421,11 +421,33 @@ despite the deprecation warning.
 ### Numeric
 
 {% capture projects_ossd_pandas_description_53682 %}
-Previously, series and dataframe with <code>complex("nan")</code> will raise an error.
-This is caused by a hard conversion from complex nan into float dtype in the Cython code.
-When designing the constructor, pandas considered all objects that <code>util.is_nan</code> evaluate to True as float nans.
-I added a check for complex nans to avoid this invalid conversion.
-<code>complex("nan")</code> is now allowed in series and dataframe, displayed as <code>NaN+0.0j</code>.
+In pandas 2.0.3, constructing <code>Series</code> or <code>DataFrame</code> objects that
+contain complex <code>nan</code> values (e.g., <code>complex("nan")</code>) would raise
+an error. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> pd.Series([complex("nan")])
+TypeError: must be real number, not complex
+{% endhighlight %}
+
+This was caused by a hard conversion from complex <code>nan</code> into float dtype in
+the Cython code. When designing the constructor, pandas did not really take into
+consideration complex <code>nan</code> values, thus treating all <code>nan</code> as
+float <code>nan</code>. I added a check for complex <code>nan</code> to avoid this
+invalid converstion. Starting from pandas 2.1.0, <code>complex("nan")</code> is allowed
+in <code>Series</code> and <code>DataFrame</code>, displayed as <code>NaN+0.0j</code>.
+
+{% highlight python %}
+>>> pd.Series([complex("nan")])
+0   NaN+0.0j
+dtype: complex128
+{% endhighlight %}
+
+<em>Update: The implementation is correct but the claim about the display is not
+considerate enough. Please refer to my follow-up fix in
+<a href="https://github.com/pandas-dev/pandas/pull/53764">pandas-dev/pandas#53844</a> or
+the corresponding item in the <a href="#io">IO</a> section.</em>
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -437,10 +459,30 @@ I added a check for complex nans to avoid this invalid conversion.
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_53288 %}
-Previously, negative <code>RangeIndex</code> correctly set the step size to the opposite of the original,
-but constant minus <code>RangeIndex</code> did not.
-This was because the former would call <code>__neg__</code> while the latter would undergo some more complex numeric operations.
-I made a small modification so that now the latter case also reverts the step size correctly.
+In pandas 2.0.3, the step size of a <code>RangeIndex</code> objects was not correctly
+reverted when subtracted from a constant. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> idx = pd.Index(range(4))
+>>> idx
+RangeIndex(start=0, stop=4, step=1)
+>>> 3 - idx
+RangeIndex(start=3, stop=-1, step=1)
+>>> list(3 - idx)
+[]
+{% endhighlight %}
+
+I made an easy fix to change <code>step</code> to <code>-step</code> if the operation
+is <code>rsub</code>. From pandas 2.1.0, constant minus <code>RangeIndex</code> would
+work correctly.
+
+{% highlight python %}
+>>> 3 - idx
+RangeIndex(start=3, stop=-1, step=-1)
+>>> list(3 - idx)
+[3, 2, 1, 0]
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
