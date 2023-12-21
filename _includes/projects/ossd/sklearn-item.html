@@ -11,7 +11,7 @@
     </button>
     {% endif %}
     <!-- The display title -->
-    <a href="https://github.com/scikit-learn/scikit-learn/pull/{{ include.pr }}">{{ include.title }} #{{ include.pr }}</a>
+    {{ include.title }} <a href="https://github.com/scikit-learn/scikit-learn/pull/{{ include.pr }}">#{{ include.pr }}</a>
     {% if include.description %}
     <!-- The details that are by default hidden -->
     <div class="description-details" style="display: none; margin-top: 1rem; margin-bottom: 1rem;" data-toggle-id="{{ include.pr }}">
