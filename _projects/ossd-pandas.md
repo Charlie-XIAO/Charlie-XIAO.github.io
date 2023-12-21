@@ -42,6 +42,12 @@ nearly 3000 contributors.
 I have contributed [27 merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO)
 to pandas, and I am currently its [Top #68 contributor](https://github.com/pandas-dev/pandas/graphs/contributors).
 
+<em>Note that throughout this post, when saying a bug existed in pandas a.b.c, it does
+not take into consideration backporting. For instance, "a bug existed in pandas 2.1.3"
+and "fixed in pandas 2.1.4" only implies that the bug was fixed after the release of
+pandas 2.1.3, but does not gurantee that one would see the bug with pandas 2.1.3 now
+since the fix for pandas 2.1.4 may be backported to all 2.1.x.</em>
+
 ## Code Contributions
 
 Items in each section are sorted in reverse chronological order by the time of merge.
@@ -496,17 +502,34 @@ RangeIndex(start=3, stop=-1, step=-1)
 ### Resample
 
 {% capture projects_ossd_pandas_description_53736 %}
-For instance, look at the following code snippet.
+In pandas 2.0.3, empty <code>DataFrame</code> or <code>Series</code> would lose timezone
+information when resampled. For instance,
+
 {% highlight python %}
->>> df = pd.DataFrame({"ts": [], "values": []}).astype({"ts": "datetime64[ns, Atlantic/Faroe]"})
->>> result = df.resample("2MS", on="ts", closed="left", label="left", origin="start")["values"].sum()
->>> result.index
+>>> import pandas as pd
+>>> df = pd.DataFrame({"ts": [], "values": []}).astype(
+...     {"ts": "datetime64[ns, Atlantic/Faroe]"}
+... )
+>>> res = df.resample("2MS", on="ts", closed="left", label="left", origin="start")[
+...     "values"
+... ].sum()
+>>> res
+Series([], Freq: 2MS, Name: values, dtype: float64)
+>>> res.index
 DatetimeIndex([], dtype='datetime64[ns]', name='ts', freq='2MS')
 {% endhighlight %}
-Clearly the timezone information is lost, but this does not happen if the constructing series is not empty.
-The reason for this bug is that, the case of empty series is dealt with separately and dtype is not explicitly provided.
-Therefore, pandas tried to provide a minimum compatible time for the empty index, causing the loss of timezone.
-I made an easy fix that takes dtype into consideration.
+
+The reason for this bug was that, the case of empty <code>DataFrame</code> or
+<code>Series</code> was handled separately from the case of non-empty ones, and in the
+former case it simply created empty <code>DatetimeIndex</code> with specified
+<code>freq</code> and <code>name</code> without explicitly setting <code>dtype</code>.
+The case is similar for <code>PeriodIndex</code>. I fixed this bug by just explicitly
+passing in the correct dtype, so from pandas 2.1.0 the behavior would be correct.
+
+{% highlight python %}
+>>> res.index
+DatetimeIndex([], dtype='datetime64[ns, Atlantic/Faroe]', name='ts', freq='2MS')
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -520,14 +543,44 @@ I made an easy fix that takes dtype into consideration.
 ### Reshaping
 
 {% capture projects_ossd_pandas_description_53641 %}
-Previously, pandas raises a ValueError complaining about shape mismatch if we concatenate two datetime dataframes with different time resolutions.
-Looking into the code base, datetime dataframes with different time resolutions fall in the same branch as extension array types.
-However, extension array types have by default <code>axis=1</code> upon concatenation, while datetime dataframes have <code>axis=0</code>.
-Therefore, the <code>axis</code> keyword must be explicitly passed to the <code>_concat_same_type</code> method of the corresponding class.
-Yet some classes are not supporting the <code>axis</code> keyword in that method, so I had to implement a dirty workaround distinguishing the cases.
-The outcome is nice: it solved its original issue and several other issues that arose during its review process,
-including implicit concatenations such as <code>df.loc[1] = ...</code> to a single-row dataframe.
-Now concatenations work smoothly for datetime dataframes with different time resolutions.
+
+This is about a bug introduced during the development of pandas 2.1.0, so it does not
+exist in any actual release. In short, when concatenating <code>DataFrame</code> objects
+with different <code>datetime64</code> resolutions (e.g. <code>"datetime64[s]"</code>
+versus <code>"datetime64[ns]"</code>), an extremly wierd <code>ValueError</code> would
+be raised. In particular,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> df1 = pd.DataFrame({"a": range(2), "b": range(2)}, dtype="datetime64[s]")
+>>> df2 = pd.DataFrame({"a": range(2), "b": range(2)}, dtype="datetime64[ns]")
+>>> pd.concat([df1, df2])
+ValueError: Shape of passed values is (2, 2), indices imply (4, 2)
+{% endhighlight %}
+
+This was because pandas internally implements a class method <code>_concat_same_type</code>
+for extension arrays and so on, some with default <code>axis=0</code> and some not
+supporting the <code>axis</code> keyword. Consequently, it originally called the class
+method without specifying <code>axis</code>, which was fine in many cases but not fine
+for datetime arrays who should have <code>axis=1</code>. I noticed that a
+<code>ea_compat_axis</code> argument is available, such that the <code>axis</code>
+keyword is not supported if <code>ea_compat_axis=True</code>. By this observation I
+modified the logic to explicitly pass in the <code>axis</code> keyword whenever possible
+instead of always using the default value. This avoided the regression in the function
+<code>pd.concat</code> from pandas 2.0.3 to pandas 2.1.0. In particular,
+
+{% highlight python %}
+>>> pd.concat([df1, df2])
+                              a                             b
+0 1970-01-01 00:00:00.000000000 1970-01-01 00:00:00.000000000
+1 1970-01-01 00:00:01.000000000 1970-01-01 00:00:01.000000000
+0 1970-01-01 00:00:00.000000000 1970-01-01 00:00:00.000000000
+1 1970-01-01 00:00:00.000000001 1970-01-01 00:00:00.000000001
+{% endhighlight %}
+
+This even resolved some other problems that may not explicitly use the <code>pd.concat</code>
+function but involves implicit concatenations, e.g., using <code>df.loc[n] = ...</code>
+where <code>df</code> is a <code>DataFrame</code> object with only <code>n</code> rows.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -537,29 +590,62 @@ Now concatenations work smoothly for datetime dataframes with different time res
 %}
 
 {% capture projects_ossd_pandas_description_53215 %}
-Suppose that we have two dataframes as follows.
+
+In pandas 2.0.3, the method <code>DataFrame.merge</code> did not behave correctly when
+encountering <code>MultiIndex</code> with a single level. As an example, we create two
+<code>DataFrame</code> objects, the only difference being that <code>df1<code> has
+<code>Index</code> while <code>df2</code> has <code>MultiIndex</code> with single level.
+
+{% highlight python %}
+>>> import pandas as pd
+>>> df1 = pd.DataFrame(
+...     data={"col2": [100]},
+...     index=pd.Index(["A"], name="col1"),
+... )
+>>> df1
+      col2
+col1
+A      100
+>>> df1.index
+Index(['A'], dtype='object', name='col1')
+>>> df2 = pd.DataFrame(
+...     data={"col2": [100]},
+...     index=pd.MultiIndex.from_tuples([("A",)], names=["col1"]),
+... )
+>>> df2
+      col2
+col1
+A      100
+>>> df2.index
+MultiIndex([('A',)],
+           names=['col1'])
+{% endhighlight %}
+
+Now create a (left) <code>DataFrame</code> to check the merging behavior in pandas 2.0.3.
+
 {% highlight python %}
 >>> df = pd.DataFrame({"col1": ["A"]})
 >>> df
 col1
 0    A
->>> df2 = pd.DataFrame(
-...     data={"col2": [100]},
-...     index=pd.MultiIndex.from_tuples([("A",)], names=["col1"]),
-... )
-      col2
-col1
-A      100
->>> df2
+>>> df.merge(df1, left_on=["col1"], right_index=True, how="left")
+  col1  col2
+0    A   100
+>>> df.merge(df2, left_on=["col1"], right_index=True, how="left")
+  col1  col2
+0    A   NaN
 {% endhighlight %}
-Then when we write
-{% highlight python %}
-df.merge(df2, left_on=["col1"], right_index=True, how="left")
-{% endhighlight %}
-we would expect a single-row dataframe with column <code>col1</code> as <code>A</code> and column <code>col2</code> as <code>100</code>.
-But previously, the column <code>col2</code> would be the missing value <code>NaN</code>, which is undesired.
-This is because when there is a single join key, pandas would treat as indices as single index, thus <code>"A"</code> and <code>("A",)</code> were treated as different keys.
-I modified this part of logic to treat <code>MultiIndex</code> correctly and simplified the code.
+
+The merging behavior of <code>df2</code> was clearly incorrect, and should be the same
+as that of <code>df1</code>. This was caused by the logic of checking whether to use
+internally a multi-index indexer or a single-index indexer. In particular, pandas 2.0.3
+checked the length of the join keys, incorrectly putting <code>df2</code> into the case
+of using a single-index indexer. <code>("A",)</code> would then fail to match
+<code>"A"</code>, leading to the <code>NaN</code>. I fixed this by alternatively
+checking for <code>MultiIndex</code> instance, so that <code>df2</code> can be put into
+the right case. From pandas 2.1.0, the merging behavior of <code>DataFrame</code> with
+single-level <code>MultiIndex</code> would be correct, e.g., the merging behavior of
+<code>df2</code> would agree with that of <code>df1</code>.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -571,9 +657,27 @@ I modified this part of logic to treat <code>MultiIndex</code> correctly and sim
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_pandas_description_51947 %}
-<code>DataFrame.merge</code> raises an error when there are imcompatible keys,
-but there was no information provided in the error message that indicate which keys are incompatible.
-I improved the error message by displaying the first imcompatible key.
+<em>This is my first merged pull request to pandas!</em> In pandas 2.0.3, the method
+<code>DataFrame.merge</code> raises an error when there are imcompatible keys, but there
+was no information provided indicating which keys were the culprits. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> df = pd.DataFrame([{"a": 1, "b": 1, "c": 1}])
+>>> df2 = pd.DataFrame([{"a": 1, "b": None, "c": 1}])
+>>> pd.merge(df, df2)
+ValueError: You are trying to merge on int64 and object columns. If you wish to proceed you should use pd.concat
+{% endhighlight %}
+
+This would become problematic if the number of columns is large, making it hard to
+identify the culprit columns and resolve the failure. I improved the error message by
+mentioning the name of the first incompatible key, which would be included starting from
+pandas 2.1.0.
+
+{% highlight python %}
+>>> pd.merge(df, df2)
+ValueError: You are trying to merge on int64 and object columns for key 'b'. If you wish to proceed you should use pd.concat
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
@@ -587,11 +691,22 @@ I improved the error message by displaying the first imcompatible key.
 ### Others
 
 {% capture projects_ossd_pandas_description_55395 %}
-<code>Series</code> were unexpectedly raising a deprecation warning when <code>index</code> is a list of <code>Series</code>.
-This is because when validating index type, pandas is implicitly checking for the <code>_data</code> attribute, which has been deprecated for some classes.
-Instead, I made it to check for only certain classes, but since the check happens in Cython code, it suffered from circular import.
-I used runtime importing to resolve this issue and checked that there is no significant performance degradation.
-The <code>Series</code> constructor should now work without deprecation warnings, and accept only valid types of <code>index</code>.
+In pandas 2.1.3, the <code>Series</code> constructor would raise a deprecation warning
+if the <code>index</code> argument is a list of <code>Series</code>. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> ser = pd.Series([1.23], index=[pd.Series([1]), pd.Series([2])])
+DeprecationWarning: Series._data is deprecated and will be removed in a future version. Use public APIs instead.
+{% endhighlight %}
+
+This was caused by the logic of validating the <code>index</code> argument, which
+implicitly looks for the <code>_data</code> attribute. However, <code>_data</code> that
+has been depreated. The initial intention was to check for instances of lists,
+<code>ABCIndex</code>, and <code>ABCSeries</code> while avoiding circular import. I
+fixed this by runtime-importing <code>ABCIndex</code> and <code>ABCSeries</code> and
+performing the explicit check. From pandas 2.1.4 the above construction would be clear
+of this warning.
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
