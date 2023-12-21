@@ -225,6 +225,16 @@ I made these methods to support all array-like inputs for feature names and clas
 Items are sorted in reverse chronological order by the time of merge.
 
 {% include projects/ossd/sklearn-item.html
+  pr=27969
+  title="MNT Work-around sphinx-gallery UnicodeDecodeError in recommender system"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=27954
+  title="CLN avoid nested conftests"
+%}
+
+{% include projects/ossd/sklearn-item.html
   pr=27723
   title="TST Extend tests for scipy.sparse.*array in sklearn/svm/tests/test_sparse"
 %}
@@ -479,6 +489,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=27970
+  title="DOC update doc build sphinx link to by matching regex in lock file"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=27790
