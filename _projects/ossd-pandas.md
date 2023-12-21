@@ -358,25 +358,56 @@ MultiIndex([('cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',)]
 ### Missing Data
 
 {% capture projects_ossd_pandas_description_53962 %}
-Previously, interpolating will <code>fillna</code> methods such as <code>"ffill"</code> could not fill across blocks.
-For instance, we make a multi-block DataFrame and interpolate it.
+In pandas 2.0.3, calling the <code>interpolate</code> method with <code>method</code>
+being some <code>fillna</code> method (e.g., <code>"ffill"</code>) failed to fill across
+blocks. As an example, we first make a multi-block <code>DataFrame</code> object.
+
 {% highlight python %}
-df = pd.DataFrame(np.random.randn(3, 3), columns=["A", "B", "C"])
-df["D"] = np.nan
-df["E"] = 1.0
-df.interpolate(method="ffill", axis=1)
+>>> import numpy as np
+>>> import pandas as pd
+>>> df = pd.DataFrame(np.random.randn(3, 3), columns=list("ABC"))
+>>> df["D"] = np.nan
+>>> df["E"] = 1.0
+>>> df
+          A         B         C   D    E
+0 -0.296721 -0.655025  0.220960 NaN  1.0
+1  0.016386 -0.605724 -0.593538 NaN  1.0
+2  0.274373 -0.203605  0.510585 NaN  1.0
 {% endhighlight %}
-This, previously would give the follows.
+
+Though not explicitly displayed, this <code>DataFrame</code> is internally multi-block,
+i.e., columns A through C are in one block and columns D and E are one block each. In
+pandas 2.0.3, interpolating it with <code>method="ffill"</code> yielded an incorrect
+result.
+
 {% highlight python %}
+>>> df.interpolate(method="ffill", axis=1)
           A         B         C   D    E
 0 -0.656239  0.898067  0.842284 NaN  1.0
 1 -0.914892 -0.018121 -0.382542 NaN  1.0
 2  1.818251 -0.148962  0.550328 NaN  1.0
 {% endhighlight %}
-Though interpolating with <code>fillna</code> methods have been deprecated, it would still be meaningful to fix this bug.
-The reason is that, when dealing with multi-block DataFrames, one would have to transpose it before passing it to the block manager and then transpose the result back.
-I reorganized the code a bit and fixed this issue.
-Now despite raising a deprecation warning, the functionality works correctly.
+
+Clearly the interpolation failed to pass across the block of column D. Although such a
+usage has been deprecated, i.e., it is recommended to directly use <code>df.ffill(axis=1)</code>
+instead, it was still meaningful to fix the bug since deprecation warnings are not
+errors. The reason for this bug was that, internally such a multi-block <code>DataFrame</code>
+needed to be transposed before passing to the block manager, and then transposed back
+afterwards. However, the originally logic was to transpose only when <code>axis=1</code>
+and <code>method</code> is not a <code>fillna</code>method. I updated the logic so that
+it transposes also when detecting a multi-block internal layout (for reference, this
+information can be accessed via the <code>_mgr</code> private attribute). Starting from
+pandas 2.1.0 and until such a usage is fully removed, the functionality works correctly
+despite the deprecation warning.
+
+{% highlight python %}
+>>> df.interpolate(method="ffill", axis=1)
+<stdin>:1: FutureWarning: DataFrame.interpolate with method=ffill is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+          A         B         C         D    E
+0 -0.296721 -0.655025  0.220960  0.220960  1.0
+1  0.016386 -0.605724 -0.593538 -0.593538  1.0
+2  0.274373 -0.203605  0.510585  0.510585  1.0
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/pandas-item.html
