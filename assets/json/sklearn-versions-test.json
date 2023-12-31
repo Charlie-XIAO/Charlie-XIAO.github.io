@@ -1,0 +1,82 @@
+[
+  {
+    "name": "1.5.dev0 (dev)",
+    "version": "1.5.dev0",
+    "url": "https://scikit-learn.org/dev/"
+  },
+  {
+    "name": "1.3.2 (stable)",
+    "version": "1.3.2",
+    "url": "https://scikit-learn.org/stable/"
+  },
+  {
+    "name": "1.4.0rc1",
+    "version": "1.4.0rc1",
+    "url": "https://scikit-learn.org/1.4/"
+  },
+  {
+    "name": "1.2.2",
+    "version": "1.2.2",
+    "url": "https://scikit-learn.org/1.2/"
+  },
+  {
+    "name": "1.1.3",
+    "version": "1.1.3",
+    "url": "https://scikit-learn.org/1.1/"
+  },
+  {
+    "name": "1.0.2",
+    "version": "1.0.2",
+    "url": "https://scikit-learn.org/1.0/"
+  },
+  {
+    "name": "0.24.2",
+    "version": "0.24.2",
+    "url": "https://scikit-learn.org/0.24/"
+  },
+  {
+    "name": "0.23.2",
+    "version": "0.23.2",
+    "url": "https://scikit-learn.org/0.23/"
+  },
+  {
+    "name": "0.22.2",
+    "version": "0.22.2",
+    "url": "https://scikit-learn.org/0.22/"
+  },
+  {
+    "name": "0.21.3",
+    "version": "0.21.3",
+    "url": "https://scikit-learn.org/0.21/"
+  },
+  {
+    "name": "0.20.4",
+    "version": "0.20.4",
+    "url": "https://scikit-learn.org/0.20/"
+  },
+  {
+    "name": "0.19.2",
+    "version": "0.19.2",
+    "url": "https://scikit-learn.org/0.19/"
+  },
+  {
+    "name": "0.18.2",
+    "version": "0.18.2",
+    "url": "https://scikit-learn.org/0.18/"
+  },
+  {
+    "name": "0.17.1",
+    "version": "0.17.1",
+    "url": "https://scikit-learn.org/0.17/"
+  },
+  {
+    "name": "0.16.1",
+    "version": "0.16.1",
+    "url": "https://scikit-learn.org/0.16/"
+  },
+  {
+    "name": "0.15-git",
+    "version": "0.15-git",
+    "url": "https://scikit-learn.org/0.15/"
+  }
+]
