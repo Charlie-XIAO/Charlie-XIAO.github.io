@@ -34,9 +34,19 @@ toc:
   - name: Documentation Contributions
 ---
 
-This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/), a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with over 2500 contributors.
+This is the collection of my open source contributions to [scikit-learn](https://scikit-learn.org/stable/),
+a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has its
+code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with
+over 2500 contributors.
 
-I have contributed [68 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO) to scikit-learn, and I am currently its [Top #51 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors) to scikit-learn.
+I have contributed [70 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
+to scikit-learn, and I am currently its [Top #51 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
+that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
+take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
+and "fixed in scikit-learn 1.3.2" only implies that the bug was fixed after the release
+of scikit-learn 1.3.1, but does not gurantee that one would see the bug with
+scikit-learn 1.3.1 now since the fix for scikit-learn 1.3.2 may be backported to
+earlier versions, especially 1.3.x.</d-footnote>
 
 
 ## Code Contributions
@@ -60,6 +70,35 @@ I implemented automatic raveling when input is 1D, so that the regressors now be
 <!-- ====================================================================== -->
 
 ### Datasets
+
+{% capture projects_ossd_sklearn_description_28111 %}
+In scikit-learn 1.4.0, the function <code>datasets.dump_svmlight_file</code> would raise
+a <code>ValueError</code> when <code>X</code> is read-only, e.g., memmap-based. For
+instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.datasets import dump_svmlight_file
+>>> X = np.zeros((3, 4))
+>>> y = np.zeroes(3)
+>>> X.flags.writeable = False
+>>> dump_svmlight_file(X, y, "test.svmlight")
+ValueError: buffer source array is read-only
+{% endhighlight %}
+
+This is the function is written in Cython for efficiency, but the signature of
+<code>X</code> in one of the helper functions is <code>int_or_float[:, :] X</code>,
+i.e., a mutable Cython memoryview. I made a simple fix by adding <code>const</code> to
+the signature. From scikit-learn 1.4.1, <code>datasets.dump_svmlight_file</code> would
+work correctly with read-only <code>X</code>.
+
+{% endcapture %}
+
+{% include projects/ossd/sklearn-item.html
+  pr=28111
+  title="FIX dump svmlight when data is read-only"
+  description=projects_ossd_sklearn_description_28111
+%}
 
 {% capture projects_ossd_sklearn_description_27438 %}
 Previously, the function <code>make_sparse_spd_matrix</code> returns numpy dense arrays and uses dense array methods,
@@ -489,6 +528,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=28107
+  title="DOC fix wrong indentations in the documentation that lead to undesired blockquotes"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=27970
