@@ -10,9 +10,8 @@ email: yx2436@nyu.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Yao Xiao's portfolio website.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Source code on <a href="https://github.com/Charlie-XIAO/Charlie-XIAO.github.io">GitHub</a>.
+  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> / <a href="https://github.com/alshedivat/al-folio">al-folio</a>.
+  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> / <a href="https://github.com/Charlie-XIAO/Charlie-XIAO.github.io">GitHub</a>.
 keywords: academic-website, portfolio-website, nyu-shanghai, honors-mathematics, computer-science  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
