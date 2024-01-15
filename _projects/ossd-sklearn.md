@@ -58,9 +58,34 @@ Items in each section are sorted in reverse chronological order by the time of m
 ### Cross Decomposition
 
 {% capture projects_ossd_sklearn_description_26602 %}
-Previously, <code>PLSRegression</code> always predicts 2D result no matter if the input is 1D or 2D.
-This is somehow inconsistent with other regressors such as <code>LinearRegression</code> and <code>Ridge</code>.
-I implemented automatic raveling when input is 1D, so that the regressors now behave consistently.
+In scikit-learn 1.3.x, <code>cross_decomposition.PLSRegression</code> always predicts 2D
+result no matter if the input is 1D or 2D. This is somehow inconsistent with other
+regressors such as <code>linear_model.LinearRegression</code> and <code>linear_model.Ridge</code>.
+For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.cross_decomposition import PLSRegression
+>>> from sklearn.linear_model import LinearRegression
+>>> X = np.array([[1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36]])
+>>> y = np.array([2, 6, 12, 20, 30, 42])
+>>> lr = LinearRegression().fit(X, y)
+>>> lr.predict(X)
+array([ 2.,  6., 12., 20., 30., 42.])
+>>> plsr = PLSRegression().fit(X, y)
+>>> plsr.predict(X)
+array([[ 2.],
+       [ 6.],
+       [12.],
+       [20.],
+       [30.],
+       [42.]])
+{% endhighlight %}
+
+I made a simple fix to determine whether to automatically ravel the output based on the
+shape of the input <code>y</code>. From scikit-learn 1.4.0, <code>PLSRegression</code>
+would behave consistently with other regressors, such that it returns 1D prediction if
+fitted with 1D <code>y</code>.
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -103,12 +128,32 @@ work correctly with read-only <code>X</code>.
 %}
 
 {% capture projects_ossd_sklearn_description_27438 %}
-Previously, the function <code>make_sparse_spd_matrix</code> returns numpy dense arrays and uses dense array methods,
-even though the output matrix is sparse regarding its Cholesky factor.
-To achieve better memory efficiency, I used sparse memory layout from the very beginning to reimplement this function,
-and outputs a scipy sparse matrix based on the new keyword <code>sparse_format</code>.
-For backward compatibility, however, <code>sparse_format</code> is default to <code>None</code>,
-meaning that the sparse matrix will still be converted to a dense numpy array in the end in this case.
+In scikit-learn 1.3.x, the function <code>datasets.make_sparse_spd_matrix</code> used
+dense numpy array throughout the computation and output a dense array, even though the
+result is sparse (the sparsity increases with the parameter <code>alpha</code>). This
+is inefficient in terms of both memory usage and computational cost. I refactored the
+code and used sparse memory layout from the very beginning, greatly reducing memory
+consumption especially when <code>alpha</code> is large. I also added a new keyword
+argument <code>sparse_format</code> which allows outputting a sparse matrix directly.
+By default, <code>sparse_format</code> is <code>None</code>, meaning that the output
+will be converted to a dense numpy array. Otherwise it should be a string like
+<code>"csr"</code>, <code>"csc"</code>, or others, specifying the specific sparse
+format to return. This improvement is included from scikit-learn 1.4.0.
+
+{% highlight python %}
+>>> from sklearn.datasets import make_sparse_spd_matrix
+>>> make_sparse_spd_matrix(4, random_state=0)
+array([[ 1.23245136, -0.48213209,  0.        ,  0.        ],
+       [-0.48213209,  1.        ,  0.        ,  0.        ],
+       [ 0.        ,  0.        ,  1.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        ,  1.        ]])
+>>> make_sparse_spd_matrix(4, random_state=0, sparse_format="csr")
+<4x4 sparse matrix of type '<class 'numpy.float64'>'
+        with 6 stored elements in Compressed Sparse Row format>
+>>> make_sparse_spd_matrix(4, random_state=0, sparse_format="csc")
+<4x4 sparse matrix of type '<class 'numpy.float64'>'
+        with 6 stored elements in Compressed Sparse Column format>
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -122,11 +167,48 @@ meaning that the sparse matrix will still be converted to a dense numpy array in
 ### Decomposition
 
 {% capture projects_ossd_sklearn_description_26337 %}
-Originally, <code>KernelPCA</code> may produce incorrect results through <code>inverse_transform</code> if <code>gamma=None</code>.
-This was because <code>gamma</code> would be automatically set to <code>1 / n_features</code> when the kernel is called.
-However, when using <code>inverse_transform</code>, <code>n_features</code> is not that of the data that the model is fitted on.
-I modified the logic so that now <code>gamma</code> will be chosen correctly in the very beginning of the fitting process.
-I also provided a new attribute <code>gamma_</code> is provided for revealing the actual value of <code>gamma</code> used each time the kernel is called.
+In scikit-learn 1.2.x, <code>decomposition.KernelPCA</code> could produce incorrect
+results through the <code>inverse_transform</code> method when <code>gamma=None</code>.
+In particular, with <code>gamma=None</code> the value of <code>gamma</code> should be
+automatically chosen as <code>1/n_features</code> where <code>n_features</code> is the
+number of features of <code>X</code>, so the result using <code>gamma=None</code> and
+<code>gamma=1/n_features</code> should be theoretically the same, which was not the
+case in scikit-learn 1.2.x. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.decomposition import KernelPCA
+>>> rng = np.random.RandomState(0)
+>>> X = rng.random_sample((5, 4))
+>>> kwargs = {
+...     "n_components": 2,
+...     "random_state": rng,
+...     "fit_inverse_transform": True,
+...     "kernel": "rbf",
+... }
+>>> kpca1 = KernelPCA(gamma=None, **kwargs).fit(X)
+>>> kpca2 = KernelPCA(gamma=1 / X.shape[1], **kwargs).fit(X)
+>>> kpca1.inverse_transform(kpca1.transform(X))
+array([[0.44334543, 0.59512828, 0.46569486, 0.50624967],
+       [0.39736721, 0.59593894, 0.47787971, 0.53831915],
+       [0.48914575, 0.50067493, 0.46519924, 0.45894488],
+       [0.41840832, 0.58699316, 0.323197  , 0.3546591 ],
+       [0.30997022, 0.57619197, 0.46445272, 0.5512108 ]])
+>>> kpca2.inverse_transform(kpca1.transform(X))
+array([[0.43304986, 0.58984587, 0.45734748, 0.49734729],
+       [0.407028  , 0.59067998, 0.46527052, 0.51668476],
+       [0.46205772, 0.53774587, 0.45877911, 0.47233884],
+       [0.42196757, 0.58748932, 0.3754222 , 0.41023455],
+       [0.35705227, 0.58148822, 0.45995811, 0.52773517]])
+{% endhighlight %}
+
+The reason was, when <code>gamma=None</code> and automatically setting to <code>1/n_features</code>,
+the value of <code>n_features</code> at fit time and at inverse transform time could be
+different, leading to different <code>gamma</code> values of the kernel and thus
+different results. When <code>gamma</code> is not <code>None</code>, however, the value
+is always consistent. I made a simple fix to make sure that the value of <code>n_features</code>
+at fit time is consistently used, so from scikit-learn 1.3.0, <code>kpca1</code> and
+<code>kpca2</code> would produce the same results.
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
