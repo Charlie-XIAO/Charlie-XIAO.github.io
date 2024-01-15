@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: scikit-learn
-description: "Top #51 Contributor"
+description: "Top #50 Contributor"
 img: assets/img/sklearn-logo.jpg
 importance: 10
 category: Open Source Development
@@ -28,8 +28,10 @@ toc:
       - name: Ensemble
       - name: Feature Selection
       - name: Metrics
+      - name: Neighbors
       - name: Preprocessing
       - name: Tree
+      - name: Utilities
   - name: Maintenance Contributions
   - name: Documentation Contributions
 ---
@@ -39,8 +41,8 @@ a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has
 code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with
 over 2500 contributors.
 
-I have contributed [70 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
-to scikit-learn, and I am currently its [Top #51 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
+I have contributed [73 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
+to scikit-learn, and I am currently its [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
 that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
 take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
 and "fixed in scikit-learn 1.3.2" only implies that the bug was fixed after the release
@@ -224,6 +226,56 @@ I also provided a keyword <code>chance_level_kw</code> that supports a dictionar
 
 <!-- ====================================================================== -->
 
+### Neighbors
+
+{% capture projects_ossd_sklearn_description_26410 %}
+In scikit-learn 1.4.0, <code>neighbors.KNeighborsClassifier</code> behaved unreasonably
+when the weights of all neighbors of some sample are zero. This is possible when using
+a user-define weight function. For instance, there could be cases where all neighbors
+are pretty far away and the user-defined weight function assigns zero weights to all
+points outside a certain threshold. For simplicity of illustration, consider the
+following example where we directly assign zero weights to all points:
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.neighbors import KNeighborsClassifier
+>>> X = np.array([[0, 1], [1, 2], [2, 3], [3, 4]])
+>>> y = np.array([0, 0, 1, 1])
+>>> def _weights(dist):
+...     return np.vectorize(lambda x: 0 if x > 0.5 else 1)(dist)
+>>> est = KNeighborsClassifier(n_neighbors=3, weights=_weights).fit(X, y)
+>>> est.predict([[1.1, 1.1]])
+array([0])
+>>> est.predict_proba([[1.1, 1.1]])
+array([[0., 0.]])
+{% endhighlight %}
+
+As shown in the example above, the <code>predict</code> method predicted the first class
+and the <code>predict_proba</code> method returned all zero probabilities. After
+discussions, maintainers were convinced that it was worth breaking backward
+compatibility to raise an error in this case, instead of returning almost random results
+that hide potential bugs. Therefore, I made a simple fix to check if there is any
+all-zero row (i.e., sample with all-zero neighbor weights). To avoid creating large
+temporary boolean arrays in memory during this check, I also implemented a small Cython
+function for this. From scikit-learn 1.4.1, the aforementioned ill case would lead to
+an informative error message with a suggestion to fix the problem, such that
+
+{% highlight python %}
+>>> est.predict([[1.1, 1.1]])
+ValueError: All neighbors of some sample is getting zero weights. Please modify 'weights' to avoid this case if you are using a user-defined function.
+>>> est.predict_proba([[1.1, 1.1]])
+ValueError: All neighbors of some sample is getting zero weights. Please modify 'weights' to avoid this case if you are using a user-defined function.
+{% endhighlight %}
+{% endcapture %}
+
+{% include projects/ossd/sklearn-item.html
+  pr=26410
+  title="FIX KNeighborsClassifier raise when all neighbors of some sample have zero weights"
+  description=projects_ossd_sklearn_description_26410
+%}
+
+<!-- ====================================================================== -->
+
 ### Preprocessing
 
 {% capture projects_ossd_sklearn_description_26400 %}
@@ -254,6 +306,43 @@ I made these methods to support all array-like inputs for feature names and clas
   pr=26289
   title="FIX export_text and export_graphviz accepts feature and class names as array-like"
   description=projects_ossd_sklearn_description_26289
+%}
+
+<!-- ====================================================================== -->
+
+### Utilities
+
+{% capture projects_ossd_sklearn_description_28090 %}
+In scikit-learn 1.4.0, when calling <code>utils.check_array</code> with a Series-like
+object (e.g., pandas <code>Series</code> or polars <code>Series</code>) and expecting a
+2D container, the error message would be confusing. For instance,
+
+{% highlight python %}
+>>> import pandas as pd
+>>> from sklearn.utils import check_array
+>>> ser = pd.Series([1, 2, 3])
+>>> check_array(ser, ensure_2d=True)
+ValueError: Expected 2D array, got 1D array instead:
+array=[1 2 3].
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+{% endhighlight %}
+
+This is because the error message was generated after converting the input, and it did
+not really distinguish between Series-like and other one-dimensional array-like objects.
+I made a simply fix to the error message by explicitly stating the type of the input and
+using a more appropriate error message customized for Series-like objects. This fix is
+included from scikit-learn 1.4.1, and the improved error message is shown as below:
+
+{% highlight python %}
+>>> check_array(ser, ensure_2d=True)
+ValueError: Expected a 2-dimensional container but got <class 'pandas.core.series.Series'> instead. Pass a DataFrame containing a single row (i.e. single sample) or a single column (i.e. single feature) instead.
+{% endhighlight %}
+{% endcapture %}
+
+{% include projects/ossd/sklearn-item.html
+  pr=28090
+  title="FIX improve error message in check_array when getting a Series and expecting a 2D container"
+  description=projects_ossd_sklearn_description_28090
 %}
 
 <!-- ====================================================================== -->
@@ -528,6 +617,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=28120
+  title="DOC fix the confusing ordering of whats_new/v1.5.rst"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=28107

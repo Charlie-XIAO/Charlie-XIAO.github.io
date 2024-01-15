@@ -39,7 +39,7 @@ a powerful data analysis toolkit in Python.<d-cite key="mckinney2010data"></d-ci
 has its code base maintained on [GitHub](https://github.com/pandas-dev/pandas), with
 nearly 3000 contributors.
 
-I have contributed [29 merge pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO)
+I have contributed [29 merged pull requests](https://github.com/pandas-dev/pandas/commits?author=Charlie-XIAO)
 to pandas, and I am currently its [Top #64 contributor](https://github.com/pandas-dev/pandas/graphs/contributors).<d-footnote>Note
 that throughout this post, when saying a bug existed in pandas a.b.c, it does not take
 into consideration backporting. For instance, "a bug existed in pandas 2.1.3" and "fixed

@@ -18,3 +18,9 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/solid",
   "font-awesome/regular"
 ;
+
+// Custom styles
+
+figure.highlight {
+  margin: 1rem 0;
+}
