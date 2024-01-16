@@ -41,7 +41,7 @@ a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has
 code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with
 over 2500 contributors.
 
-I have contributed [73 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
+I have contributed [75 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
 to scikit-learn, and I am currently its [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
 that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
 take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
@@ -222,13 +222,30 @@ at fit time is consistently used, so from scikit-learn 1.3.0, <code>kpca1</code>
 ### Ensemble
 
 {% capture projects_ossd_sklearn_description_25931 %}
-When fitting an <code>IsolationForest</code> on a pandas dataframe with <code>contamination != auto</code>,
-the feature names were removed and a spurious warning was raised,
-saying that <code>X</code> does not have valid feature names, but <code>IsolationForest</code> was fitted with feature names.
-This is because input data was validated when scoring the samples.
-To fix this, I created a private version of scoring function without input validation,
-and make the original public version validate the input and call this private one.
-Then when fitting, I used the private version so that feature names will not be removed and no warnings will be raised.
+In scikit-learn 1.2.x, when fitting an <code>ensemble.IsolationForest</code> on a pandas
+<code>DataFrame</code> and <code>contamination</code> is not <code>"auto"</code>, there
+would be a spurious warning about missing features. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> import pandas as pd
+>>> from sklearn.ensemble import IsolationForest
+>>> rng = np.random.RandomState(0)
+>>> X = pd.DataFrame(data=rng.randn(4), columns=["a"])
+>>> clf = IsolationForest(random_state=0, contamination=0.05)
+>>> clf.fit(X)
+UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+IsolationForest(contamination=0.05, random_state=0)
+{% endhighlight %}
+
+The reason was that, the <code>fit</code> method was called with a <code>DataFrame</code>
+so there were features coming in, but at the end of the <code>fit</code> method, if
+<code>contamination</code> is not <code>"auto"</code>, we would call the
+<code>score_samples</code> method but the input data <code>X</code> has already been
+validated and converted into a numpy array at this point, thus the warning. I created a
+private method <code>_score_samples</code> without validation to be called at the end of
+<code>fit</code>, so this warning would go away. This fix is included from scikit-learn
+1.3.0.
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -242,10 +259,37 @@ Then when fitting, I used the private version so that feature names will not be 
 ### Feature Selection
 
 {% capture projects_ossd_sklearn_description_26748 %}
-Previously, <code>mutual_info_regression</code> would return inaccurate or incorrect result when <code>X</code> is of integer dtype.
-This is because after scaling the data, it was directly assigned back to <code>X</code>, causing the values to be rounded to integers.
-Converting <code>X</code> to float dtype after that would already be too late.
-I made a simple fix to convert <code>X</code> to float dtype in the first place, thus avoiding this problem.
+In scikit-learn 1.3.x, <code>feature_selection.mutual_info_regression</code> would
+return inaccurate or incorrect result when input data <code>X</code> is of integer
+dtype. As an illustration, we compare its output with two input data that are different
+only in there dtypes:
+
+{% highlight python %}
+>>> import numpy as np
+>>> from numpy.testing import assert_array_equal
+>>> from sklearn.feature_selection import mutual_info_regression
+>>> rng = np.random.RandomState(0)
+>>> X = rng.randint(100, size=(100, 10))
+>>> X_float = X.astype(np.float64, copy=True)
+>>> y = rng.randint(100, size=100)
+>>> res = mutual_info_regression(X, y, random_state=0)
+>>> res_float = mutual_info_regression(X_float, y, random_state=0)
+>>> assert_array_equal(res, res_float)
+AssertionError:
+Arrays are not equal
+
+Mismatched elements: 6 / 10 (60%)
+Max absolute difference: 0.08158231
+Max relative difference: 1.80656396
+...
+{% endhighlight %}
+
+The reason was that, continuous features of the input data were scaled and assigned back
+to the input data <code>X</code>, but if <code>X</code> is of integer dtype, such an
+in-place assignment would force the scaled values to be rounded, thus largely losing
+precision. I made a simple fix to convert <code>X</code> to <code>np.float64</code>
+dtype in advance, so from scikit-learn 1.4.0, <code>res</code> and <code>res_float</code>
+would be the same.
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -257,10 +301,29 @@ I made a simple fix to convert <code>X</code> to float dtype in the first place,
 <!-- ====================================================================== -->
 
 {% capture projects_ossd_sklearn_description_25973 %}
-When fitting a <code>SequentialFeatureSelector</code>, the optional parameter <code>cv</code> would accept any iterable according to the documentation.
-However, a strange IndexError will occur when passing <code>cv</code> as a generator, complaining list index out of range.
-This is because <code>cv</code> need to be reused during the fitting process, so I called <code>check_cv</code> to make sure that we have an iterator.
-Yet a conversion from a generator to an iterator is inefficient, so personally I still do not recommend using <code>cv</code> as generators.
+When fitting a <code>feature_selection.SequentialFeatureSelector</code>, the parameter
+<code>cv</code> should accept any iterable according to the documentation. However in
+scikit-learn 1.2.x, a confusing <code>IndexError</code> would occur when <code>cv</code>
+is passed as a generator. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.datasets import make_classification
+>>> from sklearn.feature_selection import SequentialFeatureSelector
+>>> from sklearn.model_selection import KFold
+>>> from sklearn.neighbors import KNeighborsClassifier
+>>> X, y = make_classification(random_state=0)
+>>> knc = KNeighborsClassifier(n_neighbors=5)
+>>> cv = KFold().split(X, y)  # This is a generator
+>>> sfs = SequentialFeatureSelector(knc, n_features_to_select=5, cv=cv)
+>>> sfs.fit(X, y)
+IndexError: list index out of range
+{% endhighlight %}
+
+This was because <code>cv</code> was passed around and consumed multiple times, thus
+the generator was exhausted after the first time. I made a simple fix by calling
+<code>model_selection.check_cv</code> that would convert the generator into a list, thus
+being safe to pass around. This fix is included from scikit-learn 1.3.0.
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -699,6 +762,16 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=28134
+  title="DOC solve some sphinx errors when updating to pydata-sphinx-theme"
+%}
+
+{% include projects/ossd/sklearn-item.html
+  pr=28128
+  title="DOC make up for errors in #26410"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=28120
