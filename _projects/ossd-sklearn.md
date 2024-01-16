@@ -424,11 +424,30 @@ ValueError: All neighbors of some sample is getting zero weights. Please modify 
 ### Preprocessing
 
 {% capture projects_ossd_sklearn_description_26400 %}
-Box-Cox transformation is a statistical technique that transforms data to resemble a normal distribution.
-However, missing values in the data can affect the computation we must get rid of them in advance.
-Yet there are corner cases where a whole column is nan, causing an empty array to be passed to <code>stats.boxcox</code> and raising a non-informative error.
-Since box-cox transformation should not work for constant columns and nan column can be considered "constant",
-the proposed solution is to raise an informative error saying "column must not be all nan".
+In scikit-learn 1.2.x, <code>preprocessing.PowerTransformer</code> would raise a
+confusing error when using box-cox transformation and there exists a column with all
+<code>nan</code> values. As an illustration,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.preprocessing import PowerTransformer
+>>> X = np.random.random_sample((4, 5))
+>>> X[:, 0] = np.nan
+>>> PowerTransformer(method="box-cox").fit_transform(X)
+ValueError: not enough values to unpack (expected 2, got 0)
+{% endhighlight %}
+
+This was because scikit-learn internally used <code>scipy.stats.boxcox</code>, which
+returned an empty array if the input array is empty (because all <code>nan</code> values
+are masked), thus not unpackable. After discussions with maintainers we believed that
+in this case it is best to raise a more informative error rather than letting it pass.
+Therefore, I made a fix to check the input array in advance, and the following error
+message would be raised from scikit-learn 1.3.0:
+
+{% highlight python %}
+>>> PowerTransformer(method="box-cox").fit_transform(X)
+ValueError: Column must not be all nan.
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
@@ -442,9 +461,37 @@ the proposed solution is to raise an informative error saying "column must not b
 ### Tree
 
 {% capture projects_ossd_sklearn_description_26289 %}
-<code>export_text</code> and <code>export_graphviz</code> previously only accept <code>feature_names</code> and <code>class_names</code> as lists of strings.
-However, under many circumstances users get feature names and class names from numpy arrays or pandas dataframes, etc.
-I made these methods to support all array-like inputs for feature names and class names, so that users do not need to convert in advance.
+In scikit-learn 1.2.x, <code>tree.export_text</code> and <code>tree.export_graphviz</code>
+only accepted <code>feature_names</code> and <code>class_names</code> as lists of
+strings. If using an array-like it would raise a confusing error. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.datasets import load_iris
+>>> from sklearn.tree import DecisionTreeClassifier, export_text
+>>> iris = load_iris()
+>>> X, y = iris["data"], iris["target"]
+>>> feats = np.array(iris["feature_names"])
+>>> clf = DecisionTreeClassifier(random_state=0, max_depth=2).fit(X, y)
+>>> print(export_text(clf, feature_names=feats))
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+{% endhighlight %}
+
+However under many circumstances users get feature names and class names from arrays
+or dataframes, so I extended support to all array-like inputs for <code>feature_names</code>
+and <code>class_names</code>. From scikit-learn 1.3.0, the above example would work
+directly without convertion in advance.
+
+{% highlight python %}
+>>> print(export_text(clf, feature_names=feats))
+|--- petal width (cm) <= 0.80
+|   |--- class: 0
+|--- petal width (cm) >  0.80
+|   |--- petal width (cm) <= 1.75
+|   |   |--- class: 1
+|   |--- petal width (cm) >  1.75
+|   |   |--- class: 2
+{% endhighlight %}
 {% endcapture %}
 
 {% include projects/ossd/sklearn-item.html
