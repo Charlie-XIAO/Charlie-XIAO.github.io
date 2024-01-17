@@ -7,7 +7,8 @@
   {
     "name": "1.3.2 (stable)",
     "version": "1.3.2",
-    "url": "https://scikit-learn.org/stable/"
+    "url": "https://scikit-learn.org/stable/",
+    "preferred": true
   },
   {
     "name": "1.4.0rc1",
