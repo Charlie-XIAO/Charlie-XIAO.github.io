@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: scikit-learn
-description: "Top #50 Contributor"
+description: "Top #48 Contributor"
 img: assets/img/sklearn-logo.jpg
 importance: 10
 category: Open Source Development
@@ -23,7 +23,9 @@ shortcuts:
 toc:
   - name: Code Contributions
     subsections:
+      - name: Cluster
       - name: Cross Decomposition
+      - name: Datasets
       - name: Decomposition
       - name: Ensemble
       - name: Feature Selection
@@ -41,8 +43,8 @@ a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has
 code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with
 over 2500 contributors.
 
-I have contributed [75 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
-to scikit-learn, and I am currently its [Top #50 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
+I have contributed [78 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
+to scikit-learn, and I am currently its [Top #48 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
 that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
 take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
 and "fixed in scikit-learn 1.3.2" only implies that the bug was fixed after the release
@@ -55,11 +57,36 @@ earlier versions, especially 1.3.x.</d-footnote>
 
 Items in each section are sorted in reverse chronological order by the time of merge.
 
+### Cluster
+
+{% capture projects_ossd_sklearn_description_28121 %}
+In scikit-learn 1.4.0, <code>cluster.AffinityPropagation</code> assigned different
+clusters to completely equal points. For instance,
+
+{% highlight python %}
+>>> import numpy as np
+>>> from sklearn.cluster import AffinityPropagation
+>>> X = np.zeros((8, 1))
+>>> af = AffinityPropagation(affinity="euclidean", damping=0.5, random_state=42).fit(X)
+>>> af.labels_
+array([0, 1, 2, 3, 4, 5, 6, 7])
+{% endhighlight %}
+
+I made a simple fix to use the same cluster for equal points, thus the previous example
+would produce all zeros from scikit-learn 1.4.1.
+{% endcapture %}
+
+{% include projects/ossd/sklearn-item.html
+  pr=28121
+  title="FIX AffinityPropagation assigning multiple clusters for equal points"
+  description=projects_ossd_sklearn_description_28121
+%}
+
 ### Cross Decomposition
 
 {% capture projects_ossd_sklearn_description_26602 %}
-In scikit-learn 1.3.x, <code>cross_decomposition.PLSRegression</code> always predicts 2D
-result no matter if the input is 1D or 2D. This is somehow inconsistent with other
+In scikit-learn 1.3.x, <code>cross_decomposition.PLSRegression</code> always predicted 2D
+result no matter if the input was 1D or 2D. This was somehow inconsistent with other
 regressors such as <code>linear_model.LinearRegression</code> and <code>linear_model.Ridge</code>.
 For instance,
 
@@ -545,6 +572,11 @@ ValueError: Expected a 2-dimensional container but got <class 'pandas.core.serie
 Items are sorted in reverse chronological order by the time of merge.
 
 {% include projects/ossd/sklearn-item.html
+  pr=28133
+  title="MAINT fix update_environments_and_lock_files for non-posix systems"
+%}
+
+{% include projects/ossd/sklearn-item.html
   pr=27969
   title="MNT Work-around sphinx-gallery UnicodeDecodeError in recommender system"
 %}
@@ -809,6 +841,11 @@ Items are sorted in reverse chronological order by the time of merge.
 ## Documentation Contributions
 
 Items are sorted in reverse chronological order by the time of merge.
+
+{% include projects/ossd/sklearn-item.html
+  pr=28255
+  title="DOC restructure changelog (in particular for switching to pydata-sphinx-theme)"
+%}
 
 {% include projects/ossd/sklearn-item.html
   pr=28134
