@@ -6,7 +6,7 @@
   if (location.hostname == "scikit-learn.org") {
     if (location.pathname == "/dev/versions.html") {
       // this page is specially generated and linked from all versions
-      return;
+      message = "";
     }
     var versionPath = location.pathname.split("/")[1];
     if (!goodPaths.includes(versionPath)) {
