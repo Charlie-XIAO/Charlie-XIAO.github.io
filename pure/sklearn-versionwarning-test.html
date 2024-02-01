@@ -1,0 +1,20 @@
+<script>
+  const latestStable = "1.4";
+  const goodPaths = ["stable", "dev", latestStable];
+  var message;
+
+  if (location.hostname == "scikit-learn.org") {
+    if (location.pathname == "/dev/versions.html") {
+      // this page is specially generated and linked from all versions
+      return;
+    }
+    var versionPath = location.pathname.split("/")[1];
+    if (!goodPaths.includes(versionPath)) {
+      message = `This is documentation for an <strong>old release</strong> of scikit-learn (version ${versionPath}). Try the <a href="https://scikit-learn.org">latest stable release</a> (version ${latestStable}) or the <a href="https://scikit-learn.org/dev">unstable development version</a>.`;
+    } else if (versionPath == "dev") {
+      message = `This is documentation for the <strong>unstable development version</strong> of scikit-learn. To use it, <a href="https://scikit-learn.org/dev/developers/advanced_installation.html#installing-nightly-builds">install the nightly build</a>. The latest stable release is <a href="https://scikit-learn.org">version ${latestStable}</a>.`;
+    }
+  }
+
+  document.write(`<div class="sk-version-warning">${message}</div>`);
+</script>
