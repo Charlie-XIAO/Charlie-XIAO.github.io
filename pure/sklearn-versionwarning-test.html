@@ -3,18 +3,22 @@
   const goodPaths = ["stable", "dev", latestStable];
   var message;
 
-  if (location.hostname == "scikit-learn.org") {
-    if (location.pathname == "/dev/versions.html") {
-      // this page is specially generated and linked from all versions
-      message = "";
-    }
-    var versionPath = location.pathname.split("/")[1];
-    if (!goodPaths.includes(versionPath)) {
-      message = `This is documentation for an <strong>old release</strong> of scikit-learn (version ${versionPath}). Try the <a href="https://scikit-learn.org">latest stable release</a> (version ${latestStable}) or the <a href="https://scikit-learn.org/dev">unstable development version</a>.`;
-    } else if (versionPath == "dev") {
-      message = `This is documentation for the <strong>unstable development version</strong> of scikit-learn. To use it, <a href="https://scikit-learn.org/dev/developers/advanced_installation.html#installing-nightly-builds">install the nightly build</a>. The latest stable release is <a href="https://scikit-learn.org">version ${latestStable}</a>.`;
-    }
+  // For testing purposes we do not check location.hostname, but the actual deployed
+  // version should wrap the following in:
+  // if (location.hostname == "scikit-learn.org") { ... }
+
+  if (location.pathname == "/dev/versions.html") {
+    // this page is specially generated and linked from all versions
+    message = "";
   }
+  const versionPath = location.pathname.split("/")[1];
+  if (!goodPaths.includes(versionPath)) {
+    message = `This is documentation for an <strong>old release</strong> of scikit-learn (version ${versionPath}). Try the <a href="https://scikit-learn.org">latest stable release</a> (version ${latestStable}) or the <a href="https://scikit-learn.org/dev">unstable development version</a>.`;
+  } else if (versionPath == "dev") {
+    message = `This is documentation for the <strong>unstable development version</strong> of scikit-learn. To use it, <a href="https://scikit-learn.org/dev/developers/advanced_installation.html#installing-nightly-builds">install the nightly build</a>. The latest stable release is <a href="https://scikit-learn.org">version ${latestStable}</a>.`;
+  }
+
+  // End of the code that should be wrapped in the if statement above
 
   document.write(`<div class="sk-version-warning">${message}</div>`);
 </script>
