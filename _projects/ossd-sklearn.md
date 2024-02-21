@@ -1,9 +1,9 @@
 ---
 layout: distill
 title: scikit-learn
-description: "Top #48 Contributor"
+description: "Core Developer"
 img: assets/img/sklearn-logo.jpg
-importance: 10
+importance: 3  # Very high importance
 category: Open Source Development
 
 authors:
@@ -43,8 +43,9 @@ a Python module for machine learning.<d-cite key="scikit-learn"></d-cite> It has
 code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), with
 over 2500 contributors.
 
-I have contributed [78 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO)
-to scikit-learn, and I am currently its [Top #48 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors).<d-footnote>Note
+I am a core developer of scikit-learn and also a member of its documentation team. I
+have contributed [84 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO),
+being its [Top #45 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors). <d-footnote>Note
 that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
 take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
 and "fixed in scikit-learn 1.3.2" only implies that the bug was fixed after the release
