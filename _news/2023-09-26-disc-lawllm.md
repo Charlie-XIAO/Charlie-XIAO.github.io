@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-[DISC-LawLLM](https://github.com/FudanDISC/DISC-LawLLM) is made open source.
+[DISC-LawLLM](https://github.com/FudanDISC/DISC-LawLLM) was made open source.

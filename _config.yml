@@ -2,9 +2,9 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Yao (Charlie) Xiao # the website title (if blank, full name will be used instead)
+title: Yao Xiao # the website title (if blank, full name will be used instead)
 first_name: Yao
-middle_name: (Charlie)
+middle_name:
 last_name: Xiao
 email: yx2436@nyu.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
