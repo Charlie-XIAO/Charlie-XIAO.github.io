@@ -3,7 +3,11 @@ layout: about
 title: About
 permalink: /
 subtitle: Senior @ NYU Shanghai
-cv: yxiao-cv/yxiao-cv.pdf
+cv:
+  - lang: English
+    path: yxiao-cv/yxiao-cv.pdf
+  - lang: 中文
+    path: yxiao-cv-zh/yxiao-cv-zh.pdf
 
 profile:
   align: right

@@ -38,10 +38,14 @@ layout: default
           {%- endif %}
 
           <div class="clearfix">
-            {% if page.cv -%}
+            {% if page.cv|length > 0 -%}
               <p>
-                <i class="fa-solid fa-file-pdf"></i>
-                <a href="{{ page.cv | prepend: '/assets/pdf/' | relative_url }}">CV</a>
+                {% for cv in page.cv %}
+                  <div>
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <a href="{{ cv.path | prepend: '/assets/pdf/' | relative_url }}">CV ({{ cv.lang }})</a>
+                  </div>
+                {% endfor %}
               </p>
             {%- endif -%}
             {{ content }}
