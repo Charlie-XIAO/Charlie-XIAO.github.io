@@ -44,8 +44,8 @@ code base maintained on [GitHub](https://github.com/scikit-learn/scikit-learn), 
 over 2500 contributors.
 
 I am a core developer of scikit-learn and also a member of its documentation team. I
-have contributed [84 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO),
-being its [Top #45 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors). <d-footnote>Note
+have contributed [88 merged pull requests](https://github.com/scikit-learn/scikit-learn/commits?author=Charlie-XIAO),
+being its [Top #43 contributor](https://github.com/scikit-learn/scikit-learn/graphs/contributors). <d-footnote>Note
 that throughout this post, when saying a bug existed in scikit-learn a.b.c, it does not
 take into consideration backporting. For instance, "a bug existed in scikit-learn 1.3.1"
 and "fixed in scikit-learn 1.3.2" only implies that the bug was fixed after the release
