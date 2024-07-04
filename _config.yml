@@ -6,7 +6,7 @@ title: Yao Xiao # the website title (if blank, full name will be used instead)
 first_name: Yao
 middle_name:
 last_name: Xiao
-email: yx2436@nyu.edu
+email: yaoxiao@g.harvard.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Yao Xiao's portfolio website.
 footer_text: >
@@ -52,7 +52,7 @@ navbar_fixed: true
 footer_fixed: true
 
 # Dimensions
-max_width: 800px
+max_width: 960px
 
 # TODO: add layout settings (single page vs. multi-page)
 
@@ -123,7 +123,7 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 
 blog_name: Yao Xiao # blog_name will be displayed in your blog page
 blog_nav_title: Blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: Senior @ NYU Shanghai, Honors Mathematics + Computer Science
+blog_description: MSCSE @ Harvard SEAS
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -220,7 +220,6 @@ keep_files:
 # Plug-ins
 plugins:
   - jekyll-archives
-  - jekyll-diagrams
   - jekyll-email-protect
   - jekyll-feed
   - jekyll-get-json
@@ -309,7 +308,7 @@ enable_publication_badges:
   dimensions: true # Dimensions badge (https://badge.dimensions.ai/)
 
 # Filter out certain bibtex entry keywords used internally from the bib output
-filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website, preview, altmetric]
+filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, link, pdf, selected, supp, blog, code, poster, slides, website, preview, altmetric]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
 max_author_limit: 3  # leave blank to always show all authors
@@ -349,15 +348,6 @@ imagemagick:
     - ".gif"
   output_formats:
     webp: "-resize 800x"
-
-# -----------------------------------------------------------------------------
-# Jekyll Diagrams
-# -----------------------------------------------------------------------------
-
-jekyll-diagrams:
-    # configuration, see https://github.com/zhustec/jekyll-diagrams.
-    # feel free to comment out this section if not using jekyll diagrams.
-
 
 # -----------------------------------------------------------------------------
 # Optional Features
@@ -409,6 +399,6 @@ medium_zoom:
 # Get external JSON data
 # -----------------------------------------------------------------------------
 
-jekyll_get_json:
-  - data: resume  # site.data.resume
-    json: assets/json/resume.json
+# jekyll_get_json:
+#   - data: resume  # site.data.resume
+#     json: assets/json/resume.json

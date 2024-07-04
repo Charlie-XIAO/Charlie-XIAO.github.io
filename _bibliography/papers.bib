@@ -1,32 +1,60 @@
 ---
 ---
 
-@misc{yue2023disclawllm,
-  abbr={arXiv},
-  title={DISC-LawLLM: Fine-tuning Large Language Models for Intelligent Legal Services},
-  author={
-    Yue, Shengbin and Chen, Wei and Wang, Siyuan and Li, Bingxuan and Shen, Chenchen
-    and Liu, Shujun and Zhou, Yuxuan and Xiao, Yao and Yun, Song and Huang, Xuanjing
-    and Wei, Zhongyu
-  },
-  year={2023},
-  eprint={2309.11325},
-  archivePrefix={arXiv},
-  primaryClass={cs.CL},
+@inproceedings{wang2024confmask,
+  abbr={SIGCOMM'24},
+  author={Wang, Yuejie and Men, Qiutong and Xiao, Yao and Chen, Yongting and Liu, Guyue},
+  title={ConfMask: Enabling Privacy-Preserving Configuration Sharing via Anonymization},
+  booktitle={ACM SIGCOMM 2024 Conference (ACM SIGCOMM '24)},
+  year={2024},
   abstract={
-    We propose DISC-LawLLM, an intelligent legal system utilizing large language models
-    (LLMs) to provide a wide range of legal services. We adopt legal syllogism prompting
-    strategies to construct supervised fine-tuning datasets in the Chinese Judicial domain
-    and fine-tune LLMs with legal reasoning capability. We augment LLMs with a retrieval
-    module to enhance models' ability to access and utilize external legal knowledge. A
-    comprehensive legal benchmark, DISC-Law-Eval, is presented to evaluate intelligent
-    legal systems from both objective and subjective dimensions. Quantitative and
-    qualitative results on DISC-Law-Eval demonstrate the effectiveness of our system in
-    serving various users across diverse legal scenarios. The detailed resources are
-    available <a href="https://github.com/FudanDISC/DISC-LawLLM">here</a>.
+    Real-world network configurations play a critical role in network management and
+    research tasks. While valuable, data holders of ten hesitate to share them due to
+    business and privacy concerns. Existing methods are deficient in concealing the
+    implicit information that can be inferred from configurations, such as topology and
+    routing paths. To address this, we present ConfMask, a novel framework designed to
+    systematically anonymize network topology and routing paths in configurations. Our
+    approach tackles key privacy, utility, and scalability challenges, which arise from
+    the strong dependency between different datasets and complex routing protocols. Our
+    anonymization algorithm is scalable to large networks and effectively mitigates
+    de-anonymization risk. Moreover, it maintains essential network properties such as
+    reachability, waypointing and multi-path consistency, making it suitable for a wide
+    range of downstream tasks. Compared to existing dataplane anonymization algorithm
+    (i.e., NetHide), ConfMask reduces ~75% specification differences between the
+    original and the anonymized networks.
+  },
+  doi={10.1145/3651890.3672217},
+  link={https://doi.org/10.1145/3651890.3672217},
+  pdf={projects/confmask.pdf},
+  bibtex_show={true},
+  selected={true}
+}
+
+@inproceedings{yue2023disclawllm,
+  abbr={DASFAA'24},
+  author={
+    Yue, Shengbin and Liu, Shujun and Zhou, Yuxuan and Shen, Chenchen and Wang, Siyuan
+    and Xiao, Yao and Li, Bingxuan and Song, Yun and Shen, Xiaoyu and Chen, Wei and
+    Huang, Xuanjing and Wei, Zhongyu
+  },
+  title={LawLLM: Intelligent Legal System with Legal Reasoning and Verifiable Retrieval},
+  booktitle={The 29th International Conference on Database Systems for Advanced Applications (DASFAA'24)},
+  year={2024},
+  abstract={
+    We propose LawLLM, an LLM-powered intelligent legal system featuring on (1)
+    Versatile Services: LawLLM provides a versatile diverse range of services through
+    its multi-task capabilities; (2) Legal Reasoning: It is fine-tuned on supervised
+    instruction data curated with legal syllogism prompting, enabling LawLLM to develop
+    stronger legal reasoning capabilities based on clear judicial logics; (3) Verifiable
+    Retrieval: with verifiable Labels, LawLLM can first distinguish relevant external
+    knowledge, then incorporate and finally validate it, enhancing the quality and
+    actuality of model output. A comprehensive legal benchmark, Law-Eval, is further
+    constructed to evaluate intelligent legal systems from both objective and subjective
+    dimensions. Experiments demonstrate the effectiveness of our system in serving
+    various users across diverse legal scenarios.
   },
   doi={10.48550/arXiv.2309.11325},
-  html={https://arxiv.org/abs/2309.11325},
+  link={https://arxiv.org/abs/2309.11325},
   pdf={projects/disc-lawllm.pdf},
   bibtex_show={true},
   selected={true}
@@ -34,31 +62,29 @@
 
 @misc{li2023efficiently,
   abbr={arXiv},
-  title={Efficiently Visualizing Large Graphs},
   author={Li, Xinyu and Xiao, Yao and Zhou, Yuchen},
+  title={Efficiently Visualizing Large Graphs},
   year={2023},
-  eprint={2310.11186},
-  archivePrefix={arXiv},
-  primaryClass={cs.LG},
   abstract={
-    Most existing graph visualization methods based on dimension reduction are limited to
-    relatively small graphs due to performance issues. In this work, we propose a novel
-    dimension reduction method for graph visualization, called t-Distributed Stochastic
-    Graph Neighbor Embedding (t-SGNE). t-SGNE is specifically designed to visualize cluster
-    structures in the graph. As a variant of the standard t-SNE method, t-SGNE avoids the
-    time-consuming computations of pairwise similarity. Instead, it uses the neighbor structures
-    of the graph to reduce the time complexity from quadratic to linear, thus supporting larger
-    graphs. In addition, to suit t-SGNE, we combined Laplacian Eigenmaps with the shortest path
-    algorithm in graphs to form the graph embedding algorithm ShortestPath Laplacian Eigenmaps
-    Embedding (SPLEE). Performing SPLEE to obtain a high-dimensional embedding of the large-scale
-    graph and then using t-SGNE to reduce its dimension for visualization, we are able to visualize
-    graphs with up to 300K nodes and 1M edges within 5 minutes and achieve approximately 10%
-    improvement in visualization quality. Codes and data are available
+    Most existing graph visualization methods based on dimension reduction are limited
+    to relatively small graphs due to performance issues. In this work, we propose a
+    novel dimension reduction method for graph visualization, called t-Distributed
+    Stochastic Graph Neighbor Embedding (t-SGNE). t-SGNE is specifically designed to
+    visualize cluster structures in the graph. As a variant of the standard t-SNE
+    method, t-SGNE avoids the time-consuming computations of pairwise similarity.
+    Instead, it uses the neighbor structures of the graph to reduce the time complexity
+    from quadratic to linear, thus supporting larger graphs. In addition, to suit
+    t-SGNE, we combined Laplacian Eigenmaps with the shortest path algorithm in graphs
+    to form the graph embedding algorithm ShortestPath Laplacian Eigenmaps Embedding
+    (SPLEE). Performing SPLEE to obtain a high-dimensional embedding of the large-scale
+    graph and then using t-SGNE to reduce its dimension for visualization, we are able
+    to visualize graphs with up to 300K nodes and 1M edges within 5 minutes and achieve
+    approximately 10% improvement in visualization quality. Codes and data are available
     <a href="https://github.com/Charlie-XIAO/embedding-visualization-test">here</a>.
   },
   doi={10.48550/arXiv.2310.11186},
   html={https://arxiv.org/abs/2310.11186},
   pdf={projects/efficiently-visualizing-large-graphs.pdf},
   bibtex_show={true},
-  selected={true}
+  selected={false}
 }
