@@ -1,0 +1,118 @@
+- **[#29505](https://github.com/scikit-learn/scikit-learn/pull/29505)** MAINT trigger lock file update in PR with a comment
+- **[#29544](https://github.com/scikit-learn/scikit-learn/pull/29544)** DOC fix links in the machine learning map
+- **[#29412](https://github.com/scikit-learn/scikit-learn/pull/29412)** DOC reorganize the maintainer info page
+- **[#29158](https://github.com/scikit-learn/scikit-learn/pull/29158)** ENH improve HTML display of `FunctionTransformer`
+- **[#29493](https://github.com/scikit-learn/scikit-learn/pull/29493)** DOC fix dropdown anchor and collapse-all button in `sphinx-design==0.6.0`
+- **[#29393](https://github.com/scikit-learn/scikit-learn/pull/29393)** DOC fix the caption of installation tabs
+- **[#29160](https://github.com/scikit-learn/scikit-learn/pull/29160)** DOC tweak appearance of installation instructions
+- **[#29124](https://github.com/scikit-learn/scikit-learn/pull/29124)** DEPR deprecate `copy` parameter in `Birch`
+- **[#29134](https://github.com/scikit-learn/scikit-learn/pull/29134)** DOC bump `pydata-sphinx-theme` to 0.15.3
+- **[#29123](https://github.com/scikit-learn/scikit-learn/pull/29123)** DOC fix mistakes in the machine learning map
+- **[#29125](https://github.com/scikit-learn/scikit-learn/pull/29125)** DOC reflect deprecations in 1.5 on API page
+- **[#29126](https://github.com/scikit-learn/scikit-learn/pull/29126)** DOC improve contributing docs
+- **[#29090](https://github.com/scikit-learn/scikit-learn/pull/29090)** DOC temporary fix for search summary
+- **[#29059](https://github.com/scikit-learn/scikit-learn/pull/29059)** DOC fix APIs marked incorrectly as deprecated
+- **[#29037](https://github.com/scikit-learn/scikit-learn/pull/29037)** DOC final cleanup for switching to `pydata-sphinx-theme`
+- **[#28623](https://github.com/scikit-learn/scikit-learn/pull/28623)** DOC [PST] fix styling/simplify structure of testimonial and about pages
+- **[#28630](https://github.com/scikit-learn/scikit-learn/pull/28630)** DOC [PST] FIX/RFC machine learning map
+- **[#28401](https://github.com/scikit-learn/scikit-learn/pull/28401)** DOC [PST] fix dropdowns
+- **[#28722](https://github.com/scikit-learn/scikit-learn/pull/28722)** ENH HTML repr show best estimator in `*SearchCV` when `refit=True`
+- **[#28428](https://github.com/scikit-learn/scikit-learn/pull/28428)** DOC [PST] refactor API structure and improve display
+- **[#28448](https://github.com/scikit-learn/scikit-learn/pull/28448)** DOC [PST] tune FAQ page styling
+- **[#28512](https://github.com/scikit-learn/scikit-learn/pull/28512)** DOC [PST] disable gallery link tweaks when `html-noplot` to avoid warnings
+- **[#28347](https://github.com/scikit-learn/scikit-learn/pull/28347)** DOC [PST] version switcher and warning banner
+- **[#28521](https://github.com/scikit-learn/scikit-learn/pull/28521)** FIX safe indexing for polars `Series`
+- **[#28101](https://github.com/scikit-learn/scikit-learn/pull/28101)** FIX make 'array-like' reject sparse containers in parameter validation
+- **[#28511](https://github.com/scikit-learn/scikit-learn/pull/28511)** DOC [PST] use jinja2 template for rst generation
+- **[#28331](https://github.com/scikit-learn/scikit-learn/pull/28331)** DOC [PST] landing page
+- **[#28457](https://github.com/scikit-learn/scikit-learn/pull/28457)** DOC fix jupyterlab and binder could not find `polars`
+- **[#28415](https://github.com/scikit-learn/scikit-learn/pull/28415)** DOC [PST] better integrate gallery with `pydata-sphinx-theme`
+- **[#28409](https://github.com/scikit-learn/scikit-learn/pull/28409)** DOC [PST] fix changelog badges
+- **[#28408](https://github.com/scikit-learn/scikit-learn/pull/28408)** DOC [PST] tune toctree-related styles
+- **[#28336](https://github.com/scikit-learn/scikit-learn/pull/28336)** DOC [PST] install page
+- **[#28387](https://github.com/scikit-learn/scikit-learn/pull/28387)** MAINT remove unneeded `robots.txt`
+- **[#28379](https://github.com/scikit-learn/scikit-learn/pull/28379)** DOC [PST] fix lock files and add `sphinx-design`
+- **[#28353](https://github.com/scikit-learn/scikit-learn/pull/28353)** MAINT [PST] set up live preview
+- **[#28376](https://github.com/scikit-learn/scikit-learn/pull/28376)** MAINT create `robots.txt` for setting up `pydata-sphinx-theme` preview
+- **[#28132](https://github.com/scikit-learn/scikit-learn/pull/28132)** DOC [PST] conf, setup, general styling
+- **[#28315](https://github.com/scikit-learn/scikit-learn/pull/28315)** DOC fix a sphinx warning and a rendering issue
+- **[#28271](https://github.com/scikit-learn/scikit-learn/pull/28271)** DOC fix some hooks that fail to capture the titles in pydata-sphinx-theme setup
+- **[#28272](https://github.com/scikit-learn/scikit-learn/pull/28272)** DOC nitpicks on the FAQ page
+- **[#28255](https://github.com/scikit-learn/scikit-learn/pull/28255)** DOC restructure changelog (in particular for switching to pydata-sphinx-theme)
+- **[#28121](https://github.com/scikit-learn/scikit-learn/pull/28121)** FIX `AffinityPropagation` assigning multiple clusters for equal points
+- **[#28133](https://github.com/scikit-learn/scikit-learn/pull/28133)** MAINT fix `update_environments_and_lock_files` for non-posix systems
+- **[#28134](https://github.com/scikit-learn/scikit-learn/pull/28134)** DOC solve some sphinx errors when updating to `pydata-sphinx-theme`
+- **[#28128](https://github.com/scikit-learn/scikit-learn/pull/28128)** DOC make up for errors in #26410
+- **[#26410](https://github.com/scikit-learn/scikit-learn/pull/26410)** FIX `KNeighborsClassifier` raise when all neighbors of some sample have zero weights
+- **[#28120](https://github.com/scikit-learn/scikit-learn/pull/28120)** DOC fix the confusing ordering of `whats_new/v1.5.rst`
+- **[#28090](https://github.com/scikit-learn/scikit-learn/pull/28090)** FIX improve error message in `check_array` when getting a `Series` and expecting a 2D container
+- **[#28107](https://github.com/scikit-learn/scikit-learn/pull/28107)** DOC fix wrong indentations in the documentation that lead to undesired blockquotes
+- **[#28111](https://github.com/scikit-learn/scikit-learn/pull/28111)** FIX dump svmlight when data is read-only
+- **[#27969](https://github.com/scikit-learn/scikit-learn/pull/27969)** MNT Work-around sphinx-gallery `UnicodeDecodeError` in recommender system
+- **[#27970](https://github.com/scikit-learn/scikit-learn/pull/27970)** DOC update doc build sphinx link to by matching regex in lock file
+- **[#27954](https://github.com/scikit-learn/scikit-learn/pull/27954)** CLN avoid nested conftests
+- **[#27723](https://github.com/scikit-learn/scikit-learn/pull/27723)** TST Extend tests for `scipy.sparse.*array` in `sklearn/svm/tests/test_sparse`
+- **[#27790](https://github.com/scikit-learn/scikit-learn/pull/27790)** DOC minor fixes of splitter docstrings (from #26423)
+- **[#27240](https://github.com/scikit-learn/scikit-learn/pull/27240)** TST Extend tests for `scipy.sparse/*array` in `sklearn/manifold/tests/test_spectral_embedding`
+- **[#27468](https://github.com/scikit-learn/scikit-learn/pull/27468)** FIX make dataset fetchers accept `os.Pathlike` for `data_home`
+- **[#27472](https://github.com/scikit-learn/scikit-learn/pull/27472)** DOC fix return type of `make_sparse_spd_matrix`
+- **[#27438](https://github.com/scikit-learn/scikit-learn/pull/27438)** ENH `make_sparse_spd_matrix` use sparse memory layout
+- **[#27250](https://github.com/scikit-learn/scikit-learn/pull/27250)** TST Extend tests for `scipy.sparse/*array` in `sklearn/neighbors/tests/test_neighbors`
+- **[#27277](https://github.com/scikit-learn/scikit-learn/pull/27277)** TST Extend tests for `scipy.sparse/*array` in `sklearn/impute/tests/test_common`
+- **[#27219](https://github.com/scikit-learn/scikit-learn/pull/27219)** TST Extend tests for `scipy.sparse/*array` in `sklearn/feature_extraction/tests/test_text`
+- **[#27216](https://github.com/scikit-learn/scikit-learn/pull/27216)** TST Extend tests for `scipy.sparse/*array` in `sklearn/ensemble/tests/test_forest`
+- **[#27217](https://github.com/scikit-learn/scikit-learn/pull/27217)** TST Extend tests for `scipy.sparse/*array` in `sklearn/ensemble/tests/test_gradient_boosting`
+- **[#27218](https://github.com/scikit-learn/scikit-learn/pull/27218)** TST Extend tests for `scipy.sparse/*array` in `sklearn/ensemble/tests/test_iforest`
+- **[#27261](https://github.com/scikit-learn/scikit-learn/pull/27261)** TST Extend tests for `scipy.sparse/*array` in `sklearn/tree/tests/test_tree`
+- **[#27253](https://github.com/scikit-learn/scikit-learn/pull/27253)** TST Extend tests for `scipy.sparse/*array` in `sklearn/preprocessing/tests/test_data`
+- **[#27225](https://github.com/scikit-learn/scikit-learn/pull/27225)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_base`
+- **[#27226](https://github.com/scikit-learn/scikit-learn/pull/27226)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_coordinate_descent`
+- **[#27237](https://github.com/scikit-learn/scikit-learn/pull/27237)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_sparse_coordinate_descent`
+- **[#27222](https://github.com/scikit-learn/scikit-learn/pull/27222)** TST Extend tests for `scipy.sparse/*array` in `sklearn/feature_selection/tests/test_variance_threshold`
+- **[#27235](https://github.com/scikit-learn/scikit-learn/pull/27235)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_ridge`
+- **[#27228](https://github.com/scikit-learn/scikit-learn/pull/27228)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_quantile`
+- **[#27233](https://github.com/scikit-learn/scikit-learn/pull/27233)** TST Extend tests for `scipy.sparse/*array` in `sklearn/linear_model/tests/test_ransac`
+- **[#27254](https://github.com/scikit-learn/scikit-learn/pull/27254)** TST Extend tests for `scipy.sparse/*array` in `sklearn/preprocessing/tests/test_function_transformer`
+- **[#27252](https://github.com/scikit-learn/scikit-learn/pull/27252)** TST Extend tests for `scipy.sparse/*array` in `sklearn/neural_network/tests/test_rbm`
+- **[#27241](https://github.com/scikit-learn/scikit-learn/pull/27241)** TST Extend tests for `scipy.sparse/*array` in `sklearn/metrics/cluster/tests/test_unsupervised`
+- **[#27246](https://github.com/scikit-learn/scikit-learn/pull/27246)** TST Extend tests for `scipy.sparse/*array` in `sklearn/model_selection/tests/test_split`
+- **[#27262](https://github.com/scikit-learn/scikit-learn/pull/27262)** TST Extend tests for `scipy.sparse/*array` in `sklearn/utils/tests/test_extmath`
+- **[#27276](https://github.com/scikit-learn/scikit-learn/pull/27276)** TST Extend tests for `scipy.sparse/*array` in `sklearn/utils/tests/test_testing`
+- **[#27274](https://github.com/scikit-learn/scikit-learn/pull/27274)** TST Extend tests for `scipy.sparse/*array` in `sklearn/utils/tests/test_multiclass`
+- **[#26602](https://github.com/scikit-learn/scikit-learn/pull/26602)** FIX ravel prediction of `PLSRegression` when fitted on 1d `y`
+- **[#26759](https://github.com/scikit-learn/scikit-learn/pull/26759)** CLN `v1.4.rst` entries are not sorted
+- **[#26748](https://github.com/scikit-learn/scikit-learn/pull/26748)** FIX `mutual_info_regression` when `X` is of integer dtype
+- **[#26661](https://github.com/scikit-learn/scikit-learn/pull/26661)** DOC show usage of `__` in `Pipeline` and `FeatureUnion`
+- **[#26682](https://github.com/scikit-learn/scikit-learn/pull/26682)** MAINT Parameters validation for sklearn.utils.gen_even_slices
+- **[#26250](https://github.com/scikit-learn/scikit-learn/pull/26250)** MAINT Parameters validation for sklearn.linear_model.ridge_regression
+- **[#26125](https://github.com/scikit-learn/scikit-learn/pull/26125)** MAINT Parameters validation for sklearn.metrics.pairwise_distances_chunked
+- **[#26610](https://github.com/scikit-learn/scikit-learn/pull/26610)** DOC search link to sphinx version
+- **[#26400](https://github.com/scikit-learn/scikit-learn/pull/26400)** FIX `PowerTransformer` raise when "box-cox" has nan column
+- **[#26124](https://github.com/scikit-learn/scikit-learn/pull/26124)** MAINT Parameters validation for sklearn.metrics.pairwise_distances_argmin
+- **[#26019](https://github.com/scikit-learn/scikit-learn/pull/26019)** ENH PrecisionRecallDisplay add option to plot chance level
+- **[#26337](https://github.com/scikit-learn/scikit-learn/pull/26337)** FIX KernelPCA inverse transform when gamma is not given
+- **[#26034](https://github.com/scikit-learn/scikit-learn/pull/26034)** MAINT Parameters validation for sklearn.tree.export_graphviz
+- **[#26289](https://github.com/scikit-learn/scikit-learn/pull/26289)** FIX `export_text` and `export_graphviz` accepts feature and class names as array-like
+- **[#26122](https://github.com/scikit-learn/scikit-learn/pull/26122)** MAINT Parameters validation for sklearn.metrics.pairwise.manhattan_distances
+- **[#26227](https://github.com/scikit-learn/scikit-learn/pull/26227)** MAINT Parameters validation for sklearn.model_selection.learning_curve
+- **[#26229](https://github.com/scikit-learn/scikit-learn/pull/26229)** MAINT Parameters validation for sklearn.model_selection.validation_curve
+- **[#26230](https://github.com/scikit-learn/scikit-learn/pull/26230)** MAINT Parameters validation for sklearn.model_selection.permutation_test_score
+- **[#26161](https://github.com/scikit-learn/scikit-learn/pull/26161)** MAINT Parameters validation for sklearn.datasets.fetch_species_distributions
+- **[#26165](https://github.com/scikit-learn/scikit-learn/pull/26165)** MAINT Parameters validation for sklearn.datasets.load_breast_cancer
+- **[#26166](https://github.com/scikit-learn/scikit-learn/pull/26166)** MAINT Parameters validation for sklearn.datasets.load_diabetes
+- **[#26126](https://github.com/scikit-learn/scikit-learn/pull/26126)** MAINT Parameters validation for sklearn.datasets.fetch_rcv1
+- **[#26072](https://github.com/scikit-learn/scikit-learn/pull/26072)** MAINT Parameters validation for sklearn.metrics.pairwise.sigmoid_kernel
+- **[#26071](https://github.com/scikit-learn/scikit-learn/pull/26071)** MAINT Parameters validation for sklearn.metrics.pairwise.rbf_kernel
+- **[#26070](https://github.com/scikit-learn/scikit-learn/pull/26070)** MAINT Parameters validation for sklearn.metrics.pairwise.polynomial_kernel
+- **[#26075](https://github.com/scikit-learn/scikit-learn/pull/26075)** MAINT Parameters validation for sklearn.metrics.pairwise.paired_cosine_distances
+- **[#26074](https://github.com/scikit-learn/scikit-learn/pull/26074)** MAINT Parameters validation for sklearn.metrics.pairwise.paired_manhattan_distances
+- **[#26073](https://github.com/scikit-learn/scikit-learn/pull/26073)** MAINT Parameters validation for sklearn.metrics.pairwise.paired_euclidean_distances
+- **[#26046](https://github.com/scikit-learn/scikit-learn/pull/26046)** MAINT Parameters validation for sklearn.metrics.pairwise.cosine_distances
+- **[#26049](https://github.com/scikit-learn/scikit-learn/pull/26049)** MAINT Parameters validation for sklearn.metrics.pairwise.linear_kernel
+- **[#26048](https://github.com/scikit-learn/scikit-learn/pull/26048)** MAINT Parameters validation for sklearn.metrics.pairwise.laplacian_kernel
+- **[#26047](https://github.com/scikit-learn/scikit-learn/pull/26047)** MAINT Parameters validation for sklearn.metrics.pairwise.haversine_distances
+- **[#26036](https://github.com/scikit-learn/scikit-learn/pull/26036)** MAINT Parameters validation for sklearn.preprocessing.scale
+- **[#25987](https://github.com/scikit-learn/scikit-learn/pull/25987)** ENH RocCurveDisplay add option to plot chance level
+- **[#26018](https://github.com/scikit-learn/scikit-learn/pull/26018)** DOC fix SplineTransformer include_bias docstring
+- **[#25973](https://github.com/scikit-learn/scikit-learn/pull/25973)** FIX SequentialFeatureSelector throws IndexError when cv is a generator
+- **[#25931](https://github.com/scikit-learn/scikit-learn/pull/25931)** FIX Remove spurious feature names warning in IsolationForest

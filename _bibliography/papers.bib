@@ -1,114 +1,96 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title={Relativity: the Special and General Theory},
-  author={Einstein, Albert},
-  year={1920},
-  publisher={Methuen & Co Ltd},
-  html={relativity.html}
-}
-
-@book{einstein1956investigations,
+@inproceedings{10.1145/3651890.3672217,
+  abbr={SIGCOMM'24},
+  author={Wang, Yuejie and Men, Qiutong and Xiao, Yao and Chen, Yongting and Liu, Guyue},
+  title={ConfMask: Enabling Privacy-Preserving Configuration Sharing via Anonymization},
+  year={2024},
+  booktitle={Proceedings of the ACM SIGCOMM 2024 Conference},
+  pages={465--483},
+  numpages={19},
+  keywords={configuration sharing, topology anonymity, route anonymity},
+  location={Sydney, NSW, Australia},
+  series={ACM SIGCOMM '24},
+  abstract={
+    Real-world network configurations play a critical role in network management and
+    research tasks. While valuable, data holders of ten hesitate to share them due to
+    business and privacy concerns. Existing methods are deficient in concealing the
+    implicit information that can be inferred from configurations, such as topology and
+    routing paths. To address this, we present ConfMask, a novel framework designed to
+    systematically anonymize network topology and routing paths in configurations. Our
+    approach tackles key privacy, utility, and scalability challenges, which arise from
+    the strong dependency between different datasets and complex routing protocols. Our
+    anonymization algorithm is scalable to large networks and effectively mitigates
+    de-anonymization risk. Moreover, it maintains essential network properties such as
+    reachability, waypointing and multi-path consistency, making it suitable for a wide
+    range of downstream tasks. Compared to existing dataplane anonymization algorithm
+    (i.e., NetHide), ConfMask reduces ~75% specification differences between the
+    original and the anonymized networks.
+  },
+  doi={10.1145/3651890.3672217},
+  url={https://doi.org/10.1145/3651890.3672217},
+  html={https://doi.org/10.1145/3651890.3672217},
+  pdf={projects/confmask.pdf},
   bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
-}
-
-@article{einstein1950meaning,
-  abbr={AJP},
-  bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
-}
-
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  location={New Jersey},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  google_scholar_id={qyhmnyLat1gC},
-  video={https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info={. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation={* Example use of superscripts<br>† Albert Einstein},
   selected={true}
 }
 
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@Article{einstein1905photoelectriceffect,
+@inproceedings{10.48550/arXiv.2309.11325,
+  abbr={DASFAA'24},
+  author={
+    Yue, Shengbin and Liu, Shujun and Zhou, Yuxuan and Shen, Chenchen and Wang, Siyuan
+    and Xiao, Yao and Li, Bingxuan and Song, Yun and Shen, Xiaoyu and Chen, Wei and
+    Huang, Xuanjing and Wei, Zhongyu
+  },
+  title={LawLLM: Intelligent Legal System with Legal Reasoning and Verifiable Retrieval},
+  booktitle={The 29th International Conference on Database Systems for Advanced Applications (DASFAA'24)},
+  year={2024},
+  abstract={
+    We propose LawLLM, an LLM-powered intelligent legal system featuring on (1)
+    Versatile Services: LawLLM provides a versatile diverse range of services through
+    its multi-task capabilities; (2) Legal Reasoning: It is fine-tuned on supervised
+    instruction data curated with legal syllogism prompting, enabling LawLLM to develop
+    stronger legal reasoning capabilities based on clear judicial logics; (3) Verifiable
+    Retrieval: with verifiable Labels, LawLLM can first distinguish relevant external
+    knowledge, then incorporate and finally validate it, enhancing the quality and
+    actuality of model output. A comprehensive legal benchmark, Law-Eval, is further
+    constructed to evaluate intelligent legal systems from both objective and subjective
+    dimensions. Experiments demonstrate the effectiveness of our system in serving
+    various users across diverse legal scenarios.
+  },
+  doi={10.48550/arXiv.2309.11325},
+  html={https://arxiv.org/abs/2309.11325},
+  pdf={projects/disc-lawllm.pdf},
   bibtex_show={true},
-  abbr={Ann. Phys.},
-  title="{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}",
-  author={Albert Einstein},
-  abstract={This is the abstract text.},
-  journal={Ann. Phys.},
-  volume={322},
-  number={6},
-  pages={132--148},
-  year={1905},
-  doi={10.1002/andp.19053220607},
-  award={Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name={Nobel Prize}
+  selected={true}
 }
 
-@book{przibram1967letters,
+@misc{10.48550/arXiv.2310.11186,
+  abbr={arXiv},
+  author={Li, Xinyu and Xiao, Yao and Zhou, Yuchen},
+  title={Efficiently Visualizing Large Graphs},
+  year={2023},
+  abstract={
+    Most existing graph visualization methods based on dimension reduction are limited
+    to relatively small graphs due to performance issues. In this work, we propose a
+    novel dimension reduction method for graph visualization, called t-Distributed
+    Stochastic Graph Neighbor Embedding (t-SGNE). t-SGNE is specifically designed to
+    visualize cluster structures in the graph. As a variant of the standard t-SNE
+    method, t-SGNE avoids the time-consuming computations of pairwise similarity.
+    Instead, it uses the neighbor structures of the graph to reduce the time complexity
+    from quadratic to linear, thus supporting larger graphs. In addition, to suit
+    t-SGNE, we combined Laplacian Eigenmaps with the shortest path algorithm in graphs
+    to form the graph embedding algorithm ShortestPath Laplacian Eigenmaps Embedding
+    (SPLEE). Performing SPLEE to obtain a high-dimensional embedding of the large-scale
+    graph and then using t-SGNE to reduce its dimension for visualization, we are able
+    to visualize graphs with up to 300K nodes and 1M edges within 5 minutes and achieve
+    approximately 10% improvement in visualization quality. Codes and data are available
+    <a href="https://github.com/Charlie-XIAO/embedding-visualization-test">here</a>.
+  },
+  doi={10.48550/arXiv.2310.11186},
+  html={https://arxiv.org/abs/2310.11186},
+  pdf={projects/efficiently-visualizing-large-graphs.pdf},
   bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif},
-  abbr={Vision}
+  selected={false}
 }

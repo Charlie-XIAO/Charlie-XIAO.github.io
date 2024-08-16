@@ -1,0 +1,4 @@
+- **General:** Customize color theme.
+- **Homepage:** Hide video suggestions; Customize homepage layout.
+- **Navigation bar:** Customize color; Redirect YouTube logo; Hide buttons and sections.
+- **Video player:** Customize the scrubber and progress bar; Customize video player layout.

@@ -162,6 +162,7 @@ ul.task-list input[type="checkbox"] {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  color: var(--global-text-color);
 }
 
 // Card
@@ -253,6 +254,10 @@ ul.task-list input[type="checkbox"] {
 .navbar .dropdown-menu {
   background-color: var(--global-bg-color);
   border: 1px solid var(--global-divider-color);
+
+  a.dropdown-item {
+    padding: 0.25rem 1.5rem;
+  }
 
   a:not(.active) {
     color: var(--global-text-color);
@@ -383,7 +388,11 @@ ul.task-list input[type="checkbox"] {
   text-align: center;
 
   .contact-icons {
-    font-size: 4rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 
     a {
       i::before {
@@ -448,10 +457,10 @@ footer.fixed-bottom {
 
   a {
     color: var(--global-footer-link-color);
+    text-decoration: underline;
 
     &:hover {
       color: var(--global-theme-color);
-      text-decoration: none;
     }
   }
 }
@@ -517,7 +526,7 @@ footer.sticky-bottom {
 
   h1 {
     color: var(--global-theme-color);
-    font-size: 5rem;
+    font-weight: 400;
   }
 }
 
@@ -699,7 +708,7 @@ footer.sticky-bottom {
 
         abbr {
           display: inline-block;
-          background-color: var(--global-theme-color);
+          background-color: var(--global-badge-bg-color);
           margin-bottom: 0.5rem;
 
           a {

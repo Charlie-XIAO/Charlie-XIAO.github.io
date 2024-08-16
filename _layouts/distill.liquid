@@ -100,6 +100,23 @@
             </nav>
           </d-contents>
         {% endif %}
+        {% if page.shortcuts %}
+          <p class="d-flex flex-wrap align-items-center pb-3" style="column-gap: 15px;">
+            <strong>Shortcuts</strong>
+            {%- for shortcut in page.shortcuts -%}
+              {% if shortcut.link contains '://' -%}
+              {%- assign href = shortcut.link -%}
+              {%- else -%}
+              {%- assign href = shortcut.link | relative_url -%}
+              {%- endif %}
+              |
+              <a href="{{ href }}">
+                {% if shortcut.icon %}<i class="{{ shortcut.icon }} mr-1"></i>{% endif %}
+                {{ shortcut.name }}
+              </a>
+            {%- endfor -%}
+          </p>
+        {% endif %}
         {{ content }}
       </d-article>
 
