@@ -29,7 +29,7 @@ In this project, we simulate the inequality process via random transactions with
 
 ## Results
 
-You may access our GitHub source code [here](https://github.com/Charlie-XIAO/Econ-simulation). The demonstration of animations of histograms and distribution fitting in our simulation can be found on this [demo page](https://charlie-xiao.github.io/Econ-simulation/demo/). Our presentation slides can be found [here](https://github.com/Charlie-XIAO/Econ-simulation/blob/master/Paper/Inequality_Process_Simulation__Final_Presentation__Modeling_and_Simulation__Fall_2022_.pdf). Our technical report is titled [Inequality Process Simulation](https://charlie-xiao.github.io/projects/inequality-process-simulation.pdf).
+You may access our GitHub source code [here](https://github.com/Charlie-XIAO/Econ-simulation). The demonstration of animations of histograms and distribution fitting in our simulation can be found on this [demo page](https://charlie-xiao.github.io/Econ-simulation/demo/). Our presentation slides can be found [here](https://github.com/Charlie-XIAO/Econ-simulation/blob/master/Paper/Inequality_Process_Simulation__Final_Presentation__Modeling_and_Simulation__Fall_2022_.pdf). Our technical report is titled [Inequality Process Simulation](https://charlie-xiao.github.io/assets/projects/inequality-process-simulation.pdf).
 
 ## Conclusions
 
