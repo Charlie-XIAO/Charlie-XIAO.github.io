@@ -7,8 +7,6 @@ importance: 1000
 category: Softwares
 
 shortcuts:
-  - name: <img src="https://img.shields.io/badge/Firefox-141e24.svg?&style=for-the-badge&logo=firefox-browser&logoColor=white" alt="youtube-interface-customizer">
-    link: https://addons.mozilla.org/firefox/downloads/file/4069744/438bf7e9f2714ba58ac1-1.0.xpi
   - name: Code
     icon: fa-brands fa-github
     link: https://github.com/ossd-s23/YouTube-Customizer/
