@@ -2,7 +2,7 @@
 layout: distill
 title: Complex Variables
 description: MATH-GA.2450
-importance: 12  # Graduate-level courses during undergraduate are 1x, only 12 supported
+importance: 12 # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Honors Mathematics (NYU)
 
 shortcuts:

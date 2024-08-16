@@ -2,7 +2,7 @@
 layout: distill
 title: Operating Systems
 description: CSCI-UA.0202
-importance: 102  # Undergraduate courses are 1xx, important major courses 102
+importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science (NYU)
 
 shortcuts:
@@ -133,10 +133,10 @@ You may access the source code [here](https://gitfront.io/r/Charlie-XIAO/ftboF2o
 
 {% highlight plaintext %}
 Usage: ./nyufile disk <options>
-    -i                          Print the file system information.
-    -l                          List the root directory.
-    -r filename [-s sha1]       Recover a contiguous file.
-    -R filename -s sha1         Recover a possibly non-contiguous file.
+-i Print the file system information.
+-l List the root directory.
+-r filename [-s sha1] Recover a contiguous file.
+-R filename -s sha1 Recover a possibly non-contiguous file.
 {% endhighlight %}
 
 Basic functionality include:

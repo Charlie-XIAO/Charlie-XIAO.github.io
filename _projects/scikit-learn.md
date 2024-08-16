@@ -3,7 +3,7 @@ layout: distill
 title: Scikit-learn
 description: Python Library
 img: assets/img/projects/scikit-learn.jpg
-importance: 3  # Very high importance
+importance: 3 # Very high importance
 category: Softwares
 
 shortcuts:

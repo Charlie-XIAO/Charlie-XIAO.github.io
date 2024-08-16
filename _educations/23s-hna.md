@@ -2,7 +2,7 @@
 layout: distill
 title: Honors Numerical Analysis
 description: MATH-UA.0396
-importance: 102  # Undergraduate courses are 1xx, important major courses 102
+importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
 
 shortcuts:

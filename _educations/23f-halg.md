@@ -2,7 +2,7 @@
 layout: distill
 title: Honors Algebra
 description: MATH-SHU.0348
-importance: 102  # Undergraduate courses are 1xx, important major courses 102
+importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
 
 shortcuts:

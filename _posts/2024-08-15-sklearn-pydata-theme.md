@@ -70,7 +70,7 @@ The [API pages](https://scikit-learn.org/1.5/api/index.html) are reworked. In pa
 
 ## Reworked Dropdowns
 
-The dropdowns (i.e., folded sections) were redesigned based on the dropdown feature of [Sphinx Design](https://sphinx-design.readthedocs.io/en/pydata-theme/). Except for all its built-in features, we implemented permalink anchor for each dropdowns and the *toggle all dropdowns* functionality. The latter is because certain browsers (e.g., Firefox) does not search into collapsed dropdowns, so we provide the ability to unfold all with one click. See [#28401](https://github.com/scikit-learn/scikit-learn/pull/28401) for technical details.
+The dropdowns (i.e., folded sections) were redesigned based on the dropdown feature of [Sphinx Design](https://sphinx-design.readthedocs.io/en/pydata-theme/). Except for all its built-in features, we implemented permalink anchor for each dropdowns and the _toggle all dropdowns_ functionality. The latter is because certain browsers (e.g., Firefox) does not search into collapsed dropdowns, so we provide the ability to unfold all with one click. See [#28401](https://github.com/scikit-learn/scikit-learn/pull/28401) for technical details.
 
 ## Reworked Installation Guide
 
@@ -89,7 +89,7 @@ The [installation guide](https://scikit-learn.org/1.5/install.html) is reworked.
 
 ## Enhanced Gallery UI
 
-Previously the badge links to JupyterLite and Binder launchers as well as the download links of Python source code and Jupyter notebooks lived at the bottom of each page, with a hint at the top of the page linking to the bottom. With the three-column layout of the PyData theme, these information are all  moved to the secondary sidebar (on the right side) for better UI/UX. See [#28512](https://github.com/scikit-learn/scikit-learn/pull/28512) for technical details of our temporary workaround and [sphinx-gallery/sphinx-gallery#1312](https://github.com/sphinx-gallery/sphinx-gallery/pull/1312) for my better solution upstream.
+Previously the badge links to JupyterLite and Binder launchers as well as the download links of Python source code and Jupyter notebooks lived at the bottom of each page, with a hint at the top of the page linking to the bottom. With the three-column layout of the PyData theme, these information are all moved to the secondary sidebar (on the right side) for better UI/UX. See [#28512](https://github.com/scikit-learn/scikit-learn/pull/28512) for technical details of our temporary workaround and [sphinx-gallery/sphinx-gallery#1312](https://github.com/sphinx-gallery/sphinx-gallery/pull/1312) for my better solution upstream.
 
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
