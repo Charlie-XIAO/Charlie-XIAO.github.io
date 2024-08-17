@@ -5,15 +5,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-info:
+  update-dynamic-info:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sync template
-        uses: AndreasAugustin/actions-template-sync@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_repo_path: alshedivat/al-folio
-          upstream_branch: master
+          python-version: "3.12"
+
+      - name: Run update scripts
+        run: |
+          python build_tools/generate_scikit-learn_prs.py
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update dynamic information
+          branch: update-dynamic-info
+          body: |
+            - Update the list of scikit-learn contributions
