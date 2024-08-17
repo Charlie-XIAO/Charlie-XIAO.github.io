@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Scikit-learn
-description: Python Library
+description: Python Library for Machine Learning
 img: assets/img/projects/scikit-learn.jpg
 importance: 3 # Very high importance
 category: Softwares
