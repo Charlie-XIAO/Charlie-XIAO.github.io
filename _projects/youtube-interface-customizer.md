@@ -1,8 +1,8 @@
 ---
 layout: distill
 title: YouTube Inferface Customizer
-description: Firefox Extension
-img: assets/img/projects/youtube-interface-customizer.jpg
+description: Firefox Extension for Customizing YouTube
+img: assets/img/projects/youtube-interface-customizer.png
 importance: 1000
 category: Softwares
 
