@@ -1,7 +1,7 @@
 ---
 layout: distill
-title: Scikit-learn website rework
-description: A brief walk-through of some significant changes in the new theme
+title: Scikit-learn Website Rework
+description: A brief walk-through of some significant changes in the new theme.
 tags: scikit-learn
 categories: open-source
 date: 2024-08-15
