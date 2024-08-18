@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: DISC-LawLLM
-description: Large Language Mode for Intelligent Legal Services
+description: LLM yfor Intelligent Legal Services
 img: assets/img/projects/disc-lawllm.png
 importance: 100
 category: Softwares
