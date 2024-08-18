@@ -10,7 +10,6 @@ nav_order: 2
 display_categories:
   - Computer Science (NYU)
   - Honors Mathematics (NYU)
-horizontal: false
 ---
 
 <!-- pages/education.md -->

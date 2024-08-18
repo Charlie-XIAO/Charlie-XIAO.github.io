@@ -2,12 +2,12 @@
 layout: page
 permalink: /repositories/
 title: Repositories
-description: My GitHub profile, statistics, and some repositories.
+description: My GitHub profile, statistics, and top repositories.
 nav: true
 nav_order: 5
 ---
 
-## GitHub users
+## GitHub Statistics
 
 {% if site.data.repositories.github_users %}
 
@@ -35,7 +35,7 @@ nav_order: 5
 {% endif %}
 {% endif %}
 
-## GitHub Repositories
+## Top Repositories
 
 {% if site.data.repositories.github_repos %}
 

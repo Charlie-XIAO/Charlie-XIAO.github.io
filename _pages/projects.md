@@ -8,7 +8,6 @@ nav_order: 3
 display_categories:
   - Softwares
   - Other Projects
-horizontal: true
 ---
 
 <!-- pages/projects.md -->
