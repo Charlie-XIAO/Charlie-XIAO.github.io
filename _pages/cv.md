@@ -1,12 +1,11 @@
 ---
-layout: page
-title: CV
+layout: cv
+permalink: /cv/
+title: cv
 nav: true
-nav_order: 6
-dropdown: true
-children:
-  - title: English
-    permalink: /assets/pdf/yxiao-cv/yxiao-cv.pdf
-  - title: 中文 (未更新)
-    permalink: /assets/pdf/yxiao-cv-zh/yxiao-cv-zh.pdf
+nav_order: 5
+cv_pdf: example_pdf.pdf
+description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
+toc:
+  sidebar: left
 ---

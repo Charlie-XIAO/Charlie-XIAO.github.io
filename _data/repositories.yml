@@ -1,7 +1,14 @@
 github_users:
-  - Charlie-XIAO
+  - torvalds
+  - alshedivat
+
+repo_description_lines_max: 2
 
 github_repos:
-  - scikit-learn/scikit-learn
-  - ConfMask/ConfMask
-  - FudanDISC/DISC-LawLLM
+  - alshedivat/al-folio
+  - jekyll/jekyll
+  - twbs/bootstrap
+  - jquery/jquery
+  - FortAwesome/Font-Awesome
+  - mathjax/MathJax
+  - jpswalsh/academicons
