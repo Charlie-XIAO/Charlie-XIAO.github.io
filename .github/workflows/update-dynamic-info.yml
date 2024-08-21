@@ -17,6 +17,8 @@ jobs:
           python-version: "3.12"
 
       - name: Run update scripts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python build_tools/generate_scikit_learn_prs.py
 
