@@ -18,7 +18,7 @@ jobs:
 
       - name: Run update scripts
         run: |
-          python build_tools/generate_scikit-learn_prs.py
+          python build_tools/generate_scikit_learn_prs.py
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v6
