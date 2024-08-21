@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: DISC-LawLLM
-description: LLM yfor Intelligent Legal Services
+description: LLM for Intelligent Legal Services
 img: assets/img/projects/disc-lawllm.png
 importance: 100
 category: Softwares
