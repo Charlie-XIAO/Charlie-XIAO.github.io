@@ -35,7 +35,6 @@ nav_order: 5
 {% endif %}
 {% endif %}
 
-
 {% if site.data.repositories.github_repos %}
 
 ## Top Repositories
