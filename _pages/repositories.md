@@ -7,9 +7,9 @@ nav: true
 nav_order: 5
 ---
 
-## GitHub Statistics
-
 {% if site.data.repositories.github_users %}
+
+## GitHub Statistics
 
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for user in site.data.repositories.github_users %}
@@ -35,9 +35,9 @@ nav_order: 5
 {% endif %}
 {% endif %}
 
-## Top Repositories
-
 {% if site.data.repositories.github_repos %}
+
+## Top Repositories
 
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for repo in site.data.repositories.github_repos %}
