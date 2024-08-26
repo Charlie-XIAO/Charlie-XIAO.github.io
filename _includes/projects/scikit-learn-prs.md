@@ -1,3 +1,4 @@
+- **[#29701](https://github.com/scikit-learn/scikit-learn/pull/29701)** MAINT fix bot for lock files update on comment
 - **[#29505](https://github.com/scikit-learn/scikit-learn/pull/29505)** MAINT trigger lock file update in PR with a comment
 - **[#29544](https://github.com/scikit-learn/scikit-learn/pull/29544)** DOC fix links in the machine learning map
 - **[#29412](https://github.com/scikit-learn/scikit-learn/pull/29412)** DOC reorganize the maintainer info page
