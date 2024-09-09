@@ -1,3 +1,4 @@
+- **[#27516](https://github.com/scikit-learn/scikit-learn/pull/27516)** DOC `GradientBoosting*` will not implement monotonic constraints, use `HistGradientBoosting*` instead
 - **[#29701](https://github.com/scikit-learn/scikit-learn/pull/29701)** MAINT fix bot for lock files update on comment
 - **[#29505](https://github.com/scikit-learn/scikit-learn/pull/29505)** MAINT trigger lock file update in PR with a comment
 - **[#29544](https://github.com/scikit-learn/scikit-learn/pull/29544)** DOC fix links in the machine learning map
