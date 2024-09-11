@@ -40,7 +40,7 @@ I am currently a core developer of scikit-learn and also a member of its documen
 
 Here I will list some of my non-trivial contributions and experiences that I want to share.
 
-- I led the rework of the scikit-learn main website, deployed since version 1.5. Check out [this blog post](/blog/2024/sklearn-pydata-theme/) for more details.
+- I led the rework of the scikit-learn main website, deployed since version 1.5. Check out [this blog post](/blog/2024/scikit-learn-website-rework/) for more details.
 
 ## List of Merged PRs
 
