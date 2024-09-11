@@ -5,6 +5,7 @@ description: A brief walk-through of some significant changes in the new theme.
 tags: scikit-learn
 categories: open-source
 date: 2024-08-15
+giscus_comments: true
 
 authors:
   - name: Yao Xiao
