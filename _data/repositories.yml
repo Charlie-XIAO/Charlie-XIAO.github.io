@@ -3,5 +3,7 @@ github_users:
 
 github_repos:
   - scikit-learn/scikit-learn
+  - CSCI-SHU-410-SE-Project/Deskulpt
   - ConfMask/ConfMask
   - FudanDISC/DISC-LawLLM
+  - Charlie-XIAO/tauri-plugin-desktop-underlay

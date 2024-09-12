@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Randomized Algorithms
 description: CSCI-UA.0480.73
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/23s-randalg-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://cs.nyu.edu/~cole/">Richard Cole</a>.

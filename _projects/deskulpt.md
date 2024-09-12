@@ -1,11 +1,13 @@
 ---
-layout: distill
+layout: page
 title: Deskulpt
 description: A Cross-Platform Desktop Customization Tool
 img: assets/img/projects/deskulpt.png
 importance: 10
 category: Softwares
 redirect: https://csci-shu-410-se-project.github.io/Deskulpt/
+toc:
+  beginning: true
 
 shortcuts:
   - name: Code

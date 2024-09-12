@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: CV
 nav: true
 nav_order: 6

@@ -1,9 +1,12 @@
 ---
-layout: distill
+layout: page
 title: Machine Learning
 description: DS-GA.1003
 importance: 12 # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Computer Science (NYU)
+pretty_table: true
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
@@ -12,11 +15,6 @@ shortcuts:
   - name: Assignments
     icon: fa-solid fa-file
     link: /assets/pdf/educations/23s-ml-assignments.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
-  - name: Assignments
 
 course_information:
   Instructor: <a href="https://mengyeren.com/">Mengye Ren</a> and <a href="https://www.ravid-shwartz-ziv.com/">Ravid Shwartz-Ziv</a>.

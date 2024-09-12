@@ -1,10 +1,12 @@
 ---
-layout: distill
+layout: page
 title: Scikit-learn
 description: Python Library for Machine Learning
 img: assets/img/projects/scikit-learn.jpg
 importance: 3 # Very high importance
 category: Softwares
+toc:
+  beginning: true
 
 shortcuts:
   - name: Code
@@ -14,16 +16,15 @@ shortcuts:
     icon: fa-brands fa-github
     link: https://github.com/scikit-learn/scikit-learn/pulls?q=is%3Apr+is%3Amerged+author%3ACharlie-XIAO
 
-toc:
-  - name: Partial Contributions
-  - name: List of Merged PRs
-
 _styles: >
   div.sklearn-prs ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     list-style-position: inside;
     padding-left: 10px;
-    padding-top: 10px;
   }
+
   div.sklearn-prs ul > li {
     overflow-x: hidden;
     white-space: nowrap;

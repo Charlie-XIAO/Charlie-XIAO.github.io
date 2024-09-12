@@ -1,9 +1,11 @@
 ---
-layout: distill
+layout: page
 title: Modeling and Simulation
 description: MATH-UA.0395
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Midterm Project
@@ -12,11 +14,6 @@ shortcuts:
   - name: Final Project
     icon: fa-solid fa-link
     link: /projects/inequality-process-simulation/
-
-toc:
-  - name: Course Information
-  - name: Gradebook
-  - name: Projects
 
 course_information:
   Instructor: <a href="https://www.math.nyu.edu/~peskin/">Charles Peskin</a>.

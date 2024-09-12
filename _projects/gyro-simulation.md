@@ -1,10 +1,12 @@
 ---
-layout: distill
+layout: page
 title: Gyro-Tower Simulation
 description: Math Modeling
 img: assets/img/projects/gyro-simulation.jpg
 importance: 100
 category: Other Projects
+toc:
+  beginning: true
 
 shortcuts:
   - name: Paper
@@ -16,11 +18,6 @@ shortcuts:
   - name: Demo
     icon: fa-solid fa-video
     link: https://drive.google.com/drive/u/0/folders/1UpQE-VyRK9DaUnWq8wOW_s7JVZEpMOUg
-
-toc:
-  - name: Overview
-  - name: Results
-  - name: Conclusions
 ---
 
 ## Overview

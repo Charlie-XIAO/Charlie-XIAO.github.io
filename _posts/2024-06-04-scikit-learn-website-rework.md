@@ -1,23 +1,14 @@
 ---
-layout: distill
+layout: post
 title: Scikit-learn Website Rework
 description: A brief walk-through of some significant changes in the new theme.
 tags: scikit-learn
 categories: open-source
-date: 2024-08-15
-
-authors:
-  - name: Yao Xiao
-    url: "https://charlie-xiao.github.io/"
-    affiliations:
-      name: NYU Shanghai
-
+date: 2024-06-04
+giscus_comments: true
+related_posts: false
 toc:
-  - name: Dark Theme
-  - name: Reworked API Pages
-  - name: Reworked Dropdowns
-  - name: Reworked Installation Guide
-  - name: Conclusion
+  beginning: true
 ---
 
 The [scikit-learn main website](https://scikit-learn.org/1.5/) has got a brand-new appearance since version 1.5, with migration to the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/) along with other UI/UX improvements. Thanks for the theme developers and whoever involved in the conversations. You may want to check out [#28084](https://github.com/scikit-learn/scikit-learn/issues/28084) that tracked the migration progress and [#29038](https://github.com/scikit-learn/scikit-learn/pull/29038) that did the final merge.
@@ -29,7 +20,7 @@ PyData theme has built-in support for [light and dark themes](https://pydata-sph
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/index-light-mode.png"
+      path="assets/img/posts/scikit-learn-website-rework/index-light-mode.png"
       class="img-fluid rounded z-depth-1"
       caption="Light Theme."
       zoomable=true
@@ -37,7 +28,7 @@ PyData theme has built-in support for [light and dark themes](https://pydata-sph
   </div>
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/index-dark-mode.png"
+      path="assets/img/posts/scikit-learn-website-rework/index-dark-mode.png"
       class="img-fluid rounded z-depth-1"
       caption="Dark Theme."
       zoomable=true
@@ -52,7 +43,7 @@ The [API pages](https://scikit-learn.org/1.5/api/index.html) are reworked. In pa
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/api-index.png"
+      path="assets/img/posts/scikit-learn-website-rework/api-index.png"
       class="img-fluid rounded z-depth-1"
       caption="API index page with the searchable table."
       zoomable=true
@@ -60,7 +51,7 @@ The [API pages](https://scikit-learn.org/1.5/api/index.html) are reworked. In pa
   </div>
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/api-page.png"
+      path="assets/img/posts/scikit-learn-website-rework/api-page.png"
       class="img-fluid rounded z-depth-1"
       caption="Enhanced sidebar navigation per API page."
       zoomable=true
@@ -79,7 +70,7 @@ The [installation guide](https://scikit-learn.org/1.5/install.html) is reworked.
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/install.png"
+      path="assets/img/posts/scikit-learn-website-rework/install.png"
       class="img-fluid rounded z-depth-1"
       caption="The reworked installation guide."
       zoomable=true
@@ -94,7 +85,7 @@ Previously the badge links to JupyterLite and Binder launchers as well as the do
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid
-      path="assets/img/posts/sklearn-pydata-theme/gallery-page.png"
+      path="assets/img/posts/scikit-learn-website-rework/gallery-page.png"
       class="img-fluid rounded z-depth-1"
       caption="A gallery page with badges and download links in the sidebar."
       zoomable=true

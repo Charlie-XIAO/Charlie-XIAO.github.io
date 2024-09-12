@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Honors Algebra
 description: MATH-SHU.0348
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/23f-halg-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://shanghai.nyu.edu/academics/faculty/directory/nadir-matringe-0">Nadir Matringe</a>.

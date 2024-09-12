@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Complex Variables
 description: MATH-GA.2450
 importance: 12 # Graduate-level courses during undergraduate are 1x, only 12 supported
 category: Honors Mathematics (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/22f-complex-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://cims.nyu.edu/~mn2977/">Maximilian Nitzschner</a>.

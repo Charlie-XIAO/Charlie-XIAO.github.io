@@ -228,16 +228,21 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-.post-description {
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
+.post-header {
+  .post-title {
+    font-weight: 600;
+  }
 
-  a {
-    color: inherit;
+  .post-description {
+    margin-bottom: 2rem;
 
-    &:hover {
-      color: var(--global-theme-color);
-      text-decoration: none;
+    a {
+      color: inherit;
+
+      &:hover {
+        color: var(--global-theme-color);
+        text-decoration: none;
+      }
     }
   }
 }
