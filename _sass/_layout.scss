@@ -38,6 +38,30 @@ body.sticky-bottom-footer {
   }
 }
 
+.post.single-page article {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
+
+  h1,
+  h2,
+  h3 {
+    padding-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--global-divider-color);
+  }
+}
+
+.giscus {
+  margin-top: 5rem;
+}
+
 // TODO: redefine content layout.
 
 /******************************************************************************

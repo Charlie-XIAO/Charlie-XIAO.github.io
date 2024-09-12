@@ -1,10 +1,12 @@
 ---
-layout: distill
+layout: page
 title: CampusHelper
 description: 微信/支付宝小程序
 img: assets/img/projects/campushelper.png
 importance: 100
 category: Softwares
+toc:
+  beginning: true
 
 shortcuts:
   - name: <img src="https://img.shields.io/badge/WeChat-09B83E?style=flat&logo=wechat&logoColor=white">

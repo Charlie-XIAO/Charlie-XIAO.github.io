@@ -1,9 +1,11 @@
 ---
-layout: distill
+layout: page
 title: Open Source Software Development
 description: CSCI-UA.0480.61
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Blogs
@@ -12,12 +14,6 @@ shortcuts:
   - name: Presentation
     icon: fa-solid fa-video
     link: https://www.canva.com/design/DAFhCFVpf-M/hPZ0uyk2KEZ2Z3_p6U5UdA/view?utm_content=DAFhCFVpf-M&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
-
-toc:
-  - name: Course Information
-  - name: Gradebook
-  - name: Blogs
-  - name: Open Source Projects
 
 course_information:
   Instructor: <a href="https://cs.nyu.edu/~joannakl/">Joanna Klukowska</a>.

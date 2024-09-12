@@ -1,11 +1,13 @@
 ---
-layout: distill
+layout: page
 title: DISC-LawLLM
 description: LLM for Intelligent Legal Services
 img: assets/img/projects/disc-lawllm.png
 importance: 100
 category: Softwares
 redirect: http://law.fudan-disc.com/
+toc:
+  beginning: true
 
 shortcuts:
   - name: Paper

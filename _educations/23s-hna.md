@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Honors Numerical Analysis
 description: MATH-UA.0396
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/23s-hna-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://cims.nyu.edu/~oneil/">Mike O'Neil</a>.

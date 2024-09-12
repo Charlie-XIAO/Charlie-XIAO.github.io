@@ -1,27 +1,17 @@
 ---
-layout: distill
+layout: page
 title: YouTube Inferface Customizer
 description: Firefox Extension
 img: assets/img/projects/youtube-interface-customizer.png
 importance: 1000
 category: Softwares
+toc:
+  beginning: true
 
 shortcuts:
   - name: Code
     icon: fa-brands fa-github
     link: https://github.com/ossd-s23/YouTube-Customizer/
-
-toc:
-  - name: Installation
-  - name: Features
-    subsections:
-      - name: General
-      - name: Homepage
-      - name: Navigation Bar
-      - name: Video Player
-  - name: Support
-  - name: Contribution
-  - name: License
 ---
 
 This is an [open source](https://github.com/ossd-s23/YouTube-Customizer) Firefox extension that allows you to customize a wide variety of elements of the YouTube interface in your favor.

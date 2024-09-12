@@ -3,8 +3,7 @@ layout: page
 title: Education
 permalink: /education/
 description: >
-  A partial collection of courses I've taken. Some contain notes that I've taken or
-  course projects I've done, and feel free to take them. 😊
+  A partial collection of courses I've taken. Feel free to take my notes or other resources. 😊
 nav: true
 nav_order: 2
 display_categories:

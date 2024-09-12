@@ -1,9 +1,11 @@
 ---
-layout: distill
+layout: page
 title: Operating Systems
 description: CSCI-UA.0202
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Computer Science (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
@@ -18,15 +20,6 @@ shortcuts:
   - name: Lab 4
     icon: fa-brands fa-github
     link: https://gitfront.io/r/Charlie-XIAO/j2q46W3w8FUF/FileRecovery-nyufile/
-
-toc:
-  - name: Course Information
-  - name: Gradebook
-  - name: Labs
-    subsections:
-      - name: "Lab 2: nyush"
-      - name: "Lab 3: nyuenc"
-      - name: "Lab 4: nyufile"
 
 course_information:
   Instructor: <a href="https://ytang.com/">Yang Tang</a>.

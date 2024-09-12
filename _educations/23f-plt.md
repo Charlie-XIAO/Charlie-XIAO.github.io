@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Probability Limit Theorems
 description: MATH-SHU.0350
 importance: 102 # Undergraduate courses are 1xx, important major courses 102
 category: Honors Mathematics (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/23f-plt-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://shanghai.nyu.edu/academics/faculty/directory/pierre-tarres">Pierre Tarrès</a>.

@@ -1,18 +1,16 @@
 ---
-layout: distill
+layout: page
 title: Basic Algorithms
 description: CSCI-UA.0310
 importance: 103 # Undergraduate courses are 1xx, normal major courses 103
 category: Computer Science (NYU)
+toc:
+  beginning: true
 
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
     link: /assets/pdf/educations/22f-algorithms-notes.pdf
-
-toc:
-  - name: Course Information
-  - name: Gradebook
 
 course_information:
   Instructor: <a href="https://cims.nyu.edu/~regev/">Oded Regev</a>.

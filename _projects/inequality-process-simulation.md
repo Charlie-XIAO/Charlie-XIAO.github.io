@@ -1,10 +1,12 @@
 ---
-layout: distill
+layout: page
 title: Inequality Process Simulation
 description: Math Modeling
 img: assets/img/projects/inequality-process-simulation.jpg
 importance: 100
 category: Other Projects
+toc:
+  beginning: true
 
 shortcuts:
   - name: Paper
@@ -16,11 +18,6 @@ shortcuts:
   - name: Demo
     icon: fa-solid fa-video
     link: https://charlie-xiao.github.io/Econ-simulation/demo/
-
-toc:
-  - name: Overview
-  - name: Results
-  - name: Conclusions
 ---
 
 ## Overview
