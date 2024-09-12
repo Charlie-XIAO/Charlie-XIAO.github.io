@@ -3,7 +3,7 @@ layout: page
 title: Gyro-Tower Simulation
 description: Math Modeling
 img: assets/img/projects/gyro-simulation.jpg
-importance: 100
+importance: 1000
 category: Other Projects
 toc:
   beginning: true

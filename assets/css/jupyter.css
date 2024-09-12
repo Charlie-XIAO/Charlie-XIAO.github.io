@@ -381,3 +381,7 @@ body[data-jp-theme-light="false"] {
 
   @import "jupyter-monokai";
 }
+
+body[data-jp-theme-light="false"] img {
+  opacity: 0.8;
+}
