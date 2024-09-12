@@ -34,7 +34,7 @@ $$
 \hat{f}_h(x)=\frac{1}{n}\sum_{i=1}^nK_h(x-x_i)=\frac{1}{nh}\sum_{i=1}^nK\left(\frac{x-x_i}{h}\right),
 $$
 
-where $$K$$ is the kernel function and $$h$$ is the **bandwidth**. *This is exactly how scikit-learn implemented kernel density estimation,* but a good bandwidth should be chosen proportional to the standard deviation of data. If we use Scott's or Silverman's rule of thumb (as in the example above) for automatic bandwidth selection, it does not take into account data variance. Thus for `scale=0.1`, the chosen bandwidth would be too large and over-smoothens the estimation, and for `scale=10`, the chosen bandwidth would be too small causing the estimation to be too sensitive to noise.
+where $$K$$ is the kernel function and $$h$$ is the **bandwidth**. _This is exactly how scikit-learn implemented kernel density estimation,_ but a good bandwidth should be chosen proportional to the standard deviation of data. If we use Scott's or Silverman's rule of thumb (as in the example above) for automatic bandwidth selection, it does not take into account data variance. Thus for `scale=0.1`, the chosen bandwidth would be too large and over-smoothens the estimation, and for `scale=10`, the chosen bandwidth would be too small causing the estimation to be too sensitive to noise.
 
 Moreover in scipy's context, the `bw_method` parameter (equivalent to scikit-learn's `bandwidth` parameter) does not directly give the $$h$$ as in the formula. It is scaled to adapt to the variance of data, or equivalently, the data is scaled to unit variance before applying the formula above, which aligns with the analysis above.
 
