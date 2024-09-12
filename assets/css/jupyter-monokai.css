@@ -3756,3 +3756,7 @@ div#maintoolbar {
 #header-container {
   display: none !important;
 }
+
+img {
+  opacity: 0.8; /* Avoid rendered images being too bright in dark mode */
+}
