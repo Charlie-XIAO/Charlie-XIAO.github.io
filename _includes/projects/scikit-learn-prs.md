@@ -1,3 +1,4 @@
+- **[#26367](https://github.com/scikit-learn/scikit-learn/pull/26367)** ENH `despine` keyword for ROC and PR curves
 - **[#29863](https://github.com/scikit-learn/scikit-learn/pull/29863)** MAINT filename typo `test_monotonic_contraints` -> `constraints`
 - **[#29848](https://github.com/scikit-learn/scikit-learn/pull/29848)** DOC fix all unintentional block quotes in docs
 - **[#29843](https://github.com/scikit-learn/scikit-learn/pull/29843)** MAINT set commit status during lock-files update in PR
