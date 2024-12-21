@@ -11,9 +11,6 @@ shortcuts:
   - name: Blogs
     icon: fa-solid fa-blog
     link: https://ossd-s23.github.io/Charlie-XIAO-weekly/
-  - name: Presentation
-    icon: fa-solid fa-video
-    link: https://www.canva.com/design/DAFhCFVpf-M/hPZ0uyk2KEZ2Z3_p6U5UdA/view?utm_content=DAFhCFVpf-M&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 
 course_information:
   Instructor: <a href="https://cs.nyu.edu/~joannakl/">Joanna Klukowska</a>.
@@ -61,7 +58,7 @@ YouTube Interface Customizer is an open source Firefox extension that allows the
 
 ### Scikit-learn
 
-As the final project, I (along with two other teammates) contribued to [scikit-learn](https://github.com/scikit-learn/scikit-learn), an open source Python library for machine learning. More details about my contributions can be seen [here](/projects/ossd-sklearn/). Our [final presentation](https://www.canva.com/design/DAFhCFVpf-M/hPZ0uyk2KEZ2Z3_p6U5UdA/view?utm_content=DAFhCFVpf-M&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink) summarizes our contributions during the second half of the semester and what we have learned.
+As the final project, I (along with two other teammates) contribued to [scikit-learn](https://github.com/scikit-learn/scikit-learn), an open source Python library for machine learning. More details about my contributions can be seen [here](/projects/ossd-sklearn/).
 
 ### Other Contributions
 

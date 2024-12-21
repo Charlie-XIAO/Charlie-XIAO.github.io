@@ -13,7 +13,7 @@ shortcuts:
     link: /assets/pdf/educations/22f-complex-notes.pdf
 
 course_information:
-  Instructor: <a href="https://cims.nyu.edu/~mn2977/">Maximilian Nitzschner</a>.
+  Instructor: <a href="https://www.math.hkust.edu.hk/~mnitzschner/">Maximilian Nitzschner</a>.
   Semester: Fall 2022.
   Outline: >
     Complex numbers, the complex plane;
