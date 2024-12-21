@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Gyro-Tower Simulation
-description: Math Modeling
+description: Modeling Stability of Vertical Stacks of Gyroscopes
 img: assets/img/projects/gyro-simulation.jpg
-importance: 1000
-category: Other Projects
+importance: 4
+category: Applied Math
 toc:
   beginning: true
 

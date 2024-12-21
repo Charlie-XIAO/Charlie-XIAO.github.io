@@ -2,8 +2,9 @@
 layout: page
 title: Honors Theory of Probability
 description: MATH-SHU.0238
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 6
 category: Honors Mathematics (NYU)
+pretty_table: true
 toc:
   beginning: true
 

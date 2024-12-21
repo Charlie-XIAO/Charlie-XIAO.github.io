@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Inequality Process Simulation
-description: Math Modeling
+description: Modeling Inequality Process in the Social Economy
 img: assets/img/projects/inequality-process-simulation.jpg
-importance: 1000
-category: Other Projects
+importance: 5
+category: Applied Math
 toc:
   beginning: true
 

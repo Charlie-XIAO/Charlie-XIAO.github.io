@@ -2,8 +2,9 @@
 layout: page
 title: Stochastic Calculus
 description: MATH-GA.2903
-importance: 12 # Graduate-level courses during undergraduate are 1x, only 12 supported
+importance: 2
 category: Honors Mathematics (NYU)
+pretty_table: true
 toc:
   beginning: true
 

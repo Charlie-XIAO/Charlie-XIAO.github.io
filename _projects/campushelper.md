@@ -1,10 +1,10 @@
 ---
 layout: page
 title: CampusHelper
-description: 微信/支付宝小程序
+description: 发挥校园闲置劳动力 - 微信/支付宝小程序
 img: assets/img/projects/campushelper.png
-importance: 100
-category: Softwares
+importance: 1
+category: Miscellaneous
 toc:
   beginning: true
 

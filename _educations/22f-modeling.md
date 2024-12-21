@@ -2,8 +2,9 @@
 layout: page
 title: Modeling and Simulation
 description: MATH-UA.0395
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 3
 category: Honors Mathematics (NYU)
+pretty_table: true
 toc:
   beginning: true
 

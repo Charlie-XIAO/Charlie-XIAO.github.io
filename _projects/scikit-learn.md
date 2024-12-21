@@ -3,8 +3,8 @@ layout: page
 title: Scikit-learn
 description: Python Library for Machine Learning
 img: assets/img/projects/scikit-learn.jpg
-importance: 3 # Very high importance
-category: Softwares
+importance: 1
+category: Open Source
 toc:
   beginning: true
 

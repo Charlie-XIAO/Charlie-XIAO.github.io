@@ -7,6 +7,7 @@ description: >
 nav: true
 nav_order: 2
 display_categories:
+  - Computational Science (Harvard)
   - Computer Science (NYU)
   - Honors Mathematics (NYU)
 ---

@@ -2,8 +2,9 @@
 layout: page
 title: Probability Limit Theorems
 description: MATH-SHU.0350
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 5
 category: Honors Mathematics (NYU)
+pretty_table: true
 toc:
   beginning: true
 
