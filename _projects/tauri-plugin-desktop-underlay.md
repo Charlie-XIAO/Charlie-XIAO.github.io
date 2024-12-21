@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Tauri-plugin-desktop-underlay
-description: Move a window below desktop icons
+title: Tauri Desktop Underlay
+description: Tauri Plugin for Moving Windows Below Desktop Icons
 img: assets/img/projects/tauri-plugin-desktop-underlay.png
-importance: 100
-category: Softwares
+importance: 3
+category: Open Source
 redirect: https://github.com/Charlie-XIAO/tauri-plugin-desktop-underlay
 toc:
   beginning: true

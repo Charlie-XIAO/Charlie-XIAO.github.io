@@ -33,12 +33,12 @@
   html={https://doi.org/10.1145/3651890.3672217},
   pdf={projects/confmask.pdf},
   code={https://github.com/ConfMask/ConfMask},
-  video={https://youtu.be/xIbgbZtuO7Q?si=I68pBnZsg1-FWDTW},
+  video={https://youtu.be/xIbgbZtuO7Q},
   bibtex_show={true},
   selected={true}
 }
 
-@inproceedings{10.48550/arXiv.2309.11325,
+@inproceedings{10.1007/978-981-97-5569-1_19,
   abbr={DASFAA'24},
   author={
     Yue, Shengbin and Liu, Shujun and Zhou, Yuxuan and Shen, Chenchen and Wang, Siyuan
@@ -61,13 +61,58 @@
     dimensions. Experiments demonstrate the effectiveness of our system in serving
     various users across diverse legal scenarios.
   },
-  doi={10.48550/arXiv.2309.11325},
-  html={https://arxiv.org/abs/2309.11325},
+  doi={10.1007/978-981-97-5569-1_19},
+  html={https://doi.org/10.1007/978-981-97-5569-1_19},
   pdf={projects/disc-lawllm.pdf},
   code={https://github.com/FudanDISC/DISC-LawLLM},
   website={http://law.fudan-disc.com/},
   bibtex_show={true},
   selected={true}
+}
+
+@misc{bsc_hm_thesis,
+  abbr={B.Sc. Thesis},
+  author={Xiao, Yao},
+  title={Analyzing the Critical Behavior of Bernoulli Percolation in Z^3 by Simulating the Invasion Percolation Process},
+  year={2024},
+  abstract={
+    The invasion percolation process is widely known related to the standard Bernoulli
+    bond percolation model. It is known that the infinite cluster density
+    $P_{\infty}(p_c) = 0$ at critical point for Bernoulli bond percolation in $Z^2$, but
+    this conclusion is not yet proven to extend to higher dimensions. We note that it is
+    easy to show the equivalence between $P_{\infty}(p_c) = 0$ in $Z^d$ and
+    $G_{Z^d}(0,x) \to 0$ as $|x| \to \infty$ for the invasion percolation process, where
+    $G_{Z^d}(0,x)$ is the probability that x is invaded by an invasion percolation
+    process starting from the origin. In this paper, we will then show by simulation the
+    dominance of $G_{Z^3}(0,x)$ by $G_{Z^2}(0,x)$ for the same $|x|$, based on which we
+    show that $P_{\infty}(p_c) = 0$ in $Z^3$. Finally we will numerically estimate the
+    fractal dimension of invasion percolation cluster in $Z^3$.
+  },
+  pdf={projects/invasion-percolation.pdf},
+}
+
+@misc{bsc_cs_capstone,
+  abbr={B.Sc. Capstone},
+  author={Xiao, Yao},
+  title={Optimizing the Serving System for Large Language Model Inference},
+  year={2023},
+  abstract={
+    Large Language Models (LLMs) such as ChatGPT have been progressively revolutionizing
+    natural language processing tasks. Since most LLM applications such as chatbots and
+    question answering systems involve real-time interactions, high throughput and low
+    latency are critical for LLM inference systems. However, existing LLM inference
+    systems stuggle because the batch sizes are limited by the key-value cache (KV
+    cache) memory, and bubbles exist in the inference pipeline due to the Attention
+    mechanism, leading to in efficiency in inference. In this paper, I present
+    FluidInfer to address these challenges. FluidInfer abandons the term batch size and
+    instead arbitrarily concatenates or splits requests in non-Attention layers to
+    achieve much higher throughput. It further packs requests dynamically in the
+    Attention layer to reduce pipeline bubbles, while overriding the limitation of KV
+    cache by swapping between GPU and host memory. Simulation results show that
+    FluidInfer outperforms state-of-the-art LLM serving systems by 2x to 4x improvement
+    in throughput, and achieves approximately 3x lower latency bound.
+  },
+  pdf={projects/fluidinfer.pdf},
 }
 
 @misc{10.48550/arXiv.2310.11186,
@@ -96,5 +141,4 @@
   html={https://arxiv.org/abs/2310.11186},
   pdf={projects/efficiently-visualizing-large-graphs.pdf},
   bibtex_show={true},
-  selected={false}
 }

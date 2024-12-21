@@ -6,8 +6,10 @@ description: A partial collection of my projects, including some dumb ones. 🙃
 nav: true
 nav_order: 3
 display_categories:
-  - Softwares
-  - Other Projects
+  - Open Source
+  - Research and Academic
+  - Miscellaneous
+  - Applied Math
 ---
 
 <!-- pages/projects.md -->

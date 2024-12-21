@@ -28,15 +28,15 @@ As we can see from the plots, scikit-learn's results were far from the underlyin
 
 ## Problem Analysis
 
-We will start with the univariate case. By definition, let $$(x_1,\ldots,x_n)$$ be independent and identially distributed samples drawn from some univariate distribution, its kernel density estimator at a given point $$x$$ is
+We will start with the univariate case. By definition, let $$ (x_1,\ldots,x_n) $$ be independent and identially distributed samples drawn from some univariate distribution, its kernel density estimator at a given point $$ x $$ is
 
 $$
 \hat{f}_h(x)=\frac{1}{n}\sum_{i=1}^nK_h(x-x_i)=\frac{1}{nh}\sum_{i=1}^nK\left(\frac{x-x_i}{h}\right),
 $$
 
-where $$K$$ is the kernel function and $$h$$ is the **bandwidth**. _This is exactly how scikit-learn implemented kernel density estimation,_ but a good bandwidth should be chosen proportional to the standard deviation of data. If we use Scott's or Silverman's rule of thumb (as in the example above) for automatic bandwidth selection, it does not take into account data variance. Thus for `scale=0.1`, the chosen bandwidth would be too large and over-smoothens the estimation, and for `scale=10`, the chosen bandwidth would be too small causing the estimation to be too sensitive to noise.
+where $$ K $$ is the kernel function and $$ h $$ is the **bandwidth**. _This is exactly how scikit-learn implemented kernel density estimation,_ but a good bandwidth should be chosen proportional to the standard deviation of data. If we use Scott's or Silverman's rule of thumb (as in the example above) for automatic bandwidth selection, it does not take into account data variance. Thus for `scale=0.1`, the chosen bandwidth would be too large and over-smoothens the estimation, and for `scale=10`, the chosen bandwidth would be too small causing the estimation to be too sensitive to noise.
 
-Moreover in scipy's context, the `bw_method` parameter (equivalent to scikit-learn's `bandwidth` parameter) does not directly give the $$h$$ as in the formula. It is scaled to adapt to the variance of data, or equivalently, the data is scaled to unit variance before applying the formula above, which aligns with the analysis above.
+Moreover in scipy's context, the `bw_method` parameter (equivalent to scikit-learn's `bandwidth` parameter) does not directly give the $$ h $$ as in the formula. It is scaled to adapt to the variance of data, or equivalently, the data is scaled to unit variance before applying the formula above, which aligns with the analysis above.
 
 What about multivariate data? The formula is similar, such that
 
@@ -44,7 +44,7 @@ $$
 \hat{f}_H(\mathbf{x})=\frac{1}{n}\sum_{i=1}^nK_H(\mathbf{x}-\mathbf{x}_i)=\frac{1}{n|H|}\sum_{i=1}^nK\left(H^{-1}(\mathbf{x}-\mathbf{x}_i)\right),
 $$
 
-except that this time we have a bandwidth matrix. Also similar to the univariate case, a good bandwidth matrix should be chosen proportional to $$\Sigma^{1/2}$$ where $$\Sigma$$ is the covariance matrix of data. In other words, the bandwidth in each dimension should have unit variance. Otherwise, the same thing as in the univariate case will happen per dimension.
+except that this time we have a bandwidth matrix. Also similar to the univariate case, a good bandwidth matrix should be chosen proportional to $$ \Sigma^{1/2} $$ where $$ \Sigma $$ is the covariance matrix of data. In other words, the bandwidth in each dimension should have unit variance. Otherwise, the same thing as in the univariate case will happen per dimension.
 
 ## Proposed Solution
 
@@ -54,7 +54,7 @@ The issue is not hard to solve, but to first summarize our analysis, we want the
 - We want to be consistent with other scientific Python libraries like `scipy` and `statsmodels` to avoid confusion of users.
 - We want to make the API easy-to-use. In particular, there is no clear reason to let users manually handle data variance when choosing bandwidth, especially in the multivariate case where users would even need to choose a bandwidth vector if the scaling is not performed internally.
 
-Let $$h$$ now be the `bandwidth` parameter (i.e., before scaling), then we can rewrite the formula into
+Let $$ h $$ now be the `bandwidth` parameter (i.e., before scaling), then we can rewrite the formula into
 
 $$
 \hat{f}_h(\mathbf{x})=\frac{1}{nh|\Sigma^{-1/2}|}\sum_{i=1}^nK\left(\frac{\Sigma^{-1}(\mathbf{x}-\mathbf{x}_i)}{h}\right).
@@ -66,7 +66,7 @@ $$
 \hat{f}_h(\mathbf{x})=\frac{1}{nh}\sum_{i=1}^nK\left(\frac{\mathbf{x}-\mathbf{x}_i}{h}\right),
 $$
 
-it suffices to (1) input $$\Sigma^{-1/2}\mathbf{x}$$ instead of $$\mathbf{x}$$, and (2) divide by $$\Sigma^{-1/2}$$ for the output. Note that $$\Sigma^{1/2}$$ can be computed from the covariance matrix (`np.cov`) with Cholesky decomposition (`scipy.linalg.cholesky`), so $$\mathbf{v}=\Sigma^{-1/2}\mathbf{x}$$ can be obtained by simply solving $$\Sigma^{1/2}\cdot\mathbf{v}=\mathbf{x}$$ (`scipy.linalg.solve_triangular`).
+it suffices to (1) input $$ \Sigma^{-1/2}\mathbf{x} $$ instead of $$ \mathbf{x} $$, and (2) divide by $$ \Sigma^{-1/2} $$ for the output. Note that $$ \Sigma^{1/2} $$ can be computed from the covariance matrix (`np.cov`) with Cholesky decomposition (`scipy.linalg.cholesky`), so $$ \mathbf{v}=\Sigma^{-1/2}\mathbf{x} $$ can be obtained by simply solving $$ \Sigma^{1/2}\cdot\mathbf{v}=\mathbf{x} $$ (`scipy.linalg.solve_triangular`).
 
 You may want to check out the actual fix in [#27971](https://github.com/scikit-learn/scikit-learn/pull/27971) as well.
 

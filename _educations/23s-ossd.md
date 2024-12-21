@@ -2,8 +2,9 @@
 layout: page
 title: Open Source Software Development
 description: CSCI-UA.0480.61
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 3
 category: Computer Science (NYU)
+pretty_table: true
 toc:
   beginning: true
 

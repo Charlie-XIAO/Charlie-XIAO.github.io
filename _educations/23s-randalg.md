@@ -2,8 +2,9 @@
 layout: page
 title: Randomized Algorithms
 description: CSCI-UA.0480.73
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 4
 category: Computer Science (NYU)
+pretty_table: true
 toc:
   beginning: true
 

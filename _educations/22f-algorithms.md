@@ -2,8 +2,9 @@
 layout: page
 title: Basic Algorithms
 description: CSCI-UA.0310
-importance: 103 # Undergraduate courses are 1xx, normal major courses 103
+importance: 5
 category: Computer Science (NYU)
+pretty_table: true
 toc:
   beginning: true
 

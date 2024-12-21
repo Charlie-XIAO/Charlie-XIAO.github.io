@@ -2,8 +2,9 @@
 layout: page
 title: Operating Systems
 description: CSCI-UA.0202
-importance: 102 # Undergraduate courses are 1xx, important major courses 102
+importance: 2
 category: Computer Science (NYU)
+pretty_table: true
 toc:
   beginning: true
 
@@ -89,8 +90,8 @@ You may access the source code [here](https://gitfront.io/r/Charlie-XIAO/jwtwvd6
 
 Some benchmarking statistics are shown as follows:
 
-<div class="table-responsive">
-  <table data-toggle="table">
+<p>
+  <table data-toggle="table" data-classes="table table-hover table-sm">
     <thead>
       <tr>
         <th>Size (MB)</th>
@@ -116,7 +117,7 @@ Some benchmarking statistics are shown as follows:
       </tr>
     </tbody>
   </table>
-</div>
+</p>
 
 You may access the source code [here](https://gitfront.io/r/Charlie-XIAO/ftboF2oUd5yt/Encoder-nyuenc/), and note that you should run it in a Linux environment.
 

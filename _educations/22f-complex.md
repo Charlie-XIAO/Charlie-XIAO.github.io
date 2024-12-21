@@ -2,8 +2,9 @@
 layout: page
 title: Complex Variables
 description: MATH-GA.2450
-importance: 12 # Graduate-level courses during undergraduate are 1x, only 12 supported
+importance: 1
 category: Honors Mathematics (NYU)
+pretty_table: true
 toc:
   beginning: true
 
