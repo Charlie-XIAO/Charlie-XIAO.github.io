@@ -11,7 +11,7 @@ toc:
 shortcuts:
   - name: Notes
     icon: fa-solid fa-file
-    link: /assets/pdf/educations/23f-stoch-notes.pdf
+    link: /assets/pdf/educations/23s-stoch-notes.pdf
 
 course_information:
   Instructor: David Li.
