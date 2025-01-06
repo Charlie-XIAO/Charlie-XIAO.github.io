@@ -1,3 +1,5 @@
+- **[#30578](https://github.com/scikit-learn/scikit-learn/pull/30578)** DOC fix formatting in maintainer information - releasing
+- **[#30581](https://github.com/scikit-learn/scikit-learn/pull/30581)** DOC avoid version switcher dropdown being cut off by right boundary
 - **[#26367](https://github.com/scikit-learn/scikit-learn/pull/26367)** ENH `despine` keyword for ROC and PR curves
 - **[#29863](https://github.com/scikit-learn/scikit-learn/pull/29863)** MAINT filename typo `test_monotonic_contraints` -> `constraints`
 - **[#29848](https://github.com/scikit-learn/scikit-learn/pull/29848)** DOC fix all unintentional block quotes in docs
