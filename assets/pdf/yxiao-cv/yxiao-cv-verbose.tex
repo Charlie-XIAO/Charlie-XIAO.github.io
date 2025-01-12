@@ -1,0 +1,90 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble}  % uppress page number
+
+\newcommand{\gradlevel}{$^*$}
+\newcommand{\equalcontrib}{$^{\dagger}$}
+
+\input{shared/header.tex}
+
+\basicInfo{This is the verbose version. You may want to check out the \href{https://charlie-xiao.github.io/assets/pdf/yxiao-cv/yxiao-cv.pdf}{short version} with a selected subset of information instead.}
+
+% ==================================================
+
+\section{Education}
+
+\input{shared/education/pres-harvard.tex}
+\input{shared/education/24-nyush.tex}
+
+% ==================================================
+
+\commentedsection{Publications}{Authors with \equalcontrib\ are sorted by $\alpha$-$\beta$ order, others are sorted by contribution}
+
+\begin{enumerate}[label={[\arabic*]},nosep]
+  \item \input{shared/publications/24-confmask.tex}
+  \item \input{shared/publications/24-disc-lawllm.tex} %
+  \item \input{shared/publications/23-graphviz.tex} %
+\end{enumerate}
+
+% ==================================================
+
+\section{Research Experience}
+
+\input{shared/research/2408-confmask.tex}
+\input{shared/research/2405-invasion-percolation.tex} %
+\input{shared/research/2401-llm-serve.tex} %
+\input{shared/research/2208-graphviz.tex} %
+
+% ==================================================
+
+\section{Working Experience}
+
+\input{shared/work/pres-scikit-learn.tex}
+\input{shared/work/2311-fudan-disc.tex}
+
+% ==================================================
+
+\section{Teaching Experience}
+
+\begin{itemize}[nosep]
+  \item \input{shared/teaching/24s-la.tex}
+  \item \input{shared/teaching/23f-calculus.tex}
+  \item \input{shared/teaching/23s-os.tex}
+\end{itemize}
+
+% ==================================================
+
+\section{Projects}
+
+\input{shared/projects/pres-column-store.tex}
+\input{shared/projects/pres-deskulpt.tex}
+\input{shared/projects/pres-campushelper.tex}
+\input{shared/projects/2302-youtube-customizer.tex} %
+\input{shared/projects/2212-inequality-process-simulation.tex} %
+\input{shared/projects/2210-gyro-simulation.tex} %
+
+% ==================================================
+
+\section{Honors and Awards}
+
+\begin{enumerate}[label={[\arabic*]},nosep]
+  \item \input{shared/honors/24-nyu-magma.tex}
+  \item \input{shared/honors/24-crla-tutor.tex}
+  \item \input{shared/honors/23-alipay-miniprogram.tex}
+  \item \input{shared/honors/23-mcm-m.tex}
+  \item \input{shared/honors/20-nyu-deans-list.tex}
+\end{enumerate}
+
+% ==================================================
+
+\section{Skills}
+
+\input{shared/skills.tex}
+
+\end{document}

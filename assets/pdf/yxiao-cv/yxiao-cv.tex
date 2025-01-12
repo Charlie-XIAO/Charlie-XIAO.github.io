@@ -1,0 +1,50 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble}  % uppress page number
+
+\newcommand{\gradlevel}{$^*$}
+\newcommand{\equalcontrib}{$^{\dagger}$}
+
+\input{shared/header.tex}
+
+% ==================================================
+
+\section{Education}
+
+\input{shared/education/pres-harvard.tex}
+\input{shared/education/24-nyush.tex}
+
+% ==================================================
+
+\section{Skills}
+
+\input{shared/skills.tex}
+
+% ==================================================
+
+\section{Working Experience}
+
+\input{shared/work/pres-scikit-learn.tex}
+\input{shared/work/2311-fudan-disc.tex}
+
+% ==================================================
+
+\section{Research Experience}
+
+\input{shared/research/2408-confmask.tex}
+
+% ==================================================
+
+\section{Software Projects}
+
+\input{shared/projects/pres-column-store.tex}
+\input{shared/projects/pres-deskulpt.tex}
+\input{shared/projects/pres-campushelper.tex}
+
+\end{document}

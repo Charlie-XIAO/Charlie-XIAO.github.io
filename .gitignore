@@ -11,3 +11,11 @@ assets/libs/
 node_modules/
 vendor
 .idea
+
+# LaTeX build files
+assets/pdf/yxiao-cv/*.aux
+assets/pdf/yxiao-cv/*.fdb_latexmk
+assets/pdf/yxiao-cv/*.fls
+assets/pdf/yxiao-cv/*.log
+assets/pdf/yxiao-cv/*.out
+assets/pdf/yxiao-cv/*.synctex.gz

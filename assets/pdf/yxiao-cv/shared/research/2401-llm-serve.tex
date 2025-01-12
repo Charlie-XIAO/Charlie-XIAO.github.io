@@ -1,0 +1,11 @@
+% -----
+
+\datedsubsection{\textbf{Efficient Distributed Serving System for Large Language Model Inference} | Capstone}{2023.09 -- 2024.01}
+
+\advisor{Professor Guyue Liu}{guyue.liu@gmail.com}
+
+\begin{itemize}[nosep]
+  \item Enabled larger batch sizes beyond KV cache limit for layers except self-attention, observing that only self-attention relies on KV cache.
+  \item Batched prefills and decodes dynamically in self-attention to mitigate pipeline bubbles caused by varying transformer input lengths.
+  \item Packed multiple short attention computations with the longest one, while concurrently swapping KV cache to minimize overhead.
+\end{itemize}
