@@ -1,3 +1,4 @@
+- **[#30580](https://github.com/scikit-learn/scikit-learn/pull/30580)** DOC fix tooltip not showing up on the dropdown toggles
 - **[#30578](https://github.com/scikit-learn/scikit-learn/pull/30578)** DOC fix formatting in maintainer information - releasing
 - **[#30581](https://github.com/scikit-learn/scikit-learn/pull/30581)** DOC avoid version switcher dropdown being cut off by right boundary
 - **[#26367](https://github.com/scikit-learn/scikit-learn/pull/26367)** ENH `despine` keyword for ROC and PR curves
