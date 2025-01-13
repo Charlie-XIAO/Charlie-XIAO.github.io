@@ -1,13 +1,13 @@
 % -----
 
-\datedsubsection{\textbf{\href{https://csci-shu-410-se-project.github.io/Deskulpt}{Deskulpt: A Cross-Platform Desktop Customization Tool}} | \href{https://github.com/CSCI-SHU-410-SE-Project/Deskulpt}{GitHub}}{2024.03 -- present}
+\datedsubsection{\textbf{Deskulpt: A Cross-Platform Desktop Customization Tool} | \href{https://github.com/CSCI-SHU-410-SE-Project/Deskulpt}{GitHub}}{2024.03 -- present}
 
-\skills{Rust, TypeScript, Tauri, React, Vite, SWC | \textbf{Full-stack}}
+\skills{Rust, TypeScript, Tauri, React, Vite, web bundler, plugin system | \textbf{Full-stack}}
 
 \begin{itemize}[nosep]
-  \item Led the development of a cross-platform system for highly customizable desktop widgets that can be written in React / TypeScript.
-  \item Integrated rich development tools in Deskulpt, enabling streamlined widget creation and debugging, editor and type hints, etc.
-  \item Built Deskulpt using Tauri to ensure system security and compatibility across Windows, macOS, and Linux environments.
-  \item Utilized Rust's async capabilities in the backend to ensure responsive interactions between the UI and system resources.
-  \item Implemented security measures, e.g., CSP protection, constraints on file system access, limiting frontend capabilities, etc.
+  \item Led the development of Deskulpt, a cross-platform system built with Tauri that allows writing desktop widgets with any valid React code.
+  \item Designed a plugin system with IPC and a custom communication protocol, keeping system backend lightweight yet highly extensible.
+  \item Built a Rolldown-based widget bundler in Rust, supporting live reloading, external dependencies, shared React runtime, etc.
+  \item Utilized async Rust to ensure UI responsiveness, concurrent widget bundling and rendering, and efficient execution of many other tasks.
+  \item Integrated rich development tools in Deskulpt for widget and plugin creation or discovery, debugging, packaging, and distribution.
 \end{itemize}
