@@ -753,6 +753,7 @@ footer.sticky-bottom {
           display: inline-block;
           background-color: var(--global-badge-bg-color);
           margin-bottom: 0.5rem;
+          color: var(--global-card-bg-color) !important;
 
           a {
             color: white;
