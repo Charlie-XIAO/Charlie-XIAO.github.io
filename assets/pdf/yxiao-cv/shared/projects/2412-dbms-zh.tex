@@ -1,0 +1,12 @@
+% -----
+
+\datedsubsection{\textbf{列存关系型数据库管理系统} | 课程项目 | \href{https://github.com/Charlie-XIAO/165-dbms}{GitHub}}{2024.09 -- 至今}
+
+\skills{C, C++, SIMD/AVX, OpenMP, MPI, 数据库分片, 缓存感知算法}
+
+\begin{itemize}[nosep]
+  \item 使用 OpenMP 并行化 与 SIMD 向量化复杂 SELECT 语句的执行，在 1 亿条数据与 100 条筛选条件下提速 >20 倍。
+  \item 支持 B+ 树索引，在 1 亿条数据下批量加载开销 <20 毫秒，对 5\% 选择率的 SELECT 语句执行提速 >25 倍。
+  \item 高度并行化 Radix Hash Join 算法，在对 1 亿规模的两表执行 JOIN 语句时候，相比传统哈希联接提速 >15 倍。
+  \item 基于 MPI 进行数据库分片并实现多节点分布式处理，达到近线性的提速效果和数据规模可扩展性。
+\end{itemize}

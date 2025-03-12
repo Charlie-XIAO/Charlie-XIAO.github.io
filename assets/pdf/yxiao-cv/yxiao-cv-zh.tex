@@ -1,0 +1,49 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass[zh]{resume}
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble}  % uppress page number
+
+\newcommand{\equalcontrib}{$^{\dagger}$}
+
+\input{shared/header-zh.tex}
+
+% ==================================================
+
+\section{教育背景}
+
+\input{shared/education/pres-harvard-zh.tex}
+\input{shared/education/24-nyush-zh.tex}
+
+% ==================================================
+
+\section{技术能力}
+
+\input{shared/skills-zh.tex}
+
+% ==================================================
+
+\section{工作经历}
+
+\input{shared/work/pres-scikit-learn-zh.tex}
+\input{shared/work/2311-fudan-disc-zh.tex}
+
+% ==================================================
+
+\section{研究经历}
+
+\input{shared/research/2408-confmask-zh.tex}
+
+% ==================================================
+
+\section{项目经历}
+
+\input{shared/projects/pres-deskulpt-zh.tex}
+\input{shared/projects/2412-dbms-zh.tex}
+\input{shared/projects/2412-veritastrial-zh.tex}
+
+\end{document}

@@ -1,12 +1,12 @@
 % -----
 
-\datedsubsection{\textbf{Column-Store Database Management System} | Course Project | \href{https://github.com/Charlie-XIAO/165-dbms}{GitHub}}{2024.09 -- 2024.12}
+\datedsubsection{\textbf{Distributed Column-Store Relational Database System} | Course Project | \href{https://github.com/Charlie-XIAO/165-dbms}{GitHub}}{2024.09 -- present}
 
-\skills{C, SIMD/AVX, database optimizations, cache-conscious algorithms}
+\skills{C/C++, SIMD/AVX, OpenMP, MPI, database sharding, cache-conscious algorithms}
 
 \begin{itemize}[nosep]
-  \item Streamlined CSV parsing and cache-aware chunked loading, achieving >4x speedup over naive row-wise loading on 400M data.
-  \item Implemented shared scan for batchable queries with parallelization, achieving >20x speedup for 100M data and 100 queries.
-  \item Supported B+ tree indexes, with <20ms bulk loading overhead and >25x select query speedup over 100M data with 5\% selectivity.
-  \item Optimized and parallelized radix hash join, outperforming naive hash join by >15x when joining 100M$\times$100M data.
+  \item Parallelized and vectorized complex select queries with OpenMP and SIMD, achieving >20x speedup on 100M data with 100 predicates.
+  \item Supported B+ tree column index, with <20ms bulk loading overhead and >25x select query speedup over 100M data with 5\% selectivity.
+  \item Embarrassingly parallelized radix hash join, outperforming naive hash join by >15x when joining 100M$\times$100M data.
+  \item Implemented database sharding with MPI for distributed processing over multiple nodes, achieving near-linear speedup and scalability.
 \end{itemize}

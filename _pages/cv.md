@@ -9,4 +9,6 @@ children:
     permalink: /assets/pdf/yxiao-cv/yxiao-cv.pdf
   - title: English (Verbose)
     permalink: /assets/pdf/yxiao-cv/yxiao-cv-verbose.pdf
+  - title: 中文
+    permalink: /assets/pdf/yxiao-cv/yxiao-cv-zh.pdf
 ---
