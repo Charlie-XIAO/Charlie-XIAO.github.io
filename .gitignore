@@ -18,5 +18,4 @@ assets/pdf/yxiao-cv*/*.fdb_latexmk
 assets/pdf/yxiao-cv*/*.fls
 assets/pdf/yxiao-cv*/*.log
 assets/pdf/yxiao-cv*/*.out
-assets/pdf/yxiao-cv*/*.synctex
-assets/pdf/yxiao-cv*/*.synctex.gz
+assets/pdf/yxiao-cv*/*.synctex*
