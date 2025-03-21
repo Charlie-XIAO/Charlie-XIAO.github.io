@@ -1,0 +1,71 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble}  % uppress page number
+
+\newcommand{\equalcontrib}{$^{\dagger}$}
+
+\input{shared/header.tex}
+
+% ==================================================
+
+\section{Education}
+
+\input{shared/education/pres-harvard.tex}
+\input{shared/education/24-nyush.tex}
+
+% ==================================================
+
+\commentedsection{Publications}{Authors with \equalcontrib\ are sorted by $\alpha$-$\beta$ order, others are sorted by contribution}
+
+\begin{enumerate}[label={[\arabic*]},nosep]
+  \item \input{shared/publications/24-confmask.tex}
+  \item \input{shared/publications/24-disc-lawllm.tex}
+\end{enumerate}
+
+% ==================================================
+
+\section{Teaching Experience}
+
+\begin{itemize}[nosep]
+  \item \input{shared/teaching/25s-network.tex}
+  \item \input{shared/teaching/24s-la.tex}
+  \item \input{shared/teaching/23f-calculus.tex}
+  \item \input{shared/teaching/23s-os.tex}
+\end{itemize}
+
+% ==================================================
+
+\section{Working Experience}
+
+\input{shared/work/pres-scikit-learn.tex}
+\input{shared/work/2311-fudan-disc.tex}
+
+% ==================================================
+
+\section{Research Experience}
+
+\input{shared/research/2408-confmask.tex}
+
+% ==================================================
+
+\section{Honors and Awards}
+
+\begin{enumerate}[label={[\arabic*]},nosep]
+  \item \input{shared/honors/24-nyu-magma.tex}
+  \item \input{shared/honors/24-crla-tutor.tex}
+  \item \input{shared/honors/20-nyu-deans-list.tex}
+\end{enumerate}
+
+% ==================================================
+
+\section{Skills}
+
+\input{shared/skills.tex}
+
+\end{document}
