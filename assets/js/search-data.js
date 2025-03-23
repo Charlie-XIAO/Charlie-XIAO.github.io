@@ -65,6 +65,13 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/assets/pdf/yxiao-cv/yxiao-cv-zh.pdf";
               },
+            },{id: "dropdown-中文-详细版",
+              title: "中文 (详细版)",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/assets/pdf/yxiao-cv/yxiao-cv-zh-verbose.pdf";
+              },
             },{id: "post-fixing-kerneldensity-39-s-handling-of-data-variance-in-scikit-learn",
       
         title: "Fixing KernelDensity&#39;s handling of data variance in scikit-learn",

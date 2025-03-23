@@ -1,0 +1,10 @@
+% -----
+\datedsubsection{\textbf{高效的分布式大语言模型推理服务系统} | 毕业设计}{2023.09 -- 2024.01}
+
+\advisor{刘古月教授}{guyue.liu@gmail.com}
+
+\begin{itemize}[nosep]
+  \item 观察到只有自注意力层依赖 KV 缓存，从而针对除自注意力层之外的层，实现了突破 KV 缓存限制的更大规模的批处理。
+  \item 在自注意力层中对预填充和解码进行动态批处理，以缓解由于 Transformer 输入长度变化而产生的流水线空泡问题。
+  \item 将多个短注意力计算与最长计算进行打包，同时并行交换 KV 缓存以最小化开销。
+\end{itemize}
