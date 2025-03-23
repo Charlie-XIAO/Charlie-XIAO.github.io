@@ -11,4 +11,6 @@ children:
     permalink: /assets/pdf/yxiao-cv/yxiao-cv-verbose.pdf
   - title: 中文
     permalink: /assets/pdf/yxiao-cv/yxiao-cv-zh.pdf
+  - title: 中文 (详细版)
+    permalink: /assets/pdf/yxiao-cv/yxiao-cv-zh-verbose.pdf
 ---
