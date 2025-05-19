@@ -72,40 +72,51 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/assets/pdf/yxiao-cv/yxiao-cv-zh-verbose.pdf";
               },
-            },{id: "post-fixing-kerneldensity-39-s-handling-of-data-variance-in-scikit-learn",
-      
-        title: "Fixing KernelDensity&#39;s handling of data variance in scikit-learn",
-      
-      description: "A deep dive into addressing the abnormal behavior of KernelDensity on non-unit variance data.",
-      section: "Posts",
-      handler: () => {
+            },{id: "post-a-post-with-plotly-js",
         
-          window.location.href = "/blog/2024/scikit-learn-kde/";
+          title: "a post with plotly.js",
         
-      },
-    },{id: "post-interview-with-yao-xiao-scikit-learn-team-member-scikit-learn-blog",
-      
-        title: 'Interview with Yao Xiao, scikit-learn Team Member - scikit-learn Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
-      
-      description: "Author:         Reshama Shaikh      ,                                Yao Xiao",
-      section: "Posts",
-      handler: () => {
+        description: "this is what included plotly.js code could look like",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/plotly/";
+          
+        },
+      },{id: "post-fixing-kerneldensity-39-s-handling-of-data-variance-in-scikit-learn",
         
-          window.open("https://blog.scikit-learn.org/team/yao-interview/", "_blank");
+          title: "Fixing KernelDensity&#39;s handling of data variance in scikit-learn",
         
-      },
-    },{id: "post-scikit-learn-website-rework",
-      
-        title: "Scikit-learn Website Rework",
-      
-      description: "A brief walk-through of some significant changes in the new theme.",
-      section: "Posts",
-      handler: () => {
+        description: "A deep dive into addressing the abnormal behavior of KernelDensity on non-unit variance data.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/scikit-learn-kde/";
+          
+        },
+      },{id: "post-interview-with-yao-xiao-scikit-learn-team-member-scikit-learn-blog",
         
-          window.location.href = "/blog/2024/scikit-learn-website-rework/";
+          title: 'Interview with Yao Xiao, scikit-learn Team Member - scikit-learn Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
         
-      },
-    },{id: "books-the-godfather",
+        description: "Author:         Reshama Shaikh      ,                                Yao Xiao",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.scikit-learn.org/team/yao-interview/", "_blank");
+          
+        },
+      },{id: "post-scikit-learn-website-rework",
+        
+          title: "Scikit-learn Website Rework",
+        
+        description: "A brief walk-through of some significant changes in the new theme.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/scikit-learn-website-rework/";
+          
+        },
+      },{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
