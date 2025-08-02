@@ -1,12 +1,12 @@
 % -----
 
-\datedsubsection{\textbf{Fault-Tolerant Key-Value Store Using Raft} | Course Project}{2025.02 -- 2025.05}
+\datedsubsection{\textbf{Distributed Fault-Tolerant KV Store Using Raft} | Course Project}{2025.02 -- 2025.05}
 
-\skills{Go, RPC, distributed systems, consensus algorithms, fault tolerance}
+\skills{Go, C++, Rust, RPC, distributed systems, consensus algorithms, fault tolerance, database sharding}
 
 \begin{itemize}[nosep]
-  \item Developed a distributed key-value store in Go, backed by the Raft consensus algorithm for strong consistency.
-  \item Implemented leader election, log replication, and state machine updates to tolerate node failures and network partitions.
-  \item Utilized goroutines and channels for concurrent and efficient I/O operations, RPC communication, and fault-tolerance mechanisms.
-  \item Validated the design under MIT 6.5840 test suite, ensuring correctness, reliability, and high performance under various failure scenarios.
+  \item Built a sharded, fault-tolerant KV store that guarantees strong consistency and high availability using the Raft consensus algorithm.
+  \item Implemented leader election, log replication, state machine updates, and snapshotting to tolerate node failures and network partitions.
+  \item Delivered E2E implementations in Go, C++, and Rust, exposing identical APIs with consistent behavior, performance, and resilience.
+  \item Achieved high throughput under strong consistency, sustaining >600/>100 ops/s under reliable/unreliable networks with 10 clients.
 \end{itemize}
